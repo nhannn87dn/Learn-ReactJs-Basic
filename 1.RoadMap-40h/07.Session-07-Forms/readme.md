@@ -6,8 +6,6 @@
 - Two-way binding ?
 
 
-
-
 Có thể dùng component [Formik](https://formik.org/docs/overview) để quản lý tiện hơn
 Còn bên dưới là cách thủ công.
 
@@ -134,7 +132,7 @@ function App() {
 export default App
 ```
 
-## Checkbox
+## 5. Checkbox
 
 ```js
 export default function App() {
@@ -165,7 +163,7 @@ export default function App() {
   );
 }
 ```
-## Multi Checkbox
+## 6. Multi Checkbox
 
 ```js
 //App.js
@@ -215,7 +213,7 @@ export default function App() {
 }
 ```
 
-## Multi Input
+## 7. Multi Input
 
 
 
@@ -268,3 +266,12 @@ function Form(){
 
 ```
 
+## Extra
+
+- React hook form
+- Formik validation
+- Yup validation
+
+## UI Component
+- AntDesign
+- Material-UI

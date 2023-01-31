@@ -76,6 +76,7 @@ Ngược lại nếu thay đổi 1 trong 2 chiều mà chiều còn lại cũng 
 
 Trước khi component hiển thị ra màn hình, chúng phải được render bới React. Bạn cần nắm các bước trong quá trình xử lý để giúp bạn hiểu được làm thế nào để code chạy và giải thích các hành vi của nó.
 
+
 🌻 **Re-Render trong React là gì?**
 
 Khi nói về Performances của React, có 2 giai đoạn chính mà chúng ta cần quan tâm:
@@ -113,6 +114,9 @@ Chu trình này trong React Component còn được hiểu với một khái ni�
 - Component được sinh ra (**Mounting**)
 - Component tồn tại và thay đổi (**Updation**)
 - Component mất đi (**Unmounting**)
+
+Xem thêm: <https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/>
+
 
 Chúng ta sẽ tìm hiểu kỹ hơn các khái niệm này trong bài học về Hook useEffect.
 

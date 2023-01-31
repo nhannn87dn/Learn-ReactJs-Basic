@@ -1,4 +1,4 @@
-# useContext
+# useContext Hook
 
 React Context is a way to manage state globally.
 

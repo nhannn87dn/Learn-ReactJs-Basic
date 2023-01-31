@@ -7,6 +7,7 @@
 \- It can be used to access a DOM element directly
 
 **Đếm số lần Render**
+
 ```js
 function App() {
   const [inputValue, setInputValue] = useState("");
@@ -28,6 +29,7 @@ function App() {
   );
 }
 ```
+
 **Use useRef to focus the input**
 
 ```js

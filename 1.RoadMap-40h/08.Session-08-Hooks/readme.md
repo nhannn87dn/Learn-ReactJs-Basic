@@ -138,18 +138,4 @@ function App() {
 
 - Xem thêm: <https://beta.reactjs.org/learn/you-might-not-need-an-effect>
 
-### 🔷 **2.4 Lifecycle**
-
- - Diagram: <https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/>
-
-**`The lifecycle of an Effect`**
-
-Every React component goes through the same lifecycle:
-
-- A component mounts when it’s added to the screen.
-- A component updates when it receives new props or state. This usually happens in response to an interaction.
-- A component unmounts when it’s removed from the screen.
-
-Detail: <https://beta.reactjs.org/learn/lifecycle-of-reactive-effects>
-
 ==> Next: Intro Other Hooks
