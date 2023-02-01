@@ -1,8 +1,8 @@
 import React from 'react'
 
 
-function ItemSingle({name}){
-    return <li className="item">{name} </li>;
+function ItemSingle({name, isDone}){
+    return <li className="item">{name} {isDone && '✔'}</li>;
 }
 /**
  * Làm sao để check công việc hoàn thành
@@ -15,7 +15,7 @@ function ConditionalRendering() {
         <h1>Check List</h1>
         <ul>
             <ItemSingle name="Quét nhà" />
-            <ItemSingle name="Hút bụi" />
+            <ItemSingle name="Hút bụi" isDone={true} />
             <ItemSingle name="Giặt quần áo" />
             <ItemSingle name="Làm bài tập" />
         </ul>

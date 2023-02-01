@@ -138,7 +138,8 @@ export default App
 export default function App() {
   const [isChecked, setIsChecked] = useState(false);
 
-  const handleOnChange = () => {
+  const handleOnChange = (e) => {
+    console.log(e.target.checked)
     setIsChecked(!isChecked);
   };
 
@@ -215,7 +216,7 @@ export default function App() {
 
 ## 7. Multi Input
 
-
+Dùng khi có nhiều loại input khác nhau
 
 ```js
 function Form(){
@@ -273,5 +274,6 @@ function Form(){
 - Yup validation
 
 ## UI Component
+
 - AntDesign
 - Material-UI
