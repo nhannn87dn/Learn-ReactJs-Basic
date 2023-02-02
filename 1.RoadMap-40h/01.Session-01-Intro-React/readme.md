@@ -18,7 +18,7 @@ Trong session này chúng ta sẽ lần lượt nắm các vấn đề sau:
 > 🔸Tìm hiểu TypeScrip cơ bản
 >
 
-======================================
+***
 
 ## 🔶  React là gì ?
 
@@ -28,7 +28,7 @@ Trong session này chúng ta sẽ lần lượt nắm các vấn đề sau:
 
 React lần đầu tiên được triển khai cho ứng dụng Newsfeed của Facebook năm 2011, sau đó được triển khai cho Instagram.com năm 2012. Nó được mở mã nguồn (open-sourced) tại JSConf US tháng 5 năm 2013.
 
-======================================
+***
 
 ## 🔶 React có phổ biến không ?
 
@@ -37,7 +37,7 @@ React lần đầu tiên được triển khai cho ứng dụng Newsfeed của F
 
 - `Example Case`: Facebook, Instagram, Netflix, Reddit, Uber, Airbnb, The New York Times, Khan, Academy, Codecademy, SoundCloud, Discord, WhatsApp Web
 
-======================================
+***
 
 ## 🔶 React có thể làm được gì ?
 
@@ -45,7 +45,7 @@ React lần đầu tiên được triển khai cho ứng dụng Newsfeed của F
 - làm Mobile APP
 - làm Desktop APP
 
-======================================
+***
 
 ## 🔶  Tại sao nên học React
 
@@ -66,7 +66,7 @@ Nhiều ông lớn sử dụng
 
 ![](Usage-of-ReactJS-by-top-brands.png)
 
-======================================
+---
 
 ## 🔶 DOM ảo (Virtual DOM) là gì?
 
@@ -83,11 +83,19 @@ Bạn có thể tưởng tượng, ở DOM có thẻ div và các thẻ p ở tr
 
 Virtual DOM được tạo mới sau mỗi lần render lại.
 
-======================================
+---
+
+## 🔶 Review lại Flexbox Css
+
+[Mở Flexbox](Review-Flexbox/flexbox.md)
+
+---
 
 ## 🔶 Javascript-ESNext
 
-======================================
+---
+
+[Mở Javascript-ESNext](Javascript-ESNext.md)
 
 ## 🔶 Type Script Basic
 
