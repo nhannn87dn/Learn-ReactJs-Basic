@@ -68,6 +68,8 @@ Nếu 1 trong 2 chiều trên thay đổi, mà chiều cọn lại không thay �
 
 Ngược lại nếu thay đổi 1 trong 2 chiều mà chiều còn lại cũng thay đổi theo thì gọi là Two-Way binding
 
+Ví dụ: 2.Examples\myapp-js\src\SessionExamples\session-03-State\UpdateState
+
 ===============================
 
 ## 🔥 6.3 State and Lifecycle
@@ -115,10 +117,12 @@ Chu trình này trong React Component còn được hiểu với một khái ni�
 - Component tồn tại và thay đổi (**Updation**)
 - Component mất đi (**Unmounting**)
 
-Xem thêm: <https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/>
+***
+
+Xem thêm mô hình LifeCycle đối với Class Components: <https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/>
 
 
-Chúng ta sẽ tìm hiểu kỹ hơn các khái niệm này trong bài học về Hook useEffect.
+Chúng ta sẽ tìm hiểu kỹ hơn các khái niệm này trong bài học về Hook useEffect. Trecking một component để biết khi nào thì nó **Mounting**, khi nào thi nó **Updation**, và khi nào thì nó đã **Unmounting**
 
 Đọc thêm bài viết: <https://viblo.asia/p/lifecycle-component-trong-reactjs-gGJ59jzxKX2>
 

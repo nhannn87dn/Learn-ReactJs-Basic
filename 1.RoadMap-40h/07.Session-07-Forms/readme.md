@@ -5,6 +5,9 @@
 - One way binding?
 - Two-way binding ?
 
+Review lại ở Session State - Mục 6.2
+
+***
 
 Có thể dùng component [Formik](https://formik.org/docs/overview) để quản lý tiện hơn
 Còn bên dưới là cách thủ công.

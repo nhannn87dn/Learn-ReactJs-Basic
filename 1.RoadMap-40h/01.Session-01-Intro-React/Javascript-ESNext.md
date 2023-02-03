@@ -395,6 +395,7 @@ myPromise.catch();
 myPromise.finally();
 ```
 
+
 ## 🔶 JavaScript Object Rest Properties
 
 ECMAScript 2018 added rest properties.
@@ -402,11 +403,30 @@ ECMAScript 2018 added rest properties.
 This allows us to destruct an object and collect the leftovers onto a new object:
 
 ```js
+let { x, y} = { x: 1, y: 2, a: 3, b: 4 };
+
 let { x, y, ...z } = { x: 1, y: 2, a: 3, b: 4 };
 x; // 1
 y; // 2
 z; // { a: 3, b: 4 }
 ```
+
+Other Examples:
+
+```js
+let arr1 = {x: 1, y: 2};
+let arr2 = {a: 3, b: 4};
+//Merge Object
+let arrMerge = {...arr1, ...arr2}
+
+//Add item to Object
+let arrAdd = {...arr1, a: 3}
+
+//Overwrite Object
+let arrOver = {...arr1, y: 3}
+
+```
+
 
 
 ## 🔶 JavaScript slice

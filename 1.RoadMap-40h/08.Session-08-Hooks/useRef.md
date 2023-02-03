@@ -1,10 +1,10 @@
 # useRef Hook
 
-\- The useRef Hook allows you to persist values between renders.
+\- useRef Hook cho phép bạn duy trì các giá trị giữa các lần renders.
 
-\- It can be used to store a mutable value that does not cause a re-render when updated.
+\- Nó có thể lưu trữ một giá trị mà không gây ra re-render khi updated.
 
-\- It can be used to access a DOM element directly
+\- Nó có thể sử dụng để truy cập đến DOM element trực tiếp
 
 **Đếm số lần Render**
 

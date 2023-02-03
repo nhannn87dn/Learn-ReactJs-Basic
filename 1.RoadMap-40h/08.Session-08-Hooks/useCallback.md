@@ -1,9 +1,12 @@
 # useCallback Hook
 
-- `useCallback` Hook returns a memoized callback function
+- `useCallback` dùng cache một function có sử dụng State
 
-- `useCallback` Hook only runs when one of its dependencies update ==> This can improve performance.
+- `useCallback` Hook chỉ chạy khi dependency thay đổi ==> Điều này làm cải thiện performance.
 
+- Dùng khi nào: khi component CON cần truyền một sự kiện callback ra cho CHA
+
+- Component CON cần thêm React.memo() nữa mới đạt được hiệu quả
 
 ```js
 //App.js
