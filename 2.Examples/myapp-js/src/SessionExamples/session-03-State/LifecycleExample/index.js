@@ -4,10 +4,11 @@ function LifecycleExample() {
   const [count, setCount] = React.useState(0);
 
   // Mounting: Là khi component được gắn vào Parent Component
+  // Chỉ chạy 1 lần đầu
   React.useEffect(() => {
     console.log('LifecycleExample: MOUNTING');
     
-  });
+  },[]);
 
   // Updating: Sẽ chạy khi có bất kỳ state nào trong component
   // thay đổi giá trị
@@ -17,16 +18,16 @@ function LifecycleExample() {
 
   // Updating (Dependencies)
   // Chạy lần đầu, vả chỉ chạy lại khi biến count thay đổi
-  // React.useEffect(() => {
-  //   console.log('LifecycleExample: UPDATING DEPENDENCIES');
-  // }, []);
+  React.useEffect(() => {
+    console.log('LifecycleExample: UPDATING DEPENDENCIES');
+  }, [count]);
 
   // UNMOUNTING
   React.useEffect(() => {
     return () => {
       console.log('LifecycleExample: UNMOUNTING');
     };
-  }, []);
+  });
 
   return (
     <div>
