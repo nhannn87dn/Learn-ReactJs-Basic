@@ -27,7 +27,7 @@ function LifecycleExample() {
     return () => {
       console.log('LifecycleExample: UNMOUNTING');
     };
-  });
+  },[]);
 
   return (
     <div>
