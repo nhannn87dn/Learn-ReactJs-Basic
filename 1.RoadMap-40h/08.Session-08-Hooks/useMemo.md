@@ -9,6 +9,13 @@
 import React, { useState, useMemo } from "react";
 import ReactDOM from "react-dom";
 
+
+const computeLetterCount = word => {
+    let i = 0;
+    while (i < 1000000000) i++;
+    return word.length;
+};
+
 function App() {
 
   const [count, setCount] = useState(0);
@@ -19,14 +26,12 @@ function App() {
   
  // Khi tăng biến count --> App re-render lại nó sẽ chạy qua hàm này, trong khi chưa cần dùng đến nó
  // useMemo trả về kết quả và cache nó khi chưa dùng đến
-const letterCount = useMemo(() => {
-      const computeLetterCount = word => {
-        let i = 0;
-        while (i < 1000000000) i++;
-        return word.length;
-      };
+  const letterCount = useMemo(() => {
       return computeLetterCount(word);
   }, [word]);
+
+  //without useMemo
+  //const letterCount = computeLetterCount(word);
 
   return (
     <div style={{ padding: "15px" }}>
