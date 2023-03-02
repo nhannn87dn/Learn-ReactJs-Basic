@@ -64,7 +64,7 @@ React lần đầu tiên được triển khai cho ứng dụng Newsfeed của F
 
 Nhiều ông lớn sử dụng
 
-![](Usage-of-ReactJS-by-top-brands.png)
+![](img/Usage-of-ReactJS-by-top-brands.png)
 
 ---
 
@@ -72,11 +72,11 @@ Nhiều ông lớn sử dụng
 
 - DOM là viết tắt của Document Object Model. DOM đại diện cho một tài liệu HTML có cấu trúc cây logic. Mỗi nhánh của cây kết thúc bằng một nút và mỗi nút chứa các đối tượng.
 
-![html dom](html_dom.gif)
+![html dom](img/html_dom.gif)
 
 - React giữ một bản “đại diện” nhưng nhẹ hơn của DOM “thực” trong bộ nhớ, gọi là DOM ảo (Virtual DOM). Khi trạng thái của một đối tượng (object) thay đổi, DOM ảo chỉ thay đổi đối tượng đó trong DOM thực, thay vì cập nhật tất cả các đối tượng.
 
-![html dom](dom-reactjs.jpg)
+![html dom](img/dom-reactjs.jpg)
 
 
 Bạn có thể tưởng tượng, ở DOM có thẻ div và các thẻ p ở trong, React sử dụng Virtual DOM bằng cách tạo ra các object React.div và React.p và khi tương tác, ta sẽ tương tác qua các object đó một cách nhanh chóng mà không phải đụng tới DOM hay DOM API của nó.

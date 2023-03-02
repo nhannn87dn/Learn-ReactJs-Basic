@@ -57,12 +57,16 @@ useEffect(() => {
 ```js
 useEffect(() => {
     let timer = setTimeout(() => {
-    setCount((count) => count + 1);
+      console.log('Running');
+    setCount((prev) => prev + 1);
   }, 1000);
   
   // Có return trả về --> Unmouting
   
-  return () => clearTimeout(timer)
+    return () => {
+      console.log('unMounted');
+      clearTimeout(timer)
+    }
   }, []);
 ```
 
@@ -119,6 +123,33 @@ useEffect(() => {
     ignore = true;
   };
 }, [userId]);
+```
+
+```js
+useEffect(() => {
+  const controller = new AbortController();
+  const signal = controller.signal;
+
+   fetch(API, {
+      signal: signal
+    })
+    .then((response) => response.json())
+    .then((response) => {
+      // handle success
+      console.log(response);
+    })
+    .catch((err) => {
+      if (err.name === 'AbortError') {
+        console.log('successfully aborted');
+      } else {
+        // handle error
+      }
+    });
+  return () => {
+    // cancel the request before component unmounts
+    controller.abort();
+  };
+}, []);
 ```
 
 ### 🔷 **2.3 Không cần phải dùng Effect**
