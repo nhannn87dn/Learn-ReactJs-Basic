@@ -156,3 +156,5 @@ Hoặc ví dụ với Typescript trong Folder ví dụ
 ## Preventing default behavior
 
 Xem: <https://beta.reactjs.org/learn/responding-to-events#preventing-default-behavior>
+
+Nội dung liên quan: hook useRef, làm MusicPlayler
