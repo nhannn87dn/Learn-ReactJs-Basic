@@ -258,17 +258,3 @@ id = 615456cf4139ac6c5cc07fee
 # B. Bài tập luyện tập với jsonplaceholder.typicode.com:
 
 https://jsonplaceholder.typicode.com/
-
-# C. Bài tập luyện tập với OMDb API và The Movie Database (TMDB):
-
-> http://www.omdbapi.com/
-
-> https://www.themoviedb.org/
-
-# D. Bài tập luyện tập với FPT AI (Text to speech)
-
-- Đăng ký tài khoản tại (https://fpt.ai/tts) và thực hiện lệnh gọi API Text to Speech theo hướng dẫn
-
-# E. Bài tập luyện tập với Open Weather
-
-- Đăng ký tài khoản tại (https://openweathermap.org/api) và thực hiện lệnh gọi API theo hướng dẫn
