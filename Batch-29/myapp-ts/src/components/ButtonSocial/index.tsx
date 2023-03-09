@@ -14,6 +14,7 @@ function ButtonSocial({brand, icon} : ButtonType){
           <span>
           {icon}
           </span>
+          
           <span>Continute width {brand}</span>
       </div>
     );
