@@ -36,7 +36,7 @@ Hình avatar được tạo ra với cấu trúc như sau:
 Size: s | m
 
 ```js
- const link =     'https://i.imgur.com/' + avatarID + size + '.jpg'
+ const link =     `https://i.imgur.com/${avatarID}${size}.jpg`;
 ```
 
 Kết quả như sau:
