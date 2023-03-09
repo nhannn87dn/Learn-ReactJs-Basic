@@ -7,7 +7,7 @@ Tạo ra một danh sách nhà Khoa học đạt giải Nobel
 
 ===============
 
-Name: Notable Scientists
+Name: Maria Sklodowska-Curie
 
 Profession: physicist and chemist
 
