@@ -24,6 +24,28 @@ State giống như một kho lưu trữ dữ liệu cho các component trong Rea
 
 Cùng xem một ví dụ minh họa để thấy sự cần thiết State.
 
+
+```js
+export default function Count() {
+  let index = 0;
+
+  function handleClick() {
+    index = index + 1;
+  }
+return (
+    <>
+      <button onClick={handleClick}>
+        Increment
+      </button>
+      <h3>  
+        {index}
+      </h3>
+     
+    </>
+  );
+}
+```
+
 2.Examples\myapp-ts\src\SessionsExamples\session-03-State\NeedState\GalleryNoState.js
 
 2.Examples\myapp-ts\src\SessionsExamples\session-03-State\NeedState\GalleryState.js
