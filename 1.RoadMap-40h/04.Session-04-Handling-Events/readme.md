@@ -7,7 +7,7 @@
 >
 >- Thế nào là một sự kiện lan truyền và cách khắc phục
 
-## Responding to Events (Phản hồi sự kiện)
+## 🔥 Responding to Events (Phản hồi sự kiện)
 
 Khi bạn click chuột, rê chuột, focus vào một input... thì đó là những sự kiện. React cho phép bạn tạo ra các phản hồi lại giao diện người dùng tương ứng với từng sự kiện.
 
@@ -28,7 +28,7 @@ DOM Events Javascript: <https://www.w3schools.com/jsref/dom_obj_event.asp>
 </button>
 ```
 
-## Tạo một event handlers
+## 🔥Tạo một event handlers
 
 🌻 in React
 
@@ -64,22 +64,28 @@ export default function Signup() {
   );
 }
 ```
+Lưu ý: Để truyền một Event handlers thì ta truyền chứ không được GỌI. Ví dụ:
 
-## Truyền tham số Arguments đến Event Handlers
+| passing a function (correct)   | calling a function (incorrect)   |
+|--------------------------------|----------------------------------|
+| `<button onClick={handleClick}>` | `<button onClick={handleClick()}>` |
 
-```js
-<button onClick={(e) => deleteRow(1, e)}>Delete Row</button>
+## 🔥 Event Handlers có sử dụng tham số
 
+```html
+<button onClick={() => alert(message)}>Delete Row</button>
 ```
 
 ## Truyền Event Handlers như là Props
 
-```js
+`onClick `function event handler dùng như một props, được lấy từ props
 
-//onClick function event handler dùng như một props
-function Button({ onClick, children }) {
+Dùng cách này thì tên của nó bắt buộc bắt đầu bằng `on`
+
+```js
+function Button({ onClickHandler, children }) {
   return (
-    <button onClick={onClick}>
+    <button onClick={onClickHandler}>
       {children}
     </button>
   );
