@@ -16,7 +16,10 @@ Trong Session này chúng ta tìm hiểu:
 
 ## 🔥 6.1 State ?
 
+> State: A Component's Memory
+
 State giống như một kho lưu trữ dữ liệu cho các component trong ReactJS. Nó chủ yếu được sử dụng để cập nhật các trạng thái của một component khi người dùng thực hiện một số hành động như nhấp vào nút, nhập một số văn bản, nhấn một số phím, v.v.
+
 
 ===============================
 
