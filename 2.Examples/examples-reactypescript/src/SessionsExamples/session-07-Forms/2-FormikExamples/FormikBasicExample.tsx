@@ -41,9 +41,9 @@ function FormikBasicExample() {
           lastName: 'Jackson',
           email: 'peter@jackson.com',
         }}
-        onSubmit={async (values: FormValues, { setSubmitting }: FormikHelpers<FormValues>) => {
+        onSubmit={async (values: FormValues) => {
           console.log(values);
-          setSubmitting(true)
+          
         }}
       >
         {/* Form  */}
