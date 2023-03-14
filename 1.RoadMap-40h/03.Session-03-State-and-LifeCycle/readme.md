@@ -381,9 +381,75 @@ Dưới đây là một bảng so sánh phương thức mảng. Khi bạn thao t
 
 View details: <https://beta.reactjs.org/learn/updating-arrays-in-state#adding-to-an-array>
 
+```js
+//Lúc đầu giá trị mặc định là mảng rỗng
+const [artists, setArtists] = useState([]);
+
+//Thêm giá trị mới vào mảng
+
+setArtists( 
+  [ 
+    ...artists, // that contains all the old items
+    { id: nextId++, name: name } // and one new item at the end
+  ]
+);
+
+```
+
 - Xóa phần tử của mảng:
 
 Xem: <https://beta.reactjs.org/learn/updating-arrays-in-state#removing-from-an-array>
+
+```js
+import { useState } from 'react';
+
+
+//Mảng giá trị mặc định
+let initialArtists = [
+  { id: 0, name: 'Marta Colvin Andrade' },
+  { id: 1, name: 'Lamidi Olonade Fakeye'},
+  { id: 2, name: 'Louise Nevelson'},
+];
+
+export default function List() {
+  const [artists, setArtists] = useState(
+    initialArtists
+  );
+
+  return (
+    <>
+      <h1>Inspiring sculptors:</h1>
+      <ul>
+        {artists.map(artist => (
+          <li key={artist.id}>
+            {artist.name}{' '}
+            <button onClick={() => {
+              setArtists(
+                artists.filter(a =>
+                  a.id !== artist.id
+                )
+              );
+            }}>
+              Delete
+            </button>
+          </li>
+        ))}
+      </ul>
+    </>
+  );
+}
+
+```
+Khi click nút Delete, thì sẽ xóa đi item có ID tương ứng.
+
+```js
+//Bản chất là chỉ lọc và giữ lại những ID khác với ID đã xóa
+setArtists(
+  artists.filter(a => a.id !== artist.id)
+);
+```
+
+
 
 - Biến đổi phần tử mảng: 
 
