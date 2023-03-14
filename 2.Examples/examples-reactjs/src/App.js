@@ -7,7 +7,7 @@ function App() {
 
   return (
     <div className="App">
-        {!isUnmount && <LifecycleExample />}
+        {isUnmount === false && <LifecycleExample />}
         <button onClick={()=> setIsUnmount(!isUnmount)}>Unmount (Toggle)</button>
     </div>
   );

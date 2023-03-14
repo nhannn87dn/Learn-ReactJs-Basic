@@ -22,6 +22,8 @@ State giống như một kho lưu trữ dữ liệu cho các component trong Rea
 
 Nó chủ yếu được sử dụng để cập nhật các trạng thái của một component khi người dùng thực hiện một số hành động như nhấp vào nút, nhập một số văn bản, nhấn một số phím, v.v. làm thay đổi kết quả hiển thị ra màn hình.
 
+Nó chỉ hoạt động trong phạm vi Component đó thôi
+
 
 ===============================
 
@@ -88,6 +90,14 @@ Bản chất `React.useState(0)` là một function return về một mảng [] 
 `[count, setCount]` là đang sử dụng cú pháp `Destructuring assignment` của JavaScript
 - count: tên của State
 - setCount: là phương thức để thay đổi giá trị của State tương ứng
+
+
+### 🌻Khi nào thì cần đến State
+
+Bất cứ khi nào dữ liệu thay đổi trong một component, State có thể được sử dụng.
+
+- ví dụ: Từ ẩn sang hiện, từ không có thành có... Nói chung là trạng thái lúc đầu khác với lúc sau
+- Ví dụ: một form nhập input type text mỗi trường trong Form sẽ giữ lại trạng thái của nó dựa trên dữ liệu đầu vào của người dùng (user input). Nếu đầu vào của người dùng thay đổi, trạng thái của các text input sẽ thay đổi, đây là nguyên nhân cần re-rendering của component và tất cả các component con của nó. Và khi này chúng ta sẽ sử dụng state
 
 ===============================
 
