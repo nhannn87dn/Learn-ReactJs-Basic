@@ -8,6 +8,9 @@ import './App.css';
 // import Count from './components/Count';
 import ButtonLike from './components/ButtonLike';
 import TodoList from './components/TodoList';
+import ListKeys from './components/ListKeys';
+import Scientist from './components/Scientist';
+import ProductList from './components/ProductList';
 
 const Button = ()=>{
 
@@ -129,6 +132,9 @@ function App() {
        <Toolbar />
        <SallyList />
        <TodoList />
+       <ListKeys />
+       <Scientist />
+       <ProductList />
     </div>
   );
 }

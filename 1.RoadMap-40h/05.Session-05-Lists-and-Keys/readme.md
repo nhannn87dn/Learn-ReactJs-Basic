@@ -90,11 +90,18 @@ export const people = [{
 }];
 
 ```
+Cấu trúc đường dẫn một hình
+
+```js
+let photo = `https://i.imgur.com/${person.imageId}s.jpg`;
+```
+
 App.js
 
 ```js
 import { people } from './data.js';
 import { getImageUrl } from './utils.js';
+
 
 export default function List() {
     //use map()
