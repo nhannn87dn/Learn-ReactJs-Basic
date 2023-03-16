@@ -1,3 +1,0 @@
-- list employees
-- list blog
-- list product cards

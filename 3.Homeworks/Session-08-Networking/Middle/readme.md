@@ -4,7 +4,7 @@
 
 > http://www.omdbapi.com/
 
-> https://www.themoviedb.org/
+> https://developers.themoviedb.org/3/getting-started/introduction
 
 
 Sử dụng API trên để tạo một website Phim

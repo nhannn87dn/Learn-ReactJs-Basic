@@ -2,9 +2,9 @@
 
 ## Task 1. Basic stateful components
 
-1. Like button
-2. Rate button: Vote 5 sao
-3. Image Viewer:
+
+1. Rate button: Vote 5 sao
+2. Image Viewer:
 
 Hình kiếm ở đây: <https://unsplash.com/>
 
