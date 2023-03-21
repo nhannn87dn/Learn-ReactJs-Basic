@@ -1,5 +1,5 @@
 import React, { Fragment, ReactNode } from 'react';
-
+import { ChakraProvider } from '@chakra-ui/react'
 import {FaGoogle, FaFacebook} from 'react-icons/fa';
 
 import ButtonSocial from './components/ButtonSocial';
@@ -11,6 +11,11 @@ import TodoList from './components/TodoList';
 import ListKeys from './components/ListKeys';
 import Scientist from './components/Scientist';
 import ProductList from './components/ProductList';
+import { Forms } from './components/Forms';
+import FormsMulti from './components/FormsMulti';
+import FormReactHook from './components/FormReactHook';
+import AndtForms from './components/AndtForms';
+import ChakForm from './components/ChakForm';
 
 const Button = ()=>{
 
@@ -120,9 +125,10 @@ function SallyList(){
 
 function App() {
   return (
+    <ChakraProvider>
     <div className="App">
       <h1>Hello React - Softech</h1>
-       <ButtonLike />
+       {/* <ButtonLike />
        <Button />
        <input type="text" onKeyDown={()=>{
         
@@ -134,8 +140,15 @@ function App() {
        <TodoList />
        <ListKeys />
        <Scientist />
-       <ProductList />
+       <ProductList /> */}
+
+       {/* <Forms />
+       <FormsMulti /> */}
+       <FormReactHook />
+       <AndtForms />
+       <ChakForm />
     </div>
+    </ChakraProvider>
   );
 }
 

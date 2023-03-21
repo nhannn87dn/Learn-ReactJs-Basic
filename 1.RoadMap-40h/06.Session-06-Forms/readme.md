@@ -283,7 +283,60 @@ npm install react-hook-form
 
 ### Formik
 
+```bash
+npm install formik --save
+```
+
 ### Yup validation
+
+Sử dụng để validate form trong React
+
+```bash
+npm install yup --save
+```
+
+Cách sử dụng: <https://github.com/jquense/yup>
+
+---
+React Hook Form with Yup Validation
+
+Bạn cần cài thêm
+
+```bash
+npm install @hookform/resolvers yup
+```
+
+```js
+import { useForm } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from "yup";
+
+const schema = yup.object({
+  firstName: yup.string().required(),
+  age: yup.number().positive().integer().required(),
+}).required();
+type FormData = yup.InferType<typeof schema>;
+
+export default function App() {
+  const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
+    resolver: yupResolver(schema)
+  });
+  const onSubmit = (data: FormData) => console.log(data);
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <input {...register("firstName")} />
+      <p>{errors.firstName?.message}</p>
+        
+      <input {...register("age")} />
+      <p>{errors.age?.message}</p>
+      
+      <input type="submit" />
+    </form>
+  );
+}
+
+```
 
 ===========================================
 
@@ -350,3 +403,8 @@ export default function BasicButtons() {
 }
 
 ```
+
+
+### Chakra UI
+
+https://chakra-ui.com/
