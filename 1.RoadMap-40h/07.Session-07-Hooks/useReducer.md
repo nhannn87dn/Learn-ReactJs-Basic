@@ -1,6 +1,9 @@
 # useReducer Hook
 
-Giúp bạn cập nhật State phức tạp
+- Giúp bạn cập nhật State phức tạp
+- State Liên quan đến nhiều components 
+
+Doc: <https://react.dev/reference/react/useReducer>
 
 Cú pháp
 
@@ -15,7 +18,21 @@ useReducer(<reducer>, <initialState>)
 **useReducer Hook** trả về State hiện tại và một dispatch method.
 
 
-Ví dụ: 
+Ví dụ về một Component TodoApp
+
+```js
+import Todos from "./Todos";
+
+export default const TodoApp = ()=>{
+  return (
+    <>
+    <Todos />
+    </>
+  )
+}
+```
+
+File Todos.js
 
 ```js
 import { useReducer } from "react";
@@ -72,5 +89,25 @@ function Todos() {
       ))}
     </>
   );
+}
+```
+
+Có thể nâng cấp ví dụ đó lên. Tạo thêm components TodoFilters
+
+- TodoFilters chứa 3 giá trị lọc: All, Complete, UnComplete
+
+- Khi thay đổi chọn các trạng thái này thì bên Todos
+
+```js
+import Todos from "./Todos";
+import TodoFilters from "./TodoFilters";
+
+export default const TodoApp = ()=>{
+  return (
+    <div>
+    <TodoFilters />
+    <Todos />
+    </div>
+  )
 }
 ```

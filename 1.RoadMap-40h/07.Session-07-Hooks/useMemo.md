@@ -5,6 +5,8 @@
 
 - Bản chất useMemo là caching lại giá trị trả về (return) của function, mỗi lần component rerender nó sẽ kiểm tra giá trị tham số truyền vào function nếu giá trị đó không thay đổi, thì return value đã caching trong memory. Ngược lại nếu giá trị tham số truyền vào thay đổi, nó sẽ thực hiện tính toán lại vào trả về value, sao đó caching lại value cho những lần rerender tiếp theo.
 
+Doc: <https://react.dev/reference/react/useMemo>
+
 ```js
 import React, { useState, useMemo } from "react";
 import ReactDOM from "react-dom";

@@ -26,7 +26,7 @@ Do vậy tất cả những vấn đề Side-Effects chúng ta đưa vào useEff
 - useEffect cho phép bạn thực hiện các hiệu ứng phụ trong các Components của bạn.
 - Effects sẽ chạy sau khi component đã rendering.
 
-
+Doc: <https://react.dev/reference/react/useEffect>
 
 ## 🔷 **Khi nào thì dùng useEffect**
 

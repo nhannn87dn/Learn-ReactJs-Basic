@@ -6,6 +6,9 @@
 
 \- Nó có thể sử dụng để truy cập đến DOM element trực tiếp
 
+
+Doc: <https://react.dev/reference/react/useRef>
+
 **Đếm số lần Render**
 
 ```js

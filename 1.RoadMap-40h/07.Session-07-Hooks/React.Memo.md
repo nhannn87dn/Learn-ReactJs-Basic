@@ -4,6 +4,8 @@
 
 - **Khi nào dùng**: Khi mà component này độc lập hoàn toàn với component chứa nó (CHA), tức là khi CHA cần re-render nhưng CON không cần thiết phải re-render thì dùng. Tùy từng ngữ cảnh cụ thể. Component này không dùng State.
 
+
+
 ```js
 function SayHello({name}){
   return (
