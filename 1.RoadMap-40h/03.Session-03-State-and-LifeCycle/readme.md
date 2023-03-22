@@ -1,4 +1,4 @@
-# ⭐ 6 State and Lifecycle
+# ⭐ State and Lifecycle
 
 Trong Session này chúng ta tìm hiểu:
 

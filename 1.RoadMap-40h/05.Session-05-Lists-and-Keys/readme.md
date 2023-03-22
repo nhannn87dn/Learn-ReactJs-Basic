@@ -1,4 +1,4 @@
-# ⭐ Session 6 - Lists and Keys
+# ⭐ Session 5 - Lists and Keys
 
 >**Bạn sẽ nắm được**
 >- Làm thế nào để render component từ một mảng sử dụng `map()`
