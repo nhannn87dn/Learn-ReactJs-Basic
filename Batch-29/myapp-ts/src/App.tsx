@@ -1,31 +1,33 @@
-import React, { Fragment, ReactNode, useMemo, createContext } from 'react';
-import { ChakraProvider } from '@chakra-ui/react'
-
+import React, { Fragment } from 'react';
+import {BrowserRouter, Routes, Route } from 'react-router-dom';
 
 import './App.css';
 import HomePage from './pages/HomePage';
-import { UserContext, UserType } from './UserContext';
-import TodoReducer from './components/TodoReducer';
-
-const user = {
-name: 'John', 
-email: 'john@example.com',
-avatarUrl: 'https://via.placeholder.com/100x100.png'
-};
-
+import AboutPage from './pages/AboutPage';
+import ContactPage from './pages/ContactPage';
+import Layout from './layouts/Layout';
+import NoPage from './pages/NoPage';
+import ParameterPage from './pages/ParameterPage';
+import QueryPage from './pages/QueryPage';
+import Popular from './pages/Popular';
 
 function App() {
-  //Bước 1: tạo Context UserContext.tsx
-  //Bước 2: Tạo Provider để bao lấy component con
-  // Bước 3: truyền vào Provider một prop có tên value = giá trị gì đó
-  // mà bạn muốn componet con nhận được
-  
+
   return (
     <>
-    <UserContext.Provider value={user}>
-      {/* <HomePage user={user} /> */}
-      <TodoReducer />
-    </UserContext.Provider>
+      <BrowserRouter>
+          <Routes>
+              <Route path="/" element={<Layout />}>
+                  <Route  index element={<HomePage />} />
+                  <Route path='/about' element={<AboutPage />} />
+                  <Route path='/contact'  element={<ContactPage />} />
+                  <Route path='/popular'  element={<Popular />} />
+                  <Route path='/parameter/:id/:name/:email' element={<ParameterPage />} />
+                  <Route path='/search' element={<QueryPage />} />
+                  <Route path="*" element={<NoPage />} />
+              </Route>
+          </Routes>
+      </BrowserRouter>
     </>
   );
 }
