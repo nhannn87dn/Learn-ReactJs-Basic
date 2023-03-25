@@ -61,12 +61,16 @@ Yêu cầu:
 - Thời gian: 1 tuần
 - Gửi code qua github, hoặc Zip lại (không bao gồm folder node_modules), gửi về email: nhannn@softech.vn
 
-Trang chủ: 
+1.Trang chủ: 
 
   - Có header, footer, phần search, Join Today
-  - Lấy danh sách phim, phim đang chiếu, rồi show ra giao diện như Demo 
+  - Phần header: Có logo, chỉ làm 1  Menu Movies, có các trang con như Demo.
+  - Phần footer: Để thông tin như demo, ko cần gắn link.
+  - Phần còn lại của Body trang chỉ: Lấy danh sách phim mới nhất (latest), phim đang chiếu (now_playing), rồi show ra giao diện như Demo 
 
-Trang chi tiết 1 phim: Không bắt buộc, nhưng làm thêm thì Tốt
+2.Trang con của Movies: bạn chỉ cần import phần Header, Footer vào, nội dung để h1 là tên trang. ví dụ: `<h1>Popular</h1>`
+
+3.Trang chi tiết 1 phim: Không bắt buộc, nhưng làm thêm thì Tốt.
 
 Danh sách API
 
