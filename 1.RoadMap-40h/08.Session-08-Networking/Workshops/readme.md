@@ -76,6 +76,8 @@ Danh sách API
 - Chi tiết  Movie: /movie/{movie_id} (GET)
 - Reviews Movie: /movie/{movie_id}/reviews (GET)
 
+Lưu ý: phần Link hình ảnh: bắt đầu bằng: <https://www.themoviedb.org/t/p/w220_and_h330_face/>. Hoặc click phải lên hình trên demo để biết link, và nối chuổi hợp lý.
+
 Xem thêm: <https://developers.themoviedb.org/3/movies/get-movie-details>
 
 Dự vào tài liệu API bạn có thể xây dựng cho mình một website phim
