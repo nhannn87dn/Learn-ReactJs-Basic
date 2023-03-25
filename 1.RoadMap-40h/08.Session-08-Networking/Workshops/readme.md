@@ -82,6 +82,12 @@ Danh sách API
 
 Lưu ý: phần Link hình ảnh: bắt đầu bằng: <https://www.themoviedb.org/t/p/w220_and_h330_face/>. Hoặc click phải lên hình trên demo để biết link, và nối chuổi hợp lý.
 
+Ví dụ: Hình poster đại diện
+```js
+ const thumbnail = `https://www.themoviedb.org/t/p/w220_and_h330_face/{$poster_path}`
+
+```
+
 Xem thêm: <https://developers.themoviedb.org/3/movies/get-movie-details>
 
 Dự vào tài liệu API bạn có thể xây dựng cho mình một website phim
