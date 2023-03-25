@@ -42,6 +42,9 @@ curl --request GET \
 
 ===========================
 
+BÀI TẬP KẾT THÚC MÔN
+
+===========================
 
 API endpoint: https://api.themoviedb.org/3
 
