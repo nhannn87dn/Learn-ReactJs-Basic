@@ -56,7 +56,10 @@ Làm một website review phim: <https://www.themoviedb.org/>
 
 Yêu cầu:
 
-Áp dụng react router để tạo các trang như site Demo, nhưng chỉ tập trung code phần trang chủ. 
+- Áp dụng react router để tạo các trang như site Demo, nhưng chỉ tập trung code phần trang chủ. 
+
+- Thời gian: 1 tuần
+- Gửi code qua github, hoặc Zip lại (không bao gồm folder node_modules), gửi về email: nhannn@softech.vn
 
 Trang chủ: 
 
