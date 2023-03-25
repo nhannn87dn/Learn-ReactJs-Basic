@@ -40,10 +40,34 @@ curl --request GET \
   --header 'Content-Type: application/json;charset=utf-8'
 ```
 
+===========================
+
+
 API endpoint: https://api.themoviedb.org/3
 
+Nối thêm phần này vào: ?api_key=bbf4abc4e3112c3a8b28301c1ad039ee
+
+Làm một website review phim: <https://www.themoviedb.org/>
+
+Yêu cầu:
+
+Áp dụng react router để tạo các trang như site Demo, nhưng chỉ tập trung code phần trang chủ. 
+
+Trang chủ: 
+
+  - Có header, footer, phần search, Join Today
+  - Lấy danh sách phim, phim đang chiếu, rồi show ra giao diện như Demo 
+
+Trang chi tiết 1 phim: Không bắt buộc, nhưng làm thêm thì Tốt
+
+Danh sách API
+
+- Danh sách Movies Mới nhất: /movie/latest (GET)
 - Danh sách Movies Phổ biến: /movie/popular (GET)
+- Danh sách Movies Đang chiếu: /movie/now_playing (GET)
 - Chi tiết  Movie: /movie/{movie_id} (GET)
 - Reviews Movie: /movie/{movie_id}/reviews (GET)
+
+Xem thêm: <https://developers.themoviedb.org/3/movies/get-movie-details>
 
 Dự vào tài liệu API bạn có thể xây dựng cho mình một website phim
