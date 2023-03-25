@@ -22,6 +22,39 @@ const ProductItem = ({product} : {product: ProductType})=>{
     )
 }
 
+
+
+const MoviesList = () => {
+  return (
+    <div className='product_wrapper'>
+        <div className='product_Item'>
+          <img src="https://www.themoviedb.org/t/p/w220_and_h330_face/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg" alt=""/>
+          <h2>John Wick: Chapter 4</h2>
+          <p>65%</p>
+          <p>ngay</p>
+        </div>
+        <div className='product_Item'>
+          <img src="https://www.themoviedb.org/t/p/w220_and_h330_face/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg" alt=""/>
+          <h2>John Wick: Chapter 4</h2>
+          <p>65%</p>
+          <p>ngay</p>
+        </div>
+        <div className='product_Item'>
+          <img src="https://www.themoviedb.org/t/p/w220_and_h330_face/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg" alt=""/>
+          <h2>John Wick: Chapter 4</h2>
+          <p>65%</p>
+          <p>ngay</p>
+        </div>
+        <div className='product_Item'>
+          <img src="https://www.themoviedb.org/t/p/w220_and_h330_face/t6HIqrRAclMCA60NsSmeqe9RmNV.jpg" alt=""/>
+          <h2>John Wick: Chapter 4</h2>
+          <p>65%</p>
+          <p>ngay</p>
+        </div>
+    </div>
+  )
+}
+
 const ProductList = () => {
   return (
     <div className='product_wrapper'>
