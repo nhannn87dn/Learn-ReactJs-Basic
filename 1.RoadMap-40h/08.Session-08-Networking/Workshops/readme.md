@@ -48,7 +48,9 @@ BÀI TẬP KẾT THÚC MÔN
 
 API endpoint: https://api.themoviedb.org/3
 
-Nối thêm phần này vào: ?api_key=bbf4abc4e3112c3a8b28301c1ad039ee
+Nối thêm phần này vào cuối mỗi API: ?api_key=bbf4abc4e3112c3a8b28301c1ad039ee
+
+Xem cách Call API: Batch-29\myapp-ts\src\pages\Popular.js
 
 Làm một website review phim: <https://www.themoviedb.org/>
 
