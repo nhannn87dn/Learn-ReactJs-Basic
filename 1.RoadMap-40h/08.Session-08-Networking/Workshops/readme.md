@@ -88,6 +88,8 @@ Ví dụ: Hình poster đại diện
 
 ```
 
+Css Phần trăm : <https://codepen.io/sergiopedercini/pen/jmKdbj>
+
 Xem thêm: <https://developers.themoviedb.org/3/movies/get-movie-details>
 
 Dự vào tài liệu API bạn có thể xây dựng cho mình một website phim
