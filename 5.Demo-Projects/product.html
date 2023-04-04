@@ -144,7 +144,7 @@
                 <i class="fa fa-shopping-cart"></i> Thêm Giỏ Hàng
               </button>
               <button class="btn_call" type="button">
-                <i class="fa fa-phone"></i> Gọi tư vấn
+                <i class="fa fa-heart"></i> Yêu thích
               </button>
             </div>
             <div class="call_info">
@@ -193,6 +193,7 @@
 
               <div class="product_wrapper flex">
                 <div class="product_item">
+                  <span class="discount">-25%</span>
                   <img
                     src="images/cap-chuyen-doi-usb-c-sang-sd-thumb.png"
                     alt=""
@@ -200,6 +201,7 @@
                   <h3>Cáp chuyển đổi USB-C sang SD</h3>
                   <div class="price">
                     <strong>1.290.000đ</strong>
+                    <del>790.000đ</del>
                   </div>
                 </div>
                 <div class="product_item">
@@ -220,6 +222,7 @@
                   </div>
                 </div>
                 <div class="product_item">
+                  <span class="discount">-20%</span>
                   <img src="images/airpods-3-thumb.png" alt="" />
                   <h3>AirPods 3</h3>
                   <div class="price">
@@ -253,7 +256,7 @@
               <h2 class="section_subtitle">Đánh giá Sản phẩm</h2>
 
               <div class="reviews_form">
-                <div class="comment_box ">
+                <div class="comment_box">
                   <div class="crt clearfix">
                     <div class="lcrt">
                       <b>4/5</b><i class="fa fa-star"></i>
@@ -297,21 +300,20 @@
                       </div>
                     </div>
                     <div class="bcrt">
-                      Mời bạn chọn đánh giá
-                      <div class="stars_bar">
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                        <i class="fa fa-star"></i>
-                      </div>
-                      
+                      <button type="button">Gửi đánh giá của bạn</button>
                     </div>
                   </div>
                 </div>
                 <div class="clearfix"></div>
                 <form action="" name="reviews_form">
-                 
+                  Mời bạn chọn đánh giá
+                  <span class="stars_bar">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                  </span>
                   <textarea
                     required
                     placeholder="Nội dung tiếng việt có dấu"
@@ -342,10 +344,48 @@
                     <button type="submit">Đánh giá</button>
                   </div>
                 </form>
+                <ul class="comment_list clearfix">
+                  <li id="comment215" class="even first">
+                    <span class="iconcom-user">P...</span
+                    ><span class="name">Phan Thanh</span>
+                    <div class="talk">
+                      <p class="text">Hết ngày 8/3 có được giảm giá k ad</p>
+                      <div class="cmextra">
+                        <span
+                          class="btnreply"
+                          onclick="cmtaddreplyclick(215,215)"
+                          >Trả lời</span
+                        ><span class="time">10-03-2021 17:09:33</span>
+                      </div>
+                    </div>
+                  </li>
+                  <li id="comment215" class="even first">
+                    <span class="iconcom-user">P...</span
+                    ><span class="name">Phan Thanh</span>
+                    <div class="talk">
+                      <p class="text">Hết ngày 8/3 có được giảm giá k ad</p>
+                      <div class="cmextra">
+                        <span
+                          class="btnreply"
+                          onclick="cmtaddreplyclick(215,215)"
+                          >Trả lời</span
+                        ><span class="time">10-03-2021 17:09:33</span>
+                      </div>
+                    </div>
+                  </li>
+                </ul>
               </div>
             </section>
           </div>
           <div class="col_sidebar">
+            <section class="callback_support">
+              <h2 class="section_subtitle">Gọi lại tư vấn</h2>
+              <div class="call_form">
+                <p>Bạn muốn chúng tôi gọi lại tư vấn, vui lòng điền số điện thoại vào form dưới đây</p>
+                <input type="text" name="mobile" placeholder="Số điện thoại của bạn">
+                <button type="button">Đăng ký</button>
+              </div>
+            </section>
             <section class="article_list_box">
               <h2 class="section_subtitle">Tin tức liên quan</h2>
               <div class="article_list clearfix">
@@ -391,7 +431,7 @@
                       >
                     </h3>
                     <div class="dates">
-                      23 Nov, 2019, Posted by: admin, 2 Comments
+                      2 Apr, 2022, Posted by: admin, 5 Comments
                     </div>
                     <p class="section_desc">
                       Electrical repairs should always be handled by a
@@ -420,7 +460,7 @@
                       >
                     </h3>
                     <div class="dates">
-                      23 Nov, 2019, Posted by: admin, 2 Comments
+                      10 Dec, 2012, Posted by: author, 6 Comments
                     </div>
                     <p class="section_desc">
                       An electrical surge can happen for a number of reasons,

@@ -97,6 +97,7 @@
                       </div>
                     </article>
                     <article>
+                      <span class="badget_hot">HOT</span>
                       <img
                         class="photo"
                         alt="Electrical repairs"
@@ -109,7 +110,7 @@
                           >
                         </h3>
                         <div class="dates">
-                          23 Nov, 2019, Posted by: admin, 2 Comments
+                          05 Dec, 2022, Posted by: admin, 2 Comments
                         </div>
                         <p class="section_desc">
                           Electrical repairs should always be handled by a professional
@@ -126,6 +127,7 @@
                       </div>
                     </article>
                     <article>
+                      
                       <img
                         class="photo ls-is-cached lazyloaded"
                         alt="Surge Protection"
@@ -138,7 +140,7 @@
                           >
                         </h3>
                         <div class="dates">
-                          23 Nov, 2019, Posted by: admin, 2 Comments
+                          16 Apr, 2021, Posted by: admin, 2 Comments
                         </div>
                         <p class="section_desc">
                           An electrical surge can happen for a number of reasons,
@@ -160,12 +162,53 @@
                   <section class="section_categories">
                     <h2 class="section_subtitle">Categories</h2>
                      <ul class="categories">
-                        <li><a href="">Baseboard Heating</a></li>
-                        <li><a href="">Electrical Repairs</a></li>
-                        <li><a href="">Generator Repair</a></li>
-                        <li><a href="">Install a Ceiling Fan</a></li>
-                        <li><a href="">Panel Upgrades</a></li>
-                        <li><a href="">Surge Protection</a></li>
+                        <li class="actived">
+                          <a href="javascript:;">Baseboard Heating</a>
+                          <div class="cate_childs">
+                            <a href="javascript:;">Child 1</a>
+                            <a href="javascript:;">Child 2</a>
+                            <a href="javascript:;">Child 3</a>
+                            <a href="javascript:;">Child 4</a>
+                          </div>
+                        </li>
+                        <li>
+                          <a href="javascript:;">Electrical Repairs</a>
+                          <div class="cate_childs">
+                            <a href="javascript:;">Child 1</a>
+                            <a href="javascript:;">Child 2</a>
+                            <a href="javascript:;">Child 3</a>
+                            <a href="javascript:;">Child 4</a>
+                          </div>
+                        </li>
+                        <li><a href="javascript:;">Generator Repair</a>
+                          <div class="cate_childs">
+                            <a href="javascript:;">Child 1</a>
+                            <a href="javascript:;">Child 2</a>
+                            <a href="javascript:;">Child 3</a>
+                            <a href="javascript:;">Child 4</a>
+                          </div>
+                        </li>
+                        <li><a href="javascript:;">Install a Ceiling Fan</a>
+                          <div class="cate_childs">
+                            <a href="javascript:;">Child 1</a>
+                            <a href="javascript:;">Child 2</a>
+                            <a href="javascript:;">Child 3</a>
+                            <a href="javascript:;">Child 4</a>
+                          </div></li>
+                        <li><a href="javascript:;">Panel Upgrades</a>
+                          <div class="cate_childs">
+                            <a href="javascript:;">Child 1</a>
+                            <a href="javascript:;">Child 2</a>
+                            <a href="javascript:;">Child 3</a>
+                            <a href="javascript:;">Child 4</a>
+                          </div></li>
+                        <li><a href="javascript:;">Surge Protection</a>
+                          <div class="cate_childs">
+                            <a href="javascript:;">Child 1</a>
+                            <a href="javascript:;">Child 2</a>
+                            <a href="javascript:;">Child 3</a>
+                            <a href="javascript:;">Child 4</a>
+                          </div></li>
                      </ul>
                   </section>
                   <section class="sections section_form">
@@ -263,5 +306,13 @@
         </div>
       </div>
     </footer>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.4/jquery.min.js" integrity="sha512-pumBsjNRGGqkPzKHndZMaAG+bir374sORyzM3uulLV14lN5LyykqNk8eEeUlUkB3U0M4FApyaHraT65ihJhDpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+      $("ul.categories>li>a").on("click", function(){
+          $("ul.categories>li.actived").removeClass("actived");
+          $(this).parent().addClass('actived');
+      });
+
+    </script>
   </body>
 </html>

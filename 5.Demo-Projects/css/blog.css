@@ -38,6 +38,16 @@
     display: flex;
     margin: 20px 0;
 }
+.article_list article  .badget_hot{
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 2;
+    background-color: var(--main-color);
+    color: #fff;
+    padding: 2px 8px;
+    
+}
 .article_list article img{
     width: 370px;
     height: auto;
@@ -79,7 +89,7 @@
 .categories li:last-child {
     border-bottom: 0;
 }
-.categories li:hover a{
+.categories li:hover>a{
     color: var(--main-color);
 }
 
@@ -94,6 +104,28 @@
     vertical-align: middle;
     margin-right: 10px
 }
+.categories li .cate_childs {
+    display: none;
+    padding-left: 20px;
+}
+.categories li.actived .cate_childs{
+    display: block;
+}
+.categories li.actived>a{
+    font-weight: bold;
+    color: var(--main-color);
+}
+.categories li .cate_childs a{
+    display: block;
+    width: 100%;
+}
+.categories li .cate_childs a:before{
+   content: "»";
+   margin-right: 5px;
+}
+
+
+
 
 
 .subscribe_form {
