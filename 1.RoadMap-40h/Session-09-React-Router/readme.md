@@ -92,5 +92,86 @@ export default Layout;
 
 ## Parameter & Query String
 
--- parameter/145236/peter
--- /search?name=Tony&age=27
+**Parameter** là phần thông tin đường dẫn URL nằm sau Domain ví dụ như:
+
+```code
+parameter/145236/peter
+```
+
+Để lấy được phân thông tin này ta làm như sau:
+
+```js
+import {useParams} from 'react-router-dom';
+
+const ParameterPage = () => {
+    let params = useParams();
+    console.log(params);
+  return (
+    <div>
+       <h1>ParameterPage</h1>
+        </div>
+  )
+}
+
+export default ParameterPage
+```
+
+Sử dụng hook `useParams` từ thư viện `react-router-dom`
+
+---
+
+**Query String** là phần thông tin nằm sau dấu chấm hỏi ? trên URL trình duyệt
+
+```code
+search?name=Tony&age=27
+```
+Để lấy được phân thông tin này ta làm như sau:
+
+```js
+import { useLocation, useSearchParams } from 'react-router-dom';
+
+function QueryPage() {
+  let location = useLocation();
+  let [params] = useSearchParams();
+
+  let name = params.get('name');
+  let age = params.get('age');
+
+  console.log(location);
+  console.log(name, age);
+
+  return <div>
+     <h1>Search Page</h1>
+  </div>;
+}
+
+export default QueryPage;
+```
+
+Sử dụng hook `useSearchParams` từ thư viện `react-router-dom`
+
+## Nested Routes
+
+Ở ví dụ trên chúng ta có /blog là đến trang Blog.
+
+Bấy giờ mở rộng thêm kiểu như sau
+
+```code
+"/blog" --> posts list
+"/blog/new" --> create new post
+"/blog/123" -->  a post detail
+```
+
+Khi đó chúng ta có Route như sau: 
+
+```js
+<Route path='blog' element={<Blog />}>
+  <Route path='new' element={<NewPost />} />
+  /*A nested route!*/
+  <Route path=':postId' element={<Post />} />  
+</Route>
+/*A nested route!*/
+               
+```
+
+Route có path blog có 2 Route còn ==> gọi là Nested route
