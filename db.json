@@ -301,7 +301,10 @@
         "postId": 1
       }
     ],
-    "profile": {
-      "name": "typicode"
-    }
+    "categories": [
+        "Fish", "Computer", "Table", "Chips"
+    ],
+    "metarial": [
+        "Granite", "Fresh", "Metal", "Frozen"
+    ]
   }
