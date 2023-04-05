@@ -302,9 +302,39 @@
       }
     ],
     "categories": [
-        "Fish", "Computer", "Table", "Chips"
+            {
+            "id": 1,
+            "name": "Fish"
+          },
+          {
+            "id": 2,
+            "name": "Computer"
+          },
+          {
+            "id": 3,
+            "name": "Table"
+          },
+          {
+            "id": 3,
+            "name": "Chips"
+          }
     ],
     "metarial": [
-        "Granite", "Fresh", "Metal", "Frozen"
+        {
+            "id": 1,
+            "name": "Granite"
+          },
+          {
+            "id": 2,
+            "name": "Fresh"
+          },
+          {
+            "id": 3,
+            "name": "Metal"
+          },
+          {
+            "id": 3,
+            "name": "Frozen"
+          }
     ]
   }
