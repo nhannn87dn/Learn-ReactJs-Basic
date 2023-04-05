@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Register Page</title>
+    <title>Login Page</title>
     <link rel="shortcut icon" href="images/favicon.ico" />
     <link
       rel="stylesheet"
@@ -14,7 +14,7 @@
       referrerpolicy="no-referrer"
     />
     <link rel="stylesheet" href="css/global.css" />
-    <link rel="stylesheet" href="css/blog.css" />
+    <link rel="stylesheet" href="css/login.css" />
     <link rel="stylesheet" href="css/responsive.css" />
   </head>
   <body id="page_blog">
@@ -28,7 +28,7 @@
             <ul class="flex">
               <li ><a href="index.html">Home</a></li>
               
-              <li class="has-child actived">
+              <li class="has-child">
                 <a href="blog.html">Blog</a>
                 <div class="nav-child">
                   <a href="">Tech</a>
@@ -38,7 +38,7 @@
               </li>
               <li><a href="category.html">Category</a></li>
               <li><a href="product.html">Product</a></li>
-              <li><a href="login.html">Login</a></li>
+              <li class="actived"><a href="login.html">Login</a></li>
               
             </ul>
             <div class="header-cart">
@@ -64,132 +64,20 @@
               </li>
           </ul>
           <section class="main_wrapper flex">
-              <div class="col_main">
-                <h1 class="section_title">Post Lasted</h1>
-                  <div class="article_list clearfix">
-                    <article>
-                      <img
-                        class="photo"
-                        alt="Lighting Upgrades"
-                        src="images/lighting-upgrades-thumb-G3.jpg"
-                      />
-                      <div class="content">
-                        <h3>
-                          <a href="lighting-upgrades" title="Lighting Upgrades"
-                            >Lighting Upgrades</a
-                          >
-                        </h3>
-                        <div class="dates">
-                          23 Nov, 2019, Posted by: admin, 2 Comments
-                        </div>
-                        <p class="section_desc">
-                          Electrical panel maintenance, therefore, should be part of
-                          your regular routine.
-                        </p>
-                        <div class="section_btn">
-                          <a
-                            class="readmore"
-                            href="lighting-upgrades"
-                            title="Lighting Upgrades"
-                            >Read more</a
-                          >
-                        </div>
-                      </div>
-                    </article>
-                    <article>
-                      <img
-                        class="photo"
-                        alt="Electrical repairs"
-                        src="images/electrical-repairs-thumb-G1.jpg"
-                      />
-                      <div class="content">
-                        <h3>
-                          <a href="electrical-repairs" title="Electrical repairs"
-                            >Electrical repairs</a
-                          >
-                        </h3>
-                        <div class="dates">
-                          23 Nov, 2019, Posted by: admin, 2 Comments
-                        </div>
-                        <p class="section_desc">
-                          Electrical repairs should always be handled by a professional
-                          electrician
-                        </p>
-                        <div class="section_btn">
-                          <a
-                            class="readmore"
-                            href="electrical-repairs"
-                            title="Electrical repairs"
-                            >Read more</a
-                          >
-                        </div>
-                      </div>
-                    </article>
-                    <article>
-                      <img
-                        class="photo ls-is-cached lazyloaded"
-                        alt="Surge Protection"
-                        src="images/surge-protection-thumb-G4.jpg"
-                      />
-                      <div class="content">
-                        <h3>
-                          <a href="surge-protection" title="Surge Protection"
-                            >Surge Protection</a
-                          >
-                        </h3>
-                        <div class="dates">
-                          23 Nov, 2019, Posted by: admin, 2 Comments
-                        </div>
-                        <p class="section_desc">
-                          An electrical surge can happen for a number of reasons,
-                          including lightning strikes.
-                        </p>
-                        <div class="section_btn">
-                          <a
-                            class="readmore"
-                            href="surge-protection"
-                            title="Surge Protection"
-                            >Read more</a
-                          >
-                        </div>
-                      </div>
-                    </article>
-                  </div>
-              </div>
-              <div class="col_sidebar">
-                  <section class="section_categories">
-                    <h2 class="section_subtitle">Categories</h2>
-                     <ul class="categories">
-                        <li><a href="">Baseboard Heating</a></li>
-                        <li><a href="">Electrical Repairs</a></li>
-                        <li><a href="">Generator Repair</a></li>
-                        <li><a href="">Install a Ceiling Fan</a></li>
-                        <li><a href="">Panel Upgrades</a></li>
-                        <li><a href="">Surge Protection</a></li>
-                     </ul>
-                  </section>
-                  <section class="sections section_form">
-                    <h2 class="section_subtitle">Subscribe to Our Newsletter</h2>
-                    <p class="section_desc">
-                      Do not want to miss news, updates, note and any offer on our
-                      products, then please subscriber to our mailling list.
-                    </p>
-                    <form class="subscribe_form flex-column" action="" method="GET">
-                      <input required type="text" placeholder="Your name" name="name" />
-                      <input required type="text" placeholder="Your Mobile phone" name="mobile" />
-                      <input
-                        type="email"
-                        placeholder="Your email address"
-                        name="email"
-                        class="input"
-                        required
-                      />
-                      <button type="submit" class="button">
-                        <i class="fa fa-envelope-o"></i> Subscribe email list
-                      </button>
+                <div class="login_wrapper">
+                    <form action="">
+                        <h2>Register</h2>
+                        <input placeholder="Firt Name" type="text" name="firtname" id="firtname">
+                        <input placeholder="Last Name" type="text" name="lastname" id="lastname">
+                        <input placeholder="Mobile" type="text" name="mobile" id="mobile">
+                        <input placeholder="Your Email" type="email" name="email" id="email">
+                        <input placeholder="Password" type="password" name="password" id="password">
+                        <input placeholder="Password Confirm" type="password" name="password_confirm" id="password_confirm">
+                        <p class="term">By click Register Button below, You agree to Terms of Privacy Plolicy </p>
+                        <button type="submit">Register</button>
                     </form>
-                  </section>
-              </div>
+                    <p class="note">Aready have an account <a href="login.html">Login now</a></p>
+                </div>
           </section>
         </div>
     </main>
