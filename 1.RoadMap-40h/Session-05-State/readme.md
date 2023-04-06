@@ -859,8 +859,12 @@ Xem chi tiết <https://react.dev/learn/preserving-and-resetting-state>
 
 Xem chi tiết <https://react.dev/learn/extracting-state-logic-into-a-reducer>
 
+Bài giảng: [Ở đây](Manage-State/6.useReducer.md)
+
 ### 6.5.6 Passing Data Deeply with Context
 
 >Truyền Data tới các Components lòng vào nhau sâu với Context
 
 Xem chi tiết <https://react.dev/learn/passing-data-deeply-with-context>
+
+Bài giảng: [Ở đây](Manage-State/5.useContext.md)
