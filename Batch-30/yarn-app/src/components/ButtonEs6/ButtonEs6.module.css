@@ -1,0 +1,18 @@
+.button {
+    padding: 12px 10px;
+    text-align: center;
+    background-color: #f80;
+    color:#fff;
+    border-radius: 4px;
+    border: none;
+}
+
+.button-dark{
+    background-color: #303442;
+}
+
+.button-detail{
+    background-color: #fff;
+    border: 1px solid #303442;
+    color: #303442
+}
