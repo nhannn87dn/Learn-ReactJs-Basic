@@ -1,85 +1,69 @@
-import React from 'react';
-import logo from './logo.svg';
-import { FaShoppingBag,FaHeart } from "react-icons/fa";
+
+//import { FaShoppingBag,FaHeart } from "react-icons/fa";
 import './App.css';
-import ButtonEs6 from './components/ButtonEs6';
-import Button from './components/Button';
-//props = {label: 'Thêm giỏ hàng'}
-//props.label
-// let {label} = props;
+import Attibutes from './components/Attibutes';
+import ConditionalRendering from './components/ConditionalRendering';
+import ListKeys from './components/ListKeys';
+import Navigations from './components/Navigations';
+import Navigationsv2 from './components/Navigationsv2';
+import NavigationItem from './components/Navigationsv2/NavigationItem';
 
-//console.log(label)
-
-type TypeProps = {
-  label: string
-}
-
-//Định nghĩa 1 component
-// function Button(props: TypeProps){
-//     return (
-//       <button type='button'><FaShoppingBag /> {props.label}</button>
-//     )
-// }
-let a = 5;
-let b = 6;
-const element = <h1>Hello, world!</h1>;
-const myelement = <h1>React is {a + b} times better with JSX</h1>;
-//Es6 
-
-function Link(){
+function Button({onClick}: {onClick: ()=> void})  {
   return (
-    <a href="">Home</a>
-  )
-}
-
-function NavigationItem(){
-  return (
-    <li>Home</li>
-  )
-}
-
-function Navigation(){
-  return (
-    <nav className="navigation" style={{backgroundColor: 'red',padding: '10px', fontSize: '16px'}}>
-      <ul>
-          <NavigationItem />
-          <NavigationItem />
-          <NavigationItem />
-          <NavigationItem />
-          <NavigationItem />
-          <img src="" alt="" />
-          <input type="text" />
-      </ul>
-    </nav>
-  )
-}
-
-function Son(){
-  return (
-    <>
-    <h3>Son</h3>
-    </>
-  )
-}
-
-function Dad({children} : {children: React.ReactNode}){
-  return (
-    <React.Fragment>
-      {children}
-    </React.Fragment>
+    <button onClick={onClick}>Button</button>
   )
 }
 
 function App() {
+
+  const handleClickButton = ()=>{
+    console.log('handleClickButton');
+  }
+
+ // handleClickButton()
+
   return (
     <div className="App">
       <h1>Hello React</h1>
-      <ButtonEs6 icon={<FaShoppingBag />} label='Thêm giỏ hàng' />
-      <ButtonEs6 customClass='button-dark'  />
-      <ButtonEs6 customClass='button-detail' label='Xem chi tiết'  />
-      {/* <Link />
-      <Navigation /> */}
-      <Button label='Add To Cart' />
+      <Attibutes />
+      <Navigations />
+      
+      <Navigationsv2>
+            <NavigationItem target='_blank' link='https://tinhte.vn' label='Tinh tế' />
+            <NavigationItem link='https://24h.com.vn' label='24h.com.vn' />
+      </Navigationsv2>
+      <ConditionalRendering />
+      <ListKeys />
+
+  
+
+      <button onClick={()=>{
+         console.log('handleClickButton 2');
+      }}>Button 2</button>
+
+      <div onMouseOver={()=>{
+        console.log('Bạn đã rê chuật lên div');
+      }}>
+        i'm Div tag
+      </div>
+
+      <form action="index.html">
+        <button onClick={(e)=>{
+          e.preventDefault();
+          console.log('dsdsdsds');
+        }} type='submit'>Submit</button>
+      </form>
+
+      <button onClick={handleClickButton}>Click Me</button>
+      <Button onClick={()=>{
+         console.log('Button 1');
+      }} />
+       <Button onClick={()=>{
+         console.log('Button 2');
+      }} />
+       <Button onClick={()=>{
+         console.log('Button 3');
+      }} />
     </div>
   );
 }
