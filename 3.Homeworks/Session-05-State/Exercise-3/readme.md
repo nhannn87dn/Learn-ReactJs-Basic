@@ -5,8 +5,8 @@ Xem Demo: 5.Demo-Projects\product.html
 
 ## Task 1
 
-CLick vào button Thêm giỏ ==> Show một modal với lời nhắn : Đã thêm vào giỏ hàng thành công !
-
+- CLick vào button Thêm giỏ ==> Show một modal với lời nhắn : Đã thêm vào giỏ hàng thành công !
+- Trong modal này có nút Close, click vào sẽ đóng Modal lại
 
 ## Task 2
 

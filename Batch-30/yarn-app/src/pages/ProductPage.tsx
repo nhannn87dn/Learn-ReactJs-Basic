@@ -12,6 +12,8 @@ import ProductGallery from '../components/ProductGallery'
 import AccessoriesRelate from '../components/AccessoriesRelate'
 
 const ProductPage = () => {
+  let [mobile, setMobile] = React.useState<string>('');
+  console.log('ProductPage running');
   return (
     <>
        <Header />
@@ -41,6 +43,12 @@ const ProductPage = () => {
               <Parameter>
                   {parmeters.map(item => <PrameterItem key={item.id} label={item.key} value={item.value} />)}
               </Parameter>
+              <div className="form_call">
+                <input onChange={(e)=>{
+                  console.log(e.target.value);
+                  setMobile(e.target.value)
+                }} type="text" name='mobile' value={mobile} placeholder='Your mobile' />
+              </div>
             </div>
           </div>
          

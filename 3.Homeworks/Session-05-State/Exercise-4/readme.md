@@ -1,10 +1,7 @@
 # Bài tập Basic
 
-## Task 1. Basic stateful components
 
-
-1. Rate button: Vote 5 sao
-2. Image Viewer:
+Làm một slide ảnh đơn giản
 
 Hình kiếm ở đây: <https://unsplash.com/>
 

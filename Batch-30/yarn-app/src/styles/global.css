@@ -151,11 +151,11 @@ footer {
     padding: 5px 0
 }
 
-.parameter li:nth-child(n+11) {
+.parameter li:nth-child(n+6) {
     display: none
 }
 
-#append_param li:nth-child(n+11){
+#append_param li:nth-child(n+6){
     display: block
 }
 
@@ -163,7 +163,7 @@ footer {
     border-bottom: 0
 }
 
-.parameter li:nth-child(n+10) {
+.parameter li:nth-child(n+5) {
     border-bottom: 0
 }
 
@@ -193,7 +193,7 @@ footer {
 .parameter li a {
     color: #0b5690
 }
-.showall_parameter .parameter li:nth-child(n+11) {
+.showall_parameter .parameter li:nth-child(n+6) {
     display: table;
 }
 
@@ -214,6 +214,18 @@ footer {
 .viewparameterfull:hover {
     background: var(--dark-color);
     color: #fff
+}
+
+.modal_parameter {
+    width: 500px;
+    background-color: #fff;
+    padding: 30px;
+    position: fixed;
+    top: 50px;
+    left: 50%;
+    margin-left: -250px;
+    z-index: 999;
+    
 }
 
 .gallery {

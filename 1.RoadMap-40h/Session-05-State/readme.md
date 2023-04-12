@@ -122,7 +122,7 @@ Trong React nó có 2 chiều,
 
 **🌻One-Way binding là gì ?**
 
-Nếu 1 trong 2 chiều trên thay đổi, mà chiều cọn lại không thay đổi thì gọi là dữ liệu 1 chiều - One-Way binding
+Nếu 1 trong 2 chiều trên thay đổi, mà chiều còn lại không thay đổi thì gọi là dữ liệu 1 chiều - One-Way binding
 
 **🌻Two-way binding là gì ?**
 
