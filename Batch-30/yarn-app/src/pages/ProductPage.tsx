@@ -10,6 +10,8 @@ import ButtonEs6 from '../components/ButtonEs6'
 import ProductPrice from '../components/ProductPrice'
 import ProductGallery from '../components/ProductGallery'
 import AccessoriesRelate from '../components/AccessoriesRelate'
+import LoginForm from '../components/LoginForm'
+
 
 const ProductPage = () => {
   let [mobile, setMobile] = React.useState<string>('');
@@ -49,6 +51,7 @@ const ProductPage = () => {
                   setMobile(e.target.value)
                 }} type="text" name='mobile' value={mobile} placeholder='Your mobile' />
               </div>
+              <LoginForm />
             </div>
           </div>
          
