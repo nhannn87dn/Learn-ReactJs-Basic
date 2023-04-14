@@ -2,6 +2,7 @@ import ProductPage from "./pages/ProductPage";
 import React from 'react';
 import "./styles/global.css";
 import { userContext, UserType, users } from "./context/userContex";
+import LoginPage from "./pages/LoginPage";
 /* useState */
 //b1 : initial state = giá trị khởi tạo
 //b2 : actions = các hành động để thay đổi state
@@ -77,7 +78,7 @@ function App() {
     <div>
       <userContext.Provider value={users}>
        {/* <CountApp /> */}
-          <ProductPage />
+          <LoginPage />
        </userContext.Provider>
     </div>
   );

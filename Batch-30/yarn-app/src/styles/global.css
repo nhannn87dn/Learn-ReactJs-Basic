@@ -282,6 +282,20 @@ footer {
 }
 
 
+button, .btn {
+    padding: 10px;
+    background-color: var(--main-color);
+    color: #fff;
+    font-weight: 600;
+    border: none;
+    border-radius: 3px;
+    appearance: none;
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .login_wrapper {
     max-width: 360px;
     margin: 0 auto 30px;
