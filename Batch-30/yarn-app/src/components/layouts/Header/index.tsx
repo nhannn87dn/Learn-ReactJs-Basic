@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React from 'react'
 import HeaderLogo from '../../HeaderLogo'
 import HeaderNavigation from '../../HeaderNavigation'
 import HeaderNavigationItem from '../../HeaderNavigationItem'
@@ -8,7 +8,7 @@ import { navs } from '../../../data/navigations';
 
 const Header = () => {
 
-  const users = React.useContext(userContext);
+  const user = React.useContext(userContext);
 
   return (
     <header>
@@ -19,7 +19,7 @@ const Header = () => {
                 <HeaderNavigation>
                   {navs.map(nav=> <HeaderNavigationItem key={nav.id} childs={nav.childs} link={nav.link} label={nav.label} target={nav.target} />)}
                 </HeaderNavigation>
-                <span>{users.name}</span>
+                <span>{user?.name}</span>
                <ShoppingCart />
               </div>
           </div>

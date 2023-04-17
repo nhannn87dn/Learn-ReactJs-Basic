@@ -1,87 +1,39 @@
-import ProductPage from "./pages/ProductPage";
-import React from 'react';
+//import ProductPage from "./pages/ProductPage";
+import React, {useCallback, useState, useMemo} from 'react';
 import "./styles/global.css";
-import { userContext, UserType, users } from "./context/userContex";
-import LoginPage from "./pages/LoginPage";
-/* useState */
-//b1 : initial state = giá trị khởi tạo
-//b2 : actions = các hành động để thay đổi state
-//handlerDown, handlerUp là hành động
+import { UserProvider } from "./context/userContex";
+//import LoginPage from "./pages/LoginPage";
+//import CountReducer from './components/CountReducer';
+import ZustandCount from './components/ZustandCount';
+import ZustandCountActions from './components/ZustandCountActions';
+import Greet from './components/Greet';
 
-const CountApp = () => {
+import Todos from './components/Todos';
+import ProductList from './components/ProductList';
+import ProductFilter from './components/ProductFilter';
 
-  const [count,setCount] = React.useState(0);
- 
 
-  const handlerDown = () => {
-      setCount(prev => prev - 1);
-  }
-  const handlerUp = () => {
-    setCount(prev => prev + 1);
-  }
-  return (
-    <div>
-      <h1>{count}</h1>
-      <button onClick={handlerDown}>Down</button><button onClick={handlerUp}>Up</button>
-    </div>
-  )
+const userInfo = {
+  id: 1, 
+  name: 'John',
+  avatarUrl: 'http://'
 }
 
-//b1: inital state: 0
-const initialState = 0;
-//b2: tạo ra actions
-const ACTION_UP = 'up';
-const ACTION_DOWN = 'down';
-//b3: Tạo reducer
 
-const reducer = (state: number, action: string)=>{
-  switch(action) {
-    case ACTION_UP:
-      return state + 1;
-    case ACTION_DOWN:
-      return state - 1;
-    default:
-      throw new Error(`Action invalid`);
-  }
-}
-
-//b4
-
-const CountReducer = () => {
-
-  const [count,dispatch] = React.useReducer(reducer,initialState);
- 
-
-  const handlerDown = () => {
-      //setCount(prev => prev - 1);
-      dispatch(ACTION_DOWN);
-  }
-  const handlerUp = () => {
-    //setCount(prev => prev + 1);
-    dispatch(ACTION_UP);
-  }
-  return (
-    <div>
-      <h1>{count}</h1>
-      <button onClick={handlerDown}>Down</button><button onClick={handlerUp}>Up</button>
-    </div>
-  )
-}
-
+const computeLetterCount = (word: string) => {
+    let i = 0;
+    while (i < 1000000000) i++;
+    return word.length;
+};
 
 function App() {
- 
-  
-  console.log("App rendered");
-
   return (
-    <div>
-      <userContext.Provider value={users}>
-       {/* <CountApp /> */}
-          <LoginPage />
-       </userContext.Provider>
-    </div>
-  );
+    <>
+    <ProductFilter />
+    <hr />
+    <ProductList />
+    </>
+  )
 }
 
 export default App;

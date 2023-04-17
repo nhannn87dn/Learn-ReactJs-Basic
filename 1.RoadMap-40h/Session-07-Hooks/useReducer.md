@@ -150,174 +150,27 @@ const CountApp = () => {
 ========================
 
 
-Ví dụ về một Component TodoApp có state Phức tạp hơn
+**Ví dụ về một Component có state Phức tạp hơn sử dụng useReducer**
 
-```js
-import Todos from "./Todos";
+Xem chi tiết: <https://react.dev/learn/extracting-state-logic-into-a-reducer#>
 
-export default const TodoApp = ()=>{
-  return (
-    <>
-    <Todos />
-    </>
-  )
-}
-```
+**Sử dụng useReducer kết hợp với useContex**
 
-File Todos.js
+Tham khảo bài viết sau: <https://react.dev/learn/scaling-up-with-reducer-and-context>
 
-```js
-import { useReducer } from "react";
+**Một số ví dụ khác**
 
-//1. InitState
-const initialState = {
-  job: '',
-  jobs: []
-};
+<https://devtrium.com/posts/how-to-use-react-usereducer-hook>
 
-// 2. Actions
-// Một hành động chỉ thực hiện 1 nhiệm vụ
-const SET_JOB = 'set_job';
-const ADD_JOB = 'add_job';
-const COMPLETE_JOB = 'complete_job';
-const REMOVE_JOB = 'remove_job';
+## ⭐ Kết Luận
 
-//Action Functions
-// đầu vào là payload
-// đầu ra là object chứa action và payload 
-const setJobAction = payload => {
-  return {
-    type: SET_JOB,
-    payload
-  }
-}
+Để vận hành được `useReducer` trong một ứng dụng lớp rất phức tạp, khó bảo trì code.
 
-const removeJobAction = payload => {
-  return {
-    type: REMOVE_JOB,
-    payload
-  }
-}
+May mắn là Luôn có một giải pháp khác đơn giản những vẫn đạt được hiệu quả tương tự.
 
-//3. reducer
-const reducer = (state, action) => {
+Một số thư viện thay thế `useReducer`:
 
-  console.log('Action',action);
-  console.log('Prev state',state);
-
-  //Mục đích để console.log được giá trị state sau khi thay đổi
-  let newState;
-
-  switch (action.type) {
-    case SET_JOB:
-        //ES6, thay đổi giá trị một phần tử Object
-        newState =  {
-          ...state,
-          job: action.payload
-        }
-
-        break;
-    case ADD_JOB:
-        //ES6, thêm một phần tử Array
-        newState =  {
-          ...state,
-          jobs: [...state.jobs, action.payload]
-        }
-
-        break;
-    case REMOVE_JOB:
-         //ES6, xóa một phần tử Array
-
-        //1.sao chép mảng cũ
-         const newJobs  = [...state.jobs];
-        //2.Xóa phần tử trong mảng mới
-        newJobs.splice(action.payload, 1);
-        //3 Cập nhật mảng cũ thành mảng mới
-        newState =  {
-          ...state,
-          jobs: newJobs
-        }
-
-        break;
-      
-   
-
-    default:
-      throw new Error("Invalid Action");
-  }
-
-  console.log(newState);
-
-  return newState;
-};
-
-function Todos() {
-  const [state, dispatch] = useReducer(reducer, initialState);
-
-  //Destructoring the state
-  const { job, jobs} = state;
-
-  const handleSubmit = (e) => {
-    dispatch({ type: ADD_JOB, payload: e.target.value });
-
-    //dispatch({ type: SET_JOB, payload: '' });
-    dispatch(setJobAction(''));
-  };
-
-  return (
-    <>
-    <h3>Todo App</h3>
-    <div>
-     <input 
-     value={job} 
-     placeholder="Enter todo..."
-     onChange={ e=> {
-      /*
-      Truyền cả action lẫn data để set lại giá trị state tương ứng
-      */
-      //dispatch({ type: SET_JON, payload: e.target.value})
-      dispatch(setJobAction(e.target.value))
-     }
-
-     }
-     />
-     <button onClick={handleSubmit}>Add</button>
-    </div>
-      {jobs.map((todo) => (
-        <div key={todo.id}>
-          <label>
-            {todo.title} 
-             <button onClick={()=>{
-              dispatch(removeJobAction(todo.id))
-             }}>X</button>
-          </label>
-        </div>
-      ))}
-    </>
-  );
-}
-```
-
-**Có thể nâng cấp ví dụ đó lên**
-
-- Thêm tùy chọn Click vào đánh dấu Job đã hoàn thành. còn mặc định khi thêm vào là chưa làm.
-
-- Tạo thêm components TodoFilters
-
-- TodoFilters chứa 3 giá trị lọc: All, Complete, UnComplete
-
-- Khi thay đổi chọn các trạng thái này thì bên Todos
-
-```js
-import Todos from "./Todos";
-import TodoFilters from "./TodoFilters";
-
-export default const TodoApp = ()=>{
-  return (
-    <div>
-    <TodoFilters />
-    <Todos />
-    </div>
-  )
-}
-```
+* React Redux
+* Redux Toolkit
+* Redux Saga
+* [Zustand](Manage-State/4.Zustand.md) --> Đơn giản mà hiệu quả

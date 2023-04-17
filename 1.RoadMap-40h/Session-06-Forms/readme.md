@@ -281,11 +281,15 @@ function Form(){
 npm install react-hook-form
 ```
 
+Example: <https://react-hook-form.com/get-started/#Quickstart>
+
 ### Formik
 
 ```bash
 npm install formik --save
 ```
+Example: <https://formik.org/docs/tutorial#a-simple-newsletter-signup-form>
+
 
 ### Yup validation
 
@@ -296,6 +300,12 @@ npm install yup --save
 ```
 
 Cách sử dụng: <https://github.com/jquense/yup>
+
+---
+
+Formik với Yup Validation
+
+Doc: <https://formik.org/docs/guides/validation>
 
 ---
 React Hook Form with Yup Validation

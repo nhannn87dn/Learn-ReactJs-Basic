@@ -1,17 +1,18 @@
-import React from 'react';
+import React from "react";
 
-
-export const users = {
-  id: 1,
-  name: 'John Doe',
-  avatar: 'dsds'
-}
-
-export interface UserType {
+interface UserType {
   id: number;
   name:string;
-  avatar:string;
+  avatarUrl:string;
 }
+//Bước 1: Tạo context
+//createContext nhận vào giá trị khởi tạo, mặc đinh là null
+export const userContext = React.createContext<UserType | null>(null);
 
-
-export const userContext = React.createContext<UserType>(users);
+// Bước 2: Tạo Provider context
+//userContext.Provider sử dụng props value mặc định: chứa thông tin cần truyền xuống children
+export const UserProvider = ({user, children}: {user: UserType, children?: React.ReactNode}) => {
+  return <userContext.Provider value={user}>
+      {children}
+    </userContext.Provider>;
+};

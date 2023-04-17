@@ -333,3 +333,13 @@ button, .btn {
     line-height: 1.4;
     margin-top: 10px;
 }
+
+.active_button{
+    background-color: #212121;
+}
+
+.gotop {
+    position: fixed;
+    right: 10px;
+    bottom: 50px;
+}

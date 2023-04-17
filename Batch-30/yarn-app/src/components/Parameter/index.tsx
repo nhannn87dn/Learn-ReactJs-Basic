@@ -1,11 +1,8 @@
 import React from 'react';
 
-import { userContext } from '../../context/userContex';
 
 const Parameter = ({children}: {children?: React.ReactNode}) => {
   let [viewmore, setViewmore] = React.useState<boolean>(false);
-
-  let users = React.useContext(userContext);
 
   let tabletClass = viewmore ? 'tableparameter showall_parameter' : 'tableparameter';
  
@@ -30,7 +27,7 @@ const Parameter = ({children}: {children?: React.ReactNode}) => {
         )
         : null
 }
-{users.name}
+
     </section>
   )
 }

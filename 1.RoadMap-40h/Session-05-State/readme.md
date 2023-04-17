@@ -852,19 +852,3 @@ Vậy để làm sao chúng ta click vào Child mà có thể update được St
 
 Xem chi tiết <https://react.dev/learn/preserving-and-resetting-state>
 
-
-### 6.5.5 Extracting State Logic into a Reducer
-
->Chuyển logic xử lý State sang Reducer
-
-Xem chi tiết <https://react.dev/learn/extracting-state-logic-into-a-reducer>
-
-Bài giảng: [Ở đây](Manage-State/6.useReducer.md)
-
-### 6.5.6 Passing Data Deeply with Context
-
->Truyền Data tới các Components lòng vào nhau sâu với Context
-
-Xem chi tiết <https://react.dev/learn/passing-data-deeply-with-context>
-
-Bài giảng: [Ở đây](Manage-State/5.useContext.md)

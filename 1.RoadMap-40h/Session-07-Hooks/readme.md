@@ -26,3 +26,6 @@ Khi mà một function component có sử dụng state hoặc Effect, và bạn 
 ## 🔥 Hooks [Zustand](../Session-05-State/Manage-State/4.Zustand.md)
 
 Quản lý State Global, đơn giản hơn.
+
+- Ví dụ về CountApp 
+- Todolist 
