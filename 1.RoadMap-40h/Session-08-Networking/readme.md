@@ -6,6 +6,15 @@ RESTful API là một tiêu chuẩn dùng trong việc thiết kế các API cho
 
 API có thể trả về dữ liệu mà bạn cần cho ứng dụng của mình ở những kiểu dữ liệu phổ biến như JSON hay XML.
 
+## ⭐ Fake API
+
+Sử dụng công cụ Fake API để luyện tập call API trong React
+
+
+* https://jsonplaceholder.typicode.com
+
+* https://fakeapi.platzi.com/en/rest/introduction
+
 ## ⭐ Làm quen công cụ TEST API
 
 Sử dụng một số API Public phổ biến để test
@@ -209,3 +218,8 @@ Phương thức POST
 Ngoài ra còn có thêm một thư viện rất mạnh khác nữa là React Query
 
 Doc: <https://www.npmjs.com/package/react-query>
+
+
+## ⭐ Tự tạo Fake API
+
+Sử dụng [MockAPI](https://mockapi.io) để tạo REST API fake
