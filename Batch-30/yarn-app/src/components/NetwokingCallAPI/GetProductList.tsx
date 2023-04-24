@@ -23,11 +23,13 @@ const GetProductList = () => {
 
     let [products, setProducts] = React.useState<[ProductType] | null>(null)
     let [loading, setLoading] =  React.useState(false);
+    let [categoryId, setCategoryId] =  React.useState(0);
 
     React.useEffect(()=>{
         let fetchProduct = async ()=>{
             setLoading(true);
-            const response = await fetch("https://api.escuelajs.co/api/v1/products")
+            let url = categoryId == 0 ? 'https://api.escuelajs.co/api/v1/products' : `https://api.escuelajs.co/api/v1/categories/${categoryId}/products`
+            const response = await fetch(url)
             let result = await response.json();
 
             console.log(result);

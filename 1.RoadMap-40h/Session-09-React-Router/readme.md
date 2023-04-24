@@ -185,3 +185,5 @@ Khi đó chúng ta có Route như sau:
 ```
 
 Route có path blog có 2 Route còn ==> gọi là Nested route
+
+## Chuy
