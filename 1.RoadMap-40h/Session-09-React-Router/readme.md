@@ -51,6 +51,14 @@ export default function App() {
 }
 
 ```
+Giải thích:
+
+* / => Load nội dung Layout lên và tất cả những route nào nằm là con của route này sẽ có chung 1 Layout.
+* index: nó là trang mặc định
+* blogs : Load nội dung trang Blog lên
+* /parameter/:id/:name => route động, :id và :name là một biến
+*  `*` : Không tìm thấy url khớp với ruote thì load NoPage lên
+
 
 
 ## Layout
@@ -89,6 +97,8 @@ const Layout = () => {
 
 export default Layout;
 ```
+
+Khi đã dùng React Route rồi thì để chuyển trang phải dùng đến component Link của `react-router-dom`
 
 ## Parameter & Query String
 

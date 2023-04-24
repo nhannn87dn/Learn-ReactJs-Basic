@@ -1,38 +1,34 @@
 //import ProductPage from "./pages/ProductPage";
 import React, {useCallback, useState, useMemo} from 'react';
 import "./styles/global.css";
-import { UserProvider } from "./context/userContex";
-//import LoginPage from "./pages/LoginPage";
-//import CountReducer from './components/CountReducer';
-import ZustandCount from './components/ZustandCount';
-import ZustandCountActions from './components/ZustandCountActions';
-import Greet from './components/Greet';
-
-import Todos from './components/Todos';
-import ProductList from './components/ProductList';
-import ProductFilter from './components/ProductFilter';
-
-
-const userInfo = {
-  id: 1, 
-  name: 'John',
-  avatarUrl: 'http://'
-}
-
-
-const computeLetterCount = (word: string) => {
-    let i = 0;
-    while (i < 1000000000) i++;
-    return word.length;
-};
+import {BrowserRouter, Routes, Route } from 'react-router-dom';
+import HomePage from './pages/HomePage';
+import ProductPage from './pages/ProductPage';
+import LoginPage from './pages/LoginPage';
+import Layout from './layout/Layout';
+import NoPage from './pages/NoPage';
+import ProductDetailPage from './pages/ProductDetailPage';
+import DashboardPage from './pages/Dashboard';
+import ProductAddPage from './pages/ProductAddPage';
 
 function App() {
   return (
     <>
-    <ProductFilter />
-    <hr />
-    <ProductList />
-    </>
+   <BrowserRouter>
+    <Routes>
+        <Route path='/' element={<Layout />} >
+            <Route index element={<HomePage />} />
+            <Route path='/product' element={<ProductPage />} />
+            <Route path='/product/:id' element={<ProductDetailPage />} />
+            <Route path='/login' element={<LoginPage />} />
+        </Route>
+        <Route path='/dashboard' element={<DashboardPage />} />
+        <Route path='/dashboard/product/add' element={<ProductAddPage />} />
+        <Route path='*' element={<NoPage />} />
+    </Routes>
+   
+   </BrowserRouter>
+   </>
   )
 }
 
