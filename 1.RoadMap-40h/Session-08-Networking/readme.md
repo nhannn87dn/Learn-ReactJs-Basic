@@ -80,72 +80,10 @@ Giải thích:
 - Sử dụng Promises:  [Xem ở đây](Promises.md)
 - Sử dụng Async / await ES8
 
-## ⭐ JavaScript Fetch API
 
-Call API trong JavaScript  sử dụng Async / await
+## ⭐ Call API trong ReactJS 
 
-Phương thức GET
-
-```js
-async function fethHandler() {
-
-    try {
-        let response = await fetch('https://jsonplaceholder.typicode.com/posts');
-        let posts = await response.json();
-        if(!response.ok) {
-            const error = new Error('An Error Occured');
-            error.details = posts;
-            throw error;
-        }
-        console.log(posts);
-    } catch(e) {
-        console.log(e.message); // An Error Occurred
-        console.log(e.details); // prints response got from server
-    }
-}
-// Gọi hàm
-fethHandler();
-
-```
-
-Phương thức POST
-
-```js
-async function postHandler() {
-    try {
-
-        const url = 'https://jsonplaceholder.typicode.com/users';
-
-        let data = {
-            name: 'Sammy'
-        }
-
-        const options = {
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify(data)
-        };
-
-        let response = await fetch(url,options);
-        let data = await response.json();
-
-        if(!response.ok) {
-            const error = new Error('An Error Occured');
-            throw error;
-        }
-        console.log(data);
-    } catch(e) {
-        console.log(e.message); // An Error Occurred
-    }
-}
-
-//postHandler()
-```
-
-
-Call API trong ReactJS 
-
-## ⭐ Sử dụng `fetch()`
+###  Sử dụng `fetch()`
 
 Phương thức GET
 
@@ -212,8 +150,9 @@ const handleSubmit = async ()=> {
 }
 ```
 
-## ⭐ Sử dụng Axios
+###  Sử dụng Axios
 
+Cài đặt thư viện axios
 
 Phương thức GET
 
@@ -266,3 +205,7 @@ Phương thức POST
     }
         
 ```
+
+Ngoài ra còn có thêm một thư viện rất mạnh khác nữa là React Query
+
+Doc: <https://www.npmjs.com/package/react-query>
