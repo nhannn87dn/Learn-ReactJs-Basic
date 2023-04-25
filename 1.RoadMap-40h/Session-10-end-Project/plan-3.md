@@ -21,6 +21,12 @@ Yêu cầu một số thành phần:
 * Responsive & Professional: làm giống Demo
 * Footer: làm giống Demo
 
-Lưu ý: Áp dụng các kiến thức đã học như List Key, useState, useEffect, tách components cho hợp lý
+**Lưu ý:**
 
-> Han nộp bài:  9AM giờ ngày 5.5.2023
+* Áp dụng các kiến thức đã học như List Key, useState, useEffect, tách components cho hợp lý.
+
+* Hình ảnh các bạn lưu về để vào thư mục `public/images`
+
+* Tạo riêng một respository trên Github, làm xong đẩy lên Git và gửi link về email: nhannn@softech.vn
+
+* Hạn nộp bài:  **9AM giờ ngày 5.5.2023**
