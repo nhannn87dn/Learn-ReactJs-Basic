@@ -94,6 +94,15 @@ Giải thích:
 
 ###  Sử dụng `fetch()`
 
+Cú pháp: 
+```js
+fetch(url, options) 
+```
+* url: là địa chỉ API
+* options: là một object tùy chọn, có thể không truyền
+
+Xem chi tiết <https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch>
+
 Phương thức GET
 
 ```js
@@ -101,7 +110,14 @@ const [posts, setPost] = useState([]);
 useEffect(()=>{
     const fetchData = async () => {
         try{
-            const response = await fetch('https://jsonplaceholder.typicode.com/posts')
+            let url = 'https://jsonplaceholder.typicode.com/posts';
+
+            //Nếu là GET thì có thể không cần để options
+            let options = {
+                method: 'GET'
+            }
+            //await để nó trả về kết quả rồi mới chạy tiếp dòng bên dưới
+            const response = await fetch(url)
             
             let result = await response.json();
             //Bắt lỗi 404
@@ -130,16 +146,18 @@ const handleSubmit = async ()=> {
     try {
         
         let url = 'https://jsonplaceholder.typicode.com/posts';
-        
-        const options = {
-            
-            method: 'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
+
+        //Dữ liệu cần để gọi API
+        let payload = {
                 title: 'foo',
                 body: 'bar',
                 userId: 1,
-        });
+        };
+        
+        const options = {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(payload); //convert sang json string
 
         const response = await fetch(url, options);
 
@@ -162,6 +180,13 @@ const handleSubmit = async ()=> {
 ###  Sử dụng Axios
 
 Cài đặt thư viện axios
+
+```bash
+npm i axios
+yarn add axios
+```
+
+Cú pháp của axios gọn gơn fetch một chút
 
 Phương thức GET
 
