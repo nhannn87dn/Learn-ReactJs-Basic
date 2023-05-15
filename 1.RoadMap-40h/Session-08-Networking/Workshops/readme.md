@@ -6,7 +6,7 @@
 - REST Client
 
 ## Làm quen với việc call API
-
+- https://fakeapi.platzi.com/en/rest/introduction
 - Sử dụng <https://jsonplaceholder.typicode.com/>
 - Sử dụng [MockAPI](https://mockapi.io) để tạo REST API fake
 - https://640809942f01352a8a890332.mockapi.io/api/v1/products
