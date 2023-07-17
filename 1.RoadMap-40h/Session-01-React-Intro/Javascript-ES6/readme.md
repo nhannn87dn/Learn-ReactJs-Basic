@@ -480,3 +480,69 @@ const result = words.filter(word => word.length > 6);
 console.log(result);
 // expected output: Array ["exuberant", "destruction", "present"]
 ```
+
+## 🔶 Destructing Arrays
+
+```js
+const vehicles = ['mustang', 'f-150', 'expedition'];
+
+//Xả 3 giá trị cho 3 biến
+const [car, truck, suv] = vehicles;
+//Nếu chỉ muốn lấy 2 giá trị bạn có thể bỏ qua với cách code như sau
+const [car,, suv] = vehicles;
+
+```
+
+## 🔶 Destructing Objects
+
+```js
+const person = {
+  name: 'John',
+  age: 30,
+  address: {
+    city: 'New York',
+    state: 'NY',
+    zipCode: '10001'
+  }
+};
+
+```
+
+Bạn có thể sử dụng destructuring object để trích xuất giá trị của name, age, city và zipCode và gán chúng vào các biến tương ứng như sau:
+
+```js
+const { name, age, address: { city, zipCode } } = person;
+
+console.log(name); // 'John'
+console.log(age); // 30
+console.log(city); // 'New York'
+console.log(zipCode); // '10001'
+```
+
+Object là một tham số
+
+```js
+let user = {
+  id: 123
+  name: 'John',
+  age: 21
+}
+
+//Cách bình thường hay làm
+function myProfile(profile){
+  console.log(profile.id, profile.name, profile.age);
+}
+
+myProfile(user)
+
+```
+
+Thay vì thế chúng ta dùng destructuring
+
+```js
+function myProfile({id, name, age}) {
+  console.log(id, name, age);
+}
+
+myProfile({123, 'John', 21})
+```

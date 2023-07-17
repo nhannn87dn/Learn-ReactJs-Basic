@@ -1,5 +1,10 @@
 # useReducer Hook
 
+Trong React, useReducer là một hook cho phép bạn quản lý trạng thái của thành phần sử dụng một hàm reducer. 
+
+Nó cung cấp một cách thay thế cho useState khi bạn cần quản lý các trạng thái phức tạp hoặc logic trạng thái phức tạp hơn.
+
+Các State được lưu trữ ở một nơi gọi là kho (Store) và sử dụng chung cho nhiều components
 
 ## ⭐ Đặt vấn đề
 
