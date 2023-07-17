@@ -1,4 +1,4 @@
-# Networking
+# Giao tiếp giữa React với API Backend
 
 ## ⭐ RESTful API Là gì ?
 
@@ -95,9 +95,11 @@ Giải thích:
 ###  Sử dụng `fetch()`
 
 Cú pháp: 
+
 ```js
 fetch(url, options) 
 ```
+
 * url: là địa chỉ API
 * options: là một object tùy chọn, có thể không truyền
 
@@ -186,6 +188,8 @@ npm i axios
 yarn add axios
 ```
 
+Doc: <https://axios-http.com/docs/intro>
+
 Cú pháp của axios gọn gơn fetch một chút
 
 Phương thức GET
@@ -244,6 +248,45 @@ Ngoài ra còn có thêm một thư viện rất mạnh khác nữa là React Qu
 
 Doc: <https://www.npmjs.com/package/react-query>
 
+
+## ⭐ Render thành giao diện UI
+
+Dữ liệu sau khi lấy được qua API, tùy vào mỗi hoàn cảnh mà bạn có thể render ra thành UI
+
+## ⭐ Các trạng thái trong Call API
+
+Khi gọi API fetch để tương tác với máy chủ và nhận dữ liệu, có thể xác định các trạng thái khác nhau của quá trình call API. Dưới đây là một số trạng thái phổ biến khi sử dụng API fetch trong React:
+
+1. Chưa gửi yêu cầu (Pending):
+
+Quá trình gửi yêu cầu API fetch chưa được bắt đầu hoặc đang chờ.
+Trạng thái ban đầu trước khi gửi yêu cầu.
+
+2. Đang gửi yêu cầu (Loading):
+
+Yêu cầu API fetch đang được gửi đi và đang chờ phản hồi từ máy chủ.
+Thường sử dụng để hiển thị một biểu tượng tải trong quá trình gửi yêu cầu.
+
+3. Thành công (Success):
+
+Yêu cầu API fetch đã được xử lý thành công và trả về kết quả dữ liệu.
+Dữ liệu từ phản hồi API có sẵn và có thể được sử dụng để cập nhật giao diện người dùng.
+
+4. Lỗi (Error):
+
+Xảy ra lỗi trong quá trình gửi yêu cầu hoặc xử lý yêu cầu API fetch.
+Thông báo lỗi có thể hiển thị hoặc xử lý lỗi để đưa ra các biện pháp khắc phục.
+
+Để tăng trải nghiệm người dùng UX, bạn phải làm cho UI thể hiện các trạng thái đó trong 1 chu kỳ call API
+
+
+## ⭐ API with Authentication
+
+là một hình thức bảo mật được sử dụng trong quá trình gửi và nhận dữ liệu từ một API (Application Programming Interface). Khi một API yêu cầu xác thực, người dùng hoặc ứng dụng cần cung cấp thông tin đăng nhập hoặc mã xác thực để được phép truy cập và sử dụng các tài nguyên hoặc dịch vụ của API.
+
+Quá trình xác thực trong API giúp bảo vệ dữ liệu và đảm bảo rằng chỉ những người dùng hoặc ứng dụng hợp lệ mới có thể truy cập và sử dụng các tài nguyên của API.
+
+Thực hành với: <https://fakeapi.platzi.com/en/rest/auth-jwt>
 
 ## ⭐ Tự tạo Fake API
 
