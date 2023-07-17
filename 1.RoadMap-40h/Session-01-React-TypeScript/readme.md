@@ -58,6 +58,13 @@ React lần đầu tiên được triển khai cho ứng dụng Newsfeed của F
 - Khả năng tương thích ngược
 - Cơ hội việc làm cao
 
+Xem Biểu đồ Trend tech: 
+
+- <https://survey.stackoverflow.co/2023/#section-most-popular-technologies-web-frameworks-and-technologies>
+- https://npmtrends.com/@angular/core-vs-angular-vs-react-vs-vue
+- https://trends.google.com/trends/explore?cat=31&date=2021-01-01%202023-07-17&q=Vue,React,Angular
+
+
 
 6 điểm nổi bật của ReactJs
 
@@ -80,9 +87,9 @@ Nhiều ông lớn sử dụng
 
 ## 🔶 Javascript-ESNext
 
----
+- Nắm thật chắc cú pháp ES6 <https://www.w3schools.com/REACT/react_es6.asp>
 
-[Mở Javascript-ESNext](Javascript-ESNext.md)
+- Xem lại: [Mở Javascript-ESNext](Javascript-ESNext.md)
 
 ## 🔶 Type Script Basic
 
