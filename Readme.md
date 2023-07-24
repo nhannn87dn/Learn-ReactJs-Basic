@@ -1,4 +1,4 @@
-> Documents of course will be move to (https://documents.aptech.io/docs/category/aptech-mern)
+> Documents of course will be move to (https://documents.aptech.io/docs/category/mern)
 
 # ⭐ SETUP DEVELOPMENT ENVIROMENT
 
