@@ -13,12 +13,11 @@
    - IntelliCode (Microsoft)
    - JavaScript (ES6) code snippets (charalampos karypidis)
    - ES7+ React/Redux/React-Native snippets (dsznajder)
-   - npm (Microsoft)
-   - npm Intellisense (Christian Kohler)
    - Prettier - Code formatter (Prettier)
    - TSLint (Microsoft)
    - Typescript React code snippets (infeng)
    - Vscode-styled-components (Julien Poissonnier)
+   
 6. Cài đặt các tiện ích cho Visual Studio Code:
 
    - Better Comments (Aaron Bond)
