@@ -131,7 +131,7 @@ Lệnh cơ bản:
 
 ```bash
 
-npm init –y #tạo ra file package.json
+npm init –y #hởi tạo project mới , tạo ra file package.json
 
 npm ls #xem danh sách gói 
 npm ls -g #xem danh sách gói ở Global
@@ -148,13 +148,22 @@ npm update package_name #update gói
 Yarn là một công cụ tương tự NPM
 
 ```bash
-yarn init
-yarn add
-yarn global add
-yarn remove
-yarn upgrade 
+yarn init #Khởi tạo project mới, tạo ra file package.json
+
+yarn add #Thêm gói cài đặt vào dependencies
+yarn add --dev #Thêm gói cài đặt vào devDependencies
+
+#Install packages globally on your operating system
+yarn global add [package_name]
+
+#Removing a dependency
+yarn remove [package_name]
+
+yarn up [package_name] #Upgrading a dependency
+
+#Installing all the dependencies
+yarn
 yarn install
-yarn run
 ```
 
 ***
