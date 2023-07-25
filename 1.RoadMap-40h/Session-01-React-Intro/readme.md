@@ -166,6 +166,8 @@ yarn
 yarn install
 ```
 
+Xem tất cả lệnh: <https://classic.yarnpkg.com/en/docs/cli/list>
+
 ***
 
 ## 🔶**Cài đặt ReactJs - Hello, React !**
