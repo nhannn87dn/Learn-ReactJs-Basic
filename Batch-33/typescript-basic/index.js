@@ -20,3 +20,7 @@ console.log(myArrs);
 var myArrNumbers = [];
 myArrNumbers.push(1);
 console.log(myArrNumbers);
+
+let name = 'Nhan'
+
+let msg = `Hello ${name}`;
