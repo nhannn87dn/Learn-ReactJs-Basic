@@ -1,8 +1,14 @@
 import './Button.css'
+import React from 'react'
 
+type ButtonType = {
+    label: string,
+    type?: string,
+    icon?: React.ReactNode //Style của kiểu component
+}
 //B1 định nghĩa
 //default prop cách 2
-function Button({label= 'Button', type='', icon=''}){
+function Button({label= 'Button', type, icon=''} : ButtonType){
 
     let class_button = 'button';
     if(type && type === 'dark'){
@@ -20,11 +26,11 @@ function Button({label= 'Button', type='', icon=''}){
 
 //Giá trị mặc định của props
 //Cách 1
-Button.defaultProps = {
-    type : '',
-    label: 'Button',
-    icon: ''
-}
+// Button.defaultProps = {
+//     type : '',
+//     label: 'Button',
+//     icon: ''
+// }
 
 //Bước 2: Export
 

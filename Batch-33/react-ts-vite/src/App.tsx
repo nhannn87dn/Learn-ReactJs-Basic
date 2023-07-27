@@ -7,6 +7,9 @@ import Button from './components/Button'
 import { FaShoppingCart, FaHeart } from 'react-icons/fa';
 import NavigationBarChilrend from './components/NavigationBarChilrend'
 import NaviItem from './components/NaviItem'
+import VideoItem from './components/VideoItem'
+import VideoItemV2 from './components/VideoItemV2'
+
 /**
  * Khác function js ở chỗ là
  * function COmponent bắt buộc viết HOA kí tự đầu tiên
@@ -41,6 +44,11 @@ function App() {
         <NaviItem label="Blog" />
         <NaviItem label="Contact" />
     </NavigationBarChilrend>
+    <VideoItem thumb='./images/video-1.png' title='React: The Documentary' desc='The origin story of React' />
+    <VideoItem thumb='./images/video-2.png' title='Rethinking Best Practices' desc='The origin story of React' />
+    <VideoItem thumb='./images/video-1.png' title='Introducing React Native' desc='The origin story of React' />
+    <VideoItemV2 thumb='./images/video-1.png' title='Introducing React Native - V2' desc='The origin story of React' />
+
     </>
   )
 }
