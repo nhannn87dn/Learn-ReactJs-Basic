@@ -8,4 +8,3 @@ Trong phẩn này chúng ta sẽ đi phân tích và thực hiện việc render
 - ⭐ 2 [Tìm hiểu về khái niệm Rendering](2.6.Rendering.md)
 - ⭐ 3 [Conditional Rerendering](Conditional-Rendering.md)
 - ⭐ 4 [Rendering Lists](Lists-and-Keys.md)
-- ⭐ 5 [Responding to Events](Handling-Events.md)

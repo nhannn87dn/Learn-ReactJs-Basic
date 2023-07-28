@@ -1,4 +1,4 @@
-# Lấy giá trị trong Form
+# Xử lý Form
 
 ## One way binding && Two-way binding
 
