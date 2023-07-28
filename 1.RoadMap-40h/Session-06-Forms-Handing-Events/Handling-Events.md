@@ -11,7 +11,7 @@
 
 Khi bạn click chuột, rê chuột, focus vào một input... thì đó là những sự kiện. React cho phép bạn tạo ra các phản hồi lại giao diện người dùng tương ứng với từng sự kiện.
 
-Doc: <https://beta.reactjs.org/learn/responding-to-events>
+Doc: <https://react.dev/learn/responding-to-events>
 
 Handling events trong React elements rất giống với handling events trong DOM elements (DOM thật), chỉ khác cú pháp.
 
@@ -163,17 +163,17 @@ Trong capturing thì ngược lại, sự kiện của phần tử bên ngoài c
 - Sự kiện “click” của phần tử `<div>`được xử lý trước
 - Sau đó tới phần tử `<p>`.
 
-Ví dụ trong React: <https://beta.reactjs.org/learn/responding-to-events#event-propagation>
+Ví dụ trong React: <https://react.dev/learn/responding-to-events#event-propagation>
 
 ## Stopping propagation
 
-Xem: <https://beta.reactjs.org/learn/responding-to-events#stopping-propagation>
+Xem: <https://react.dev/learn/responding-to-events#stopping-propagation>
 
 Hoặc ví dụ với Typescript trong Folder ví dụ
 
 ## Preventing default behavior
 
-Xem: <https://beta.reactjs.org/learn/responding-to-events#preventing-default-behavior>
+Xem: <https://react.dev/learn/responding-to-events#preventing-default-behavior>
 
 ```js
 <button onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
