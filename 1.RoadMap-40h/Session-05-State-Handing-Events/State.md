@@ -111,6 +111,48 @@ Note: gọi component Count trên đây ra 2 lần, để thấy được là d�
 - Button Like
 - Button Thả tim
 - Button Rating 5 sao
+- Modal open/close
+
+Ví dụ về simple todo list
+
+```js
+import React, { useState } from 'react';
+
+const ListExample = () => {
+  const [items, setItems] = useState([
+    { id: 1, text: 'Mua sữa' },
+    { id: 2, text: 'Đi chợ' },
+    { id: 3, text: 'Làm bài tập' },
+  ]);
+
+  const handleAddItem = () => {
+    const newItem = { id: items.length + 1, text: 'Việc mới' };
+    setItems([...items, newItem]);
+  };
+
+  const handleRemoveItem = (id) => {
+    const updatedItems = items.filter((item) => item.id !== id);
+    setItems(updatedItems);
+  };
+
+  return (
+    <div>
+      <ul>
+        {items.map((item) => (
+          <li key={item.id}>
+            {item.text}
+            <button onClick={() => handleRemoveItem(item.id)}>Xóa</button>
+          </li>
+        ))}
+      </ul>
+      <button onClick={handleAddItem}>Thêm việc mới</button>
+    </div>
+  );
+};
+
+export default ListExample;
+
+```
 
 ## 🔥 5.2 One-Way / Two-way binding
 

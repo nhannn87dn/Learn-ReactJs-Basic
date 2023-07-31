@@ -60,22 +60,19 @@ Lưu ý: Để truyền một Event handlers thì ta truyền chứ không đư�
 Ví dụ khác về sự kiện chuột
 
 ```js
-import React, { useState } from 'react';
-
 const MouseExample = () => {
-  const [buttonColor, setButtonColor] = useState('blue');
+  
 
   const handleMouseEnter = () => {
-    setButtonColor('red');
+    console.log('MouseEnter')
   };
 
   const handleMouseLeave = () => {
-    setButtonColor('blue');
+    console.log('MouseLeave')
   };
 
   return (
     <button
-      style={{ backgroundColor: buttonColor }}
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
     >
@@ -97,15 +94,14 @@ export default MouseExample;
 import React, { useState } from 'react';
 
 const KeyboardEventsExample = () => {
-  const [keyPressed, setKeyPressed] = useState('');
-  const [keyReleased, setKeyReleased] = useState('');
+ 
 
   const handleKeyDown = (event) => {
-    setKeyPressed(event.key);
+    console.log('Bạn đã nhấn phím', event.key);
   };
 
   const handleKeyUp = (event) => {
-    setKeyReleased(event.key);
+    console.log('Bạn đã rời tay khỏi phím', event.key);
   };
 
   return (
@@ -116,8 +112,6 @@ const KeyboardEventsExample = () => {
         onKeyUp={handleKeyUp}
         placeholder="Nhấn phím bất kỳ vào đây..."
       />
-      <p>Phím đang được nhấn: {keyPressed}</p>
-      <p>Phím đã được thả ra: {keyReleased}</p>
     </div>
   );
 };
@@ -151,24 +145,22 @@ export default function Signup() {
 ## 🔥 Event Handlers có sử dụng tham số
 
 ```js
-import React, { useState } from 'react';
 
 const EventHandlerWithParameterExample = () => {
-  const [count, setCount] = useState(0);
 
-  const handleIncrement = (amount) => {
-    setCount((prevCount) => prevCount + amount);
+  const handlePlay = (number) => {
+    console.log('Bạn đã play bài ',number)
   };
 
-  const handleDecrement = (amount) => {
-    setCount((prevCount) => prevCount - amount);
+  const handleNext = (number) => {
+    console.log('Bạn đã next sang bài ',number)
   };
 
   return (
     <div>
-      <h1>{count}</h1>
-      <button onClick={() => handleIncrement(5)}>Tăng lên 5</button>
-      <button onClick={() => handleDecrement(2)}>Giảm xuống 2</button>
+      <h1>Play Music</h1>
+      <button onClick={() => handlePlay(5)}>Play bài số 5</button>
+      <button onClick={() => handleNext(2)}>Nhảy sang bài số 2</button>
     </div>
   );
 };
