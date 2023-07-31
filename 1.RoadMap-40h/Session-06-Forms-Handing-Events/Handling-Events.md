@@ -33,18 +33,6 @@ DOM Events Javascript: <https://www.w3schools.com/jsref/dom_obj_event.asp>
 ## 🔥 Sự kiện về Chuột
 
 
-## 🔥 Sự kiện bàn phím
-
-
-
-## 🔥 Sự kiện về Form
-
-
-
-## 🔥Tạo một event handlers
-
-🌻 in React
-
 ```js
 function handleClick() {
     alert('You clicked me!');
@@ -62,21 +50,6 @@ function handleClick() {
 
 ```
 
-🌻 Form Submit
-
-```js
-export default function Signup() {
-  return (
-    <form onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
-      alert('Submitting!');
-    }}>
-      <input />
-      <button>Send</button>
-    </form>
-  );
-}
-```
 
 Lưu ý: Để truyền một Event handlers thì ta truyền chứ không được GỌI. Ví dụ:
 
@@ -84,10 +57,124 @@ Lưu ý: Để truyền một Event handlers thì ta truyền chứ không đư�
 |--------------------------------|----------------------------------|
 | `<button onClick={handleClick}>` | `<button onClick={handleClick()}>` |
 
+Ví dụ khác về sự kiện chuột
+
+```js
+import React, { useState } from 'react';
+
+const MouseExample = () => {
+  const [buttonColor, setButtonColor] = useState('blue');
+
+  const handleMouseEnter = () => {
+    setButtonColor('red');
+  };
+
+  const handleMouseLeave = () => {
+    setButtonColor('blue');
+  };
+
+  return (
+    <button
+      style={{ backgroundColor: buttonColor }}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      Di chuột vào đây
+    </button>
+  );
+};
+
+export default MouseExample;
+
+```js
+
+```
+
+
+## 🔥 Sự kiện bàn phím
+
+```js
+import React, { useState } from 'react';
+
+const KeyboardEventsExample = () => {
+  const [keyPressed, setKeyPressed] = useState('');
+  const [keyReleased, setKeyReleased] = useState('');
+
+  const handleKeyDown = (event) => {
+    setKeyPressed(event.key);
+  };
+
+  const handleKeyUp = (event) => {
+    setKeyReleased(event.key);
+  };
+
+  return (
+    <div>
+      <input
+        type="text"
+        onKeyDown={handleKeyDown}
+        onKeyUp={handleKeyUp}
+        placeholder="Nhấn phím bất kỳ vào đây..."
+      />
+      <p>Phím đang được nhấn: {keyPressed}</p>
+      <p>Phím đã được thả ra: {keyReleased}</p>
+    </div>
+  );
+};
+
+export default KeyboardEventsExample;
+
+```
+
+## 🔥 Sự kiện về Form
+
+
+🌻 Form Submit
+
+```js
+export default function Signup() {
+  return (
+    <form onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
+      //Ngăn chặn form fresh lại trang
+      e.preventDefault();
+      //test alert
+      alert('Submitting!');
+    }}>
+      <input name="username" />
+      <button type="submit">Send</button>
+    </form>
+  );
+}
+```
+
+
 ## 🔥 Event Handlers có sử dụng tham số
 
-```html
-<button onClick={() => alert(message)}>Delete Row</button>
+```js
+import React, { useState } from 'react';
+
+const EventHandlerWithParameterExample = () => {
+  const [count, setCount] = useState(0);
+
+  const handleIncrement = (amount) => {
+    setCount((prevCount) => prevCount + amount);
+  };
+
+  const handleDecrement = (amount) => {
+    setCount((prevCount) => prevCount - amount);
+  };
+
+  return (
+    <div>
+      <h1>{count}</h1>
+      <button onClick={() => handleIncrement(5)}>Tăng lên 5</button>
+      <button onClick={() => handleDecrement(2)}>Giảm xuống 2</button>
+    </div>
+  );
+};
+
+export default EventHandlerWithParameterExample;
+
 ```
 
 ## Truyền Event Handlers như là Props
@@ -109,44 +196,98 @@ function Button({ onClick, children } : ButtonTypeProps) {
       </button>
     );
   }
-  
 
-type PlayButtonProp = {
-  movieName: string
-}
+```
+Trường hợp này còn được gọi là Handler dưới dạng callback
 
+Ví dụ có component CON
 
-function PlayButton({ movieName } : PlayButtonProp) {
-    //function event handler
+```js
+function Button({label}) {
     function handlePlayClick() {
-      alert(`Playing ${movieName}!`);
+      console.log(`Playing + tên của phim `);
     }
-  
+
     return (
-      <Button onClick={handlePlayClick}>
-        Play "{movieName}"
-      </Button>
+      <button onClick={handlePlayClick}>
+        {label}
+      </button>
     );
   }
-  
-  function UploadButton() {
-    return (
-      <Button onClick={() => alert('Uploading!')}>
-        Upload Image
-      </Button>
-    );
-  }
-  
-  export default function Toolbar() {
-    return (
-      <div>
-        <PlayButton movieName="Kiki's Delivery Service" />
-        <UploadButton />
-      </div>
-    );
+```
+và component CHA
+
+```js
+  function PlayMovies(){
+    const movieTitle = 'Captain America';
+    return <Button label="Play" />
   }
 
 ```
+
+- Mong muốn khi click nút Play thì in ra `Playing + tên của phim`
+- Nhưng tên của phim thì nằm ở component CHA
+
+
+Để làm được yêu cầu trên có thể sửa lại như sau:
+
+```js
+  function Button({label, name}) {
+    function handlePlayClick() {
+      console.log(`Playing + ${name} `);
+    }
+
+    return (
+      <button onClick={handlePlayClick}>
+        {label}
+      </button>
+    );
+  }
+  function PlayMovies(){
+    const movieTitle = 'Captain America';
+    return <Button label="Play" name={movieTitle} />
+  }
+```
+
+Nhưng như thế nó lại làm mất đi tính TÁI SỬ DỤNG của component Button
+
+Ví dụ muốn tạo một Button Next, và công việc của nó là đi nhảy sang bài kế tiếp thì sao ?
+
+==> KẾT LUẬN
+
+- Component nên chỉ đảm nhận việc hiển thị UI
+- Xử lí Logic nên tách ra ngoài
+
+
+Khi đó ta sửa lại thành như sau:
+
+
+```js
+  function Button({onHandleClick, label, name}) {
+    return (
+      <button onClick={onHandleClick}>
+        {label}
+      </button>
+    );
+  }
+  function PlayMovies(){
+    const movieTitle = 'Captain America';
+    //chuyển handler xử lí qua cho component CHA
+    function handlePlayClick() {
+      console.log(`Playing + ${name} `);
+    }
+    return <Button onClick={handlePlayClick} label="Play" name={movieTitle} />
+  }
+```
+
+==>  ở component CON mà thực hiện một event ở component CHA (callback)
+
+Lưu ý:
+
+- Ở trong PlayMovies chúng ta dùng thuộc tính onClick
+- Nhưng ở phần định nghĩa props cho component Button, chúng ta lại khai báo là onHandleClick mà không phải là onClick (Tất nhiên có thể dùng tên onClick)
+- Điều đó không quan trọng, React chỉ yêu cầu tên bắt đầu phải là là `on`
+
 
 ## Event propagation
 

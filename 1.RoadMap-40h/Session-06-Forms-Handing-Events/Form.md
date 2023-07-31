@@ -1,18 +1,81 @@
-# Xử lý Form
+# 6. Xử lý Form
 
 ## One way binding && Two-way binding
+
+Làm rõ 2 khái niệm
 
 - One way binding?
 - Two-way binding ?
 
-Review lại ở Session State - Mục 6.2
-
 ***
 
-Có thể dùng component [Formik](https://formik.org/docs/overview) để quản lý tiện hơn
-Còn bên dưới là cách thủ công.
+1. **One-way binding (ràng buộc một chiều)**:
 
-## 1. Input
+One-way binding là cách liên kết dữ liệu trong React mà dữ liệu chuyển từ thành phần cha xuống các thành phần con, nhưng không có sự truyền ngược từ thành phần con lên thành phần cha. Trong one-way binding, dữ liệu chủ yếu được truyền qua các props từ component cha xuống component con. Khi dữ liệu trong component cha thay đổi, nó sẽ chuyển xuống các component con và các component con sẽ cập nhật dựa trên các props mới. Tuy nhiên, các thành phần con không thể thay đổi dữ liệu của thành phần cha. Điều này giúp tạo ra một luồng dữ liệu có hướng và giúp làm giảm sự phức tạp trong quá trình xác định nguyên nhân gây ra lỗi.
+
+Ví dụ one-way binding:
+
+```js
+import React, { useState } from 'react';
+
+const ParentComponent = () => {
+  const [message, setMessage] = useState('');
+
+  const handleMessageChange = (event) => {
+    setMessage(event.target.value);
+  };
+
+  return (
+    <div>
+      <input type="text" value={message} onChange={handleMessageChange} />
+      <ChildComponent message={message} />
+    </div>
+  );
+};
+
+const ChildComponent = ({ message }) => {
+  return <p>{message}</p>;
+};
+
+```
+
+Trong ví dụ trên, `ParentComponent` có một input, và `ChildComponent` hiển thị giá trị của `message`. Giá trị message được truyền từ `ParentComponent` xuống `ChildComponent` thông qua props message.
+
+
+2. **Two-way binding (ràng buộc hai chiều)**:
+
+Two-way binding là cách liên kết dữ liệu trong React mà dữ liệu có thể di chuyển hai chiều giữa thành phần cha và các thành phần con. Khi dữ liệu trong component cha thay đổi, nó sẽ chuyển xuống các component con thông qua props như one-way binding. Nhưng trong two-way binding, các thành phần con cũng có thể gửi thông tin trở lại cho thành phần cha thông qua các sự kiện. Điều này cho phép các thành phần con thay đổi dữ liệu của thành phần cha và ngược lại.
+
+
+```js
+import React, { useState } from 'react';
+
+const ParentComponent = () => {
+  const [message, setMessage] = useState('');
+
+  const handleMessageChange = (event) => {
+    setMessage(event.target.value);
+  };
+
+  return (
+    <div>
+      <input type="text" value={message} onChange={handleMessageChange} />
+      <ChildComponent message={message} onMessageChange={setMessage} />
+    </div>
+  );
+};
+
+const ChildComponent = ({ message, onMessageChange }) => {
+  const handleChildMessageChange = (event) => {
+    onMessageChange(event.target.value);
+  };
+
+  return <input type="text" value={message} onChange={handleChildMessageChange} />;
+};
+
+```
+
+## 1. Lấy value từ Input
 
 ```js
 function MyForm() {
@@ -38,7 +101,7 @@ function MyForm() {
 }
 ```
 
-## 2. Textarea
+## 2. Lấy value từ Textarea
 
 ```js
 function MyForm() {
@@ -58,7 +121,7 @@ function MyForm() {
 }
 ```
 
-## 3. Select
+## 3. Lấy value từ Select
 
 ```js
 function MyForm() {
@@ -80,7 +143,7 @@ function MyForm() {
 }
 ```
 
-## 4 Radio
+## 4 Lấy value từ Radio
 
 ```js
 import { useState } from "react"
@@ -136,7 +199,7 @@ function App() {
 export default App
 ```
 
-## 5. Checkbox
+## 5. Lấy value từ Checkbox
 
 ```js
 export default function App() {
@@ -168,7 +231,7 @@ export default function App() {
   );
 }
 ```
-## 6. Multi Checkbox
+## 6. Lấy value từ Multi Checkbox
 
 ```js
 //App.js
@@ -218,7 +281,7 @@ export default function App() {
 }
 ```
 
-## 7. Multi Input
+## 7. Cách lấy khi có nhiều loại một lúc
 
 Dùng khi có nhiều loại input khác nhau
 
@@ -274,6 +337,8 @@ function Form(){
 
 
 ## 8. Thư viện hỗ trợ hay dùng
+
+Thay vì đi làm việc thủ công với FORM như vậy thì có các thư viện giúp xử lí form nhanh hơn, kèm theo tính năng validate form, báo lỗi....
 
 ### React hook form
 
@@ -348,4 +413,3 @@ export default function App() {
 
 ```
 
-===========================================

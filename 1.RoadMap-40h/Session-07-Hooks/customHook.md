@@ -1,6 +1,113 @@
 # Custom Hook
 
-Tự tạo cho bạn một Hook riêng theo nhu cầu
+Để tạo một custom hook trong React, bạn có thể sử dụng các hooks hiện có và kết hợp chúng để tạo một hook mới. Dưới đây là một ví dụ về cách tạo một custom hook để quản lý trạng thái đăng nhập đơn giản:
+
+```js
+import React, { useState } from 'react';
+
+// Custom hook for managing login state
+const useLogin = () => {
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const login = () => {
+    setIsLoggedIn(true);
+  };
+
+  const logout = () => {
+    setIsLoggedIn(false);
+  };
+
+  return {
+    isLoggedIn,
+    login,
+    logout,
+  };
+};
+
+const App = () => {
+  const { isLoggedIn, login, logout } = useLogin();
+
+  return (
+    <div>
+      {isLoggedIn ? (
+        <button onClick={logout}>Đăng xuất</button>
+      ) : (
+        <button onClick={login}>Đăng nhập</button>
+      )}
+      {isLoggedIn ? <p>Đã đăng nhập</p> : <p>Chưa đăng nhập</p>}
+    </div>
+  );
+};
+
+export default App;
+
+```
+
+***
+
+Để lấy độ rộng của trình duyệt trong React, bạn có thể sử dụng custom hook và kết hợp với hook useState và sự kiện resize của window. Dưới đây là một ví dụ về cách tạo custom hook để lấy độ rộng trình duyệt:
+
+
+```js
+import React, { useEffect, useState } from 'react';
+
+// Custom hook for getting browser width
+const useBrowserWidth = () => {
+  const [browserWidth, setBrowserWidth] = useState(window.innerWidth);
+
+  const handleResize = () => {
+    setBrowserWidth(window.innerWidth);
+  };
+
+  useEffect(() => {
+    // Throttle the resize event to improve performance
+    const handleResizeThrottled = () => {
+      let timeoutId;
+      return () => {
+        if (timeoutId) {
+          clearTimeout(timeoutId);
+        }
+        timeoutId = setTimeout(() => {
+          handleResize();
+        }, 100);
+      };
+    };
+
+    // Add event listener for resize
+    window.addEventListener('resize', handleResizeThrottled());
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener('resize', handleResizeThrottled());
+    };
+  }, []);
+
+  return browserWidth;
+};
+
+const App = () => {
+  const browserWidth = useBrowserWidth();
+
+  return (
+    <div>
+      <h1>Độ rộng trình duyệt: {browserWidth}px</h1>
+    </div>
+  );
+};
+
+export default App;
+
+```
+
+
+Trong ví dụ này, chúng ta đã tạo custom hook có tên là useBrowserWidth, dùng để lấy độ rộng của trình duyệt. Custom hook này sử dụng hook useState để lưu trữ độ rộng trình duyệt và sử dụng hook useEffect để đăng ký sự kiện resize của window và cập nhật độ rộng khi sự kiện này xảy ra.
+
+Chúng ta cũng sử dụng kỹ thuật "throttle" để giới hạn tần suất cập nhật độ rộng và giảm tải cho sự kiện resize, giúp tối ưu hiệu suất của ứng dụng.
+
+
+***
+
+
 
 Lấy một ví dụ cần call một API
 
