@@ -1,4 +1,4 @@
-# ⭐ Session 6 - Event Handling
+# ⭐ Session 5 - Event Handling
 
 >**Bạn sẽ nắm được**
 >
