@@ -1,5 +1,12 @@
 # Session 12 - Vận dụng các thư viện UI / UX
 
+
+Dạy về dựng layout, responsive, cách sử dụng các component cơ bản
+
+- Form
+- Table
+
+
 ## AntDesign
 
 Ant Design là một thư viện giao diện người dùng (UI) được tạo ra bởi Ant Design Corporation, một công ty của Trung Quốc. Thư viện này cung cấp một bộ sưu tập các thành phần giao diện đẹp, hiện đại và chuyên nghiệp, hỗ trợ xây dựng các ứng dụng web và mobile với giao diện người dùng tốt và dễ sử dụng.
