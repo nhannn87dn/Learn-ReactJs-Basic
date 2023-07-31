@@ -1,4 +1,4 @@
-# ⭐ Session 3 - Handling events and Conditional Rendering
+# ⭐ Session 6 - Event Handling
 
 >**Bạn sẽ nắm được**
 >
@@ -20,6 +20,8 @@ Handling events trong React elements rất giống với handling events trong D
 
 DOM Events Javascript: <https://www.w3schools.com/jsref/dom_obj_event.asp>
 
+
+
 🌻 Ví dụ một sự kiện click trong HTML:
 
 ```js
@@ -27,6 +29,17 @@ DOM Events Javascript: <https://www.w3schools.com/jsref/dom_obj_event.asp>
   Activate Lasers
 </button>
 ```
+
+## 🔥 Sự kiện về Chuột
+
+
+## 🔥 Sự kiện bàn phím
+
+
+
+## 🔥 Sự kiện về Form
+
+
 
 ## 🔥Tạo một event handlers
 
