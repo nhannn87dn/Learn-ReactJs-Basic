@@ -114,29 +114,27 @@ Note: gọi component Count trên đây ra 2 lần, để thấy được là d�
 
 ## 🔥 5.2 One-Way / Two-way binding
 
-Trong React nó có 2 chiều,
 
-1: là chiều tương tác từ giao diện người dùng.
+**🌻One-way data binding (ràng buộc dữ liệu một chiều) ?**
 
-2: là chiều thay đổi dữ liệu (State) từ trong component
+- Dữ liệu di chuyển một chiều từ nguồn dữ liệu (thường là state) đến giao diện người dùng.
+- Thay đổi dữ liệu trong nguồn dữ liệu sẽ thay đổi dữ liệu trong giao diện tương ứng.
+- Chiều duy nhất của data binding là từ nguồn dữ liệu đến giao diện.
+- One-way data binding thường được sử dụng trong 
+- React thông qua việc truyền dữ liệu từ component cha xuống component con thông qua props.
 
-**🌻One-Way binding là gì ?**
+**🌻Two-way data binding (ràng buộc dữ liệu hai chiều)**
 
-Nếu 1 trong 2 chiều trên thay đổi, mà chiều còn lại không thay đổi thì gọi là dữ liệu 1 chiều - One-Way binding
+- Dữ liệu có thể di chuyển hai chiều giữa nguồn dữ liệu và giao diện người dùng.
+- Khi dữ liệu trong nguồn dữ liệu thay đổi, nó cũng thay đổi trong giao diện và ngược lại, khi dữ liệu trong giao diện thay đổi, nó cũng thay đổi trong nguồn dữ liệu.
+- Two-way data binding thường được sử dụng trong một số framework như Angular.
 
-**🌻Two-way binding là gì ?**
-
-Ngược lại nếu thay đổi 1 trong 2 chiều mà chiều còn lại cũng thay đổi theo thì gọi là Two-Way binding
 
 Ví dụ: 2.Examples\myapp-js\src\SessionExamples\session-03-State\UpdateState
 
 ===============================
 
 ## 🔥 5.3 Khái niệm Lifecycle
-
-> Render and Commit
-
-Trước khi component hiển thị ra màn hình, chúng phải được render bới React. Bạn cần nắm các bước trong quá trình xử lý để giúp bạn hiểu được làm thế nào để code chạy và giải thích các hành vi của nó.
 
 
 🌻 **Re-Render trong React là gì?**
@@ -173,9 +171,9 @@ Quá trình xử lý yêu cầu tương tác từ giao diện người dùng có
 
 Chu trình này trong React Component còn được hiểu với một khái niệm đó là **LifeCycle** - Vòng đời của một Component.
 
-- Component được sinh ra (**Mounting**)
-- Component tồn tại và thay đổi (**Updation**)
-- Component mất đi (**Unmounting**)
+- Component được sinh ra  - Gọi món (**Mounting**)
+- Component tồn tại và thay đổi - Chuẩn bị Món (**Updation**)
+- Component mất đi - Mang món ra cho khách (**Unmounting**)
 
 ***
 
@@ -188,7 +186,10 @@ Chúng ta sẽ tìm hiểu kỹ hơn các khái niệm này trong bài học v�
 
 Đọc thêm bài viết: <https://viblo.asia/p/lifecycle-component-trong-reactjs-gGJ59jzxKX2>
 
-===========================
+***
+
+Chi tiết các bước nói trên diễn ra như sau:
+
 
 🔸**Step 1: Kích hoạt render**
 

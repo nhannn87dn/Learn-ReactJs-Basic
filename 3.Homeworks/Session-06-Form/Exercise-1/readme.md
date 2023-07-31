@@ -10,4 +10,4 @@
 ## Task 2
 
 - Dựng form **đánh giá Sản phẩm** như Demo 5.Demo-Projects/product.html
-- Yêu cầu dùng Ant Design, Có validation
+- Yêu cầu dùng React Hook Form, Có validation
