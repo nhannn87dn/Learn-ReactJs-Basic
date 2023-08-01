@@ -14,6 +14,7 @@ import NavigationsBar from './components/NavigationsBar';
 import ButtonType from './components/ButtonType'
 import {demoLists} from './data/demoLists'
 import ProductsList from './components/ProductsList';
+import VideosList from './components/VideosList';
 /**
  * Khác function js ở chỗ là
  * function COmponent bắt buộc viết HOA kí tự đầu tiên
@@ -98,6 +99,7 @@ function App() {
 
   return (
     <>
+     <VideosList />
     <PeopoleList />
     <DemoLists />
     {/* <ButtonType label='Login' />  */}
