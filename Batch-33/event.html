@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Trong Html -->
+<div onclick="suKienA()">
+    <p onclick="suKienB()">P</p>
+</div>
+<button onclick="handleClick()">Click</button>
+<script>
+    let index = 0;
+    function handleClick() {
+        index = index + 1;
+        console.log(index);
+    }
+
+    
+
+    function suKienA(){
+        console.log('suKienA');
+    }
+    function suKienB(){
+        e.preventDefault();
+        console.log('suKienB');
+    }
+</script>
+</body>
+</html>

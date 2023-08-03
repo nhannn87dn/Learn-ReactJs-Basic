@@ -1,4 +1,4 @@
-import { useState, Fragment } from 'react'
+import React, { useState, Fragment } from 'react'
 import ButtonAddToCart from './components/ButtonAddToCart'
 // import './App.css'
 
@@ -15,6 +15,9 @@ import ButtonType from './components/ButtonType'
 import {demoLists} from './data/demoLists'
 import ProductsList from './components/ProductsList';
 import VideosList from './components/VideosList';
+import BalaEventsExample from './components/BalaEventsExample'
+import {AiOutlineStar,AiFillStar} from 'react-icons/ai'
+
 /**
  * Khác function js ở chỗ là
  * function COmponent bắt buộc viết HOA kí tự đầu tiên
@@ -94,18 +97,216 @@ function PeopoleList(){
   )
 }
 
-function App() {
-  const [count, setCount] = useState(0)
+function ButtonEvent() {
+
+  const handleCLick = ()=>{
+    console.log('Button Login');
+  }
+
+  const handlePlay = (number) => {
+    console.log('Bạn đã play bài ',number)
+  };
 
   return (
     <>
-     <VideosList />
+    <button onClick={()=>{
+      console.log('Clicked');
+    }}>
+      I don't do anything
+    </button>
+    <button onClick={handleCLick}>
+      Login
+    </button>
+    <button onClick={()=> handlePlay(5)}>Play bài số 5</button>
+    </>
+  );
+}
+
+function MouseEvents(){
+  
+  const myStyle = {
+    width: '200px',
+    height: '100px',
+    backgroundColor: '#f80',
+    color: '#fff',
+    padding: '30px'
+  }
+
+  const handleMouseOver = ()=>{
+    console.log('Bạn đã rê chuột lên Div');
+  }
+
+  const handleMouseOut = ()=>{
+    console.log('Bạn đã rê chuột ra khỏi Div');
+  }
+
+
+  return (
+    <div style={myStyle} onMouseOver={handleMouseOver} onMouseOut={handleMouseOut}>
+      This is Div tag
+    </div>
+  )
+}
+
+function Signup() {
+
+  const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log('Form Submited');
+  }
+
+  return (
+    <form onSubmit={handleOnSubmit}>
+      <input name="username" placeholder='username' />
+      <button type="submit">Send</button>
+    </form>
+  );
+}
+
+function NewButton({label, onClick}: {label: string, onClick: () => void}) {
+  return (
+    <button onClick={onClick}>
+      {label}
+    </button>
+  );
+}
+
+function Count() {
+  const [index, setIndex] = React.useState<number>(0)
+
+  console.log('Count render');
+
+  function handleClick() {
+    setIndex(i => i + 1); //+
+  }
+return (
+    <>
+      <button onClick={handleClick}>
+        Increment +1
+      </button>
+      <h3>  
+        {index}
+      </h3>
+     
+    </>
+  );
+}
+
+function ButtonLike(){
+  const [liked, setLiked] = React.useState<boolean>(false);
+
+  return (
+    <button onClick={()=>{
+      setLiked(!liked);
+    }} style={{color: liked ? 'blue' : ''}}>Thích</button>
+  )
+}
+
+function Notification(){
+  const [show,setShow] = React.useState(false);
+  return (
+    <>
+    <button onClick={()=>{
+      setShow(!show);
+    }}>Toogle Notification</button>
+    {
+      show && (
+        <div>
+          <p>lorem 1</p>
+          <p>lorem 2</p>
+          <p>lorem 3</p>
+          <p>lorem 4</p>
+      </div>
+      )
+    }
+    
+    </>
+  )
+}
+
+function ButtonRanks(){
+  const stars = [1,2,3,4,5];
+
+  const [current, setCurrent] = React.useState(0);
+
+  console.log('current',current);
+
+  const handleClick = (number:number)=>{
+    //console.log(number);
+    if(number === current){
+      setCurrent(0);
+    }else{
+      setCurrent(number);
+    }
+    
+  }
+
+  return (
+    <div>
+      {
+        stars.map((index)=> {
+           console.log(index);
+          if(index > current){
+            return<AiOutlineStar onClick={()=> handleClick(index)} key={index} />
+          }else{
+            return<AiFillStar onClick={()=> handleClick(index)} key={index} />
+
+          }
+        })
+      }
+        
+       
+        {/* <AiOutlineStar /> */}
+    </div>
+  )
+}
+
+function App() {
+
+  console.log('APp Render');
+
+  const [toogle, setToggle] =  useState(false)
+
+  const handleLoginCLick = ()=>{
+    console.log('Button Login');
+  }
+
+  const handleRegisterCLick = ()=>{
+    console.log('Button REgister');
+  }
+
+  return (
+    <>
+    <h1 className="text-3xl font-bold underline">
+      Hello world!
+    </h1>
+    <button onClick={()=>{
+      setToggle(!toogle)
+    }}>Toggle</button>
+
+    {toogle && <Count /> }
+
+     <hr />
+    <ButtonRanks />
+    <ButtonRanks />
+    <Notification />
+    <ButtonLike />
+
+    
+    <NewButton onClick={handleLoginCLick} label='Login' />
+    <NewButton onClick={handleRegisterCLick} label='Register' />
+
+    <ButtonEvent />
+    <MouseEvents />
+    <BalaEventsExample />
+    <Signup />
+     {/* <VideosList />
     <PeopoleList />
-    <DemoLists />
+    <DemoLists /> */}
     {/* <ButtonType label='Login' />  */}
-    <NavigationsBar />
+    {/* <NavigationsBar />
     <AttributeColor />
-    <ProductsList />
+    <ProductsList /> */}
     {/* <Button icon={<FaShoppingCart />}  label='Thêm vào giỏ hàng' />
     <Button icon={<FaHeart />} type='dark' label='Yêu thích' />
     <Button label='Đăng Ký' />
