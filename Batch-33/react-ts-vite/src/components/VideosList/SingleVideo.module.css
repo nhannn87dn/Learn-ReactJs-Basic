@@ -1,0 +1,14 @@
+.video_item {
+    display: flex;
+    column-gap: 10px;
+}
+
+.content, .like {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.content h3, .content p{
+    margin: 0;
+    padding: 0;
+}

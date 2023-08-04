@@ -20,7 +20,7 @@ Handling events trong React elements rất giống với handling events trong D
 
 DOM Events Javascript: <https://www.w3schools.com/jsref/dom_obj_event.asp>
 
-
+Cú pháp Typescript cho Events: <https://react-typescript-cheatsheet.netlify.app/docs/basic/getting-started/forms_and_events/>
 
 🌻 Ví dụ một sự kiện click trong HTML:
 
@@ -91,16 +91,15 @@ export default MouseExample;
 ## 🔥 Sự kiện bàn phím
 
 ```js
-import React, { useState } from 'react';
+import React, { KeyboardEvent } from 'react';
 
 const KeyboardEventsExample = () => {
  
-
-  const handleKeyDown = (event) => {
+  const handleKeyDown = (event:  KeyboardEvent<HTMLInputElement>) => {
     console.log('Bạn đã nhấn phím', event.key);
   };
 
-  const handleKeyUp = (event) => {
+  const handleKeyUp = (event:  KeyboardEvent<HTMLInputElement>) => {
     console.log('Bạn đã rời tay khỏi phím', event.key);
   };
 
@@ -119,6 +118,8 @@ const KeyboardEventsExample = () => {
 export default KeyboardEventsExample;
 
 ```
+
+Tham khảo TypeScript cho Event Keyboard: <https://felixgerschau.com/react-typescript-onkeyup-event-type/>
 
 ## 🔥 Sự kiện về Form
 
