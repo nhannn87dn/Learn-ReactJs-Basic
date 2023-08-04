@@ -157,7 +157,7 @@ function Signup() {
 
   return (
     <form onSubmit={handleOnSubmit}>
-      <input name="username" placeholder='username' />
+      <input className='input-filed' name="username" placeholder='username' />
       <button type="submit">Send</button>
     </form>
   );
@@ -196,7 +196,7 @@ function ButtonLike(){
   const [liked, setLiked] = React.useState<boolean>(false);
 
   return (
-    <button onClick={()=>{
+    <button className='button button-orange' onClick={()=>{
       setLiked(!liked);
     }} style={{color: liked ? 'blue' : ''}}>Thích</button>
   )
@@ -277,9 +277,41 @@ function App() {
 
   return (
     <>
-    <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>
+    <div className="container mx-auto">
+        <h1>Heading 1</h1>
+        <h2>Heading 2</h2>
+        <h3>Heading 3</h3>
+        <h4>Heading 4</h4>
+        <h5>Heading 5</h5>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia esse quasi accusantium quod. Exercitationem inventore doloremque dolores. Magnam corrupti quis accusamus sint illum, ab, maiores non, obcaecati dignissimos molestias quibusdam?</p>
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quia esse quasi accusantium quod. Exercitationem inventore doloremque dolores. Magnam corrupti quis accusamus sint illum, ab, maiores non, obcaecati dignissimos molestias quibusdam?</p>
+        
+        <ul>
+          <li>List 1</li>
+          <li>List 1</li>
+          <li>List 1</li>
+          <li>List 1</li>
+        </ul>
+        <form action="">
+           <label htmlFor="">Username</label>
+           <input type="text" name="username" placeholder='username' />
+           <label htmlFor="">Province</label>
+           <select name="" id="">
+            <option value="">Ha Noi</option>
+            <option value="">Da Nang</option>
+           </select>
+           <label htmlFor="">Content</label>
+           <textarea name=""></textarea>
+           <button type='submit'>Submit</button> <button>Reset</button> <button className='btn-empty'>Cancle</button> <a href='' className='btn'>Link Button</a>
+        </form>
+    </div>
+   
+
+    <form action="">
+      <input type="text" />
+      <select name="" id=""></select>
+    </form>
+
     <button onClick={()=>{
       setToggle(!toogle)
     }}>Toggle</button>

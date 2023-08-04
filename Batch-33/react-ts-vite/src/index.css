@@ -1,3 +1,77 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+select {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 0.5rem center;
+    background-repeat: no-repeat;
+    background-size: 1.5em 1.5em;
+    padding-right: 2.5rem;
+    -webkit-print-color-adjust: exact;
+}
+/**
+Tự định nghĩa style mặc định cho các thẻ
+**/
+@layer base {
+    h1,h2,h3,h4,h5,h6{
+        @apply font-semibold
+    }
+    h1{
+        @apply text-4xl 
+    }
+    h2{
+        @apply text-3xl 
+    }
+    h3{
+        @apply text-2xl 
+    }
+    h4{
+        @apply text-xl 
+    }
+    h5{
+        @apply text-lg 
+    }
+    h6{
+        @apply text-base
+    }
+
+    p~p{
+        @apply mt-2
+    }
+
+    input, textarea, select {
+        @apply focus:outline-none 
+    }
+    input, textarea{
+        @apply block w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-400 sm:text-sm sm:leading-6
+    }
+    select{
+        @apply block w-full rounded-md border-0 ps-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-400  sm:text-sm sm:leading-6 appearance-none
+    }
+
+   
+    form label {
+        @apply inline-block text-sm font-medium leading-6 text-gray-900
+    }
+    button {
+        @apply rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50
+    }
+    button[type='submit'] {
+        @apply bg-indigo-600 hover:bg-indigo-500 text-white
+    }
+}
+/**
+Tự định nghĩa thêm các class dựa trên các class của tailwind
+**/
+@layer components {
+    .btn {
+        @apply rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50
+    }
+    .btn-empty{
+        @apply shadow-none ring-0
+    }
+    .btn-primary{
+        @apply bg-indigo-600 hover:bg-indigo-500 text-white
+    }
+}
