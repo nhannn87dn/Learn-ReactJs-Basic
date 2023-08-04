@@ -1,12 +1,13 @@
+import React, { KeyboardEvent } from 'react';
 
-const KeyboardEventsExample = () => {
+const BalaEventsExample = () => {
  
 
-    const handleKeyDown = (event) => {
+    const handleKeyDown = (event:  KeyboardEvent<HTMLInputElement>) => {
       console.log('Bạn đã nhấn phím',event.key);
     };
   
-    const handleKeyUp = (event) => {
+    const handleKeyUp = (event: KeyboardEvent<HTMLInputElement>) => {
       console.log('Bạn đã rời tay khỏi phím',event.key);
     };
   
@@ -23,4 +24,4 @@ const KeyboardEventsExample = () => {
   };
 
 
-export default KeyboardEventsExample
+export default BalaEventsExample
