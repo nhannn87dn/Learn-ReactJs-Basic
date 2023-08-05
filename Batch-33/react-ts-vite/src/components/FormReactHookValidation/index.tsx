@@ -11,7 +11,7 @@ const schema = yup.object({
     /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#\$%\^&\*])(?=.{8,})/,
     "Must Contain 8 Characters, One Uppercase, One Lowercase, One Number and One Special Case Character"
   ),
-  address: yup.string().default(''),//không yêu cầu điền
+  address: yup.string().default(''),//không yêu cầu điền address
   //Giới tính chỉ chập nhận 1 trong 2 giá trị
   gender: yup.string().required('Vui lòng chọn giới tính').oneOf(['male', 'female'], 'Giới tính không hợp lệ'),
 }).required();

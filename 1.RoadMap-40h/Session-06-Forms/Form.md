@@ -273,31 +273,8 @@ npm install react-hook-form
 
 Example: <https://react-hook-form.com/get-started/#Quickstart>
 
-### Formik
-
-```bash
-npm install formik --save
-```
-Example: <https://formik.org/docs/tutorial#a-simple-newsletter-signup-form>
 
 
-### Yup validation
-
-Sử dụng để validate form trong React
-
-```bash
-npm install yup --save
-```
-
-Cách sử dụng: <https://github.com/jquense/yup>
-
----
-
-Formik với Yup Validation
-
-Doc: <https://formik.org/docs/guides/validation>
-
----
 React Hook Form with Yup Validation
 
 Bạn cần cài thêm
@@ -337,4 +314,69 @@ export default function App() {
 }
 
 ```
+### Formik
 
+```bash
+npm install formik --save
+```
+Example: <https://formik.org/docs/tutorial#a-simple-newsletter-signup-form>
+
+Formik với Yup Validation
+
+Doc: <https://formik.org/docs/guides/validation>
+
+---
+
+### Yup validation
+
+Sử dụng để validate form trong React
+
+```bash
+npm install yup --save
+```
+
+Cách sử dụng: <https://github.com/jquense/yup>
+
+---
+
+
+Dưới đây là một ví dụ về đối tượng "user" với nhiều trường và các quy tắc xác thực tương ứng bằng Yup:
+
+```javascript
+import * as yup from 'yup';
+
+const schema = yup.object().shape({
+  username: yup.string().required('Username is required'),
+  email: yup.string().email('Invalid email').required('Email is required'),
+  age: yup.number().integer().min(18, 'Age must be at least 18').required('Age is required'),
+  password: yup.string().min(6, 'Password must be at least 6 characters').required('Password is required'),
+  confirmPassword: yup.string()
+    .oneOf([yup.ref('password'), null], 'Passwords must match')
+    .required('Confirm Password is required'),
+  gender: yup.string().oneOf(['male', 'female'], 'Invalid gender').required('Gender is required'),
+});
+
+const user = {
+  username: 'john_doe',
+  email: 'john@example.com',
+  age: 25,
+  password: 'password123',
+  confirmPassword: 'password123',
+  gender: 'male',
+};
+
+schema.validate(user)
+  .then(valid => console.log(valid))
+  .catch(error => console.log(error));
+```
+
+Trong ví dụ trên, chúng ta đã sử dụng Yup để tạo một schema đối tượng cho "user". Các trường của "user" bao gồm `username`, `email`, `age`, `password`, `confirmPassword`, và `gender`. Mỗi trường được định nghĩa với các quy tắc xác thực tương ứng.
+
+- `username` phải là một chuỗi bắt buộc.
+- `email` phải là một chuỗi hợp lệ đại diện cho địa chỉ email.
+- `age` phải là một số nguyên dương và ít nhất 18 tuổi.
+- `password` phải là một chuỗi có ít nhất 6 ký tự.
+- `confirmPassword` phải giống với giá trị của trường `password`.
+- `gender` phải là một trong hai giá trị "male" hoặc "female".
+
+Nếu các giá trị của "user" không tuân thủ các quy tắc xác thực tương ứng, Yup sẽ sinh ra các lỗi tương ứng. Bằng cách sử dụng phương thức `validate` của schema, chúng ta có thể kiểm tra xem "user" có hợp lệ hay không và xử lý các lỗi nếu có.
