@@ -17,6 +17,10 @@ import ProductsList from './components/ProductsList';
 import VideosList from './components/VideosList';
 import BalaEventsExample from './components/BalaEventsExample'
 import {AiOutlineStar,AiFillStar} from 'react-icons/ai'
+import MyForm from './components/MyForm';
+import FormReactHook from './components/FormReactHook';
+import FormReactHookValidation from './components/FormReactHookValidation';
+import FormAntd from './components/FormAntd';
 
 /**
  * Khác function js ở chỗ là
@@ -277,6 +281,15 @@ function App() {
 
   return (
     <>
+   <div className="container mx-auto">
+    <FormAntd />
+   <hr />
+    <FormReactHookValidation />
+    <FormReactHook />
+   <MyForm />
+    </div>
+   
+    <hr />
     <div className="container mx-auto">
         <h1>Heading 1</h1>
         <h2>Heading 2</h2>
@@ -306,7 +319,7 @@ function App() {
         </form>
     </div>
    
-
+    
     <form action="">
       <input type="text" />
       <select name="" id=""></select>
@@ -332,12 +345,13 @@ function App() {
     <MouseEvents />
     <BalaEventsExample />
     <Signup />
+   
      {/* <VideosList />
     <PeopoleList />
     <DemoLists /> */}
     {/* <ButtonType label='Login' />  */}
     {/* <NavigationsBar />
-    <AttributeColor />
+    
     <ProductsList /> */}
     {/* <Button icon={<FaShoppingCart />}  label='Thêm vào giỏ hàng' />
     <Button icon={<FaHeart />} type='dark' label='Yêu thích' />
@@ -356,7 +370,7 @@ function App() {
     <VideoItem thumb='./images/video-1.png' title='Introducing React Native' desc='The origin story of React' />
     <VideoItemV2 thumb='./images/video-1.png' title='Introducing React Native - V2' desc='The origin story of React' />
      */}
-
+    <AttributeColor />
     </>
   )
 }
