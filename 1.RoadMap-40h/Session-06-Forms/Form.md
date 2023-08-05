@@ -294,7 +294,7 @@ const schema = yup.object({
 }).required();
 type FormData = yup.InferType<typeof schema>;
 
-export default function App() {
+export default function MyForm() {
   const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
     resolver: yupResolver(schema)
   });
@@ -314,6 +314,48 @@ export default function App() {
 }
 
 ```
+
+
+Để bắt các trạng thái submit trong React Hook Form, bạn có thể sử dụng thuộc tính `handleSubmit` và `isSubmitting` được cung cấp bởi React Hook Form. Dưới đây là một ví dụ:
+
+```jsx
+
+export default function MyForm() {
+  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<FormData>({
+    resolver: yupResolver(schema)
+  });
+  const onSubmit = (data: FormData) => console.log(data);
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <input {...register("firstName")} />
+      <p>{errors.firstName?.message}</p>
+        
+      <input {...register("age")} />
+      <p>{errors.age?.message}</p>
+      
+       <button type="submit" disabled={isSubmitting}>
+        {isSubmitting ? 'Submitting...' : 'Submit'}
+      </button>
+    </form>
+  );
+
+}
+
+export default MyForm;
+```
+
+Trong ví dụ trên, chúng ta sử dụng `useForm` từ React Hook Form để tạo ra các phương thức và thuộc tính cần thiết cho form. 
+
+- `handleSubmit` là một phương thức được cung cấp bởi React Hook Form và được gắn vào sự kiện `onSubmit` của form. Khi form được gửi đi, `handleSubmit` sẽ chạy hàm `onSubmit` được định nghĩa bởi bạn.
+- `isSubmitting` là một thuộc tính trong `formState` được cung cấp bởi React Hook Form. Nó sẽ có giá trị `true` khi form đang trong quá trình submit và `false` khi quá trình submit hoàn thành.
+
+Trong phần giao diện của form, chúng ta có một nút submit được kích hoạt hoặc vô hiệu hóa dựa trên giá trị của `isSubmitting`. Khi form đang được submit, nút submit sẽ bị vô hiệu hóa và hiển thị thông báo "Submitting...". 
+
+Ngược lại, khi không có quá trình submit nào diễn ra, nút sẽ được kích hoạt và hiển thị "Submit".
+
+==> Giúp tránh cho người dùng nhấn Submit liên tục
+
 ### Formik
 
 ```bash
