@@ -12,7 +12,7 @@ const Footer = () => {
                 <div className={styles.footer_middle_item}>POPPULAR TAGS</div>
             </div>
         </div>
-        <FooterCopyright />
+        <FooterCopyright  />
     </footer>
   )
 }
