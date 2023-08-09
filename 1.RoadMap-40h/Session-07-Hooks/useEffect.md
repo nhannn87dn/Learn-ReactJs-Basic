@@ -42,56 +42,50 @@ Doc: <https://react.dev/reference/react/useEffect>
 
 useEffect có 2 tham số. Tham số thứ 2 là tùy chọn
 
-> `useEffect(<callback function>, [dependency])`
+> `useEffect(<callback function>, [dependencies])`
 
+Chi tiết ra như dưới đây:
 
-1. Không có dependency:
+```js
+useEffect(()=>{
+
+    // Thực hiện tác vụ phụ ở đây
+    // ...
+
+    // Hủy bỏ tác vụ phụ nếu cần thiết
+    return () => {
+      // ...
+    };
+
+}, [dependencies);
+```
+
+Thì qua đó chúng ta có 3 trường hợp xảy ra khi sử dụng useEffect
+
+### 1 - Không có dependency
+
+Cú pháp: 
+
+Cách viết này nó đại diện cho giai đoạn Mounted trong Lifecycle, Component được gắn vào App
 
 ```js
 /**
  * Lifecycle - Mounted
  */
 useEffect(() => {
-  //Runs on every render
+  //Callback sẽ chạy mỗi khi component Render
 });
 ```
 
-2. Dependency là một mảng rổng:
+Khi nào thì dùng: 
 
-```js
-/**
- * Lifecycle - Mounted
- */
-useEffect(() => {
-  //Runs only on the first render
-}, []); // <- add empty brackets here
-```
-
-3. Dependency là một Props hoặc State:
-
-```js
-/**
- * Lifecycle - Update
- */
-useEffect(() => {
-  //Runs on the first render
-  //And any time any dependency value changes
-}, [prop, state]);
-```
-
--------------------------------
-=> Lưu ý: Luôn đúng cho cả 3 cách dùng trên
-
-- Callback luôn được gọi sau khi component đã mounted
-- Cleanup luôn được gọi trước khi component unmounted
+- Khi bạn các Side-Effects cần thực hiện sau khi component Render xong
+- Và muốn nó thực hiện lại mỗi khi Component Render
 
 
-=============================
+Ví dụ minh họa:
 
-### Example này dùng chung cho các ví dụ dưới đây
-
-
-App.js
+App.js (Đoạn code này dùng cho tất cả các ví dụ dưới đây)
 
 ```js
 
@@ -108,7 +102,8 @@ function App(){
 }
 ```
 
-1. 😍 **useEffect update DOM**
+
+😍 **useEffect update DOM**
 
 Tạo một input nhập vào thì thay đổi nội dung title
 
@@ -117,7 +112,7 @@ function Greet({ name }) {
   const message = `Hello, ${name}!`; // Calculates output
   const [title, setTitle] = React.useState('');
   console.log(`Greet render, ${name}!`);
-  //bad
+  //Để như vậy thì không tốt
   document.title = `${title}`; // Side-effect!
   return (<div>
     <h1>{message}</h1>
@@ -128,13 +123,73 @@ function Greet({ name }) {
 }
 
 ```
-Với cách code trên thì mỗi khi chúng ta thay đổi giá trị input thì Greet re-render.
 
-2. 😍 **useEffect CALL API**
+Với cách code trên thì mỗi khi chúng ta thay đổi giá trị input thì Greet `re-render` và title được thay đổi theo
+
+Nhưng trong React, Component thực hiện nhiệm vụ render UI người dùng nên chúng ta phải ưu tiên việc nó render ra UI càng sớm càng tốt
+
+Trong ví dụ trên:
+
+```js
+document.title = `${title}`; // Side-effect!
+```
+Dòng code này chạy liên tục mỗi lần Greet re-render, giá sử mà logic này phức tạp --> việc render UI bị trễ lại ==> Không ổn.
+
+Cách giải quyết là đưa Side-effect vào bên trong useEffect
+
+```js
+useEffect(() => {
+  document.title = `${title}`; // Side-effect!
+});
+```
+
+### 2 - Dependency là một mảng rỗng
+
+Cú pháp: 
+
+```js
+/**
+ * Lifecycle - Mounted
+ */
+useEffect(() => {
+   //Callback chỉ chạy trong lần đầu tiên component Render
+}, []); // <- dependency là một mảng rỗng
+```
+
+Khi nào thì dùng:
+
+- Khi bạn các Side-Effects cần thực hiện sau khi component Render xong
+- Và muốn nó thực hiện duy nhất trong lần đầu tiên Component Render
+
+
+
+Ví dụ minh họa:
+
+
+```js
+function Greet({ name }) {
+  const message = `Hello, ${name}!`; // Calculates output
+  const [title, setTitle] = React.useState('Aptech');
+  console.log(`Greet render, ${name}!`);
+  useEffect(() => {
+    document.title = `${title}`; // Side-effect!
+  }, []); // <== Dependencies là mảng rỗng
+  return (<div>
+    <h1>{message}</h1>
+    <input value={title} name="title" onChange={(e)=> {
+      setTitle(e.target.value);
+    }} />
+  </div>);       // Calculates output
+}
+
+```
+
+Với ví dụ này thì title được thay đổi lần đầu tiên, còn khi bạn thay đổi input thì title không được update lại.
+
+Ví dụ về Call API
 
 - useEffect & Axios async await
 - <https://jsonplaceholder.typicode.com/>
-
 
 ```js
 import axios from 'axios';
@@ -142,18 +197,21 @@ const Greet = () => {
   const [title, setTitle] = useState('');
   const [posts, setPost] = useState([]);
 
-    useEffect(()=>{
-        axios.get('https://jsonplaceholder.typicode.com/posts')
-            .then(function (response) {
-                // handle success
-                console.log(response);
-                //setPost(response);
-            })
-            .catch(function (error) {
-                // handle error
-                console.log(error);
-            })
-    },[]);
+  //Dùng useEffect
+  // API chỉ gọi 1 lần duy nhất khi component render
+  useEffect(()=>{
+    axios.get('https://jsonplaceholder.typicode.com/posts')
+      .then(function (data) {
+          // handle success
+          console.log(data);
+          //lấy data gán cho State
+          setPosts(data)
+      })
+      .catch(function (error) {
+          // handle error
+          console.log(error);
+      })
+  },[])
   return(
     <div>
     <h1>{title}</h1>
@@ -174,20 +232,98 @@ const Greet = () => {
 
 ```
 
+### 3 - Dependency là một Props hoặc State
+
+Cú pháp: Nó đại diện cho giai đoạn Update trong Lifecycle
+
+```js
+/**
+ * Lifecycle - Update
+ */
+useEffect(() => {
+  //Callback chỉ chạy trong lần đầu tiên component Render
+  //Và nó chạy lại mỗi khi props, hoặc state thay đổi giá trị
+}, [prop, state]);
+```
+
+Khi nào thì dùng:
+
+- Khi bạn các Side-Effects cần thực hiện sau khi component Render xong
+- Và muốn nó thực hiện ngay trong lần đầu tiên Component Render
+- Và muốn nó thực hiện LẠI mỗi khi state, hay prop thay đổi giá trị
+
+Ví dụ minh họa:
+
+
+```js
+function Greet({ name }) {
+  const message = `Hello, ${name}!`; // Calculates output
+  const [title, setTitle] = React.useState();
+  const [person, setPerson] = React.useState('Jonh');
+  console.log(`Greet render, ${name}!`);
+  useEffect(() => {
+    document.title = `Chào mừng ${person} đến với  ${name} !`; // Side-effect!
+  }, [person]); // <== Dependencies thêm vào state person
+  return (<div>
+    <h1>{message}</h1>
+    <div>
+      <button onClick={()=> {
+          setPerson('Jonh')
+        }}>Jonh</button>
+      <button onClick={()=> {
+          setPerson('Alice')
+        }}>Alice</button>
+      <button onClick={()=> {
+          setPerson('Sarah')
+        }}>Sarah</button>
+    </div>
+    <input value={title} name="title" onChange={(e)=> {
+      setTitle(e.target.value);
+    }} />
+  </div>);       // Calculates output
+}
+
+```
+
+Qua ví dụ trên ngay trong lần đầu tiên chúng ta thấy title được thay đổi thành `Chào mừng Jonh đến với Aptech`.
+
+Và mỗi lần chúng ta click vào các button thì title được update lại vì state person được thêm vào dependency, person thay đổi thì component Re-render --> callback của useEffect chạy lại
+
+Nếu như bạn thay đổi title ở input --> không có chuyện gì xảy ra với title vì dependency nó không phụ thuộc vào state này
+
+
+-------------------------------
+=> Lưu ý: Luôn đúng cho cả 3 cách dùng trên
+
+- Callback luôn được gọi sau khi component đã mounted
+- Cleanup luôn được gọi trước khi component unmounted
+
+
+
+***
+
+
+2. 😍 **useEffect CALL API**
+
+- useEffect & Axios async await
+- <https://jsonplaceholder.typicode.com/>
+
+
 ```js
 import axios from 'axios';
 const Greet = () => {
   const [title, setTitle] = useState('');
 
   //Chưa dùng đến useEffect
+  //Call API lấy 100 bài posts
   axios.get('https://jsonplaceholder.typicode.com/posts')
   .then(function (data) {
-      // handle success
+      // Lấy thành công success
       console.log(data);
      
   })
   .catch(function (error) {
-      // handle error
+      // Nếu gặp lỗi
       console.log(error);
   })
     
@@ -205,34 +341,30 @@ const Greet = () => {
   )
 }
 ```
-Qua ví dụ này nếu input thay đổi thì nó liên tục gọi API
 
-Do vậy chung ta nên đưa nó vào useEffect như ví dụ 1.
 
-```js
-useEffect(()=>{
-   axios.get('https://jsonplaceholder.typicode.com/posts')
-    .then(function (data) {
-        // handle success
-        console.log(data);
-    })
-    .catch(function (error) {
-        // handle error
-        console.log(error);
-    })
-})
+Mở tab Network lên ta thấy nó gửi request liên tục
 
-```
+- Nguyên tắc là mỗi khi setState thì component re-render.
+- Nó chạy đến đoạn useEffect thì nó call API, rồi lại đi setState
 
-Trong thực tế thì sau khi CALL API thì nó lấy data đó để đưa ra giao diện người dùng.
+Vô hình nó tại ra một vòng lặp vô hạn quá trình trên nên dẫn tới việc call API liên tục ==> gây TREO CPU
+
+=> CÁCH GIẢI QUYẾT
+
+Để khắc phục ==> liên tục gọi API ==> dùng `useEffect` với dependency là một mảng rổng []
+
+> useEffect(callback, [])
+
 
 ```js
 import axios from 'axios';
 const Greet = () => {
   const [title, setTitle] = useState('');
-  const [posts, setPosts] = useState([]);
+  const [posts, setPost] = useState([]);
 
   //Dùng useEffect
+  // API chỉ gọi 1 lần duy nhất khi component render
   useEffect(()=>{
     axios.get('https://jsonplaceholder.typicode.com/posts')
       .then(function (data) {
@@ -245,8 +377,7 @@ const Greet = () => {
           // handle error
           console.log(error);
       })
-  })
-    
+  },[])
   return(
     <div>
     <h1>{title}</h1>
@@ -264,44 +395,8 @@ const Greet = () => {
 
   )
 }
+
 ```
-
-Mở tab Network lên ta thấy nó gửi request liên tục
-
-- Nguyên tắc là mỗi khi setState thì component re-render.
-- Nó chạy đến đoạn useEffect thì nó call API, rồi lại đi setState
-
-Vô hình nó tại ra một vòng lặp vô hạn quá trình trên nên dẫn tới việc call API liên tục ==> gây TREO CPU
-
-=> CÁCH GIẢI QUYẾT
-
-Dùng useEffect với dependencies rổng []
-
-> useEffect(callback, [])
-
-
-```js
-//Dùng useEffect
-// API chỉ gọi 1 lần duy nhất khi component render
-  useEffect(()=>{
-    axios.get('https://jsonplaceholder.typicode.com/posts')
-      .then(function (data) {
-          // handle success
-          console.log(data);
-          //lấy data gán cho State
-          setPosts(data)
-      })
-      .catch(function (error) {
-          // handle error
-          console.log(error);
-      })
-  },[])
-```
-
-Nâng cáp ví dụ trên với việc tạo ra 3 tùy chọn hiển thị nội dung. posts / comments / albums
-
-- Tạo ra 3 button tương ứng với 3 tùy chọn trên.
-- Khi chọn button nào thì load nội dung cho tùy chọn đó
 
 
 3. 😍 **useEffect with DOM event**
@@ -387,6 +482,21 @@ useEffect(() => {
 
 - Sử dụng để hủy effects --> chống tràn bộ nhớ (memory leaks)
 - Khi nào dùng: Khi dùng Timeouts, subscriptions, event listeners hoặc các effects khác không cần thiết sử dụng đến nũa.
+
+```js
+useEffect(() => {
+  // Thực hiện tác vụ phụ ở đây
+  // ...
+
+  // Hủy bỏ tác vụ phụ nếu cần thiết
+  return () => {
+    // ...
+  };
+}, dependencies);
+```
+
+Sử dụng useEffect có `return`
+
 
 ```js
 useEffect(() => {

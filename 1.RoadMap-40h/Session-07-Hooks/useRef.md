@@ -17,6 +17,38 @@ Tính năng nổi bật của nó:
 
 Doc: <https://react.dev/reference/react/useRef>
 
+Ví dụ toogle một Class cho một thẻ Div
+
+```js
+import React, { useEffect, useRef } from 'react';
+
+function InteractionExample() {
+  const buttonRef = useRef(null);
+
+  useEffect(() => {
+    if (buttonRef.current) {
+      buttonRef.current.classList.add('highlight');
+    }
+
+    return () => {
+      if (buttonRef.current) {
+        buttonRef.current.classList.remove('highlight');
+      }
+    };
+  }, []);
+
+  return (
+    <button ref={buttonRef}>
+      Click me
+    </button>
+  );
+}
+
+export default InteractionExample;
+```
+
+
+Trong ví dụ này, chúng ta sử dụng useEffect để thêm và loại bỏ lớp CSS "highlight" cho nút khi component được render và unmounts. Khi component được render, useEffect sẽ được gọi và thêm lớp CSS "highlight" vào nút thông qua sử dụng useRef để tham chiếu đến phần tử DOM của nút. Khi component unmounts, useEffect sẽ được gọi lại và loại bỏ lớp CSS "highlight" khỏi nút.
 
 ## Ví dụ 1: Sử dụng useRef để thay đổi giá trị của một input
 
