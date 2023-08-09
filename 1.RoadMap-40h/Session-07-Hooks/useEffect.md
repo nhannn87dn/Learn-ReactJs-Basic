@@ -186,51 +186,6 @@ function Greet({ name }) {
 
 Với ví dụ này thì title được thay đổi lần đầu tiên, còn khi bạn thay đổi input thì title không được update lại.
 
-Ví dụ về Call API
-
-- useEffect & Axios async await
-- <https://jsonplaceholder.typicode.com/>
-
-```js
-import axios from 'axios';
-const Greet = () => {
-  const [title, setTitle] = useState('');
-  const [posts, setPost] = useState([]);
-
-  //Dùng useEffect
-  // API chỉ gọi 1 lần duy nhất khi component render
-  useEffect(()=>{
-    axios.get('https://jsonplaceholder.typicode.com/posts')
-      .then(function (data) {
-          // handle success
-          console.log(data);
-          //lấy data gán cho State
-          setPosts(data)
-      })
-      .catch(function (error) {
-          // handle error
-          console.log(error);
-      })
-  },[])
-  return(
-    <div>
-    <h1>{title}</h1>
-    <input 
-    type='text'
-    value={title}
-    onChange={(e)=>setTitle(e.target.value)}
-     />
-    <ul>
-        {post.map(post=> {
-            <li key={post.id}>{post.title}</li>
-        })}
-    </ul>
-    </div>
-
-  )
-}
-
-```
 
 ### 3 - Dependency là một Props hoặc State
 
@@ -303,103 +258,27 @@ Nếu như bạn thay đổi title ở input --> không có chuyện gì xảy r
 ***
 
 
-2. 😍 **useEffect CALL API**
 
-- useEffect & Axios async await
-- <https://jsonplaceholder.typicode.com/>
+## 🔷 **Effect Cleanup (Unmouting)**
 
+- Sử dụng để hủy effects --> chống tràn bộ nhớ (memory leaks)
+- Khi nào dùng: Khi dùng Timeouts, subscriptions, event listeners hoặc các effects khác không cần thiết sử dụng đến nũa.
 
 ```js
-import axios from 'axios';
-const Greet = () => {
-  const [title, setTitle] = useState('');
+useEffect(() => {
+  // Thực hiện tác vụ phụ ở đây
+  // ...
 
-  //Chưa dùng đến useEffect
-  //Call API lấy 100 bài posts
-  axios.get('https://jsonplaceholder.typicode.com/posts')
-  .then(function (data) {
-      // Lấy thành công success
-      console.log(data);
-     
-  })
-  .catch(function (error) {
-      // Nếu gặp lỗi
-      console.log(error);
-  })
-    
-  return(
-    <div>
-    <h1>{title}</h1>
-    <input 
-    type='text'
-    value={title}
-    onChange={(e)=>setTitle(e.target.value)}
-     />
-   
-    </div>
-
-  )
-}
+  // Hủy bỏ tác vụ phụ nếu cần thiết
+  return () => {
+    // ...
+  };
+}, dependencies);
 ```
 
 
-Mở tab Network lên ta thấy nó gửi request liên tục
 
-- Nguyên tắc là mỗi khi setState thì component re-render.
-- Nó chạy đến đoạn useEffect thì nó call API, rồi lại đi setState
-
-Vô hình nó tại ra một vòng lặp vô hạn quá trình trên nên dẫn tới việc call API liên tục ==> gây TREO CPU
-
-=> CÁCH GIẢI QUYẾT
-
-Để khắc phục ==> liên tục gọi API ==> dùng `useEffect` với dependency là một mảng rổng []
-
-> useEffect(callback, [])
-
-
-```js
-import axios from 'axios';
-const Greet = () => {
-  const [title, setTitle] = useState('');
-  const [posts, setPost] = useState([]);
-
-  //Dùng useEffect
-  // API chỉ gọi 1 lần duy nhất khi component render
-  useEffect(()=>{
-    axios.get('https://jsonplaceholder.typicode.com/posts')
-      .then(function (data) {
-          // handle success
-          console.log(data);
-          //lấy data gán cho State
-          setPosts(data)
-      })
-      .catch(function (error) {
-          // handle error
-          console.log(error);
-      })
-  },[])
-  return(
-    <div>
-    <h1>{title}</h1>
-    <input 
-    type='text'
-    value={title}
-    onChange={(e)=>setTitle(e.target.value)}
-     />
-    <ul>
-        {post.map(post=> {
-            <li key={post.id}>{post.title}</li>
-        })}
-    </ul>
-    </div>
-
-  )
-}
-
-```
-
-
-3. 😍 **useEffect with DOM event**
+😍 **useEffect with DOM event**
 
 Bài toán: Khi kéo chuột trên 1 đoạn hoảng 200px thì xuất hiện nút **Go to Top**, khi kéo lên trên thì ẩn lại.
 
@@ -411,7 +290,10 @@ const Greet = () => {
 
   useEffect(() => {
     const handleGoTop = ()=> {
+        console.log(window.scrollY);
+
         if(window.scrollY >= 200){
+            console.log('set state');
             setShow(true)
         }else{
             setShow(false);
@@ -425,6 +307,8 @@ const Greet = () => {
     //   window.removeEventListener('scroll', handleGoTop);
     // };
   }, []);
+
+  console.log('re-render');
 
   return (
     <div>
@@ -442,7 +326,13 @@ const Greet = () => {
 export default IntervalExample;
 ```
 
-4. 😍 **useEffect with timer function**
+Nếu để như vậy thì khi component được unmouted ra khỏi App thì sự kiện `scroll` ở cấp độ window vẫn đang được lắng nghe. Sư kiện này được lưu trữ bởi một giá trị tham chiếu trong bộ nhớ.
+
+Khi Mount, Unmount liên tục --> mỗi lần như vậy bộ nhớ lại cấp phát ra thêm một giá trị tham chiếu mới cho sự kiện. Các giá trị tham chiếu đó bạn không dùng lại được nữa.
+
+Mỗi lần component update state thì xuất hiện lỗi memory leak ở console
+
+😍 **useEffect with timer function**
 
 ```js
 
@@ -477,23 +367,6 @@ useEffect(() => {
   }, []);
 ```
 
-
-## 🔷 **Effect Cleanup (Unmouting)**
-
-- Sử dụng để hủy effects --> chống tràn bộ nhớ (memory leaks)
-- Khi nào dùng: Khi dùng Timeouts, subscriptions, event listeners hoặc các effects khác không cần thiết sử dụng đến nũa.
-
-```js
-useEffect(() => {
-  // Thực hiện tác vụ phụ ở đây
-  // ...
-
-  // Hủy bỏ tác vụ phụ nếu cần thiết
-  return () => {
-    // ...
-  };
-}, dependencies);
-```
 
 Sử dụng useEffect có `return`
 
@@ -596,9 +469,9 @@ useEffect(() => {
 }, []);
 ```
 
-## 🔷 **Không cần phải dùng Effect**
+## 🔷 **Không cần phải dùng Effect KHI**
 
-- Một số logic chỉ chạy 1 lần khi ứng dụng khởi chạy. Bạn đặt chúng ra bên ngoài Component
+- Một số logic chỉ chạy 1 lần khi ứng dụng khởi chạy và nó không liên quan đến state, props của component thì Bạn đặt chúng ra bên ngoài Component
 
 ```js
 if (typeof window !== 'undefined') { // Check if we're running in the browser.

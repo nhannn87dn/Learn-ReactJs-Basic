@@ -92,6 +92,8 @@ Giải thích:
 
 ## ⭐ Call API trong ReactJS 
 
+![call](call-api.png)
+
 ###  Sử dụng `fetch()`
 
 Cú pháp: 
@@ -119,32 +121,107 @@ Doc: <https://axios-http.com/docs/intro>
 
 Cú pháp của axios gọn gơn fetch một chút
 
+😍 **useEffect CALL API**
+
 Phương thức GET
 
 ```js
-const [posts, setPost] = useState([]);
+
+import axios from 'axios';
+const PostsList = () => {
+
+  const [posts, setPost] = useState([]);
+
+  axios.get('https://jsonplaceholder.typicode.com/posts')
+  .then(function (data) {
+      // handle success
+      console.log(data);
+      //lấy data gán cho State
+      setPosts(data)
+  })
+  .catch(function (error) {
+      // handle error
+      console.log(error);
+  })
+  
+   return(
+    <div>
+    <h1>Posts List</h1>
+    <ul>
+        {post.map(post=> {
+            <li key={post.id}>{post.title}</li>
+        })}
+    </ul>
+    </div>
+
+  )
+}
+```
+
+Qua ví dụ trên, chúng ta đã call API lấy ra được 100 bài post hiển thị, tuy nhiên có một vấn đề như sau: 
+
+Mở tab Network lên ta thấy nó gửi request liên tục gọi API ==> Lí do là: 
+
+- Nguyên tắc là mỗi khi setState thì component re-render.
+- Nó chạy đến đoạn useEffect thì nó call API, rồi lại đi setState
+
+Vô hình nó tại ra một vòng lặp vô hạn quá trình trên nên dẫn tới việc call API liên tục ==> gây TREO CPU
+
+=> CÁCH GIẢI QUYẾT
+
+Để khắc phục ==> liên tục gọi API ==> dùng `useEffect` với dependency là một mảng rổng []
+
+> useEffect(callback, [])
+
+```jsx
+
+import axios from 'axios';
+const PostsList = () => {
+
+  const [posts, setPost] = useState([]);
 
     useEffect(()=>{
+
+        //Gắn cờ đánh dấu data chưa được gọi
+        let isFetched  = false;
+
         const fetchData = async () => {
             try {
                 const data = await axios.get('https://jsonplaceholder.typicode.com/posts')
                 .then((response) => response.data);
 
-                if(data){
-                    setPost(data);
+                if (!isFetched) {
+                  setPost(data);
                 }
             }
            
-            .catch(function (error) {
-                // handle error
-                console.log(error);
-            })
+            catch (error) {
+            console.log('Error fetching data:', error);
+           }
         }
-        fetchData();
+
+        //Nếu chưa thì gọi API lấy data
+        if (!isFetched) {
+          fetchData();
+          //Gọi xong thì đổi cờ là đã gọi
+          isFetched = true;
+        }
+
+      return () => {
+        isFetched = true;
+      };
+      
     },[]);
+}
 ```
 
-Phương thức POST
+Và tối ưu lại với cách viết đúng để gọi một API như trên
+
+==> Thêm `Loading` cho component trên để biết là quá trình call lấy dữ liệu đang diễn ra.
+
+***
+
+**Phương thức POST**
 
 ```js
     const handleSubmit = async ()=> {
@@ -171,7 +248,11 @@ Phương thức POST
         
 ```
 
+Trong ví dụ POST này, thì call API thực hiện khi hành động Submit diễn ra cho nên chúng ta không cần đặt nó trong useEffect
+
 Ngoài ra còn có thêm một thư viện rất mạnh khác nữa là React Query
+
+***
 
 ###  Sử dụng React Query
 
