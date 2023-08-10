@@ -279,7 +279,7 @@ Trước tiên, bạn cần đặt QueryClientProvider ở cấp cao nhất củ
 
 ```js
 import React from 'react';
-import { QueryClient, QueryClientProvider } from 'react-query';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const queryClient = new QueryClient();
 
@@ -299,6 +299,9 @@ export default App;
 
 React Query cung cấp một số hooks để bạn có thể dễ dàng gọi và quản lý các request mạng. 
 
+
+Xem chi tiết: <https://tanstack.com/query/v4>
+
 `useQuery` và `useMutation` là hai hooks trong React Query được sử dụng để quản lý hai khía cạnh khác nhau của việc làm việc với dữ liệu trong ứng dụng:
 
 1. `useQuery`:
@@ -314,97 +317,153 @@ React Query cung cấp một số hooks để bạn có thể dễ dàng gọi v
    - Ngoài ra, `useMutation` cung cấp các hàm như `reset`, `revert`, `onSuccess`, `onError`, `onSettled` giúp bạn tùy chỉnh hành vi sau khi thực hiện mutation thành công, lỗi hoặc khi kết thúc (settled).
 
 
-Ví dụ về sử dụng useQuery:
+Cách sử dụng useQuery:
+
+Cú pháp:
+
+```js
+const todoResults = useQuery({ queryKey: ['/todos'], queryFn: fetchTodoList })
+```
+
+**queryKey:** là một mảng, sinh ra một cái key không trung lặp để cache dữ liệu
+
+Xem chi tiết sử dụng key: <https://tanstack.com/query/v4/docs/react/guides/query-keys>
+
+
+**queryFn:** là phương thức lấy dữ liệu, return về một Promise
+
+Xem chi tiết cách dùng: <https://tanstack.com/query/v4/docs/react/guides/query-functions>
+
+
+
+
+Ví dụ minh họa:
 
 ```js
 import React from 'react';
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 
-function TotoComponent() {
-    //Call API lấy data, kèm các trạng thái liên quan
-  const { data, isLoading, error } = useQuery('todos', () =>
-    fetch('https://jsonplaceholder.typicode.com/todos').then((response) =>
-      response.json()
-    )
-  );
-
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
-
-  return (
-    <div>
-      {data.map((todo) => (
-        <div key={todo.id}>{todo.title}</div>
-      ))}
-    </div>
-  );
+interface Product {
+  id: number;
+  title: string;
+  price: number;
 }
 
-```
-Ví dụ về sử dụng useMutation:
+const Products: React.FC = () => {
+  // Sử dụng useQuery để fetch data từ API
+  const { data, isLoading, isError, error } = useQuery<Product[], Error>({ queryKey: ['products'], queryFn: () =>
+  fetch('https://api.escuelajs.co/api/v1/products').then(res => res.json()) })
 
-```jsx
-import React from 'react';
-import { useMutation } from 'react-query';
+  // Nếu đang loading, hiển thị một thông báo
+  if (isLoading) return <div>Đang tải...</div>;
 
-function AddTodo() {
-  const addTodoMutation = useMutation((newTodo) =>
-    fetch('https://jsonplaceholder.typicode.com/todos', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify(newTodo),
-    }).then((response) => response.json())
-  );
+  // Nếu có lỗi, hiển thị một thông báo
+  if (isError) {
+    return <span>Error: {error.message}</span>
+  }
 
-  const handleAddTodo = () => {
-    addTodoMutation.mutate({ title: 'New Todo', completed: false });
-  };
-
+  // Nếu thành công, hiển thị danh sách sản phẩm
   return (
     <div>
-      <button onClick={handleAddTodo}>Add Todo</button>
-      {addTodoMutation.isLoading && <span>Adding todo...</span>}
-      {addTodoMutation.isSuccess && <span>Todo added successfully!</span>}
-      {addTodoMutation.isError && <span>Failed to add todo.</span>}
+      <h1>Danh sách sản phẩm</h1>
+      <ul>
+        {data.map((product: Product) => (
+          <li key={product.id}>
+            {product.title} - {product.price}
+          </li>
+        ))}
+      </ul>
     </div>
   );
-}
+};
+
+export default Products;
+
 ```
+Cách sử dụng useMutation:
+
+
 
 Trong ngữ cảnh của React Query, "mutations" là một khái niệm liên quan đến việc thay đổi dữ liệu trên máy chủ (server-side data changes) thông qua các yêu cầu HTTP như POST, PUT, PATCH hoặc DELETE. Mutations giúp bạn thực hiện các thao tác tạo mới (create), cập nhật (update), hoặc xóa (delete) dữ liệu.
 
 Trong React Query, hook `useMutation` được cung cấp để thực hiện các yêu cầu mutations và quản lý kết quả của chúng. Nó giúp bạn dễ dàng gọi và xử lý các thay đổi dữ liệu một cách tự động và hiệu quả.
 
-Một số điểm chính liên quan đến `useMutation`:
 
-1. Cú pháp:
-   ```jsx
-   const mutation = useMutation(mutateFunction, options);
-   ```
+Cú pháp:
 
-2. `mutateFunction`: Đây là một hàm gọi API để thực hiện mutation. Nó có thể là một hàm bất đồng bộ trả về một Promise hoặc một hàm đồng bộ. Nếu hàm này thành công, bạn nên trả về dữ liệu đã bị thay đổi (ví dụ: thông tin mới của bản ghi) để React Query cập nhật lại cache.
+```jsx
+const mutation = useMutation({objects});
+```
 
-3. `options`: Đây là một đối tượng chứa các tùy chọn cấu hình cho mutation, bao gồm `onSuccess`, `onError`, `onSettled`, v.v. Điều này cho phép bạn điều chỉnh hành vi của hook khi mutation thành công, thất bại hoặc khi nó kết thúc (settled).
-
-4. Các hàm có sẵn của `useMutation`:
-
-   - `mutation.mutate(variables?)`: Gọi hàm mutateFunction và thực hiện mutation. Bạn có thể truyền các biến (variables) cần thiết vào đây, tùy thuộc vào hàm mutateFunction của bạn.
-
-   - `mutation.isLoading`: Một biến đánh dấu xem mutation đang trong quá trình loading hay không.
-
-   - `mutation.isSuccess`: Một biến đánh dấu xem mutation đã hoàn thành thành công hay không.
-
-   - `mutation.isError`: Một biến đánh dấu xem có xảy ra lỗi trong quá trình mutation hay không.
-
-   - `mutation.reset()`: Đặt lại trạng thái của mutation về ban đầu.
-
-   - `mutation.revert()`: Đảo ngược kết quả mutation trở lại trạng thái ban đầu trước khi thực hiện mutation.
-
-   - `mutation.onSuccess(callback)`, `mutation.onError(callback)`, `mutation.onSettled(callback)`: Đăng ký các callback để xử lý khi mutation thành công, lỗi hoặc kết thúc (settled).
+Xem chi tiết: <https://tanstack.com/query/v4/docs/react/guides/mutations>
 
 
+Ví dụ minh họa:
+
+
+```jsx
+import React from 'react';
+import { 
+    useMutation,  
+    useQueryClient,
+} from '@tanstack/react-query'
+
+
+interface Product {
+    title: string;
+    price: number;
+    description: string;
+    categoryId: number;
+    images: string[];
+  }
+
+
+function AddProduct() {
+    
+    const queryClient = useQueryClient()
+
+  const postProduct = (newProduct: Product) =>
+    fetch('https://api.escuelajs.co/api/v1/products/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(newProduct),
+    }).then((response) => response.json())
+
+  // Mutations
+  const addProductMutation = useMutation({
+    mutationFn: postProduct,
+    onSuccess: () => {
+      // Invalidate and refetch
+      queryClient.invalidateQueries({ queryKey: ['products'] })
+    },
+  })
+
+  const handleAddProduct = () => {
+    addProductMutation.mutate({
+        title: 'New Product 3', 
+        price: 480,
+        description:'A description',
+        categoryId: 1,
+        images:["https://placeimg.com/640/480/any"]
+    });
+  };
+
+  return (
+    <div>
+      <button disabled={addProductMutation.isLoading} onClick={handleAddProduct}>
+      {addProductMutation.isLoading ? <span>Adding Product...</span> : <span>Add Product</span>}
+    </button>
+      
+      {addProductMutation.isSuccess && <span>Product added successfully!</span>}
+      {addProductMutation.isError && <span>Failed to add Product.</span>}
+    </div>
+  );
+}
+
+export default AddProduct
+```
 
 Trong ví dụ này, khi người dùng nhấn vào nút "Add Todo", `addTodoMutation.mutate()` sẽ được gọi và thực hiện mutation bằng cách gửi yêu cầu POST tới máy chủ. Trạng thái của mutation sẽ được theo dõi và hiển thị thông tin tương ứng cho người dùng (ví dụ: "Adding todo...", "Todo added successfully!", "Failed to add todo.").
 
