@@ -40,7 +40,7 @@ const useCartStore = create(
     }),
     {
       name: 'cart-storage', // (optional) name for the storage key, defaults to 'zustand'
-      storage: createJSONStorage(() => sessionStorage), // (optional) by default, 'localStorage' is used
+      storage: createJSONStorage(() => localStorage), // (optional) by default, 'localStorage' is used
     }
   )
 );
