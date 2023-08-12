@@ -11,6 +11,11 @@
     color: #fff;
 }
 
+.main_navigation ul>li>a.current {
+    font-weight: bold;
+    color: #111;
+}
+
 .main_navigation ul>li>a:hover{
     color: #212121;
 }

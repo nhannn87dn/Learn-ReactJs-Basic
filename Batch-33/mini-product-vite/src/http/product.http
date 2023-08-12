@@ -1,0 +1,8 @@
+#Get Single Product
+GET https://api.escuelajs.co/api/v1/products/4 HTTP/1.1
+
+###
+
+#Get All Products
+
+GET https://api.escuelajs.co/api/v1/products HTTP/1.1

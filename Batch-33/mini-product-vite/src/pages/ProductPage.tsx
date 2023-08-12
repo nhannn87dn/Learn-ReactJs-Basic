@@ -1,6 +1,4 @@
 import React from 'react'
-import Header from '../components/layouts/Header'
-import Footer from '../components/layouts/Footer'
 import styles from './ProductPage.module.css'
 import ProductsGallery from '../components/ProductsGallery'
 import OwlCarouselGallery from '../components/OwlCarouselGallery'
@@ -9,7 +7,6 @@ import AttributeColor from '../components/AttibuteColor'
 const ProductPage = () => {
   return (
     <>
-    <Header />
     <div className="container">
 
      <main className={styles.main}>
@@ -26,7 +23,6 @@ const ProductPage = () => {
         </aside>
     </main>
     </div>
-    <Footer />
     </>
   )
 }
