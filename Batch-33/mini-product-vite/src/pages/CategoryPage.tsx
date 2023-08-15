@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link, useLocation, useSearchParams } from 'react-router-dom'
 import ProductsListAPI from '../components/ProductsListAPI'
+import ProductFilter from '../components/ProductsListAPI/ProductFilter';
 
 
 const CategoryPage = () => {
@@ -25,6 +26,7 @@ const CategoryPage = () => {
       <h3>Phân trang</h3>
     <Link to='/category?offset=0&limit=10'>1</Link> <Link to='/category?offset=20&limit=10'>2</Link> <Link to='/category?offset=30&limit=10'>3</Link>
       <h3>Bộ lọc</h3>
+      <ProductFilter offset={int_offset} limit={int_limit} />
       <ProductsListAPI offset={int_offset} limit={int_limit} />
     </div>
   )

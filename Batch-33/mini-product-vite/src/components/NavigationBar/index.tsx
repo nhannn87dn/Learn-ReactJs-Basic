@@ -29,7 +29,7 @@ function NaviItem({item}: {item: NaviItemType}){
               item.childs.map((child) => {
                 return (
                   // <a href={child.url}>{child.label}</a>
-                  <Link to={child.url}>{child.label}</Link>
+                  <Link key={child.id} to={child.url}>{child.label}</Link>
                 )
               })
             }

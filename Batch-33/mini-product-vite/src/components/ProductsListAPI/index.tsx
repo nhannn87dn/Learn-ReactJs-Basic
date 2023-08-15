@@ -18,7 +18,7 @@ const ProductsListAPI = ({offset = 0, limit = 10}: {offset: number, limit:number
     
   // Sử dụng useQuery để fetch data từ API
   const { data, isLoading, isError, error } = useQuery<Product[], Error>({
-    queryKey: ["products", {offset, limit}],
+    queryKey: ["products", 0, {offset, limit}],
     queryFn: ()=> fetchProducts(offset, limit),
   });
 
