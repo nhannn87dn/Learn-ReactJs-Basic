@@ -1,4 +1,6 @@
 import React from 'react'
+import FakeProducts from '../components/FakeProducts';
+import FakeFilterProducts from '../components/FakeProducts/FakeFilterProducts';
 
 const BlogPage = () => {
 
@@ -11,7 +13,8 @@ const BlogPage = () => {
     <div className="container">
 
     <h1>BlogPage</h1>
-    <a href="https:24h.com.vn" target='_blank'>24h.com.vn</a>
+      <FakeFilterProducts />
+      <FakeProducts />
     </div>
     </>
   )

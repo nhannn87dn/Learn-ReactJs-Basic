@@ -16,7 +16,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-owl-carousel": "^2.3.3",
-    "swiper": "^10.1.0"
+    "swiper": "^10.1.0",
+    "zustand": "^4.4.1"
   },
   "devDependencies": {
     "@tanstack/eslint-plugin-query": "^4.32.5",
