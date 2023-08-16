@@ -32,9 +32,11 @@ const buildUri = ({pathName, search, params}: {pathName: string, search: string,
 }
 
 const Products: React.FC = () => {
-  const [params] = useSearchParams();
+  const [params, searchParams] = useSearchParams();
   const navigate = useNavigate();
   const location = useLocation();
+
+  console.log('<<=== 🚀 searchParams ===>>',searchParams);
 
   console.log('<<=== 🚀 location ===>>',location);
 
@@ -104,7 +106,7 @@ const Products: React.FC = () => {
   return (
     <div>
 
-      {isLoading && <div>Loading...</div>}
+     
       {isError && <div>Error: {error.message}</div>}
       
       <div>
@@ -125,9 +127,8 @@ const Products: React.FC = () => {
           }}
         />
         <button onClick={handleFilter}>Filter</button>
-        {
-          stateFilters.cateId !== '' ? <button onClick={handleResetFilter}>Reset Filter</button> : null
-        }
+        <button onClick={handleResetFilter}>Reset Filter</button>
+       
       </div>
       <table>
         <thead>
@@ -147,6 +148,7 @@ const Products: React.FC = () => {
         ))}
         </tbody>
       </table>
+      {isLoading && <div>Loading...</div>}
       <div className="pagination" style={{marginTop: 30}}>
       <span>Current Page: {stateFilters.page} | </span>
       {/* <button disabled={isPreviousData || stateFilters.page === 1} onClick={() => {

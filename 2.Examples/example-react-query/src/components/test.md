@@ -123,3 +123,34 @@ export default ProductManagement;
 Trong ví dụ trên, chúng ta sử dụng `page`, `categoryFilter`, và `titleFilter` làm các state để theo dõi trang hiện tại và các giá trị bộ lọc. Khi người dùng thay đổi bộ lọc hoặc trang, chúng ta cập nhật state và sử dụng giá trị mới khi gọi `fetchProducts` để lấy danh sách sản phẩm phù hợp với bộ lọc và phân trang.
 
 Lưu ý rằng API của bạn cần hỗ trợ các tham số `offset`, `limit`, `categoryId`, và `title` để thực hiện phân trang và bộ lọc.
+
+***
+
+Dưới đây là một ví dụ về cách sử dụng URLSearchParams trong React Router DOM để thay đổi các tham số truy vấn trong URL:
+
+```js
+
+import { useLocation, useHistory } from 'react-router-dom';
+
+function ExampleComponent() {
+  const location = useLocation();
+  const history = useHistory();
+  const searchParams = new URLSearchParams(location.search);
+
+  // Đọc giá trị của tham số truy vấn
+  const value = searchParams.get('paramName');
+
+  // Thay đổi giá trị của tham số truy vấn
+  searchParams.set('paramName', 'newValue');
+
+  // Xóa tham số truy vấn
+  searchParams.delete('paramName');
+
+  // Cập nhật URL với các thay đổi
+  history.push(`?${searchParams.toString()}`);
+
+  return (
+    // ...
+  );
+}
+```
