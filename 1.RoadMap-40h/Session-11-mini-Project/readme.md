@@ -73,4 +73,4 @@ const thumb = `https://www.themoviedb.org/t/p/w220_and_h330_face${poster_path}`
 
 Nếu được thì tham khảo bài viết sau để Deploy dự án lên git io: https://ecshopvietnam.com/blog/tao-va-deploy-ung-dung-react-app-len-github-94.html
 
-2. Nếu không dùn được Github thì Zip folder code lại (Không bao gồm folder node_modules)
+2. Nếu không dùng được Github thì Zip folder code lại (Không bao gồm folder node_modules) --> Gửi về email: nhannn@softech.vn
