@@ -17,6 +17,20 @@ API Read Access Token: eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiYmY0YWJjNGUzMTEyYzNhOGIy
 
 ## Yêu cầu UI
 
+- Font: Poppins từ Google Fonts
+- Hiển thị Thumbnail của phim
+
+Call API nhận được tên hình:
+
+```js
+"poster_path": "/8riWcADI1ekEiBguVB9vkilhiQm.jpg"
+```
+Nối thêm để được link đầy đủ: 
+
+```js
+const thumb = `https://www.themoviedb.org/t/p/w220_and_h330_face${poster_path}`
+```
+
 ### Trang chủ (Bắt buộc)
 
 - Banner
