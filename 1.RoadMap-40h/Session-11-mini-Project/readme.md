@@ -40,23 +40,25 @@ const thumb = `https://www.themoviedb.org/t/p/w220_and_h330_face${poster_path}`
 ### Trang Popular (Bắt buộc)
 
 - API: https://developer.themoviedb.org/reference/movie-popular-list
-- Bài Kết thúc môn: Hiển thị tất cả sản phẩm dạng grid trang 1
+- Bài Kết thúc môn: Hiển thị tất cả sản phẩm tương tự như https://www.themoviedb.org/movie
 - Hoàn thiện: Có số trang, click vào nhảy ra movies trang đó
 
 ### Trang Now Playing (Bắt buộc)
 
 - API: https://developer.themoviedb.org/reference/movie-now-playing-list
-- Bài Kết thúc môn: Hiển thị tất cả sản phẩm dạng grid trang 1
+- Bài Kết thúc môn: Hiển thị tất cả sản phẩm tương tự như https://www.themoviedb.org/movie
 - Hoàn thiện: Có số trang, click vào nhảy ra movies trang đó
 
 ### Trang Upcoming Movies (Làm thêm)
 
 - API: https://developer.themoviedb.org/reference/movie-upcoming-list
+- Hiển thị tất cả sản phẩm tương tự như https://www.themoviedb.org/movie
 - Hoàn thiện: Có số trang, click vào nhảy ra movies trang đó
 
 ### Trang Top Rated Movies (Làm thêm)
 
 - API: https://developer.themoviedb.org/reference/movie-top-rated-list
+- Hiển thị tất cả sản phẩm tương tự như https://www.themoviedb.org/movie
 - Hoàn thiện: Có số trang, click vào nhảy ra movies trang đó
 
 ### Trang Chi tiết 1 Movies (Làm thêm)
