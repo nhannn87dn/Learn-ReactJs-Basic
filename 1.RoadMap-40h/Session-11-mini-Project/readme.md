@@ -40,13 +40,13 @@ const thumb = `https://www.themoviedb.org/t/p/w220_and_h330_face${poster_path}`
 ### Trang Popular (Bắt buộc)
 
 - API: https://developer.themoviedb.org/reference/movie-popular-list
-- Bài Test: Chỉ lấy movies trang 1
+- Bài Kết thúc môn: Hiển thị tất cả sản phẩm dạng grid trang 1
 - Hoàn thiện: Có số trang, click vào nhảy ra movies trang đó
 
 ### Trang Now Playing (Bắt buộc)
 
 - API: https://developer.themoviedb.org/reference/movie-now-playing-list
-- Bài Test: Chỉ lấy movies trang 1
+- Bài Kết thúc môn: Hiển thị tất cả sản phẩm dạng grid trang 1
 - Hoàn thiện: Có số trang, click vào nhảy ra movies trang đó
 
 ### Trang Upcoming Movies (Làm thêm)
