@@ -25,20 +25,28 @@ API Read Access Token: eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiYmY0YWJjNGUzMTEyYzNhOGIy
 
 ### Trang Popular (Bắt buộc)
 
+- API: https://api.themoviedb.org/3/movie/popular
 - Bài Test: Chỉ lấy movies trang 1
 - Hoàn thiện: Có số trang, click vào nhảy ra movies trang đó
 
 ### Trang Now Playing (Bắt buộc)
 
+- API: https://api.themoviedb.org/3/movie/now_playing
 - Bài Test: Chỉ lấy movies trang 1
 - Hoàn thiện: Có số trang, click vào nhảy ra movies trang đó
 
 ### Trang Upcoming Movies (Làm thêm)
 
+- API: https://api.themoviedb.org/3/movie/upcoming
 - Hoàn thiện: Có số trang, click vào nhảy ra movies trang đó
 
 ### Trang Top Rated Movies (Làm thêm)
 
+- API: https://api.themoviedb.org/3/movie/top_rate
 - Hoàn thiện: Có số trang, click vào nhảy ra movies trang đó
 
+### Trang Chi tiết 1 Movies (Làm thêm)
 
+- API: https://api.themoviedb.org/3/movie/{movie_id}
+- Làm theo UI: https://movie-site-delta.vercel.app/play-page.html
+- Tham khảo thêm UI: https://www.themoviedb.org/movie/353486-jumanji-welcome-to-the-jungle
