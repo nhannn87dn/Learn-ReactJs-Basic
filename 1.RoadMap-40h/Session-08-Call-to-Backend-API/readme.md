@@ -505,6 +505,11 @@ Quá trình xác thực trong API giúp bảo vệ dữ liệu và đảm bảo 
 
 Thực hành với: <https://fakeapi.platzi.com/en/rest/auth-jwt>
 
+
+## Custom Hooks Call API
+
+Xem: https://dev.to/shaedrizwan/building-custom-hooks-in-react-to-fetch-data-4ig6
+
 ## ⭐ Tự tạo Fake API
 
 Sử dụng [MockAPI](https://mockapi.io) để tạo REST API fake
