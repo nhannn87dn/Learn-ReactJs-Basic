@@ -7,8 +7,6 @@
 3. Git SCM: https://git-scm.com/download/
 4. Visual Studio Code: https://code.visualstudio.com/Download
 5. Cài đặt các Extensions cho Visual Studio Code
-   - Auto Rename (Jun Han)
-   - Auto Close Tag (Jun Han)
    - ESLint (Microsoft)
    - IntelliCode (Microsoft)
    - JavaScript (ES6) code snippets (charalampos karypidis)
@@ -16,16 +14,8 @@
    - Prettier - Code formatter (Prettier)
    - TSLint (Microsoft)
    - Typescript React code snippets (infeng)
-   - Vscode-styled-components (Julien Poissonnier)
    
-6. Cài đặt các tiện ích cho Visual Studio Code:
-
-   - Better Comments (Aaron Bond)
-   - Color Highlight (Sergii N)
-   - Icon: Material Icon Theme (Philipp Kief)
-   - Theme: Dracula Official (Dracula Theme)
-
-7. Các tài nguyên
+6. Các tài nguyên
 
    - Avatars: https://pravatar.cc/
    - Icons: https://react-icons.github.io/react-icons/
