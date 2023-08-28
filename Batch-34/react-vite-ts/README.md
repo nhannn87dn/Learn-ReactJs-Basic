@@ -25,3 +25,51 @@ If you are developing a production application, we recommend updating the config
 - Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
 - Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
 - Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+
+
+## Cài tailwind vào
+
+Bước 1
+
+```bash
+yarn add tailwindcss postcss autoprefixer
+```
+
+Bước 2:
+
+
+```bash
+npx tailwindcss init -p
+```
+
+Bước 3:
+
+Tạo ra tailwind.config.js ngay thư mục root dự án
+
+thay code lại như dươi
+
+```js
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+```
+
+Bước 4:
+
+Tìm file index.css
+
+thêm vào ngay trên đầu
+
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```

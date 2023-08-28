@@ -1,6 +1,9 @@
 import TodoItem from "./components/TodoItem";
 import TodoList from "./components/TodoList"
 import TodosList from "./components/TodosList";
+import './components/Button.css'
+import { FaCartPlus, FaHeart} from "react-icons/fa";
+import ButtonV3 from "./components/ButtonV3";
 //Cách tạo ra 1 component
 //Cách đặt tên: theo kiểu Pascal Case
 //Một function component được hiểu là một function có kí tự đầu tiên viết HOA
@@ -17,8 +20,9 @@ function Button(props : {icon: string, label: string}){
 
 //Cách viết prop thứ 2 tường minh hơn
 type ButtonPropType = {
-  icon: string,
-  label: string
+  icon: React.ReactNode,
+  label: string,
+  className?:string
 }
 function ButtonV2({icon, label}: ButtonPropType){
   console.log('ButtonAddToCart render');
@@ -32,18 +36,10 @@ function ButtonV2({icon, label}: ButtonPropType){
 //Cách 1
 ButtonV2.defaultProps = {
   icon: "",
-  label: 'Default'
+  label: 'Default',
 }
 
 //Cách 2
-function ButtonV3({icon='', label='Default'}: ButtonPropType){
-  console.log('ButtonAddToCart render');
-  return (
-    <>
-    <button>{icon} {label}</button>
-    </>
-  )
-}
 
 
 
@@ -72,15 +68,25 @@ function App() {
   </div>
 
   return (
-    <>
+    <div className="container mx-auto">
       <h1 style={{backgroundColor: 'red', fontSize: 40}}>Hello React</h1>
+      <h2 className="text-3xl font-bold underline">
+      Hello world!
+    </h2>
+    <button className="btn btn-orange">Login</button>
+    <button className="btn btn-sky">Login</button>
       <p>DÙng như là một thẻ trong html</p>
       <img src="" alt="" />
       <input type="text" />
       {html}
       {result}
       <p>comment trong JSX</p>
-      <ButtonV2 />
+      <hr />  
+      <ButtonV3 icon={<FaCartPlus />} label='Thêm vào giỏ hàng' />
+      <ButtonV3 className="button_dark" icon={<FaHeart />} label='Yêu thích' />
+      {/* <ButtonV3 icon={<FaCartPlus />} label='Thêm vào giỏ hàng' />
+      <ButtonV3 className='button button-dark' icon={<FaHeart />} label='Yêu thích' /> */}
+      <hr />
       <ButtonV2 icon='D' label='Login v2' />
       <Button icon='A' label='Login' />
       <Button icon='B' label='Logout' />
@@ -91,7 +97,7 @@ function App() {
           <TodoItem task='Quét nhà' />
           <TodoItem task='Lau nhà' />
       </TodosList>
-    </>
+    </div>
   )
 }
 
