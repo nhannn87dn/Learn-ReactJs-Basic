@@ -2,11 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Ưu tiên css tăng dần base->components->utilities */
 
+/* lớp cở bản */
 @layer base {
   .btn {
-     @apply py-2 px-3 py-2 px-5 text-white border-0 rounded
+     @apply py-2 px-3 text-white border-0 rounded
   }
+ 
+}
+
+/* Lớp biến thể */
+@layer components {
+  
   .btn-orange {
     @apply  bg-orange-500 hover:bg-orange-600
   }
@@ -16,6 +24,20 @@
   }
 }
 
+/* ưu tiên cao  */
+@layer utilities {
+  
+  .btn-small {
+     @apply py-1 px-2
+  }
+
+  .btn-xl {
+    @apply py-3 px-5
+  }
+}
+
+
+/* ưu tiên cao nhất */
 .button{
   padding: 10px 12px;
   appearance: none;
