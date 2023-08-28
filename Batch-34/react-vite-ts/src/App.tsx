@@ -4,6 +4,7 @@ import TodosList from "./components/TodosList";
 import './components/Button.css'
 import { FaCartPlus, FaHeart} from "react-icons/fa";
 import ButtonV3 from "./components/ButtonV3";
+import HelloWorld from "./components/HelloWorld";
 //Cách tạo ra 1 component
 //Cách đặt tên: theo kiểu Pascal Case
 //Một function component được hiểu là một function có kí tự đầu tiên viết HOA
@@ -73,6 +74,8 @@ function App() {
       <h2 className="text-3xl font-bold underline">
       Hello world!
     </h2>
+    <HelloWorld />
+   <img src="./images/hinh-1.png" alt="" />
     <button className="btn btn-orange">Login</button>
     <button className="btn btn-sky">Login</button>
       <p>DÙng như là một thẻ trong html</p>
