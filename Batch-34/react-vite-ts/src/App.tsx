@@ -5,6 +5,17 @@ import './components/Button.css'
 import { FaCartPlus, FaHeart} from "react-icons/fa";
 import ButtonV3 from "./components/ButtonV3";
 import HelloWorld from "./components/HelloWorld";
+import AttribuesColor from "./components/AttributesColor";
+import VideosList from "./components/VideosList";
+import TaskList from "./components/TaskList";
+import RenderList from "./components/RenderList";
+import ProductsList from "./components/ProductsList";
+
+import numeral from 'numeral';
+import 'numeral/locales/vi';
+//Định dạng giá tiền kiểu việt nam
+numeral.locale('vi');
+
 //Cách tạo ra 1 component
 //Cách đặt tên: theo kiểu Pascal Case
 //Một function component được hiểu là một function có kí tự đầu tiên viết HOA
@@ -70,7 +81,12 @@ function App() {
 
   return (
     <div className="container mx-auto">
-      <h1 style={{backgroundColor: 'red', fontSize: 40}}>Hello React</h1>
+      <AttribuesColor />
+      <VideosList />
+      <TaskList />
+      <RenderList />
+      <ProductsList />
+      {/* <h1 style={{backgroundColor: 'red', fontSize: 40}}>Hello React</h1>
       <h2 className="text-3xl font-bold underline">
       Hello world!
     </h2>
@@ -89,7 +105,7 @@ function App() {
       <ButtonV3 className="button_dark" icon={<FaHeart />} label='Yêu thích' />
       {/* <ButtonV3 icon={<FaCartPlus />} label='Thêm vào giỏ hàng' />
       <ButtonV3 className='button button-dark' icon={<FaHeart />} label='Yêu thích' /> */}
-      <hr />
+      {/* <hr />
       <ButtonV2 icon='D' label='Login v2' />
       <Button icon='A' label='Login' />
       <Button icon='B' label='Logout' />
@@ -99,7 +115,8 @@ function App() {
       <TodosList>
           <TodoItem task='Quét nhà' />
           <TodoItem task='Lau nhà' />
-      </TodosList>
+      </TodosList> */}
+
     </div>
   )
 }
