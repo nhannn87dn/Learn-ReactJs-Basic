@@ -41,15 +41,12 @@ const SingleProduct = ({products}: {products: SingleProductProps})=>{
 }
 
 const ProductsList = () => {
-    //Lọc sản phẩm
-    const newProducts = products.filter(product => product.promoPrice > 0)
-
-    console.log(newProducts);
+   
 
   return (
     <div  className='product_list'>
         {
-            newProducts.map((product)=> <SingleProduct key={`ProductsList_${product.id}`} products={product} />)
+            products.map((product)=> <SingleProduct key={`ProductsList_${product.id}`} products={product} />)
         }
         
     </div>

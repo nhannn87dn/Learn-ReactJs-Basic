@@ -1,6 +1,6 @@
 import React from 'react'
 import {FaHeart} from 'react-icons/fa'
-import styles from './VideosList.module.css'
+import styles from './videosList.module.css'
 
 type SingleVideoType = {
     thumb: string,

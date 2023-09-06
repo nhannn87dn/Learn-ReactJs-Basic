@@ -1,5 +1,5 @@
 import React from 'react'
-import styles from './AttribuesColor.module.css'
+import styles from './AttributesColor.module.css'
 
 const AttrItem = ({label, active=false}: {label: string, active?: boolean})=>{
     const myClass = active ? `${styles.attr_item} ${styles.active}` : styles.attr_item;
@@ -8,7 +8,7 @@ const AttrItem = ({label, active=false}: {label: string, active?: boolean})=>{
     )
 }
 
-const AttribuesColor = () => {
+const AttributesColor = () => {
   return (
     <div className={styles.attrs}>
         <span className='attr_name'>Màu sắc</span>
@@ -19,4 +19,4 @@ const AttribuesColor = () => {
   )
 }
 
-export default AttribuesColor 
+export default AttributesColor 

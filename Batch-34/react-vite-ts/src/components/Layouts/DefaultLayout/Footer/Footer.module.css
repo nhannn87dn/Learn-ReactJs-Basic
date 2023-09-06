@@ -1,0 +1,23 @@
+.footer {
+    background-color: #212121;
+    padding: 40px 0 20px 0;
+    color: #fff;
+}
+
+.footer_wrapper {
+    display: flex;
+    column-gap: 20px;
+    flex-wrap: wrap;
+}
+
+.item {
+    /* flex: 1; */
+    width: calc((100% - 60px) / 4);
+}
+
+.footer_copyright {
+    border-top: 1px solid #313438;
+    padding-bottom: 2.7rem;
+    padding-top: 2.7rem;
+    margin-top: 40px;
+}

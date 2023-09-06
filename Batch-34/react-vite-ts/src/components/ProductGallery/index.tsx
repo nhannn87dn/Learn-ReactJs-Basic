@@ -1,3 +1,4 @@
+import styles from './ProductGallery.module.css'
 import { Swiper, SwiperSlide } from 'swiper/react';
 // import Swiper core and required modules
 import { Navigation, Pagination } from 'swiper/modules';
@@ -6,20 +7,18 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-import styles from './ProductsGallery.module.css'
-
-const ProductsGallery = () => {
+const ProductGallery = () => {
   return (
     <div className={styles.product_gallery}>
-    <Swiper
+        <Swiper
         modules={[Navigation, Pagination]}
         navigation
         pagination={{ clickable: true }}
-        spaceBetween={0}
-        slidesPerView={1}
-        onSlideChange={() => console.log('slide change')}
-        onSwiper={(swiper) => console.log(swiper)}
-      >
+      spaceBetween={0}
+      slidesPerView={1}
+      onSlideChange={() => console.log('slide change')}
+      onSwiper={(swiper) => console.log(swiper)}
+    >
       <SwiperSlide>
         <img src="https://ecshopvietnam.com/ecshopmi/cdn/images/202204/goods_img/xiaomi-redmi-note-11s-5g-G4305-1650508487726.jpg" alt="" />
       </SwiperSlide>
@@ -37,4 +36,4 @@ const ProductsGallery = () => {
   )
 }
 
-export default ProductsGallery
+export default ProductGallery
