@@ -5,8 +5,12 @@ import ButtonLike from './components/ButtonLike';
 import ModalState from './components/ModalState';
 import CarouselReact from './components/CarouselReact';
 import TestForm from './components/TestForm';
+import AttributesColor from './components/AttributesColor';
+import RanksStar from './components/RanksStar';
 // import {EventsHandle} from './components/EventsHandle'
-
+import MyForms from './components/MyForms';
+import FormReactHook from './components/FormReactHook';
+import FormReactHookValidate from './components/FormReactHookValidate';
 
 function Count() {
   // let index = 0;
@@ -44,16 +48,7 @@ function App() {
   return (
     <>
     <div className="container mt-5">
-    <input
-          type="checkbox"
-          id="topping"
-          name="topping"
-          value="Paneer"
-          checked={isChecked}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>)=> {
-              console.log(e.target.checked);
-          }}
-        />
+    
 
         <button className='btn btn-orange' onClick={()=>{
           setToggle(!toogle)
@@ -68,7 +63,14 @@ function App() {
         <CarouselReact />
 
         <TestForm />
-
+        <AttributesColor />
+        <RanksStar />
+        {/* <MyForms /> */}
+        <hr />
+        <FormReactHook />
+        <hr />
+        <h3>FormReactHookValidate</h3>
+        <FormReactHookValidate />
         {/* <EventsHandle onClick={handleClickProps} /> */}
     </div>
     </>

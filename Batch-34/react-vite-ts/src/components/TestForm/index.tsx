@@ -10,13 +10,15 @@ function TestForm() {
     comments: '',
   });
 
+  console.log('inputs',inputs);
+
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     if (e.target.type === 'checkbox') {
       const target = e.target as HTMLInputElement; // Kiểm tra kiểu
-      setInputs((values) => ({ ...values, [target.name]: target.checked }));
+      setInputs((prevState) => ({ ...prevState, [target.name]: target.checked }));
     } else {
       const target = e.target as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement; // Kiểm tra kiểu
-      setInputs((values) => ({ ...values, [target.name]: target.value }));
+      setInputs((prevState) => ({ ...prevState, [target.name]: target.value }));
     }
   };
 

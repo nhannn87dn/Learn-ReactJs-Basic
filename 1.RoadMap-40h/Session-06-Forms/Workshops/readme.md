@@ -8,7 +8,7 @@
 Yêu cầu dùng 
 
 - Cách thủ công: console.log email, password
-- Cách dùng với Formik Form, Có validation
+- Cách dùng với React Hook Form, Có validation
 
 email: bắt buộc điền, đúng định dạng email
 password: bắt buộc, tối thiểu 6 kí tự
