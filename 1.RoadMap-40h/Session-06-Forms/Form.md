@@ -6,10 +6,10 @@
 function MyForm() {
   const [name, setName] = useState("");
 
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    alert(`The name you entered was: ${name}`)
-  }
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      console.log(`Current Value: ${name}`)
+    }
 
   return (
     <form onSubmit={handleSubmit}>
@@ -17,13 +17,14 @@ function MyForm() {
         <input 
           type="text" 
           value={name}
-          onChange={(e) => setName(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
         />
       </label>
       <input type="submit" />
     </form>
   )
 }
+export default MyForm
 ```
 
 ## 2. Lấy value từ Textarea
@@ -34,13 +35,21 @@ function MyForm() {
     "The content of a textarea goes in the value attribute"
   );
 
-  const handleChange = (event) => {
-    setTextarea(event.target.value)
+  //Tách sự kiện onChange ra ngoài
+  // Xử lý sự kiện khi người dùng thay đổi giá trị của các trường input
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTextarea(e.target.value)
   }
 
+   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      console.log(`Current Value: ${textarea}`)
+    }
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <textarea value={textarea} onChange={handleChange} />
+      <button type="submit">Submit</button>
     </form>
   )
 }
@@ -52,17 +61,23 @@ function MyForm() {
 function MyForm() {
   const [myCar, setMyCar] = useState("Volvo");
 
-  const handleChange = (event) => {
-    setMyCar(event.target.value)
+  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setMyCar(e.target.value)
   }
 
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      console.log(`Current Value: ${myCar}`)
+    }
+
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <select value={myCar} onChange={handleChange}>
         <option value="Ford">Ford</option>
         <option value="Volvo">Volvo</option>
         <option value="Fiat">Fiat</option>
       </select>
+      <button type="submit">Submit</button>
     </form>
   )
 }
@@ -73,17 +88,22 @@ function MyForm() {
 ```js
 import { useState } from "react"
 
-function App() {
+function MyForm() {
   const [topping, setTopping] = useState("Medium")
 
-  const onOptionChange = e => {
+  const onOptionChange = (e: React.ChangeEvent<HTMLInputElement>)=> {
     setTopping(e.target.value)
   }
+
+   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      console.log(`Current Value: ${topping}`)
+    }
 
   return (
     <div className="App">
       <h3>Select Pizza Size</h3>
-
+     <form onSubmit={handleSubmit}>
       <input
         type="radio"
         name="topping"
@@ -117,20 +137,22 @@ function App() {
       <p>
         Select topping <strong>{topping}</strong>
       </p>
+        <button type="submit">Submit</button>
+      </form>
     </div>
   )
 }
 
-export default App
+export default MyForm
 ```
 
 ## 5. Lấy value từ Checkbox
 
 ```js
-export default function App() {
+export default function MyForm() {
   const [isChecked, setIsChecked] = useState(false);
 
-  const handleOnChange = (e) => {
+  const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
     console.log(e.target.checked)
     setIsChecked(!isChecked);
   };
@@ -211,51 +233,104 @@ export default function App() {
 Dùng khi có nhiều loại input khác nhau
 
 ```js
-function Form(){
-  const = [inputs, setInputs] = React.useState({
+import React, { ChangeEvent, FormEvent, useState } from 'react';
+
+function TestForm() {
+  const [inputs, setInputs] = useState({
     userName: '',
-    Passwords: ''
-  
+    passwords: '',
+    gender: '',
+    favoriteFruit: '',
+    acceptTerms: false,
+    comments: '',
   });
-  
-  const = handleChange = e => {
-    if(e.target.type === 'checkbox'){
-      setInputs((values)=> ({...values, [e.target.name]: e.target.checked}));
-      // [e.target.name] ==> lấy giá trị làm key
-    } 
-    else {
-      setInputs((values)=> ({...values, [e.target.name]: e.target.value}));
+
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+    if (e.target.type === 'checkbox') {
+      const target = e.target as HTMLInputElement; // Kiểm tra kiểu
+      setInputs((values) => ({ ...values, [target.name]: target.checked }));
+    } else {
+      const target = e.target as HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement; // Kiểm tra kiểu
+      setInputs((values) => ({ ...values, [target.name]: target.value }));
     }
-  }
-  
-  const handleSubmit = (event) => {
+  };
+
+  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    alert(inputs);
-  }
+    console.log('Current Values:', inputs);
+  };
 
   return (
     <form onSubmit={handleSubmit}>
-      <label>Enter your name:
-      <input 
-        type="text" 
-        name="username" 
-        value={inputs.username || ""} 
-        onChange={handleChange}
-      />
+      <label>
+        Enter your name:
+        <input type="text" name="userName" value={inputs.userName} onChange={handleChange} />
       </label>
-      <label>Enter your age:
-        <input 
-          type="number" 
-          name="age" 
-          value={inputs.age || ""} 
+      <br />
+      <label>
+        Enter your password:
+        <input type="password" name="passwords" value={inputs.passwords} onChange={handleChange} />
+      </label>
+      <br />
+      <label>
+        Select your gender:
+        <select name="gender" value={inputs.gender} onChange={handleChange}>
+          <option value="">Select</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+      <br />
+      <label>
+        Select your favorite fruit:
+        <input
+          type="radio"
+          name="favoriteFruit"
+          value="apple"
+          checked={inputs.favoriteFruit === 'apple'}
           onChange={handleChange}
         />
-        </label>
-        <input type="submit" />
+        Apple
+        <input
+          type="radio"
+          name="favoriteFruit"
+          value="banana"
+          checked={inputs.favoriteFruit === 'banana'}
+          onChange={handleChange}
+        />
+        Banana
+        <input
+          type="radio"
+          name="favoriteFruit"
+          value="orange"
+          checked={inputs.favoriteFruit === 'orange'}
+          onChange={handleChange}
+        />
+        Orange
+      </label>
+      <br />
+      <label>
+        Accept terms and conditions:
+        <input
+          type="checkbox"
+          name="acceptTerms"
+          checked={inputs.acceptTerms}
+          onChange={handleChange}
+        />
+      </label>
+      <br />
+      <label>
+        Enter your comments:
+        <textarea name="comments" value={inputs.comments} onChange={handleChange} />
+      </label>
+      <br />
+      <button type="submit">Submit</button>
     </form>
-  )
-  
+  );
 }
+
+export default TestForm;
 
 ```
 ===========================================

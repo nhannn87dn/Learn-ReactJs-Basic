@@ -383,7 +383,7 @@ Ví dụ để hiểu Snapshot State
 
 ### 🌻 5.4.1 Khái niệm `queue` = hàng đợi
 
-- Details: <https://beta.reactjs.org/learn/queueing-a-series-of-state-updates>
+- Details: <https://react.dev/learn/queueing-a-series-of-state-updates>
 - Làm rõ vấn đề cách update State
 
 ```js
