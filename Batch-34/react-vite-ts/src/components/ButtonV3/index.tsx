@@ -6,7 +6,7 @@ type ButtonPropType = {
     className?:string
   }
 
-function ButtonV3({icon='', label='Default', className = ''}: ButtonPropType){
+function ButtonV3({icon, label='Default', className = ''}: ButtonPropType){
     console.log('ButtonAddToCart render');
     return (
       <>

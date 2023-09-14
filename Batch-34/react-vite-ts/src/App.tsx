@@ -11,6 +11,7 @@ import RanksStar from './components/RanksStar';
 import MyForms from './components/MyForms';
 import FormReactHook from './components/FormReactHook';
 import FormReactHookValidate from './components/FormReactHookValidate';
+import Product from './pages/Product';
 
 function Count() {
   // let index = 0;
@@ -47,6 +48,7 @@ function App() {
  
   return (
     <>
+    <Product />
     <div className="container mt-5">
     
 
