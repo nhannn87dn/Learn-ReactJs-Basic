@@ -15,7 +15,7 @@ const Product = () => {
 
   return (
     <>
-    <DefaultLayout>
+    <DefaultLayout >
       <div className={styles.main_wrapper}>
           <section>
               <div className={styles.product_details}>

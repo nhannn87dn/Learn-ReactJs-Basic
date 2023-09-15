@@ -1,82 +1,42 @@
 import React from 'react';
 
 import './App.css'
-import ButtonLike from './components/ButtonLike';
-import ModalState from './components/ModalState';
-import CarouselReact from './components/CarouselReact';
-import TestForm from './components/TestForm';
-import AttributesColor from './components/AttributesColor';
-import RanksStar from './components/RanksStar';
-// import {EventsHandle} from './components/EventsHandle'
-import MyForms from './components/MyForms';
-import FormReactHook from './components/FormReactHook';
-import FormReactHookValidate from './components/FormReactHookValidate';
 import Product from './pages/Product';
-
-function Count() {
-  // let index = 0;
-  const [index, setIndex] = React.useState(0);
-
-  console.log('Count render');
-
-  function handleClick() {
-    console.log('handleClick');
-    // index = index + 1;
-    setIndex(index + 1)
-  }
-return (
-    <>
-      <button className="btn btn-orange"  onClick={handleClick}>
-        Increment
-      </button>
-      <h3>  
-        {index}
-      </h3>
-     
-    </>
-  );
-}
+import { userContext } from './contexts/userContex';
+import CountApp from './components/CountApp';
+import Todos from './components/Todos';
+import HelloWorld from './components/HelloWorld';
+import useBrowserWidth from './hooks/useBrowserWidth'
 
 function App() {
-  const [toogle, setToggle] = React.useState<boolean>(false)
-  // const handleClickProps = ()=>{
-  //   console.log('run handleProps');
-  // }
 
-  const [isChecked, setIsChecked] = React.useState(false);
+  const user = {id: 1, name: 'John', email: 'john@example.com',avatarUrl: 'https://via.placeholder.com/100x100.png'};
 
- 
+
   return (
     <>
-    <Product />
-    <div className="container mt-5">
-    
-
-        <button className='btn btn-orange' onClick={()=>{
-          setToggle(!toogle)
-        }}>Toogle Count</button>
-
-        {toogle && <Count /> }
-        <hr />
-        <ButtonLike />
-        <hr />
-        <ModalState />
-        <hr />
-        <CarouselReact />
-
-        <TestForm />
-        <AttributesColor />
-        <RanksStar />
-        {/* <MyForms /> */}
-        <hr />
-        <FormReactHook />
-        <hr />
-        <h3>FormReactHookValidate</h3>
-        <FormReactHookValidate />
-        {/* <EventsHandle onClick={handleClickProps} /> */}
-    </div>
+    <CountApp />
+    <hr />
+    <HelloWorld />
+    {/* <userContext.Provider value={user}>
+        <Product />
+    </userContext.Provider> */}
     </>
   )
+
+
+    return (
+
+      <>
+    <userContext.Provider value={user}>
+    <Product />
+    </userContext.Provider>
+     
+      
+      </>
+    )
+   
+  
 }
 
 export default App

@@ -1,4 +1,5 @@
 import Navigation from "../../../Navigation";
+import UserInfo from "../../../UserInfo";
 import styles from "./Header.module.css";
 import clsx from 'clsx';
 
@@ -11,6 +12,7 @@ const Header = () => {
         <div className={styles.header_wrapper}>
           <div className="logo">FakeShop</div>
           <Navigation />
+          <UserInfo  />
         </div>
       </div>
     </header>
