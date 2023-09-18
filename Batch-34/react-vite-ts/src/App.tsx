@@ -7,6 +7,9 @@ import CountApp from './components/CountApp';
 import Todos from './components/Todos';
 import HelloWorld from './components/HelloWorld';
 import useBrowserWidth from './hooks/useBrowserWidth'
+import CallAPI from './components/CallAPI';
+import LoginAPI from './components/LoginAPI';
+import GetProfileAPIToken from './components/GetProfileAPIToken';
 
 function App() {
 
@@ -15,6 +18,9 @@ function App() {
 
   return (
     <>
+    {/* <CallAPI /> */}
+    <GetProfileAPIToken />
+    <LoginAPI />
     <CountApp />
     <hr />
     <HelloWorld />

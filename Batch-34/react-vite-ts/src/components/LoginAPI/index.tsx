@@ -1,0 +1,50 @@
+import React from 'react'
+import { useForm } from "react-hook-form";
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from "yup";
+import axios from 'axios';
+
+const schema = yup.object({
+    email: yup.string().email().required(),
+    password: yup.string().required(),
+}).required();
+type FormData = yup.InferType<typeof schema>;
+
+const LoginAPI = () => {
+
+    const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
+        resolver: yupResolver(schema)
+      });
+      const onSubmit = async (data: FormData) => {
+        console.log(data);
+        //Gửi data lên server qua API
+        const url = 'https://api.escuelajs.co/api/v1/auth/login';
+        const payloads = data; //object
+        await axios
+            .post(url, payloads)
+            .then(function (response) {
+                console.log(response);
+               
+            })
+            .catch(err => console.log(err))
+
+      };
+
+
+  return (
+    <div>
+        <h2>Login Form</h2>
+        <form onSubmit={handleSubmit(onSubmit)}>
+            <input placeholder='Email' {...register("email")} />
+            <p>{errors.email?.message}</p>
+                
+            <input placeholder='password' {...register("password")} />
+            <p>{errors.password?.message}</p>
+            
+            <button type="submit">Login</button>
+            </form>
+    </div>
+  )
+}
+
+export default LoginAPI
