@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.1",
+    "@tanstack/react-query": "^4.35.3",
     "autoprefixer": "^10.4.15",
     "axios": "^1.5.0",
     "clsx": "^2.0.0",
@@ -26,6 +27,7 @@
     "yup": "^1.2.0"
   },
   "devDependencies": {
+    "@tanstack/eslint-plugin-query": "^4.34.1",
     "@types/numeral": "^2.0.2",
     "@types/react": "^18.2.15",
     "@types/react-dom": "^18.2.7",

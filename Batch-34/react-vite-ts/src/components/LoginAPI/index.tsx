@@ -12,7 +12,7 @@ type FormData = yup.InferType<typeof schema>;
 
 const LoginAPI = () => {
 
-    const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
+    const { register, handleSubmit, formState: { errors, isLoading } } = useForm<FormData>({
         resolver: yupResolver(schema)
       });
       const onSubmit = async (data: FormData) => {
@@ -34,6 +34,7 @@ const LoginAPI = () => {
   return (
     <div>
         <h2>Login Form</h2>
+        {isLoading && (<div>Loading....</div> )}
         <form onSubmit={handleSubmit(onSubmit)}>
             <input placeholder='Email' {...register("email")} />
             <p>{errors.email?.message}</p>
@@ -41,8 +42,8 @@ const LoginAPI = () => {
             <input placeholder='password' {...register("password")} />
             <p>{errors.password?.message}</p>
             
-            <button type="submit">Login</button>
-            </form>
+            <button disabled={isLoading} type="submit">Login</button>
+           </form>
     </div>
   )
 }

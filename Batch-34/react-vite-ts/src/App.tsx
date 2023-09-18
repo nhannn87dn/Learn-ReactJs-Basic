@@ -11,6 +11,11 @@ import CallAPI from './components/CallAPI';
 import LoginAPI from './components/LoginAPI';
 import GetProfileAPIToken from './components/GetProfileAPIToken';
 
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import ProductListAPI from './components/ProductListAPI';
+import ProductFilterAPI from './components/ProductFilterAPI';
+const queryClient = new QueryClient();
+
 function App() {
 
   const user = {id: 1, name: 'John', email: 'john@example.com',avatarUrl: 'https://via.placeholder.com/100x100.png'};
@@ -18,7 +23,13 @@ function App() {
 
   return (
     <>
-    {/* <CallAPI /> */}
+    <QueryClientProvider client={queryClient}>
+      {/* Các thành phần con của bạn ở đây */}
+      <ProductFilterAPI />
+      <ProductListAPI />
+    </QueryClientProvider>
+
+    <CallAPI />
     <GetProfileAPIToken />
     <LoginAPI />
     <CountApp />
