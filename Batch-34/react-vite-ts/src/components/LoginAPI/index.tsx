@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 const schema = yup.object({
     email: yup.string().email().required(),
@@ -11,7 +12,7 @@ const schema = yup.object({
 type FormData = yup.InferType<typeof schema>;
 
 const LoginAPI = () => {
-
+  const navigate = useNavigate();
     const { register, handleSubmit, formState: { errors, isLoading } } = useForm<FormData>({
         resolver: yupResolver(schema)
       });
@@ -24,6 +25,9 @@ const LoginAPI = () => {
             .post(url, payloads)
             .then(function (response) {
                 console.log(response);
+                if(response.status === 201){
+                  navigate('/') //chuyen huong ra home neu login thanh cong
+                }
                
             })
             .catch(err => console.log(err))

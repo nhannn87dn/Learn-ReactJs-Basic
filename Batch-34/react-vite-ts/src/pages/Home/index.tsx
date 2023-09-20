@@ -1,12 +1,9 @@
 import React from 'react'
-import DefaultLayout from '../../components/Layouts/DefaultLayout'
 
 const Home = () => {
   return (
     <>
-     <DefaultLayout>
-      Ruột của Home
-    </DefaultLayout>
+        <h1 className='py-5'>Home Page</h1>
     </>
   )
 }

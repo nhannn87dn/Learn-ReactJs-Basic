@@ -8,4 +8,5 @@ export const navigation = [
     {id: 3, name: 'Category', link: '/category'},
     {id: 4, name: 'Product', link: '/product'},
     {id: 5, name: 'Login', link: '/login'},
+    {id: 6, name: 'Customers', link: '/customers'},
 ]

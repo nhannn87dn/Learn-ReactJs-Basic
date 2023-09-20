@@ -1,5 +1,4 @@
 import React from 'react'
-import DefaultLayout from '../../components/Layouts/DefaultLayout'
 import styles from './Product.module.css'
 import ProductGallery from '../../components/ProductGallery'
 import AttributesColor from '../../components/AttributesColor'
@@ -15,7 +14,6 @@ const Product = () => {
 
   return (
     <>
-    <DefaultLayout >
       <div className={styles.main_wrapper}>
           <section>
               <div className={styles.product_details}>
@@ -40,7 +38,6 @@ const Product = () => {
             sidebar
           </aside>
       </div>
-    </DefaultLayout>
     </>
   )
 }

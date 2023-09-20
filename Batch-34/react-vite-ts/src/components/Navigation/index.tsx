@@ -1,5 +1,6 @@
 import styles from './Navigation.module.css'
-import { navigation } from '../../data/navigation'
+import { navigation } from '../../data/navigation';
+import { Link } from 'react-router-dom';
 
 type ChildType = {
     id: number,
@@ -16,7 +17,8 @@ type SingleNavType = {
 const SingleNav = ({item} : {item: SingleNavType}) =>{
     return (
         <li>
-            <a href={item.link}>{item.name}</a>
+            {/* <a href={item.link}>{item.name}</a> */}
+            <Link to={item.link}>{item.name}</Link>
             {
                 item.childs && item.childs.length > 0 ? (
                    <div>

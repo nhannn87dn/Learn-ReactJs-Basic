@@ -1,59 +1,47 @@
 import React from 'react';
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 import './App.css'
+import Home from './pages/Home';
 import Product from './pages/Product';
-import { userContext } from './contexts/userContex';
-import CountApp from './components/CountApp';
-import Todos from './components/Todos';
-import HelloWorld from './components/HelloWorld';
-import useBrowserWidth from './hooks/useBrowserWidth'
-import CallAPI from './components/CallAPI';
-import LoginAPI from './components/LoginAPI';
-import GetProfileAPIToken from './components/GetProfileAPIToken';
-
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import ProductListAPI from './components/ProductListAPI';
-import ProductFilterAPI from './components/ProductFilterAPI';
+import NoPage from './pages/NoPage';
+import Category from './pages/Category';
+import DefaultLayout from './components/Layouts/DefaultLayout';
+import Customers from './pages/Customers';
+import CustomerProfile from './pages/Customers/CustomerProfile';
+import CustomerOrders from './pages/Customers/CustomerOrders';
+import ProductDetails from './pages/ProductDetails';
+import Login from './pages/Login';
 const queryClient = new QueryClient();
+
 
 function App() {
 
-  const user = {id: 1, name: 'John', email: 'john@example.com',avatarUrl: 'https://via.placeholder.com/100x100.png'};
-
-
   return (
     <>
-    <QueryClientProvider client={queryClient}>
-      {/* Các thành phần con của bạn ở đây */}
-      <ProductFilterAPI />
-      <ProductListAPI />
+     <QueryClientProvider client={queryClient}>
+    <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<DefaultLayout />}>
+            <Route index element={<Home />}  />
+            <Route path='product' element={<Product />}  />
+            <Route path='product/:id' element={<ProductDetails />}  />
+            <Route path='category' element={<Category />}  />
+            <Route path='login' element={<Login />}  />
+            {/* Nested Layout */}
+            <Route path='customers' element={<Customers />}>
+              <Route path='profile' element={<CustomerProfile />} />
+              <Route path='orders' element={<CustomerOrders />} />
+            </Route>
+            {/* Nếu không tồn tại thì rơi vào route dưới */}
+            <Route path='*' element={<NoPage />}  />
+          </Route>
+        </Routes>
+    </BrowserRouter>
     </QueryClientProvider>
-
-    <CallAPI />
-    <GetProfileAPIToken />
-    <LoginAPI />
-    <CountApp />
-    <hr />
-    <HelloWorld />
-    {/* <userContext.Provider value={user}>
-        <Product />
-    </userContext.Provider> */}
     </>
   )
-
-
-    return (
-
-      <>
-    <userContext.Provider value={user}>
-    <Product />
-    </userContext.Provider>
-     
-      
-      </>
-    )
-   
-  
 }
 
 export default App
