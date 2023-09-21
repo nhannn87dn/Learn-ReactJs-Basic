@@ -1,5 +1,5 @@
-import Navigation from "../../../Navigation";
-import UserInfo from "../../../UserInfo";
+import Navigation from "../../Navigation";
+import UserInfo from "../../UserInfo";
 import styles from "./Header.module.css";
 import clsx from 'clsx';
 

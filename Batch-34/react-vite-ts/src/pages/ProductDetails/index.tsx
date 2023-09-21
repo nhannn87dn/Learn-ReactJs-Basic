@@ -37,9 +37,9 @@ const ProductDetails = () => {
         {isError && (<span>Error: {error?.message}</span>)}
         {data && (<div>
            <h1>{data.title}</h1>
-           <img src={data.images[0]} alt="" />
+           <img height={300} width={300} src={data.images[0]} alt="" />
            <div className="price">
-                <strong>{data.price}</strong>
+                <strong>Price: ${data.price}</strong>
            </div>
         </div>)}
         

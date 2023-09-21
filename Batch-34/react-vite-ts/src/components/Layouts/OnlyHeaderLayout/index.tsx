@@ -1,9 +1,7 @@
-import React from 'react'
 import Header from '../Header'
-import Footer from '../Footer'
 import { Outlet } from 'react-router-dom'
 
-const DefaultLayout = () => {
+const OnlyHeaderLayout = () => {
   return (
     <>
      <Header  />
@@ -12,9 +10,8 @@ const DefaultLayout = () => {
           <Outlet />
           </div>
       </main>
-      <Footer />
     </>
   )
 }
 
-export default DefaultLayout
+export default OnlyHeaderLayout

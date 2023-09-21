@@ -1,3 +1,7 @@
+.main_wrapper {
+    align-items: center;
+    height: 100vh;
+}
 .login_wrapper {
     max-width: 360px;
     margin: 0 auto 30px;
