@@ -185,15 +185,24 @@ export default ParameterPage
 
 Ngoài ra bạn cũng có thể định nghĩa route với cú pháp `Regex`
 
+Chấp nhận ID là số nguyên dương:
+
+```js
+//Ví dụ URL hợp lệ: /product/123
+<Route path="product/:id(\d+)" element={<ProductPage />} />
+```
+
 URL dạng slug: chỉ chấp nhận chữ cái thường và dấu gạch -
 
 ```js
+//Ví dụ URL hợp lệ: /blog/my-blog-post, /blog/another-blog-post-123
  <Route path="blog/:slug(^[a-z0-9]+(?:-[a-z0-9]+)*$)" element={<BlogDetailPage />} />
 ```
-URL username - chỉ chấp nhận chữ cái thường
+URL username - chỉ chấp nhận chữ cái thường, số 0-9 và độ dài từ 3-10 kí tự
 
 ```js
- <Route path="users/:username([a-z]+)" element={<UserDetailPage />} />
+//Ví dụ URL hợp lệ: /user/johndoe, /user/username123
+ <Route path="users/:username([a-z0-9]{3,10})" element={<UserDetailPage />} />
 ```
 
 
