@@ -1,6 +1,10 @@
-import React from 'react'
+
 import { useQuery } from '@tanstack/react-query';
 import { Link, useSearchParams  } from 'react-router-dom';
+import Skeleton from 'react-loading-skeleton'
+import 'react-loading-skeleton/dist/skeleton.css'
+
+
 interface Product {
   id: number;
   title: string;
@@ -38,22 +42,29 @@ const Category = () => {
    console.log('<<=== 🚀 page ===>>',page);
    // Sử dụng useQuery để fetch data từ API
    const { data, isLoading, isError, error } = useQuery<Product[], Error>({ 
-    queryKey: ['products', {page,cid}], 
-    queryFn: () =>  fetchData(int_page, {categoryId: int_cid})
-})
+      queryKey: ['products', {page,cid}], 
+      queryFn: () =>  fetchData(int_page, {categoryId: int_cid})
+  })
+
+  if(isLoading) return (
+    <>
+    <Skeleton count={10} />
+    </>
+  )
+
+  if(isError){
+    return (<div>Error: {error.message}</div>)
+  }
 
   return (
     <>
       <h1 className='py-5'>Category Page</h1>
 
       <div className='border-b-4'>
-          <Link className='me-5' to={'/category/?categoryId=1'}>DM ID 1</Link>
-          <Link className='me-5' to={'/category/?categoryId=2'}>DM ID 2</Link>
-          <Link className='me-5' to={'/category/?categoryId=3'}>DM ID 3</Link>
+          <Link className='me-5' to={'/category/?categoryId=1'}>CID 1</Link>
+          <Link className='me-5' to={'/category/?categoryId=2'}>CID 2</Link>
+          <Link className='me-5' to={'/category/?categoryId=3'}>CID 3</Link>
       </div>
-
-      {isLoading && (<div>Đang tải...</div>)}
-      {isError && (<span>Error: {error?.message}</span>)}
       <ul>
         {data && data.map((product: Product) => (
           <li key={product.id}>

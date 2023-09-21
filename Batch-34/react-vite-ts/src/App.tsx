@@ -5,7 +5,7 @@ import {publicRoutes} from './data/routesList'
 import DefaultLayout from './components/Layouts/DefaultLayout';
 import NoPage from './pages/NoPage';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient()
 
 function App() {
 

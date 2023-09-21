@@ -345,6 +345,53 @@ Tại dòng
 Khi bạn định nghĩa Layout riêng thì nó lấy Layout đó, còn không thì nó lấy Layout mặc định chung.
 
 
+## SEO and Metadata
+
+React là một ứng dụng **Single Page Application** với cơ chế Client Side Rendering
+
+Làm thế nào để bạn có thể thay đổi thông tin title, metadata để SEO ?
+
+Thư viện sau giúp chúng ta làm được điều đó
+
+```bash
+yarn add @types/react-helmet
+# Với TypeScript
+yarn add -D @types/react-helmet
+```
+
+Cách sử dụng
+
+HomePage
+
+```tsx
+import { Helmet } from "react-helmet";
+
+const Home = () => {
+  return (
+    <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Home Page</title>
+        <link rel="canonical" href="http://localhost:5173/" />
+        <meta
+        name="description"
+        content="Learn React at Softech Aptech"
+      />
+      </Helmet>
+      <h1 className="py-5">Home Page</h1>
+    </>
+  );
+};
+
+export default Home;
+
+```
+
+Với Social Metadata
+
+
+
+
 ## Private Routes
 
 Có nghĩa là có một số Routes các bạn không muốn public cho người khác xem. Mà chỉ có người nào có quyền truy cập mới xem được.
