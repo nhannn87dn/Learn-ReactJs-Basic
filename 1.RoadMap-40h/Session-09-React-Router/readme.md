@@ -140,7 +140,9 @@ Trang nào bạn không muốn dùng Layout thì đặt Route đó ra ngoài Rou
 
 **Parameter** là phần thông tin đường dẫn URL nằm sau Domain ví dụ như:
 
-Ví dụ bạn muôn URL chi tiết 1 sản phẩm: products/4 (4 là id của sản phẩm)
+Ví dụ bạn muốn URL chi tiết 1 sản phẩm có ID = 4: 
+
+> /products/4
 
 Để lấy được phân thông tin này ta làm như sau:
 
@@ -150,7 +152,17 @@ Khai báo thêm một Route ở App
  <Route path="product/:id" element={<ParameterPage />} />
 ```
 
-id chính là tên tham chiếu cho phần id = 4 nói trên
+- Khi đó biến `id` chính = con số 4 ở trên URL trình duyệt
+
+> /products/my-string
+
+- Nếu bạn truyền vào là chuỗi như trên thì `id` = `my-string`
+- Do vậy nếu bạn muốn Match chính xác id là số thì đổi lại là
+
+```js
+ <Route path="product/:id([0-9]+)" element={<ParameterPage />} />
+```
+
 
 Để lấy được số 4 ở URL ta làm cần sử dụng hook `useParams` từ thư viện `react-router-dom`
 
@@ -169,6 +181,19 @@ const ParameterPage = () => {
 }
 
 export default ParameterPage
+```
+
+Ngoài ra bạn cũng có thể định nghĩa route với cú pháp `Regex`
+
+URL dạng slug: chỉ chấp nhận chữ cái thường và dấu gạch -
+
+```js
+ <Route path="blog/:slug(^[a-z0-9]+(?:-[a-z0-9]+)*$)" element={<BlogDetailPage />} />
+```
+URL username - chỉ chấp nhận chữ cái thường
+
+```js
+ <Route path="users/:username([a-z]+)" element={<UserDetailPage />} />
 ```
 
 
