@@ -27,6 +27,9 @@
   button[type='submit'] {
       @apply bg-indigo-600 hover:bg-indigo-500 text-white
   }
+  button[disabled] {
+    @apply cursor-not-allowed opacity-50
+  }
 
  
 }

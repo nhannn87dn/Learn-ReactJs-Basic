@@ -1,4 +1,4 @@
-import React from 'react'
+import { axiosClient } from '../../lib/axiosClient';
 
 const CustomerProfile = () => {
   return (

@@ -9,11 +9,14 @@ import Login from '../pages/Login';
 import EmptyLayout from '../components/Layouts/EmptyLayout';
 import OnlyHeaderLayout from '../components/Layouts/OnlyHeaderLayout';
 
-interface Routes {
+interface BaseProps {
     id: number;
     path: string;
     element: () => JSX.Element;
+}
+interface Routes extends  BaseProps {
     layout?: () => JSX.Element;
+    nested?: BaseProps[]
 }
 
 //Public routes
@@ -24,9 +27,10 @@ const publicRoutes: Routes[] = [
     {id: 3, path: '/product/:id', element: ProductDetails},
     {id: 4, path: '/category', element: Category},
     {id: 5, path: '/login', element: Login, layout: EmptyLayout},
-    {id: 6, path: '/customers', element: Customers, layout: OnlyHeaderLayout},
-    {id: 7, path: '/customers/profile', element: CustomerProfile, layout: OnlyHeaderLayout},
-    {id: 8, path: '/customers/orders', element: CustomerOrders, layout: OnlyHeaderLayout}
+    {id: 6, path: '/customers', element: Customers, layout: OnlyHeaderLayout, nested: [
+        {id: 1, path: '/customers/profile', element: CustomerProfile},
+        {id: 2, path: '/customers/orders', element: CustomerOrders}
+    ]},
 ]
 
 //Private routes

@@ -1,9 +1,8 @@
-import React from 'react'
 import LoginAPI from '../../components/LoginAPI'
 
 const Login = () => {
   return (
-    <div>
+    <div className='flex items-center content-center h-screen'>
         <LoginAPI />
     </div>
   )
