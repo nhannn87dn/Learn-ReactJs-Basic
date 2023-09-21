@@ -39,7 +39,8 @@ const useAuth = create<Auth>((set) => ({
         return { isAuthenticated: false, error: 'Username or password is invalid' };
       }
     } catch (error) {
-      return { isAuthenticated: false, error: error?.message || 'Login failed' };
+      console.log('login error',error);
+      return { isAuthenticated: false, error: 'Username or password is invalid' };
     }
   },
   logout: () => {

@@ -2,7 +2,6 @@ import React from 'react'
 import {products} from '../../data/products'
 import numeral from 'numeral';
 
-console.log(products);
 type SingleProductProps = {
     id: number;
     name: string;

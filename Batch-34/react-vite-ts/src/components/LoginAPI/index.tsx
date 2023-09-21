@@ -28,17 +28,23 @@ const LoginAPI = () => {
     console.log(data);
       const result = await login(data.email, data.password);
       console.log(result);
-      if(result.isAuthenticated){
-        navigate("/customers");
-      }else{
+      if(!result.isAuthenticated){
         setError(result.error);
+      }else{
+        navigate("/customers");
       }
+
+      
   };
 
   return (
     <div className='max-w-[300px] mx-auto min-w-[300px]'>
       <h2 className='text-2xl text-center mb-3 font-bold'>Login Form</h2>
-      {error && <div>Error: {error}</div>}
+      {error && (
+        <div className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded my-3" role="alert">
+          <span className="block sm:inline">{error}</span>
+      </div>
+      )}
       <form onSubmit={handleSubmit(onSubmit)}>
         <input placeholder="Email" {...register("email")} />
         <p>{errors.email?.message}</p>
