@@ -15,7 +15,7 @@ type FormData = yup.InferType<typeof schema>;
 
 const LoginAPI = () => {
   const navigate = useNavigate();
-  const {login} = useAuth();
+  const {login, isAuthenticated} = useAuth();
   const [error, setError] = React.useState<string | null>(null);
   const {
     register,
@@ -36,6 +36,12 @@ const LoginAPI = () => {
 
       
   };
+  /* Nếu đã đăng nhập rồi, mà còn quay lại login thì đá ngược vào trong */
+  React.useEffect(()=>{
+    if(isAuthenticated){
+      navigate("/customers");
+    }
+  },[isAuthenticated])
 
   return (
     <div className='max-w-[300px] mx-auto min-w-[300px]'>

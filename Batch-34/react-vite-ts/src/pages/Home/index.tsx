@@ -1,4 +1,7 @@
 import { Helmet } from "react-helmet";
+import CountApp from "../../components/CountApp"
+import CountZustand from "../../components/CountZustand";
+import CountHangXom from "../../components/CountHangXom";
 
 const Home = () => {
   return (
@@ -13,6 +16,13 @@ const Home = () => {
       />
       </Helmet>
       <h1 className="py-5">Home Page</h1>
+      <h2>useReducer</h2>
+      <CountApp />
+      <hr />
+      <h2>Zustand</h2>
+      <CountZustand />
+      <h2>Hang xom</h2>
+      <CountHangXom />
     </>
   );
 };
