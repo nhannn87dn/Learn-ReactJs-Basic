@@ -29,4 +29,3 @@ Yêu cầu một số thành phần:
 
 * Tạo riêng một respository trên Github, làm xong đẩy lên Git và gửi link về email: nhannn@softech.vn
 
-* Hạn nộp bài:  **9AM giờ ngày 5.5.2023**

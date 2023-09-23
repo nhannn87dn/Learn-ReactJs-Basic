@@ -4,17 +4,13 @@
 
 Tạo một Layout như Demo 5.Demo-Projects/category.html
 
-Gọi API: 
-
 Yêu cầu:
 
 - Layout giống 100% demo
-- Lấy danh sách sản phẩm hiển thị ra như Demo
+- Lấy danh sách sản phẩm hiển thị ra như Demo: API  https://fakeapi.platzi.com/en/rest/products
 - Lấy danh sách danh mục sản phẩm để làm bộ lọc
-- Click vào bộ lọc thì có thể lọc được sản phẩm tương ứng với danh mục đó
+  - API Danh mục: https://fakeapi.platzi.com/en/rest/categories
+  - API cách lộc: https://fakeapi.platzi.com/en/rest/products-filter 
+  - Click vào bộ lọc thì có thể lọc được sản phẩm tương ứng với danh mục đó
 
-
-## Phần tự hoàn thiện
-
-- Dùng React Router tạo ra các trang như 5.Demo-Projects
-- Áp dụng các kiến thức đã học tạo UI giống demo đó
+- Phân trang: lấy sản phẩm theo trang tương ứng: https://fakeapi.platzi.com/en/rest/products#pagination
