@@ -84,8 +84,8 @@ ICON Thời tiết: <https://openweathermap.org/weather-conditions>
 
 ## Yêu cầu
 
-- Màn hình hình 1: Hiển thị thời tiết hiện tại 1 thành phố tùy chọn
-- Màn hình 2: Hiển thị thời tiết 5 ngày tiếp theo của thành phố đó
+- Màn hình hình 1: Hiển thị thời tiết `hiện tại` và `hàng giờ` của 1 thành phố tùy chọn, 
+- Màn hình 2: Hiển thị thời tiết `5 ngày tiếp theo` của thành phố đó
 
 
 API hàng giờ: https://openweathermap.org/api/hourly-forecast

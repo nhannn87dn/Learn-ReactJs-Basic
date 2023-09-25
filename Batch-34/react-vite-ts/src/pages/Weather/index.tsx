@@ -41,13 +41,15 @@ const Weather = () => {
     
     const icon = `https://openweathermap.org/img/wn/${weathers?.weather[0].icon}@2x.png`;
   return (
-    <div className='container mx-auto'>
-        <h1>Weather</h1>
-        <div>
-            <img src={icon} />
+    <div className='bg-slate-900 py-5'>
+         <div style={{maxWidth: 430, height: 600, overflowY: 'scroll'}} className="device_wrapper bg-white mx-auto rounded">
+            <h1>Weather</h1>
+            <div>
+                <img src={icon} />
+            </div>
+            <h2> {weathers?.main.temp} C</h2>
+            <p>{weathers?.weather[0].description}</p>
         </div>
-        <h2> {weathers?.main.temp} C</h2>
-        <p>{weathers?.weather[0].description}</p>
     </div>
   )
 }
