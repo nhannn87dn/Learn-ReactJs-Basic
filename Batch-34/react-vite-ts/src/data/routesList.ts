@@ -8,6 +8,7 @@ import ProductDetails from '../pages/ProductDetails';
 import Login from '../pages/Login';
 import EmptyLayout from '../components/Layouts/EmptyLayout';
 import OnlyHeaderLayout from '../components/Layouts/OnlyHeaderLayout';
+import Weather from '../pages/Weather';
 
 interface BaseProps {
     id: number;
@@ -31,6 +32,7 @@ const publicRoutes: Routes[] = [
         {id: 1, path: '/customers/profile', element: CustomerProfile},
         {id: 2, path: '/customers/orders', element: CustomerOrders}
     ]},
+    {id: 7, path: '/weather', element: Weather},
 ]
 
 //Private routes
