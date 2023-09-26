@@ -92,6 +92,15 @@ API hàng giờ: https://openweathermap.org/api/hourly-forecast
 
 API 5 ngày tiếp: https://openweathermap.org/forecast5
 
+## Điểm theo hạng mục
+
+Hệ số điểm 20:
+
+- Call API lấy và hiển thị thời tiết hiện tại: 2 điểm
+- Call API lấy và hiển thị thời tiết theo giờ: 3 điểm
+- Call API lấy và hiển thị thời tiết 5 ngày: 5 điểm
+- Layout UI: thiết kế tùy theo ý tưởng  : 10 điểm
+
 
 ## Version nâng cấp lên
 
