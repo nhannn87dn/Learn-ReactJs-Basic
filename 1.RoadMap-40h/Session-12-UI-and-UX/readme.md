@@ -101,7 +101,7 @@ Xem bài viết:
 
 - https://inspirationmobile.tumblr.com
 - https://www.pttrns.com/
-- https://www.pinterest.com/
+- https://dribbble.com/tags/food_app#
 - https://www.pinterest.com/efreedman/ux-mobile-design-inspiration/
 - Kiến thức UX căn bản: https://balsamiq.com/learn/courses/intro-to-ux-design/
 - Kiến thức UX nâng cao: https://uxmastery.com/

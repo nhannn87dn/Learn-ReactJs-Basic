@@ -88,9 +88,19 @@ ICON Thời tiết: <https://openweathermap.org/weather-conditions>
 - Màn hình 2: Hiển thị thời tiết `5 ngày tiếp theo` của thành phố đó
 
 
-API hàng giờ: https://openweathermap.org/api/hourly-forecast
+https://www.weatherapi.com/
 
-API 5 ngày tiếp: https://openweathermap.org/forecast5
+APIKEY: c9a0ca46550648b29ce125849232709
+
+Current
+https://api.weatherapi.com/v1/current.json?key=c9a0ca46550648b29ce125849232709&q=Danang&aqi=no&lang=vi
+
+
+Hours
+https://api.weatherapi.com/v1/forecast.json?key=c9a0ca46550648b29ce125849232709&q=Danang&days=1&aqi=no&alerts=no&lang=vi
+
+Daily 5 days (days=5)
+https://api.weatherapi.com/v1/forecast.json?key=c9a0ca46550648b29ce125849232709&q=Danang&days=5&aqi=no&alerts=no&lang=vi
 
 ## Điểm theo hạng mục
 
