@@ -92,6 +92,9 @@ https://www.weatherapi.com/
 
 APIKEY: c9a0ca46550648b29ce125849232709
 
+Chi tiết cách truyền các tham số: https://www.weatherapi.com/docs/#intro-request
+Giải thích các thuộc tính response trả về: https://www.weatherapi.com/docs/#intro-request
+
 Current
 https://api.weatherapi.com/v1/current.json?key=c9a0ca46550648b29ce125849232709&q=Danang&aqi=no&lang=vi
 
