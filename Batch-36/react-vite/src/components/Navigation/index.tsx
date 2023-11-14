@@ -2,15 +2,30 @@ import { navigations } from '../../data/navigation'
 
 const Navigation = () => {
   return (
-    <div className='bg-indigo-500 text-white flex gap-x-5'>
+    <nav>
+      <ul className='flex gap-x-5'>
         {
            navigations.map((item)=>{
-            return <a key={item.id} href={item.url}>
-                {item.name}
-            </a>
+            return <li className='group relative' key={item.id}>
+                <a href={item.url}>
+                  {item.name}
+              </a>
+              {item.childs && item.childs.length > 0 ? (
+                <div className='sub_child hidden group-hover:flex group-hover:flex-col text-slate-900 absolute bg-white py-3 px-2'>
+                    {
+                      item.childs.map((child)=>{
+                        return <a key={child.id}>{child.name}</a>
+                      })
+                    }
+                </div>
+              )
+              : null
+            }
+            </li>
            }) 
         }
-    </div>
+      </ul>
+    </nav>
   )
 }
 
