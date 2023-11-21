@@ -1,3 +1,20 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+@layer base {
+  input {
+    @apply border rounded  py-1 px-3
+  }
+
+}
+
+@layer components {
+  .btn {
+    @apply border rounded  py-1 px-3
+  }
+  .btn-primary {
+    @apply bg-indigo-500 hover:bg-indigo-700 text-white
+  }
+}
