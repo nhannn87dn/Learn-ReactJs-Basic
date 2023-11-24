@@ -358,6 +358,8 @@ Bạn cần cài thêm
 npm install @hookform/resolvers yup
 ```
 
+Dưới đây là một ví dụ về dùng React Hook Form + Validate dữ liệu lấy từ Inputs
+
 ```js
 import { useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
@@ -389,6 +391,30 @@ export default function MyForm() {
 }
 
 ```
+
+Để thêm một trường mới, bạn chỉ cần thêm 2 dòng này:
+
+
+```jsx
+<input {...register("age")} />
+<p>{errors.age?.message}</p>
+```
+Trong đó:
+
+- `{...register("age")}` là cú pháp bạn khai báo `name` cho input
+- `{errors.age?.message}` để hiển thị lỗi khi dữ liệu bạn nhập vào input không hợp lệ.
+
+Nếu bạn muốn sử dụng các tính năng validation cơ bản của HTML5 bạn có thể làm như sau:
+
+
+```jsx
+<input {...register("age", {require: true, min: 18, max: 100 })} />
+<p>{errors.age?.message}</p>
+```
+
+==> Bạn thêm vào hàm `register` tham số thứ 2 là một Object
+
+Chi tiết xem: https://react-hook-form.com/get-started#Registerfields
 
 
 Để bắt các trạng thái submit trong React Hook Form, bạn có thể sử dụng thuộc tính `handleSubmit` và `isSubmitting` được cung cấp bởi React Hook Form. Dưới đây là một ví dụ:
@@ -431,18 +457,6 @@ Ngược lại, khi không có quá trình submit nào diễn ra, nút sẽ đư
 
 ==> Giúp tránh cho người dùng nhấn Submit liên tục
 
-### Formik
-
-```bash
-npm install formik --save
-```
-Example: <https://formik.org/docs/tutorial#a-simple-newsletter-signup-form>
-
-Formik với Yup Validation
-
-Doc: <https://formik.org/docs/guides/validation>
-
----
 
 ### Yup validation
 
@@ -497,3 +511,20 @@ Trong ví dụ trên, chúng ta đã sử dụng Yup để tạo một schema đ
 - `gender` phải là một trong hai giá trị "male" hoặc "female".
 
 Nếu các giá trị của "user" không tuân thủ các quy tắc xác thực tương ứng, Yup sẽ sinh ra các lỗi tương ứng. Bằng cách sử dụng phương thức `validate` của schema, chúng ta có thể kiểm tra xem "user" có hợp lệ hay không và xử lý các lỗi nếu có.
+
+
+
+### Formik
+
+Ngoài React Hook Form bạn có thêm một lựa chọn nữa khá tốt là `Formik`
+
+```bash
+npm install formik --save
+```
+Example: <https://formik.org/docs/tutorial#a-simple-newsletter-signup-form>
+
+Formik với Yup Validation
+
+Doc: <https://formik.org/docs/guides/validation>
+
+---
