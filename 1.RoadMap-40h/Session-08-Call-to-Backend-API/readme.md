@@ -13,7 +13,7 @@ Sử dụng công cụ Fake API để luyện tập call API trong React
 
 * https://jsonplaceholder.typicode.com
 
-* https://fakeapi.platzi.com/en/rest/introduction
+* https://fakeapi.platzi.com/en/about/introduction/
 
 ## ⭐ Làm quen công cụ TEST API
 

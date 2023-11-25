@@ -10,6 +10,14 @@ import UseMemoExample from './components/UseMemoExample';
 import ProductPage from './pages/ProductPage';
 import { userContext } from './context/userContext';
 
+import {
+  QueryClient,
+  QueryClientProvider,
+} from '@tanstack/react-query'
+
+// Create a client
+const queryClient = new QueryClient()
+
 function App() {
 
   //const [isShow, setIsShow] = React.useState(false)
@@ -17,6 +25,7 @@ function App() {
   const user = {id: 1, name: 'Ngoc Nhan'};
 
   return (
+    <QueryClientProvider client={queryClient}>
     <div className='container mx-auto'>
       <userContext.Provider value={user}>
           <ProductPage />
@@ -36,6 +45,7 @@ function App() {
         <h2>ReactHook Form Validation</h2>
         <ReactHookFormValidation /> */}
     </div>
+    </QueryClientProvider>
   )
 }
 
