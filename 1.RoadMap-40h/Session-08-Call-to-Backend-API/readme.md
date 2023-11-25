@@ -233,9 +233,13 @@ Và tối ưu lại với cách viết đúng để gọi một API như trên
                     body: 'bar',
                     userId: 1
             };
-            
+            const options = {
+              headers: {
+                'Content-Type': 'application/json'
+              }
+            }; 
             await axios
-            .post(url, payloads)
+            .post(url, payloads,options)
             .then(function (response) {
                 console.log(response);
                 return response.data;
