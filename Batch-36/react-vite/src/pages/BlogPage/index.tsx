@@ -13,17 +13,24 @@ interface IPost {
 
 const  BlogPage  =( ) => {
   const [posts, setPosts] = React.useState<IPost[] | null>(null);
+  const [isLoading, setIsLoading] = React.useState(false);
 
   React.useEffect(()=>{
 
     const getPosts = async ()=>{
+      setIsLoading(true);
       const response = await fetch('https://jsonplaceholder.typicode.com/posts');
       const data = await response.json();
+      setIsLoading(false);
       setPosts(data);
     }
     getPosts();
 
   },[])
+
+  if(isLoading){
+    return (<div>Loading.....</div>)
+  }
 
   return (
     <div>
