@@ -388,8 +388,8 @@ Làm thế nào để bạn có thể thay đổi thông tin title, metadata đ�
 Thư viện sau giúp chúng ta làm được điều đó
 
 ```bash
-yarn add @types/react-helmet
-# Với TypeScript
+yarn add react-helmet
+# Với TypeScript cần cài thêm
 yarn add -D @types/react-helmet
 ```
 

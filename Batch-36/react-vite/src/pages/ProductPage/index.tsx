@@ -3,14 +3,13 @@ import AddProductReactQuery from "../../components/AddProductReactQuery";
 import ProductList from "../../components/ProductsList";
 import ProductListAxios from "../../components/ProductsListAxios";
 import ProductListReactQuery from "../../components/ProductsListReactQuery";
-import { DefaultLayout } from "../../components/layouts/DefaultLayout"
 import { useBrowserWidth } from "../../hooks/useBrowser"
 const ProductPage = () => {
 
   const browserWidth = useBrowserWidth();
   
   return (
-    <DefaultLayout>
+   
       <div className="layout_wrapper flex">
           <div className="product_main flex-1">
             <h2 className='text-2xl font-bold my-5'>Thêm sản phẩm</h2>
@@ -34,7 +33,7 @@ const ProductPage = () => {
               product_sidebar
           </div>
       </div>
-    </DefaultLayout>
+   
   )
 }
 

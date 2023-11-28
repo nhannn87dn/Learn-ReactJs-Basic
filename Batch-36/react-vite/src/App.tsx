@@ -1,50 +1,50 @@
 import './App.css';
-import ReactHookForm from './components/ReactHookForm';
-import ReactHookFormValidation from './components/ReactHookFormValidation';
-import SimpleForm from './components/SimpleForm';
-import UseEffectExample from './components/UseEffectExample';
-import React from 'react'
-
-import UseCallBackExample from './components/UseCallBackExample';
-import UseMemoExample from './components/UseMemoExample';
+import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import ProductPage from './pages/ProductPage';
-import { userContext } from './context/userContext';
 
 import {
   QueryClient,
   QueryClientProvider,
 } from '@tanstack/react-query'
+import HomePage from './pages/HomePage';
+import BlogPage from './pages/BlogPage';
+import { DefaultLayout } from './components/layouts/DefaultLayout';
+import NoPage from './pages/NoPage';
+import BlogDetailPage from './pages/BlogDetailPage';
+import CategoryPage from './pages/CategoryPage';
+import LoginPage from './pages/LoginPage';
+import { OnlyHeaderLayout } from './components/layouts/OnlyHeaderLayout';
 
 // Create a client
 const queryClient = new QueryClient()
 
 function App() {
 
-  //const [isShow, setIsShow] = React.useState(false)
-  
-  const user = {id: 1, name: 'Ngoc Nhan'};
 
   return (
     <QueryClientProvider client={queryClient}>
-    <div className='container mx-auto'>
-      <userContext.Provider value={user}>
-          <ProductPage />
-      </userContext.Provider>
-      
-        {/* <button className='btn btn-primary' onClick={()=>{
-          setIsShow(!isShow)
-        }}>Toogle Component</button>
-        {
-          isShow && <UseMemoExample />
-        } */}
-        
-        {/* <SimpleForm />
-        <hr />
-        <ReactHookForm />
-        <hr />
-        <h2>ReactHook Form Validation</h2>
-        <ReactHookFormValidation /> */}
-    </div>
+      <BrowserRouter>
+          <Routes>
+              {/* Dinh nghia layout dung chung cho all trang ben trong */}
+              <Route path='/' element={<DefaultLayout />}>
+                  {/* Dinh nghia duong dan cho trang Home */}
+                  <Route index element={<HomePage />} />
+                  {/* Dinh nghia duong dan cho trang Blog */}
+                  <Route path='blog' element={<BlogPage />} />
+                  <Route path='categories' element={<CategoryPage />} />
+                  <Route path='product' element={<ProductPage />} />
+                  {/* Dinh nghia mot URL Động với cú pháp :name */}
+                  <Route path='blog/:id' element={<BlogDetailPage />} />
+
+              </Route>
+              {/* Dinh nghia rieng cho login mot layout khac */}
+              <Route path='/login' element={<OnlyHeaderLayout />}>
+                  <Route index element={<LoginPage />} />
+              </Route>
+                {/* Neu khong khop URL nao thi bo load page NoPage */}
+              <Route path='*' element={<NoPage />} />
+          </Routes>
+      </BrowserRouter>
     </QueryClientProvider>
   )
 }

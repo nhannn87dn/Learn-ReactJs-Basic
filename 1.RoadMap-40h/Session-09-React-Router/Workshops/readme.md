@@ -15,3 +15,9 @@ Phần quản trị
 
 * /dashboard/products : Danh sách sản phẩm
 * /dashboard/products/add : Thêm một sản phẩm
+
+
+**Lưu ý:**
+
+- 3 trang đầu 1 Layout, 4 trang sau 1 Layout khác
+- Nếu không match với URL nào thì hiển thị trang báo lỗi: 404 -Not Found
