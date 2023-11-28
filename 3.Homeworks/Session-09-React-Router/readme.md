@@ -1,5 +1,7 @@
 # Bài tập React Router
 
+Dựa vào Fake API: https://fakeapi.platzi.com/
+
 - Tạo một project site thương mại điển tử có các trang
   - Home
   - Categories

@@ -6,7 +6,7 @@ Với hệ thống URL như sau
 
 * /products : danh sách sản phẩm
 
-* /products/:id : chi tiết một sản phẩm
+* /products/:id : chi tiết một sản phẩm -- Lấy ID hiển thị ra
 
 Phần quản trị
 
