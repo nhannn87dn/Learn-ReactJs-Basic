@@ -1,7 +1,6 @@
 import { create } from 'zustand'
 
 //Định nghĩa typescript cho Store
-
 type CountType = {
   count: number,
   increase: ()=> void,

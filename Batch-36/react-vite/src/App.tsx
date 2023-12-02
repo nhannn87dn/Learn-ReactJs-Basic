@@ -41,6 +41,7 @@ function App() {
               <Route path='/login' element={<OnlyHeaderLayout />}>
                   <Route index element={<LoginPage />} />
               </Route>
+              {/* <Route path='/blog' element={<BlogPage />} /> */}
                 {/* Neu khong khop URL nao thi bo load page NoPage */}
               <Route path='*' element={<NoPage />} />
           </Routes>
