@@ -1,8 +1,17 @@
 # Session-12-UI-and-UX
 
+## Task 1
+
 Làm lại bài tập Exercise-2 ở Session-06-Form
 
 - Sử dụng Ant Design Form
 - Sử dụng Chakra UI Form
+- Có validate với Yup
 
-- Có validate
+
+## Task 2
+
+Dựng một Layout Dashboard đơn giản với với Ant Design
+
+- Xem Components: Layout, Menu...
+- Ví dụ như thế này là Dashboard: https://dashboardpack.com/live-demo-preview/?livedemo=357190
