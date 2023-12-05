@@ -142,6 +142,7 @@ const App = () => (
 export default App;
 ```
 
+Ant Design thường dùng cho các ứng dụng thiên về quản lý: Dashboard, nhập liệu nhiều
 
 ### Chakra UI
 
@@ -149,6 +150,9 @@ https://chakra-ui.com/
 
 
 Chakra UI là một thư viện giao diện người dùng (UI) mã nguồn mở dựa trên React, được thiết kế để giúp bạn xây dựng các ứng dụng web với giao diện đẹp, tùy chỉnh và dễ sử dụng. Chakra UI tập trung vào việc cung cấp các thành phần giao diện tái sử dụng và tiết kiệm thời gian, giúp bạn tập trung vào việc xây dựng ứng dụng thay vì tạo lại các thành phần giao diện cơ bản.
+
+Cài đặt với React Vite: https://chakra-ui.com/getting-started/vite-guide
+
 
 ### Semantic UI React
 
@@ -195,3 +199,8 @@ export default function BasicButtons() {
 ```
 
 
+## Bài tập
+
+Làm lại: https://github.com/nhannn87dn/ReactJs-Basic-Tutorials/tree/main/3.Homeworks/Session-06-Form/Exercise-2
+
+Sử dụng Ant Design

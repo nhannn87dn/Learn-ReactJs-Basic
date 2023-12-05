@@ -1,4 +1,7 @@
 import React from 'react';
+
+import AntDesignExample from '../../components/AntDesignExample';
+
 // Import Swiper React components
 import {Swiper, SwiperSlide } from 'swiper/react';
 // import Swiper core and required modules
@@ -94,8 +97,9 @@ const  HomePage  =( ) => {
   return (
     <div>
       <h1>Home Page</h1>
-      <GallerySwipper />
-      <MoviesList />
+      {/* <GallerySwipper />
+      <MoviesList /> */}
+      <AntDesignExample />
     </div>
   )
 }
