@@ -199,7 +199,7 @@ export default function BasicButtons() {
 ```
 ###  React Bootstrap
 
-Cách cài đặt
+Cách cài đặt: https://react-bootstrap.netlify.app/docs/getting-started/introduction
 
 ```bash
 npm install react-bootstrap bootstrap
