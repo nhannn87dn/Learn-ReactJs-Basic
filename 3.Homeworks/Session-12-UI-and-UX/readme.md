@@ -14,4 +14,4 @@ Làm lại bài tập Exercise-2 ở Session-06-Form
 Dựng một Layout Dashboard đơn giản với với Ant Design
 
 - Xem Components: Layout, Menu...
-- Ví dụ như thế này là Dashboard: https://dashboardpack.com/live-demo-preview/?livedemo=357190
+- Ví dụ như thế này là Dashboard: https://demo.dashboardpack.com/admindek-html/index.html
