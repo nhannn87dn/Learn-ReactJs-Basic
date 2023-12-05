@@ -197,6 +197,52 @@ export default function BasicButtons() {
 }
 
 ```
+###  React Bootstrap
+
+Cách cài đặt
+
+```bash
+npm install react-bootstrap bootstrap
+#hoặc
+yarn add react-bootstrap bootstrap
+```
+
+Tiếp theo: Cấu hình Css global
+
+```jsx
+{
+  /* The following line can be included in your src/index.js or App.js file */
+  /* Thêm vào file src/App.tsx (React Vite) */
+}
+import 'bootstrap/dist/css/bootstrap.min.css';
+```
+
+Cách dùng:
+
+```jsx
+
+import {Button, Stack} from 'react-bootstrap';
+//Hoặc
+//import Button from 'react-bootstrap/Button';
+//import Stack from 'react-bootstrap/Stack';
+
+const Myconponent = ()=>{
+  return (
+    <Stack direction="horizontal" gap={2}>
+    <Button as="a" variant="primary">
+      Button as link
+    </Button>
+    <Button as="a" variant="success">
+      Button as link
+    </Button>
+  </Stack>;
+  )
+}
+```
+
+
+
+
 
 
 ## Bài tập
