@@ -170,6 +170,8 @@ Xem tất cả lệnh: <https://classic.yarnpkg.com/en/docs/cli/list>
 
 Fix cài Yarn:
 
+Mở Powershell, chạy với quyền Administator, dán lệnh vào
+
 ```bash
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted
 ```
