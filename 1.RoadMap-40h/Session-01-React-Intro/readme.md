@@ -244,7 +244,11 @@ Cài đặt các package
 ```bash
 yarn
 ```
+Chạy project
 
+```bash
+yarn dev
+```
 
 
 ***
