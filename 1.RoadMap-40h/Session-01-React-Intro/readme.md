@@ -168,6 +168,12 @@ yarn install
 
 Xem tất cả lệnh: <https://classic.yarnpkg.com/en/docs/cli/list>
 
+Fix cài Yarn:
+
+```bash
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted
+```
+
 ***
 
 ## 🔶**Cài đặt ReactJs - Hello, React !**
