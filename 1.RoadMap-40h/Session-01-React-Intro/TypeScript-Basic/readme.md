@@ -26,11 +26,14 @@ Thay lại nội dung thành như sau
 
 ```json
 {
-  "include": ["src"],
-  "allowJs": true,
-  "compilerOptions": {
-    "target": "es5",
-    "outDir": "./build"
+  
+    "compilerOptions": {
+        "target": "es2016",
+        "module": "commonjs",
+        "strict": true,
+        "esModuleInterop": true,
+        "skipLibCheck": true,
+        "forceConsistentCasingInFileNames": true
   }
 }
 ```
