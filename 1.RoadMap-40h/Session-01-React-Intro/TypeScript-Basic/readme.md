@@ -22,7 +22,7 @@ npx tsc --init
 
 ```
 
-Thay lại nội dung thành như sau
+Thay lại nội dung `tsconfig.json` thành như sau
 
 ```json
 {
@@ -37,6 +37,12 @@ Thay lại nội dung thành như sau
   }
 }
 ```
+Tạo file `index.ts`
+
+```ts
+console.log('Hello Typescript')
+```
+
 Typescript cần biên dịch qua Js mới chạy được thông thường chúng ta sử dụng lệnh
 
 ```bash

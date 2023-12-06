@@ -175,6 +175,7 @@ Mở Powershell, chạy với quyền Administator, dán lệnh vào
 ```bash
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted
 ```
+Sau đó nhập A, Enter ==> quay lại cài yarn.
 
 ***
 
