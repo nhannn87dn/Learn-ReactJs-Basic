@@ -24,6 +24,7 @@ function Service() {
             <i className="fa fa-phone"></i> 1900-111000
           </strong>
           <p className="section_desc">We're available 24/7, 365 days a year.</p>
+          <button className="button">Call now</button>
         </div>
         {/* kjdksjdksdjskdjsk */}
       </div>

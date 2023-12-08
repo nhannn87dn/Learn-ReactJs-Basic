@@ -1,5 +1,7 @@
 import "./App.css";
 import Button from "./components/Button";
+import List from "./components/List";
+import ListItem from "./components/ListItem";
 import ProductCard from "./components/ProductCard";
 import Service from "./components/Services";
 import { FaShoppingCart, FaPhone } from "react-icons/fa";
@@ -43,6 +45,13 @@ function App() {
 
   return (
     <>
+      <List>
+        <ListItem content="Lau nha" />
+        <ListItem content="Hut bui " />
+        <ListItem content="Rua chen" />
+      </List>
+      <List></List>
+      <button className="button"> hello</button>
       {h1}
       <h3>
         Toi ten la {name} Nam nay toi {age} tuoi

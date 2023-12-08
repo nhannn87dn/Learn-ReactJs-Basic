@@ -1,10 +1,6 @@
-/*
-All style ở APp.css, index.css ==> GLobal
-*/
-
-.button {
+.btn {
   appearance: none;
-  background-color: #f80;
+  background-color: rgb(195, 0, 255);
   color: #fff;
   padding: 12px 16px;
   text-align: center;
