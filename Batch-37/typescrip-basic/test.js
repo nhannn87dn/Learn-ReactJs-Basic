@@ -1,4 +1,3 @@
-import {name} from './person'
-
+import { name } from "./person";
 
 console.log(name);
