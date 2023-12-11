@@ -1,5 +1,6 @@
 function Price() {
-  return <div>600</div>;
+  console.log("Price render");
+  return <div>800</div>;
 }
 
 export default Price;
