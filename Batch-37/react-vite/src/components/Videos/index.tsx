@@ -29,12 +29,12 @@ const Videos = () => {
   return (
     <ul>
       <SingleVideo
-        thumb={"https://react.dev/images/home/videos/documentary.webp"}
+        thumb="./images/video-1.png"
         title={"Video 1 - Title"}
         desc={"Video 1 desc"}
       />
       <SingleVideo
-        thumb={"https://react.dev/images/home/videos/rethinking.jpg"}
+        thumb="./images/video-2.png"
         title={"Video 2 - Title"}
         desc={"Video 2 desc"}
       />
