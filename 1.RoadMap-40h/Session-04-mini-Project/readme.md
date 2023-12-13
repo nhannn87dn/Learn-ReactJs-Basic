@@ -1,11 +1,6 @@
 # mini Project
 
-## Task 1 
-
-Tạo một giao diện trang chi tiết sản phẩm như Demo 5.Demo-Projects\product.html
-
-
-## Task 2
+## Task 1
 
 Tạo một profile CV của mình bằng React
 
@@ -15,9 +10,7 @@ Template tham khảo
 
 hoặc hình sau
 
-
 ![cv](cv-project.jpg)
-
 
 ## Deploy dự án React Vite
 
@@ -32,9 +25,9 @@ my-app: tên repository
   "homepage": "https://myusername.github.io/my-app",
 ```
 
-Step 2: 
+Step 2:
 
-```bash 
+```bash
 yarn add gh-pages
 ```
 
