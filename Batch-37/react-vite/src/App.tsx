@@ -5,6 +5,9 @@ import EventHandles from "./components/EventHandles";
 import Posts from "./components/Posts";
 import ProductsList from "./components/ProductsList";
 import RankStars from "./components/RankStars";
+import ReactHookFormExample from "./components/ReactHookFormExample";
+import ReactHookFormYupValidation from "./components/ReactHookFormYupValidation";
+import RegisterFormReact from "./components/RegisterFormReact";
 import SimpleCarousel from "./components/SimpleCarousel";
 import StateExample from "./components/StateExample";
 import TableParams from "./components/TableParams";
@@ -23,6 +26,16 @@ function App() {
       {/* <EventHandles /> */}
       {/* <StateExample /> */}
       <hr />
+
+      <ReactHookFormYupValidation />
+
+      <hr className="my-10" />
+
+      <ReactHookFormExample />
+
+      <hr className="my-10" />
+
+      <RegisterFormReact />
 
       <RankStars />
 
