@@ -10,6 +10,12 @@ CSS cho các thẻ
 */
 
 @layer base {
+  input {
+    @apply border rounded py-2 px-3;
+  }
+  table tr td {
+    @apply py-1 px-2 border-b border-slate-400;
+  }
   .btn {
     @apply py-2 px-3 bg-slate-300 hover:bg-slate-200 text-slate-800 font-bold rounded;
   }

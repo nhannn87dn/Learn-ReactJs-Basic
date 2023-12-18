@@ -1,8 +1,13 @@
 import "./App.css";
 import Attributes from "./components/Attributes";
 import BlockUI from "./components/BlockUI";
+import EventHandles from "./components/EventHandles";
 import Posts from "./components/Posts";
 import ProductsList from "./components/ProductsList";
+import RankStars from "./components/RankStars";
+import SimpleCarousel from "./components/SimpleCarousel";
+import StateExample from "./components/StateExample";
+import TableParams from "./components/TableParams";
 import TodoList from "./components/TodoLists";
 import Videos from "./components/Videos";
 
@@ -12,24 +17,25 @@ import Videos from "./components/Videos";
  */
 function App() {
   console.log("App render");
-  const isShowTotdo = true;
+
   return (
     <div className="container mx-auto">
-      <h1 className="text-3xl text-orange-600 font-bold underline">
-        Hello world!
-      </h1>
+      {/* <EventHandles /> */}
+      {/* <StateExample /> */}
+      <hr />
 
-      <button className="btn btn_primary">Primary</button>
-      <button className="btn">Default</button>
+      <RankStars />
 
-      <button className="btn pyc-1 fz1">Login</button>
+      <TableParams />
 
-      <Posts />
+      <SimpleCarousel />
+
+      {/* <Posts /> */}
       <Attributes />
-      <BlockUI />
+      {/* <BlockUI />
       <Videos />
       <ProductsList />
-      {isShowTotdo && <TodoList />}
+      {isShowTotdo && <TodoList />} */}
     </div>
   );
 }
