@@ -7,24 +7,27 @@ function MyForm() {
   const [name, setName] = useState("");
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-      event.preventDefault();
-      console.log(`Current Value: ${name}`)
-    }
+    event.preventDefault();
+    console.log(`Current Value: ${name}`);
+  };
 
   return (
     <form onSubmit={handleSubmit}>
-      <label>Enter your name:
-        <input 
-          type="text" 
+      <label>
+        Enter your name:
+        <input
+          type="text"
           value={name}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) => setName(e.target.value)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setName(e.target.value)
+          }
         />
       </label>
       <input type="submit" />
     </form>
-  )
+  );
 }
-export default MyForm
+export default MyForm;
 ```
 
 ## 2. Lấy value từ Textarea
@@ -38,20 +41,20 @@ function MyForm() {
   //Tách sự kiện onChange ra ngoài
   // Xử lý sự kiện khi người dùng thay đổi giá trị của các trường input
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTextarea(e.target.value)
-  }
+    setTextarea(e.target.value);
+  };
 
-   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-      event.preventDefault();
-      console.log(`Current Value: ${textarea}`)
-    }
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    console.log(`Current Value: ${textarea}`);
+  };
 
   return (
     <form onSubmit={handleSubmit}>
       <textarea value={textarea} onChange={handleChange} />
       <button type="submit">Submit</button>
     </form>
-  )
+  );
 }
 ```
 
@@ -62,13 +65,13 @@ function MyForm() {
   const [myCar, setMyCar] = useState("Volvo");
 
   const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setMyCar(e.target.value)
-  }
+    setMyCar(e.target.value);
+  };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-      event.preventDefault();
-      console.log(`Current Value: ${myCar}`)
-    }
+    event.preventDefault();
+    console.log(`Current Value: ${myCar}`);
+  };
 
   return (
     <form onSubmit={handleSubmit}>
@@ -79,71 +82,71 @@ function MyForm() {
       </select>
       <button type="submit">Submit</button>
     </form>
-  )
+  );
 }
 ```
 
 ## 4 Lấy value từ Radio
 
 ```js
-import { useState } from "react"
+import { useState } from "react";
 
 function MyForm() {
-  const [topping, setTopping] = useState("Medium")
+  const [topping, setTopping] = useState("Medium");
 
-  const onOptionChange = (e: React.ChangeEvent<HTMLInputElement>)=> {
-    setTopping(e.target.value)
-  }
+  const onOptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setTopping(e.target.value);
+  };
 
-   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-      event.preventDefault();
-      console.log(`Current Value: ${topping}`)
-    }
+  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    console.log(`Current Value: ${topping}`);
+  };
 
   return (
     <div className="App">
       <h3>Select Pizza Size</h3>
-     <form onSubmit={handleSubmit}>
-      <input
-        type="radio"
-        name="topping"
-        value="Regular"
-        id="regular"
-        checked={topping === "Regular"}
-        onChange={onOptionChange}
-      />
-      <label htmlFor="regular">Regular</label>
+      <form onSubmit={handleSubmit}>
+        <input
+          type="radio"
+          name="topping"
+          value="Regular"
+          id="regular"
+          checked={topping === "Regular"}
+          onChange={onOptionChange}
+        />
+        <label htmlFor="regular">Regular</label>
 
-      <input
-        type="radio"
-        name="topping"
-        value="Medium"
-        id="medium"
-        checked={topping === "Medium"}
-        onChange={onOptionChange}
-      />
-      <label htmlFor="medium">Medium</label>
+        <input
+          type="radio"
+          name="topping"
+          value="Medium"
+          id="medium"
+          checked={topping === "Medium"}
+          onChange={onOptionChange}
+        />
+        <label htmlFor="medium">Medium</label>
 
-      <input
-        type="radio"
-        name="topping"
-        value="Large"
-        id="large"
-        checked={topping === "Large"}
-        onChange={onOptionChange}
-      />
-      <label htmlFor="large">Large</label>
+        <input
+          type="radio"
+          name="topping"
+          value="Large"
+          id="large"
+          checked={topping === "Large"}
+          onChange={onOptionChange}
+        />
+        <label htmlFor="large">Large</label>
 
-      <p>
-        Select topping <strong>{topping}</strong>
-      </p>
+        <p>
+          Select topping <strong>{topping}</strong>
+        </p>
         <button type="submit">Submit</button>
       </form>
     </div>
-  )
+  );
 }
 
-export default MyForm
+export default MyForm;
 ```
 
 ## 5. Lấy value từ Checkbox
@@ -153,7 +156,7 @@ export default function MyForm() {
   const [isChecked, setIsChecked] = useState(false);
 
   const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.checked)
+    console.log(e.target.checked);
     setIsChecked(!isChecked);
   };
 
@@ -178,53 +181,53 @@ export default function MyForm() {
   );
 }
 ```
+
 ## 6. Lấy value từ Multi Checkbox
 
 ```js
 //App.js
 const courses = [
-  {id: 1, name: 'Html'},
-  {id: 2, name: 'Javascript'},
-  {id: 3, name: 'React Js'}
-]
+  { id: 1, name: "Html" },
+  { id: 2, name: "Javascript" },
+  { id: 3, name: "React Js" },
+];
 export default function App() {
   const [checked, setChecked] = useState([]);
 
-  const handelCheck = (id)=> {
-    setChecked(prev =>   {
+  const handelCheck = (id) => {
+    setChecked((prev) => {
       const isCheck = checked.includes(id);
       //Bỏ check nếu đã check
-      if(isCheck){
-        return checked.filter(item => item !== id)
+      if (isCheck) {
+        return checked.filter((item) => item !== id);
       }
       //Còn lại thêm mới để check
       return [...prev, id];
-    })
-  }
+    });
+  };
 
-  const handleSubmit = ()=> {
-    console.log(checked)
-  }
+  const handleSubmit = () => {
+    console.log(checked);
+  };
 
   return (
     <div>
-      {courses.map(course => {
+      {courses.map((course) => {
         <label key={course.id}>
           <input
-            type='checkbox'
+            type="checkbox"
             checked={checked.includes(course.id)}
-            onChange={()=> handelCheck(course.id)}
-          
+            onChange={() => handelCheck(course.id)}
           />
           {course.name}
-        </label>
+        </label>;
       })}
-    
-      <button type='submit' onClick={handleSubmit}>Submit</button>
+
+      <button type="submit" onClick={handleSubmit}>
+        Submit
+      </button>
     </div>
-
   );
-
 }
 ```
 
@@ -333,8 +336,8 @@ function TestForm() {
 export default TestForm;
 
 ```
-===========================================
 
+===========================================
 
 ## 8. Thư viện hỗ trợ hay dùng
 
@@ -348,8 +351,6 @@ npm install react-hook-form
 
 Example: <https://react-hook-form.com/get-started/#Quickstart>
 
-
-
 React Hook Form with Yup Validation
 
 Bạn cần cài thêm
@@ -362,50 +363,56 @@ Dưới đây là một ví dụ về dùng React Hook Form + Validate dữ li�
 
 ```js
 import { useForm } from "react-hook-form";
-import { yupResolver } from '@hookform/resolvers/yup';
+import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-const schema = yup.object({
-  firstName: yup.string().required(),
-  age: yup.number().positive().integer().required(),
-}).required();
+const schema = yup
+  .object({
+    firstName: yup.string().required(),
+    age: yup.number().positive().integer().required(),
+  })
+  .required();
 type FormData = yup.InferType<typeof schema>;
 
 export default function MyForm() {
-  const { register, handleSubmit, formState: { errors } } = useForm<FormData>({
-    resolver: yupResolver(schema)
-  });
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm <
+  FormData >
+  {
+    resolver: yupResolver(schema),
+  };
   const onSubmit = (data: FormData) => console.log(data);
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
       <input {...register("firstName")} />
       <p>{errors.firstName?.message}</p>
-        
+
       <input {...register("age")} />
       <p>{errors.age?.message}</p>
-      
+
       <input type="submit" />
     </form>
   );
 }
-
 ```
 
 Để thêm một trường mới, bạn chỉ cần thêm 2 dòng này:
-
 
 ```jsx
 <input {...register("age")} />
 <p>{errors.age?.message}</p>
 ```
+
 Trong đó:
 
 - `{...register("age")}` là cú pháp bạn khai báo `name` cho input
 - `{errors.age?.message}` để hiển thị lỗi khi dữ liệu bạn nhập vào input không hợp lệ.
 
 Nếu bạn muốn sử dụng các tính năng validation cơ bản của HTML5 bạn có thể làm như sau:
-
 
 ```jsx
 <input {...register("age", {require: true, min: 18, max: 100 })} />
@@ -415,7 +422,6 @@ Nếu bạn muốn sử dụng các tính năng validation cơ bản của HTML5
 ==> Bạn thêm vào hàm `register` tham số thứ 2 là một Object
 
 Chi tiết xem: https://react-hook-form.com/get-started#Registerfields
-
 
 Để bắt các trạng thái submit trong React Hook Form, bạn có thể sử dụng thuộc tính `handleSubmit` và `isSubmitting` được cung cấp bởi React Hook Form. Dưới đây là một ví dụ:
 
@@ -431,10 +437,10 @@ export default function MyForm() {
     <form onSubmit={handleSubmit(onSubmit)}>
       <input {...register("firstName")} />
       <p>{errors.firstName?.message}</p>
-        
+
       <input {...register("age")} />
       <p>{errors.age?.message}</p>
-      
+
        <button type="submit" disabled={isSubmitting}>
         {isSubmitting ? 'Submitting...' : 'Submit'}
       </button>
@@ -446,17 +452,16 @@ export default function MyForm() {
 export default MyForm;
 ```
 
-Trong ví dụ trên, chúng ta sử dụng `useForm` từ React Hook Form để tạo ra các phương thức và thuộc tính cần thiết cho form. 
+Trong ví dụ trên, chúng ta sử dụng `useForm` từ React Hook Form để tạo ra các phương thức và thuộc tính cần thiết cho form.
 
 - `handleSubmit` là một phương thức được cung cấp bởi React Hook Form và được gắn vào sự kiện `onSubmit` của form. Khi form được gửi đi, `handleSubmit` sẽ chạy hàm `onSubmit` được định nghĩa bởi bạn.
 - `isSubmitting` là một thuộc tính trong `formState` được cung cấp bởi React Hook Form. Nó sẽ có giá trị `true` khi form đang trong quá trình submit và `false` khi quá trình submit hoàn thành.
 
-Trong phần giao diện của form, chúng ta có một nút submit được kích hoạt hoặc vô hiệu hóa dựa trên giá trị của `isSubmitting`. Khi form đang được submit, nút submit sẽ bị vô hiệu hóa và hiển thị thông báo "Submitting...". 
+Trong phần giao diện của form, chúng ta có một nút submit được kích hoạt hoặc vô hiệu hóa dựa trên giá trị của `isSubmitting`. Khi form đang được submit, nút submit sẽ bị vô hiệu hóa và hiển thị thông báo "Submitting...".
 
 Ngược lại, khi không có quá trình submit nào diễn ra, nút sẽ được kích hoạt và hiển thị "Submit".
 
 ==> Giúp tránh cho người dùng nhấn Submit liên tục
-
 
 ### Yup validation
 
@@ -470,35 +475,50 @@ Cách sử dụng: <https://github.com/jquense/yup>
 
 ---
 
-
 Dưới đây là một ví dụ về đối tượng "user" với nhiều trường và các quy tắc xác thực tương ứng bằng Yup:
 
 ```javascript
-import * as yup from 'yup';
+import * as yup from "yup";
 
 const schema = yup.object().shape({
-  username: yup.string().required('Username is required'),
-  email: yup.string().email('Invalid email').required('Email is required'),
-  age: yup.number().integer().min(18, 'Age must be at least 18').required('Age is required'),
-  password: yup.string().min(6, 'Password must be at least 6 characters').required('Password is required'),
-  confirmPassword: yup.string()
-    .oneOf([yup.ref('password'), null], 'Passwords must match')
-    .required('Confirm Password is required'),
-  gender: yup.string().oneOf(['male', 'female'], 'Invalid gender').required('Gender is required'),
+  username: yup.string().required("Username is required"),
+  email: yup.string().email("Invalid email").required("Email is required"),
+  age: yup
+    .number()
+    .integer()
+    .min(18, "Age must be at least 18")
+    .required("Age is required"),
+  password: yup
+    .string()
+    .min(6, "Password must be at least 6 characters")
+    .required("Password is required")
+    .matches(
+      /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/,
+      "Mật khẩu không đúng định dạng"
+    ),
+  confirmPassword: yup
+    .string()
+    .oneOf([yup.ref("password"), null], "Passwords must match")
+    .required("Confirm Password is required"),
+  gender: yup
+    .string()
+    .oneOf(["male", "female"], "Invalid gender")
+    .required("Gender is required"),
 });
 
 const user = {
-  username: 'john_doe',
-  email: 'john@example.com',
+  username: "john_doe",
+  email: "john@example.com",
   age: 25,
-  password: 'password123',
-  confirmPassword: 'password123',
-  gender: 'male',
+  password: "password123",
+  confirmPassword: "password123",
+  gender: "male",
 };
 
-schema.validate(user)
-  .then(valid => console.log(valid))
-  .catch(error => console.log(error));
+schema
+  .validate(user)
+  .then((valid) => console.log(valid))
+  .catch((error) => console.log(error));
 ```
 
 Trong ví dụ trên, chúng ta đã sử dụng Yup để tạo một schema đối tượng cho "user". Các trường của "user" bao gồm `username`, `email`, `age`, `password`, `confirmPassword`, và `gender`. Mỗi trường được định nghĩa với các quy tắc xác thực tương ứng.
@@ -512,8 +532,6 @@ Trong ví dụ trên, chúng ta đã sử dụng Yup để tạo một schema đ
 
 Nếu các giá trị của "user" không tuân thủ các quy tắc xác thực tương ứng, Yup sẽ sinh ra các lỗi tương ứng. Bằng cách sử dụng phương thức `validate` của schema, chúng ta có thể kiểm tra xem "user" có hợp lệ hay không và xử lý các lỗi nếu có.
 
-
-
 ### Formik
 
 Ngoài React Hook Form bạn có thêm một lựa chọn nữa khá tốt là `Formik`
@@ -521,6 +539,7 @@ Ngoài React Hook Form bạn có thêm một lựa chọn nữa khá tốt là `
 ```bash
 npm install formik --save
 ```
+
 Example: <https://formik.org/docs/tutorial#a-simple-newsletter-signup-form>
 
 Formik với Yup Validation
