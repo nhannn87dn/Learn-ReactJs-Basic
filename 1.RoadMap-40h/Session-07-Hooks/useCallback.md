@@ -4,10 +4,9 @@
 
 - `useCallback` Hook chỉ chạy khi dependency thay đổi ==> Điều này làm cải thiện performance.
 
-- Dùng khi nào: khi component CON cần truyền một sự kiện callback ra cho CHA
+- Dùng khi nào: khi component CON cần truyền một sự kiện callback ra cho CHA, và không muốn component CON render lại khi state của component CHA thay đổi.
 
 - Component CON cần thêm React.memo() nữa mới đạt được hiệu quả
-
 
 Doc: <https://react.dev/reference/react/useCallback>
 
@@ -22,11 +21,11 @@ const App = () => {
   const [todos, setTodos] = useState([]);
 
   const increment = () => {
-    setCount(c => c + 1);
+    setCount((c) => c + 1);
   };
-  
+
   const addTodo = () => {
-    setTodos(t => [...t, "New Todo"]);
+    setTodos((t) => [...t, "New Todo"]);
   };
 
   return (
@@ -62,7 +61,7 @@ export default Todos;
 //export default memo(Todos);
 ```
 
-\- Khi bạn click  `increment` để tăng  biến `count` lên thì bạn xem console.log và thấy component Todos được re-render lại một cách ko cần thiết.
+\- Khi bạn click `increment` để tăng biến `count` lên thì bạn xem console.log và thấy component Todos được re-render lại một cách ko cần thiết.
 
 \- Tại sao vậy ? Ở đây có một khái niệm gọi là `**referential equality**` (Bình đẳng tham chiếu)
 
@@ -76,9 +75,8 @@ export default Todos;
 //cache lại
 // Nó chỉ thay đổi khi todos có thay đổi
 const addTodo = useCallback(() => {
-    setTodos((t) => [...t, "New Todo"]);
-  }, [todos]);
-
+  setTodos((t) => [...t, "New Todo"]);
+}, [todos]);
 ```
 
 useCallback phát huy tác dụng khi nó đi kèm với memo()
