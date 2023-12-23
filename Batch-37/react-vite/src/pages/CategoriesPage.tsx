@@ -1,5 +1,5 @@
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
-
+import axios from "axios";
 interface ICategories {
   id: number;
   name: string;
@@ -7,10 +7,18 @@ interface ICategories {
 
 const CategoriesPage = () => {
   //Hàm queryFn phải có return
+  // const getCategories = async () => {
+  //   return fetch("https://api.escuelajs.co/api/v1/categories").then(
+  //     (response) => response.json()
+  //   );
+  // };
+
+  //with Axios
   const getCategories = async () => {
-    return fetch("https://api.escuelajs.co/api/v1/categories").then(
-      (response) => response.json()
+    const result = await axios.get(
+      "https://api.escuelajs.co/api/v1/categories"
     );
+    return result.data;
   };
 
   const query = useQuery<ICategories[], Error>({
@@ -23,21 +31,34 @@ const CategoriesPage = () => {
   // Access the client
   const queryClient = useQueryClient();
 
-  const createCategory = async () =>
-    fetch("https://api.escuelajs.co/api/v1/categories", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      //code cứng cho ví dụ
-      body: JSON.stringify({
-        name: "Softech",
-        image: "https://placeimg.com/640/480/any",
-      }),
-    }).then((response) => response.json());
+  // const createCategory = async (payload: {name: string, image: string}) =>
+  //   fetch("https://api.escuelajs.co/api/v1/categories", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     //code cứng cho ví dụ
+  //     body: JSON.stringify(payload),
+  //   }).then((response) => response.json());
+
+  const createCategoryAxios = async (payload: {
+    name: string;
+    image: string;
+  }) => {
+    const result = await axios.post(
+      "https://api.escuelajs.co/api/v1/categories",
+      payload,
+      {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      }
+    );
+    return result.data;
+  };
 
   const mutation = useMutation({
-    mutationFn: createCategory,
+    mutationFn: createCategoryAxios,
     onSuccess: () => {
       console.log("Thêm mơi thành công !");
       // Làm mới danh sách danh mục lại
@@ -52,7 +73,10 @@ const CategoriesPage = () => {
       <button
         onClick={() => {
           //Gọi action để thực hiện hàm mutationFn = createCategory
-          mutation.mutate();
+          mutation.mutate({
+            name: "Softech",
+            image: "https://placeimg.com/640/480/any",
+          });
         }}
         className="btn btn_primary"
       >
