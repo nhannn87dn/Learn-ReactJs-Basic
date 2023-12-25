@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
+import { Helmet } from "react-helmet";
 
 interface IPosts {
   userId: number;
@@ -26,6 +27,12 @@ const BlogPage = () => {
 
   return (
     <div>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Blog Page</title>
+        <link rel="canonical" href="http://localhost:5173/blog" />
+        <meta name="description" content="Blog Learn React at Softech Aptech" />
+      </Helmet>
       <h1 className="text-3xl font-bold">Blog Page</h1>
       <ul>
         {query.data &&

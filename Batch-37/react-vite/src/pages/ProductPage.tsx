@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useForm, SubmitHandler } from "react-hook-form";
+import { Link } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 type Inputs = {
   title: string;
@@ -19,6 +21,12 @@ interface IProduct {
 const ProductPage = () => {
   const [products, setProducts] = useState<IProduct[]>([]);
   const [isLoading, setIsLoading] = useState(false);
+
+  const [params] = useSearchParams();
+  const page = params.get("page");
+  const init_page = page ? parseInt(page) : 1;
+
+  console.log(page);
   //Fetch API để lấy DATA
   useEffect(() => {
     //Code bên trong nó chạy  1 lần duy nhất khi component render lần đầu
@@ -27,8 +35,12 @@ const ProductPage = () => {
       setIsLoading(true);
       //Sử dụng async trước arrow function
       // await trước một Promise để đợi kết quả
+      const limit = 10; //10 sp / 1 trang
+      const offset = (init_page - 1) * limit;
+      //Thuật toán phân trang
+
       const response = await axios.get(
-        "https://api.escuelajs.co/api/v1/products"
+        `https://api.escuelajs.co/api/v1/products?offset=${offset}&limit=${limit}`
       );
       //kết quả từ API trả về
       console.log(response);
@@ -38,7 +50,7 @@ const ProductPage = () => {
       setProducts(response.data);
     };
     fetchData();
-  }, []); //dependencies là mảng rỗng []
+  }, [init_page]); //Khi init_page thay đổi thì useEffect được gọi lại
 
   //ReactHook
   const {
@@ -137,6 +149,26 @@ const ProductPage = () => {
           );
         })}
       </ul>
+      <div className="flex gap-x-8">
+        <Link
+          className="py-1 px-2 border border-slate-900"
+          to={"/products?page=1"}
+        >
+          1
+        </Link>
+        <Link
+          className="py-1 px-2 border border-slate-900"
+          to={"/products?page=2"}
+        >
+          2
+        </Link>
+        <Link
+          className="py-1 px-2 border border-slate-900"
+          to={"/products?page=3"}
+        >
+          3
+        </Link>
+      </div>
     </div>
   );
 };

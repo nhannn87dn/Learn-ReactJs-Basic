@@ -2,20 +2,19 @@
 
 Với hệ thống URL như sau
 
-* / : mặc định là trang chủ
+- / : mặc định là trang chủ
 
-* /products : danh sách sản phẩm
+- /products : danh sách sản phẩm --> Gọi API lấy ra danh sách SP: https://fakeapi.platzi.com/en/rest/products/#get-all-products
 
-* /products/:id : chi tiết một sản phẩm -- Lấy ID hiển thị ra
+- /products/:id : chi tiết một sản phẩm -- Lấy ID --> gọi API hiển thị chi tiết sản phẩm dựa vào ID: https://fakeapi.platzi.com/en/rest/products/#get-a-single-product
 
 Phần quản trị
 
-* /dashboard : Trang chủ Admin
-* /login : Admin Login
+- /dashboard : Trang chủ Admin
+- /login : Admin Login
 
-* /dashboard/products : Danh sách sản phẩm
-* /dashboard/products/add : Thêm một sản phẩm
-
+- /dashboard/products : Danh sách sản phẩm
+- /dashboard/products/add : Thêm một sản phẩm
 
 **Lưu ý:**
 

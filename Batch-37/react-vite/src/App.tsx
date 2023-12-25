@@ -14,6 +14,7 @@ import CustomerDashboardPage from "./pages/CustomerDashboardPage";
 import CustomerProfilePage from "./pages/CustomerProfilePage";
 import CustomerOrdersPage from "./pages/CustomerOrdersPage";
 import BlogDetailsPage from "./pages/BlogDetailsPage";
+import LoginPage from "./pages/LoginPage";
 
 // Create a client
 const queryClient = new QueryClient();
@@ -64,6 +65,9 @@ function App() {
             {/* <Route path="blog/:slug" element={<BlogDetailsPage />} /> */}
             {/* Sử dụng regular expression */}
             <Route path="blog/:slug" element={<BlogDetailsPage />} />
+
+            <Route path="login" element={<LoginPage />} />
+
             {/* 
                 Để cover được những trang nào chưa định nghĩa Route
                 Thì chúng ta một khái niệm là Page Not Found 404

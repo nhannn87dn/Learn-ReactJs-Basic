@@ -33,6 +33,9 @@ const Header = () => {
                 <Link to={"/customers"}>Customers</Link>
               </li>
               <li>
+                <Link to={"/login"}>Login</Link>
+              </li>
+              <li>
                 {/* Liên kết ra một trang web khác */}
                 <a href="https://24h.com.vn">24h.com.vn</a>
               </li>
