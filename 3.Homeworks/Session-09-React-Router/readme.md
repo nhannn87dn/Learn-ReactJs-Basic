@@ -3,6 +3,7 @@
 Dựa vào Fake API: https://fakeapi.platzi.com/
 
 - Tạo một project site thương mại điển tử có các trang
+
   - Home
   - Categories
   - Product Details
@@ -21,3 +22,8 @@ Dựa vào Fake API: https://fakeapi.platzi.com/
   - Blogs management
   - Users management
   - Orders management
+
+**Lưu ý:**
+
+- Phần Dashboard có Layout khác
+- Nếu không match với URL nào thì hiển thị trang báo lỗi: 404 -Not Found
