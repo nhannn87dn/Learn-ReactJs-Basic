@@ -1,5 +1,3 @@
-import Header from "./Header";
-import Footer from "./Footer";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { useForm, SubmitHandler } from "react-hook-form";
@@ -86,7 +84,6 @@ const ProductPage = () => {
   };
   return (
     <div>
-      <Header />
       <h1>ProductPage</h1>
       <h2 className="font-bold border-b border-slate-700">
         Thêm một sản phẩm mới
@@ -140,8 +137,6 @@ const ProductPage = () => {
           );
         })}
       </ul>
-
-      <Footer />
     </div>
   );
 };
