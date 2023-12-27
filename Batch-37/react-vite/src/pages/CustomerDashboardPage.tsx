@@ -1,5 +1,13 @@
+import useUserStore from "../hooks/useUserStore";
 const CustomerDashboardPage = () => {
-  return <div>CustomerDashboardPage</div>;
+  const { user } = useUserStore();
+  return (
+    <div>
+      <h2>CustomerDashboardPage</h2>
+      <div>Name: {user?.name}</div>
+      <div>Email: {user?.email}</div>
+    </div>
+  );
 };
 
 export default CustomerDashboardPage;

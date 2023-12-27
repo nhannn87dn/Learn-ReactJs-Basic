@@ -1,3 +1,6 @@
+import Banking from "../components/Banking";
+import BankingHangXom from "../components/BankingHangXom";
+import BankingZustand from "../components/BankingZustand";
 import { useBrowserWidth } from "../hooks/useBrowserWidth";
 import { Helmet } from "react-helmet";
 
@@ -16,6 +19,12 @@ const HomePage = () => {
       <h1 className="text-3xl font-bold">HomePage</h1>
       <h3>Browser Width: {bWidth}</h3>
       {bWidth < 425 ? "Mobile" : "Desktop"}
+
+      <Banking />
+      <hr />
+      <BankingZustand />
+      <hr />
+      <BankingHangXom />
     </div>
   );
 };
