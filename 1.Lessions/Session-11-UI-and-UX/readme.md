@@ -236,6 +236,6 @@ const Myconponent = ()=>{
 
 ## Bài tập
 
-Làm lại: https://github.com/nhannn87dn/ReactJs-Basic-Tutorials/tree/main/3.Homeworks/Session-06-Form/Exercise-2
+Làm lại: https://github.com/nhannn87dn/Learn-ReactJs-Basic/tree/main/3.Homeworks/Session-06-Form/Exercise-2
 
 Sử dụng Ant Design
