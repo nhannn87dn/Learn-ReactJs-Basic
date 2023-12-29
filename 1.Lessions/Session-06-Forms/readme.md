@@ -366,15 +366,19 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
+//validate with yup
 const schema = yup
   .object({
     firstName: yup.string().required(),
     age: yup.number().positive().integer().required(),
   })
   .required();
+
+//Typescript for Form Data
 type FormData = yup.InferType<typeof schema>;
 
 export default function MyForm() {
+  //Su dụng React hook form
   const {
     register,
     handleSubmit,
@@ -384,6 +388,7 @@ export default function MyForm() {
   {
     resolver: yupResolver(schema),
   };
+  //Bắt sự kiện Onsubmit Form
   const onSubmit = (data: FormData) => console.log(data);
 
   return (

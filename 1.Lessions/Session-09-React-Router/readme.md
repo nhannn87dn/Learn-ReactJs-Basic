@@ -70,7 +70,7 @@ Giải thích:
 
 Qua ví dụ trên thì các bạn nhận thấy, thực tế có các trang sẽ chung nhau một cấu trúc chung là Header và Footer. Chỉ khác nhau phần Body.
 
-Khi đó React cho phép chúng ta dùng Layout để chứa phần thông tin Chung giữa cá Pages
+Khi đó React cho phép chúng ta dùng Layout để chứa phần thông tin Chung giữa các Pages
 
 Tạo một folder src/layouts
 
@@ -108,7 +108,7 @@ const Layout = () => {
 export default Layout;
 ```
 
-Khi đã dùng React Route rồi thì để chuyển trang phải dùng đến component Link của `react-router-dom`
+Khi đã dùng React Route rồi thì để chuyển trang phải dùng đến component `Link` của `react-router-dom`
 
 Khi đó bạn sửa App lại thành như sau
 
@@ -156,11 +156,6 @@ Khai báo thêm một Route ở App
 > /products/my-string
 
 - Nếu bạn truyền vào là chuỗi như trên thì `id` = `my-string`
-- Do vậy nếu bạn muốn Match chính xác id là số thì đổi lại là
-
-```js
-<Route path="product/:id([0-9]+)" element={<ParameterPage />} />
-```
 
 > Lưu ý: Kể từ react-router-dom V6, không còn hỗ trợ Regular expression nữa
 
@@ -181,32 +176,6 @@ const ParameterPage = () => {
 };
 
 export default ParameterPage;
-```
-
-Ngoài ra bạn cũng có thể định nghĩa route với cú pháp `Regex`
-
-Chấp nhận ID là số nguyên dương:
-
-```js
-//Ví dụ URL hợp lệ: /product/123
-<Route path="product/:id(\d+)" element={<ProductPage />} />
-```
-
-URL dạng slug: chỉ chấp nhận chữ cái thường và dấu gạch -
-
-```js
-//Ví dụ URL hợp lệ: /blog/my-blog-post, /blog/another-blog-post-123
-<Route
-  path="blog/:slug(^[a-z0-9]+(?:-[a-z0-9]+)*$)"
-  element={<BlogDetailPage />}
-/>
-```
-
-URL username - chỉ chấp nhận chữ cái thường, số 0-9 và độ dài từ 3-10 kí tự
-
-```js
-//Ví dụ URL hợp lệ: /user/johndoe, /user/username123
-<Route path="users/:username([a-z0-9]{3,10})" element={<UserDetailPage />} />
 ```
 
 ---
@@ -278,6 +247,46 @@ import { useNavigate } from "react-router-dom";
 const navigate = useNavigate();
 navigate("/login");
 ```
+
+## SEO and Metadata
+
+React là một ứng dụng **Single Page Application** với cơ chế Client Side Rendering
+
+Làm thế nào để bạn có thể thay đổi thông tin title, metadata để SEO ?
+
+Thư viện sau giúp chúng ta làm được điều đó
+
+```bash
+yarn add react-helmet
+# Với TypeScript cần cài thêm
+yarn add -D @types/react-helmet
+```
+
+Cách sử dụng
+
+HomePage
+
+```tsx
+import { Helmet } from "react-helmet";
+
+const Home = () => {
+  return (
+    <>
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Home Page</title>
+        <link rel="canonical" href="http://localhost:5173/" />
+        <meta name="description" content="Learn React at Softech Aptech" />
+      </Helmet>
+      <h1 className="py-5">Home Page</h1>
+    </>
+  );
+};
+
+export default Home;
+```
+
+Với Social Metadata
 
 ## Multi Layout
 
@@ -380,46 +389,6 @@ const Layout = route.layout ? route.layout : DefaultLayout;
 ```
 
 Khi bạn định nghĩa Layout riêng thì nó lấy Layout đó, còn không thì nó lấy Layout mặc định chung.
-
-## SEO and Metadata
-
-React là một ứng dụng **Single Page Application** với cơ chế Client Side Rendering
-
-Làm thế nào để bạn có thể thay đổi thông tin title, metadata để SEO ?
-
-Thư viện sau giúp chúng ta làm được điều đó
-
-```bash
-yarn add react-helmet
-# Với TypeScript cần cài thêm
-yarn add -D @types/react-helmet
-```
-
-Cách sử dụng
-
-HomePage
-
-```tsx
-import { Helmet } from "react-helmet";
-
-const Home = () => {
-  return (
-    <>
-      <Helmet>
-        <meta charSet="utf-8" />
-        <title>Home Page</title>
-        <link rel="canonical" href="http://localhost:5173/" />
-        <meta name="description" content="Learn React at Softech Aptech" />
-      </Helmet>
-      <h1 className="py-5">Home Page</h1>
-    </>
-  );
-};
-
-export default Home;
-```
-
-Với Social Metadata
 
 ## Private Routes
 
