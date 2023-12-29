@@ -236,6 +236,14 @@ const Myconponent = ()=>{
 
 ## Bài tập
 
-Làm lại: https://github.com/nhannn87dn/Learn-ReactJs-Basic/tree/main/3.Homeworks/Session-06-Form/Exercise-2
+### Task 1
 
-Sử dụng Ant Design
+- Làm lại Form02.png: https://github.com/nhannn87dn/Learn-ReactJs-Basic/tree/main/3.Homeworks/Session-06-Form/Exercise-2
+
+- Sử dụng Ant Design
+
+### Task 2
+
+- Lấy dữ liệu từ API: GET - https://api.escuelajs.co/api/v1/products
+- Hiển thị thành một danh sách dạng BẢNG - table với Ant Design
+- Phân trang trết kết quả trả về 5 records / 1 trang
