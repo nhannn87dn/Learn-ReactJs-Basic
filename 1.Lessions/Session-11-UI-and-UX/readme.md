@@ -10,11 +10,9 @@ Trong thiết kế thì UI đóng vai trò là yếu tố truyền tải thông 
 
 **Ví dụ:** Trên cương vị là một người thợ mộc khi bạn đóng một cái giường thì trước tiên sản phẩm bạn làm ra phải giống một cái giường đã, không thể cái giường lại giống 1 cái bàn được đúng không nào? Thì ở đây UI cũng được hiểu tương tự như vậy.
 
-
-
 **Các bài viết tham khảo**
 
--  https://viblo.asia/p/ui-ux-la-gi-ui-ux-design-la-gi-m68Z0MJ6lkG
+- https://viblo.asia/p/ui-ux-la-gi-ui-ux-design-la-gi-m68Z0MJ6lkG
 
 - https://www.brandsvietnam.com/congdong/topic/325840-UI-la-gi-10-nguyen-tac-cua-mot-giao-dien-hieu-qua
 
@@ -25,9 +23,7 @@ Trong thiết kế thì UI đóng vai trò là yếu tố truyền tải thông 
 - Thiết kế trực quan (Visual Design)
 - Thiết kế tương tác (Interaction Design)
 
-
 ### Thiết kế trực quan (Visual Design)
-
 
 Visual Design hay còn được gọi là thiết kế trực quan là việc tập trung thiết kế vào các trải nghiệm của người dùng, khả năng tương tác của khách hàng đó đối với sản phẩm. Thuật ngữ Visual Design không thường xuất hiện trong các cuộc đối ngoại hay cuộc sống sinh hoạt hàng ngày. Nó được sử dụng nhiều hơn trên các trang web, các thiết kế website, thiết kế ứng dụng, thiết kế giao diện,…sao cho phần bề ngoài thu hút được nhiều người xem và quan tâm nhất.
 
@@ -37,21 +33,20 @@ Nhìn chung, những tính năng của Visual Design xoay quanh việc mang lạ
 
 Nhiệm vụ chính của Visual Design khi xuất hiện trước công chúng đó chính là đem lại sự thú vị, kích thích sự tò mò và hứng thú cho người xem nhất có thể. Vậy để thu hút được một lượng lớn người quan tâm và có những trải nghiệm đáng nhớ hơn, Visual Design phải có những “tố chất” đặc biệt như sau:
 
-*   Tính thống nhất, đồng bộ
-*   Nguyên tắc Gestalt
-*   Không gian
-*   Màu sắc
-*   Sự phân cấp bậc
-*   Tương phản
-*   Tỉ lệ
-*   …
+- Tính thống nhất, đồng bộ
+- Nguyên tắc Gestalt
+- Không gian
+- Màu sắc
+- Sự phân cấp bậc
+- Tương phản
+- Tỉ lệ
+- …
 
 Xem bài viết: https://arena.fpt.edu.vn/visual-design-la-gi/
 
-
 ### Thiết kế tương tác (Interaction Design)
 
-Interaction design là giai đoạn các app developer phân chia tương tác và sử dụng các nhân tố hữu hình như animation. Từ đó công cụ sẽ nâng cao việc trải nghiệm web – app lên một tầm cao mới bằng việc quan sát cách giao tiếp và dẫn lối phản xạ, hành vi của người dùng. 
+Interaction design là giai đoạn các app developer phân chia tương tác và sử dụng các nhân tố hữu hình như animation. Từ đó công cụ sẽ nâng cao việc trải nghiệm web – app lên một tầm cao mới bằng việc quan sát cách giao tiếp và dẫn lối phản xạ, hành vi của người dùng.
 
 Khi khám phá về người sử dụng web – app, interaction design sẽ tập trung khai phá những ý kiến phản hồi của khách hàng, ví dụ như “Tôi chưa rõ cách đăng kí như thế nào”, “Tôi phải làm những gì tiếp theo”.. Những điều này tiết lộ cho các nhà thiết kế website biết những vấn đề mà người dùng đang gặp phải để tính toán giải pháp giúp giải quyết mọi khó khăn của khách hàng.
 
@@ -83,7 +78,6 @@ Ví dụ một số sai lầm UI
 
 ![mistakes-ui](img/ui-design-mistakes-7.jpg)
 
-
 Xem bài viết: https://careerfoundry.com/en/blog/ui-design/common-ui-design-mistakes/
 
 ## UX là gì ?
@@ -92,12 +86,12 @@ Viết tắt từ User Experience – trải nghiệm người dùng, UX là qu�
 
 UX tập trung vào đánh giá của người dùng khi sử dụng sản phẩm. Liệu Web/ Mobile App của bạn có thân thiện với người dùng không? Họ có gặp khó khăn khi sử dụng không? Người dùng có dễ dàng tìm thấy thứ họ muốn trên website của bạn không?....989
 
-Xem bài viết: 
+Xem bài viết:
+
 - https://topdev.vn/blog/ux-la-gi-ux-designer-thi-lam-nhung-gi/
 - https://adcvietnam.net/khai-niem-co-ban-ve-thiet-ke-ux--trai-nghiem-nguoi-dung
 
 ## Nguồn ý tưởng UI,UX
-
 
 - https://inspirationmobile.tumblr.com
 - https://www.pttrns.com/
@@ -106,13 +100,11 @@ Xem bài viết:
 - Kiến thức UX căn bản: https://balsamiq.com/learn/courses/intro-to-ux-design/
 - Kiến thức UX nâng cao: https://uxmastery.com/
 
-
 ## Các thư viện UI Components
 
 ### AntDesign
 
 Ant Design là một thư viện giao diện người dùng (UI) được tạo ra bởi Ant Design Corporation, một công ty của Trung Quốc. Thư viện này cung cấp một bộ sưu tập các thành phần giao diện đẹp, hiện đại và chuyên nghiệp, hỗ trợ xây dựng các ứng dụng web và mobile với giao diện người dùng tốt và dễ sử dụng.
-
 
 Ant Design hỗ trợ nhiều ngôn ngữ lập trình như React, Angular, Vue và TypeScript, giúp bạn sử dụng thư viện dễ dàng trong các dự án phát triển ứng dụng. Điều này giúp bạn tập trung vào logic kinh doanh và xây dựng giao diện đẹp và mạnh mẽ một cách dễ dàng.
 
@@ -129,7 +121,7 @@ Cách dùng:
 /*
 Dùng Component nào thì destructuring ra
 */
-import { Button, Space } from 'antd';
+import { Button, Space } from "antd";
 const App = () => (
   <Space wrap>
     <Button type="primary">Primary Button</Button>
@@ -148,11 +140,9 @@ Ant Design thường dùng cho các ứng dụng thiên về quản lý: Dashboa
 
 https://chakra-ui.com/
 
-
 Chakra UI là một thư viện giao diện người dùng (UI) mã nguồn mở dựa trên React, được thiết kế để giúp bạn xây dựng các ứng dụng web với giao diện đẹp, tùy chỉnh và dễ sử dụng. Chakra UI tập trung vào việc cung cấp các thành phần giao diện tái sử dụng và tiết kiệm thời gian, giúp bạn tập trung vào việc xây dựng ứng dụng thay vì tạo lại các thành phần giao diện cơ bản.
 
 Cài đặt với React Vite: https://chakra-ui.com/getting-started/vite-guide
-
 
 ### Semantic UI React
 
@@ -160,9 +150,7 @@ Semantic UI React là một thư viện giao diện người dùng mã nguồn m
 
 https://react.semantic-ui.com/
 
-
-
-###  Material-UI
+### Material-UI
 
 Material-UI là một thư viện giao diện người dùng (UI) mã nguồn mở dựa trên nguyên lý thiết kế Material Design của Google. Nó được xây dựng cho React và cung cấp một bộ sưu tập các thành phần giao diện đẹp, hiện đại và tương tác, giúp bạn xây dựng các ứng dụng web với giao diện người dùng chất lượng cao.
 
@@ -170,21 +158,20 @@ Material-UI được sử dụng rộng rãi trong cộng đồng React và đã
 
 Cài đặt: https://mui.com/material-ui/getting-started/installation/
 
-
 ```bash
 npm install @mui/material @emotion/react @emotion/styled
 
 yarn add @mui/material @emotion/react @emotion/styled
 ```
-Xem chi tiết thêm ở link trên
 
+Xem chi tiết thêm ở link trên
 
 Cách dùng:
 
 ```js
-import * as React from 'react';
-import Stack from '@mui/material/Stack';
-import Button from '@mui/material/Button';
+import * as React from "react";
+import Stack from "@mui/material/Stack";
+import Button from "@mui/material/Button";
 
 export default function BasicButtons() {
   return (
@@ -195,9 +182,9 @@ export default function BasicButtons() {
     </Stack>
   );
 }
-
 ```
-###  React Bootstrap
+
+### React Bootstrap
 
 Cách cài đặt: https://react-bootstrap.netlify.app/docs/getting-started/introduction
 
@@ -214,7 +201,7 @@ Tiếp theo: Cấu hình Css global
   /* The following line can be included in your src/index.js or App.js file */
   /* Thêm vào file src/App.tsx (React Vite) */
 }
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 ```
 
 Cách dùng:
@@ -240,10 +227,12 @@ const Myconponent = ()=>{
 }
 ```
 
+## UI HoT Trend Khác
 
-
-
-
+- https://ui.shadcn.com
+- https://www.radix-ui.com
+- https://daisyui.com
+- https://flowbite.com/docs/getting-started/introduction/
 
 ## Bài tập
 

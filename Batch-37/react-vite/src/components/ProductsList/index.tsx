@@ -28,16 +28,17 @@ const ProductsList = () => {
   return (
     <div>
       <h2>ProductsList</h2>
-      {products.map((product) => {
-        return (
-          <SingleProduct
-            key={`ProductsList_${product.id}`}
-            name={product.name}
-            price={product.price}
-            promoPrice={product.promoPrice ? product.promoPrice : 0}
-          />
-        );
-      })}
+      {products.length > 0 &&
+        products.map((product) => {
+          return (
+            <SingleProduct
+              key={`ProductsList_${product.id}`}
+              name={product.name}
+              price={product.price}
+              promoPrice={product.promoPrice ? product.promoPrice : 0}
+            />
+          );
+        })}
       {/* <SingleProduct name="San Pham A" price={245} />
       <SingleProduct name="San Pham B" price={560} promoPrice={500} /> */}
     </div>
