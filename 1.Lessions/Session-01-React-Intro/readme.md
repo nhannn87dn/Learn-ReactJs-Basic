@@ -1,6 +1,7 @@
 # Session 1 Giới thiệu React
 
 Trong session này chúng ta sẽ lần lượt nắm các vấn đề sau:
+
 > 🔸 React là gì ?
 >
 > 🔸React có phổ biến không ?
@@ -18,11 +19,10 @@ Trong session này chúng ta sẽ lần lượt nắm các vấn đề sau:
 > 🔸Môi phát triển ReactJS (Node.js, npm/yarn)
 >
 > 🔸Cài đặt ReactJs - Hello, React !
->
 
-***
+---
 
-## 🔶  React là gì ?
+## 🔶 React là gì ?
 
 - React là một thư viện JavaScript được hậu thuẩn bởi Facebook (by Jordan Walke)
 - React là một thư viện giao diện người dùng (UI)
@@ -30,7 +30,7 @@ Trong session này chúng ta sẽ lần lượt nắm các vấn đề sau:
 
 React lần đầu tiên được triển khai cho ứng dụng Newsfeed của Facebook năm 2011, sau đó được triển khai cho Instagram.com năm 2012. Nó được mở mã nguồn (open-sourced) tại JSConf US tháng 5 năm 2013.
 
-***
+---
 
 ## 🔶 React có phổ biến không ?
 
@@ -39,7 +39,7 @@ React lần đầu tiên được triển khai cho ứng dụng Newsfeed của F
 
 - `Example Case`: Facebook, Instagram, Netflix, Reddit, Uber, Airbnb, The New York Times, Khan, Academy, Codecademy, SoundCloud, Discord, WhatsApp Web
 
-***
+---
 
 ## 🔶 React có thể làm được gì ?
 
@@ -47,9 +47,9 @@ React lần đầu tiên được triển khai cho ứng dụng Newsfeed của F
 - làm Mobile APP
 - làm Desktop APP
 
-***
+---
 
-## 🔶  Tại sao nên học React
+## 🔶 Tại sao nên học React
 
 - Trend
 - Cộng đồng lớn
@@ -60,13 +60,11 @@ React lần đầu tiên được triển khai cho ứng dụng Newsfeed của F
 - Khả năng tương thích ngược
 - Cơ hội việc làm cao
 
-Xem Biểu đồ Trend tech: 
+Xem Biểu đồ Trend tech:
 
 - <https://survey.stackoverflow.co/2023/#section-most-popular-technologies-web-frameworks-and-technologies>
 - https://npmtrends.com/@angular/core-vs-angular-vs-react-vs-vue
 - https://trends.google.com/trends/explore?cat=31&date=2021-01-01%202023-07-17&q=Vue,React,Angular
-
-
 
 6 điểm nổi bật của ReactJs
 
@@ -78,7 +76,6 @@ Nhiều ông lớn sử dụng
 
 ---
 
-
 ---
 
 ## 🔶 Flexbox Css
@@ -86,12 +83,6 @@ Nhiều ông lớn sử dụng
 [Mở Flexbox](Review-Flexbox/flexbox.md)
 
 ---
-
-## 🔶 Javascript-ESNext
-
-- Nắm thật chắc cú pháp ES6 <https://www.w3schools.com/REACT/react_es6.asp>
-
-- Xem lại: [Mở Javascript-ESNext](Javascript-ES6/readme.md)
 
 ## 🔶 Môi phát triển ReactJS (Node.js, npm/yarn)
 
@@ -115,9 +106,6 @@ Nhiều ông lớn sử dụng
 
 > Nên dùng yarn để cho tốc độ cài đặt nhanh hơn
 
-
-
-
 ## 🔥**npm là gì ?**
 
 NPM viết tắt của từ **Node Package Manager** là một công cụ tạo và quản lý các thư viện javascript chạy trên môi trường Nodejs
@@ -133,19 +121,30 @@ Lệnh cơ bản:
 
 npm init –y #hởi tạo project mới , tạo ra file package.json
 
-npm ls #xem danh sách gói 
+npm ls #xem danh sách gói
 npm ls -g #xem danh sách gói ở Global
 
 npm install yarn -g # cài vào global
 npm install axios --save # cài vào dependencies
 npm install sass --save-dev # cài vào devDependencies
 
-npm uninstall package_name # gở cài đặt 
+npm uninstall package_name # gở cài đặt
 npm update package_name #update gói
 
 ```
 
-Yarn là một công cụ tương tự NPM
+**Yarn là một công cụ tương tự NPM**
+
+Cài yarn:
+
+```bash
+# Step 1: install
+npm install --global yarn
+# Step 2: check installation
+yarn --version
+```
+
+Các lệnh cơ bản yarn
 
 ```bash
 yarn init #Khởi tạo project mới, tạo ra file package.json
@@ -175,9 +174,11 @@ Mở Powershell, chạy với quyền Administator, dán lệnh vào
 ```bash
 Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted
 ```
-Sau đó nhập A, Enter ==> quay lại cài yarn.
 
-***
+Sau đó nhập A, Enter ==> quay lại cài yarn.
+Tắt VsCode sau đó mở lại, check lại lệnh đã ổn chưa ?
+
+---
 
 ## 🔶**Cài đặt ReactJs - Hello, React !**
 
@@ -189,9 +190,9 @@ npx create-react-app name-of-app --template typescript
 yarn create react-app my-app --template typescript
 ```
 
-***
+---
 
-**Option 2:**  Thêm TypeScript vào dự án React App đã tồn tại:
+**Option 2:** Thêm TypeScript vào dự án React App đã tồn tại:
 
 ```bash
 npm install --save typescript @types/node @types/react @types/react-dom @types/jest
@@ -204,12 +205,13 @@ yarn add typescript @types/node @types/react @types/react-dom @types/jest
 
 Bước tiếp, thay thế kiểu file thành TypeScript file (e.g. src/index.js to src/index.tsx) và run lại ứng dự án.
 
-
 **Option 3: Cài đặt với Vite**
 
 Xem: <https://duthanhduoc.com/blog/tao-du-an-react-vite-typescript-eslint>
 
 ```bash
+npm create vite@lasted
+# Hoặc
 yarn create vite
 ```
 
@@ -239,22 +241,22 @@ Tiếp theo là thư mục vừa được Vite tạo
 ```bash
 cd react-app
 ```
+
 Cài đặt các package
 
 ```bash
 yarn
 ```
+
 Chạy project
 
 ```bash
 yarn dev
 ```
 
-
-***
+---
 
 Tìm hiều các thành phần cấu trúc Project React
-
 
 ### 🔥**Giới thiệu các thành phần package.json**
 
@@ -270,7 +272,7 @@ Tìm hiều các thành phần cấu trúc Project React
 - main: index.js
 - keywords: các từ khóa
 
-***
+---
 
 ### 🔥**Giới thiệu về .gitignore**
 
@@ -279,12 +281,21 @@ Tìm hiều các thành phần cấu trúc Project React
 - Tránh public những thứ không cần thiết
 - Góp phần giảm dung lượng dự án đẩy lên Git
 
-***
-
+---
 
 ### 🔥**Cấu trúc cơ bản React App**
 
 Xem cấu trúc ở project đã cài đặt tùy bạn cài đặt với tùy chọn như thế nào mà nó có cấu trúc thư mục, file khác nhau
 
-
 Xem thêm [React with TypeScript](TypeScript-React.md)
+
+## 🔶 Javascript-ESNext
+
+- Nắm thật chắc cú pháp ES6 <https://www.w3schools.com/REACT/react_es6.asp>
+
+- Xem lại: [Mở Javascript-ESNext](Javascript-ES6/readme.md)
+
+## 🔶 TypeScript with React
+
+- Nắm một số cách khai báo kiểu dữ liệu trong TypeScript
+- Link: https://www.w3schools.com/typescript
