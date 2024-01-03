@@ -1,7 +1,18 @@
 import { useNavigate } from "react-router-dom";
 
-import { Button, Checkbox, Form, Input, Space, Table, Tag } from "antd";
+import {
+  Button,
+  Checkbox,
+  Form,
+  Input,
+  Space,
+  Table,
+  Tag,
+  Col,
+  Row,
+} from "antd";
 import type { ColumnsType } from "antd/es/table";
+import type { CheckboxChangeEvent } from "antd/es/checkbox";
 
 const onFinish = (values: any) => {
   console.log("Success:", values);
@@ -98,6 +109,10 @@ const data: DataType[] = [
   },
 ];
 
+const onChange = (e: CheckboxChangeEvent) => {
+  console.log(`checked = ${e.target.checked}`);
+};
+
 const LoginPage = () => {
   const navigate = useNavigate();
 
@@ -157,6 +172,79 @@ const LoginPage = () => {
       </Form>
 
       <Table columns={columns} dataSource={data} />
+
+      <h2>Register Form - Antd</h2>
+      <Form layout="vertical" className="register_form">
+        <Row>
+          <Col span={12}>
+            <Form.Item label="First Name">
+              <Input placeholder="Please enter your first name" />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item label="Last Name">
+              <Input placeholder="Please enter your last name" />
+            </Form.Item>
+          </Col>
+        </Row>
+        <Row>
+          <Col span={12}>
+            <Form.Item label="Phone">
+              <Input placeholder="Please enter your phone" />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item label="Email">
+              <Input type="email" placeholder="Please enter your email" />
+            </Form.Item>
+          </Col>
+        </Row>
+        <Row>
+          <Col span={12}>
+            <Form.Item
+              label="Password"
+              name="password"
+              rules={[
+                { required: true, message: "Please input your password!" },
+              ]}
+            >
+              <Input.Password />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item
+              label="Password Confirm"
+              name="password_confirm"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your password_confirm!",
+                },
+              ]}
+            >
+              <Input.Password />
+            </Form.Item>
+          </Col>
+        </Row>
+        <Row>
+          <Col span={24}>
+            <Form.Item
+              name="agree"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your checkbox!",
+                },
+              ]}
+            >
+              <Checkbox onChange={onChange}>Checkbox</Checkbox>
+            </Form.Item>
+          </Col>
+        </Row>
+        <Form.Item>
+          <Button htmlType="submit">Register</Button>
+        </Form.Item>
+      </Form>
     </div>
   );
 };

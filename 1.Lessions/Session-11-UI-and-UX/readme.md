@@ -241,6 +241,7 @@ const Myconponent = ()=>{
 - Làm lại Form02.png: https://github.com/nhannn87dn/Learn-ReactJs-Basic/tree/main/3.Homeworks/Session-06-Form/Exercise-2
 
 - Sử dụng Ant Design
+- Có validate với yup
 
 ### Task 2
 
