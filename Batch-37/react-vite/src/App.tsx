@@ -15,6 +15,7 @@ import CustomerProfilePage from "./pages/CustomerProfilePage";
 import CustomerOrdersPage from "./pages/CustomerOrdersPage";
 import BlogDetailsPage from "./pages/BlogDetailsPage";
 import LoginPage from "./pages/LoginPage";
+import Weather from "./pages/Weather";
 
 // Create a client
 const queryClient = new QueryClient();
@@ -44,6 +45,8 @@ function App() {
             <Route path="blog" element={<BlogPage />} />
             {/* / Trang Products */}
             <Route path="products" element={<ProductPage />} />
+
+            <Route path="weather" element={<Weather />} />
 
             <Route path="customers/" element={<CustomerLayout />}>
               <Route path="dashboard" element={<CustomerDashboardPage />} />
