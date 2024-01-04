@@ -1,6 +1,9 @@
 import "./App.css";
+import "./components/ButtonV2/ButtonV2.css";
 import TodoList from "./components/TodoList";
 import TodoListItem from "./components/TodoListItem";
+import ButtonV2 from "./components/ButtonV2";
+import { FaShoppingCart, FaPhone } from "react-icons/fa";
 //Hàm js bình thường
 // function sum(a, b) {
 //   return a + b;
@@ -87,8 +90,18 @@ function App() {
     age: 35,
     work: "Aptech",
   };
+
   return (
     <>
+      <img
+        src="https://ecshopvietnam.com/ecshopmi/cdn/images/202204/thumb_img/xiaomi-redmi-note-11s-5g-thumb-G4305-1650508487085.jpg"
+        alt=""
+      />
+
+      <img src="./images/xiaomi-11.jpg" alt="" />
+
+      <ButtonV2 icon={<FaShoppingCart />} label="Thêm vào giỏ hàng" />
+      <ButtonV2 icon={<FaPhone />} type="button_dark" label="Gọi lại tư vấn" />
       <h1
         style={{
           color: "red",
