@@ -13,6 +13,9 @@ const ButtonSocial = ({ label, icon, varian = "" }: TButtonSocial) => {
   } else if (varian === "success") {
     myStyle = "bg-green-500 text-white border-green-500";
   }
+
+  console.log("ButtonSocial Render");
+
   return (
     <button
       className={`${myStyle} flex border-2 justify-center items-center gap-x-3 py-3 px-4 rounded-full`}
