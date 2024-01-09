@@ -1,6 +1,9 @@
+import React from "react";
+
 type TProps = {
   text: string;
   done?: boolean;
+  icon?: React.ReactNode;
 };
 // const TodoListItem = ({ text, done = false }: TProps) => {
 //   return (
@@ -11,11 +14,19 @@ type TProps = {
 //   );
 // };
 
-const TodoListItem = ({ text, done = false }: TProps) => {
+const TodoListItem = ({ text, done = false, icon }: TProps) => {
   if (done === true) {
-    return <li>{text} ✔</li>;
+    return (
+      <li>
+        {text} ✔ {icon}
+      </li>
+    );
   }
-  return <li>{text}</li>;
+  return (
+    <li>
+      {text} {icon}
+    </li>
+  );
 };
 
 export default TodoListItem;
