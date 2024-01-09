@@ -14,16 +14,29 @@ hoặc hình sau
 
 ## Deploy dự án React Vite
 
+Step0:
+
+Đẩy code lên github
+
+Xem Link:
+
+- https://www.youtube.com/watch?v=ElzJaEImmTI
+- https://github.com/nhannn87dn/Learn-HTML-CSS-Js/tree/main/02.Lessions-40h/Day-01-HTML5-T1/3-Workshop-HTML5-L1/Github-Basic
+
 Step1:
 
 Thêm link vào dự án
 
-myusername: tên username github
-my-app: tên repository
+Mở file package.json
 
 ```json
   "homepage": "https://myusername.github.io/my-app",
 ```
+
+Trong đó:
+
+- myusername: tên username github
+- my-app: tên repository
 
 Step 2:
 
@@ -52,6 +65,8 @@ Step 5:
 
 ```bash
 yarn run deploy
+#or
+npm run deploy
 ```
 
 Step 6: Thành công --> Kiểm tra link: <https://myusername.github.io/my-app>
