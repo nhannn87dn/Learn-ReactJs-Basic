@@ -2,7 +2,7 @@ import CVExpertise from "../CVExpertise";
 
 const MyCV = () => {
   return (
-    <div className="flex">
+    <div className="flex drop-shadow-2xl">
       <div className="col_left w-[220px] bg-indigo-700">
         Left
         <CVExpertise />
