@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./App.css";
 import ButtonSocial from "./components/ButtonSocial";
 import SimpleCount from "./components/SimpleCount";
+import ButtonLike from "./components/ButtonLike";
 
 /*
 onclick ==> onClick
@@ -40,6 +41,7 @@ function App() {
 
   return (
     <div className="container mx-auto">
+      <ButtonLike />
       <button
         className="btn"
         onClick={() => {
