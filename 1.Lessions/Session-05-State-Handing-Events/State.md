@@ -18,19 +18,21 @@ Trong Session này chúng ta tìm hiểu:
 
 > State: A Component's Memory
 
-State giống như một kho lưu trữ dữ liệu cho các component trong ReactJS. 
+State giống như một kho lưu trữ dữ liệu cho các component trong ReactJS.
 
-Nó chủ yếu được sử dụng để cập nhật các trạng thái của một component khi người dùng thực hiện một số hành động như nhấp vào nút, nhập một số văn bản, nhấn một số phím, v.v. làm thay đổi kết quả hiển thị ra màn hình.
+Trong React, state (trạng thái) là một khái niệm quan trọng để lưu trữ và quản lý dữ liệu của một thành phần (component) khi người dùng thực hiện một số hành động như nhấp vào nút, nhập một số văn bản, nhấn một số phím, v.v. làm thay đổi kết quả hiển thị ra màn hình.
 
-Nó chỉ hoạt động trong phạm vi Component đó thôi
+State, Nó chỉ hoạt động trong phạm vi Component đó thôi.
 
+State được sử dụng để lưu trữ các giá trị dữ liệu có thể thay đổi, như thông tin người dùng nhập vào, kết quả của một tác vụ bất đồng bộ, hoặc bất kỳ dữ liệu nào mà thành phần cần theo dõi và sử dụng trong quá trình render lại giao diện người dùng.
+
+Khi giá trị của state thay đổi, React sẽ tự động cập nhật giao diện người dùng của thành phần để phản ánh trạng thái mới. Tức là, React sẽ thực hiện quá trình render lại chỉ những phần cần thiết của giao diện người dùng, không phải render lại toàn bộ.
 
 ===============================
 
 ### 🌻Tại sao lại cần đến State ?
 
 Cùng xem một ví dụ minh họa để thấy sự cần thiết State.
-
 
 ```js
 export default function Count() {
@@ -39,23 +41,14 @@ export default function Count() {
   function handleClick() {
     index = index + 1;
   }
-return (
+  return (
     <>
-      <button onClick={handleClick}>
-        Increment
-      </button>
-      <h3>  
-        {index}
-      </h3>
-     
+      <button onClick={handleClick}>Increment</button>
+      <h3>{index}</h3>
     </>
   );
 }
 ```
-
-2.Examples\myapp-ts\src\SessionsExamples\session-03-State\NeedState\GalleryNoState.js
-
-2.Examples\myapp-ts\src\SessionsExamples\session-03-State\NeedState\GalleryState.js
 
 ### 🌻Khởi tạo một State
 
@@ -72,12 +65,13 @@ export default function Count() {
     return (
         <h1>{count}</h1>
         <button onClick={increase()}>
-        Increase 
+        Increase
       </button>
     )
 }
 
 ```
+
 Cú pháp tạo một State
 
 ```js
@@ -88,9 +82,9 @@ const [count, setCount] = React.useState(0);
 Bản chất `React.useState(0)` là một function return về một mảng [] có 2 phần tử.
 
 `[count, setCount]` là đang sử dụng cú pháp `Destructuring assignment` của JavaScript
+
 - count: tên của State
 - setCount: là phương thức để thay đổi giá trị của State tương ứng
-
 
 ### 🌻Khi nào thì cần đến State
 
@@ -99,10 +93,15 @@ Bất cứ khi nào dữ liệu thay đổi trong một component, State có th�
 - ví dụ: Từ ẩn sang hiện, từ không có thành có... Nói chung là trạng thái lúc đầu khác với lúc sau
 - Ví dụ: một form nhập input type text mỗi trường trong Form sẽ giữ lại trạng thái của nó dựa trên dữ liệu đầu vào của người dùng (user input). Nếu đầu vào của người dùng thay đổi, trạng thái của các text input sẽ thay đổi, đây là nguyên nhân cần re-rendering của component và tất cả các component con của nó. Và khi này chúng ta sẽ sử dụng state
 
+### 🌻 State hoạt động như thế nào ?
 
-### 🌻 State chỉ hoạt động trong phạm vi một Component
+Trong React, state (trạng thái) là một đối tượng chứa thông tin dữ liệu và trạng thái của một thành phần (component).
 
-Note: gọi component Count trên đây ra 2 lần, để thấy được là dù là một component nhưng trạng thái thì là của riêng. 
+State được sử dụng để lưu trữ và quản lý dữ liệu trong function component. State có thể là bất kỳ kiểu dữ liệu nào, bao gồm cả số, chuỗi, mảng, đối tượng hoặc các giá trị boolean.
+
+Khi state thay đổi, React sẽ tự động render lại giao diện người dùng của thành phần để phản ánh các thay đổi mới. Tức là, React sẽ so sánh giá trị cũ và giá trị mới của state và chỉ cập nhật những phần cần thiết của giao diện người dùng.
+
+Để thay đổi giá trị của state, bạn cần sử dụng phương thức setState(). Phương thức này được cung cấp bởi React và cho phép bạn cập nhật giá trị của state và kích hoạt quá trình render lại giao diện người dùng. Khi gọi setState(), React sẽ thực hiện quá trình so sánh và cập nhật giao diện người dùng nếu cần.
 
 ===============================
 
@@ -116,17 +115,17 @@ Note: gọi component Count trên đây ra 2 lần, để thấy được là d�
 Ví dụ về simple todo list
 
 ```js
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 const ListExample = () => {
   const [items, setItems] = useState([
-    { id: 1, text: 'Mua sữa' },
-    { id: 2, text: 'Đi chợ' },
-    { id: 3, text: 'Làm bài tập' },
+    { id: 1, text: "Mua sữa" },
+    { id: 2, text: "Đi chợ" },
+    { id: 3, text: "Làm bài tập" },
   ]);
 
   const handleAddItem = () => {
-    const newItem = { id: items.length + 1, text: 'Việc mới' };
+    const newItem = { id: items.length + 1, text: "Việc mới" };
     setItems([...items, newItem]);
   };
 
@@ -151,33 +150,31 @@ const ListExample = () => {
 };
 
 export default ListExample;
-
 ```
 
-## 🔥 5.2 One-Way / Two-way binding
+### 🔥 One-Way / Two-way binding
 
+**🌻 One-way data binding (ràng buộc dữ liệu một chiều) ?**
 
-**🌻One-way data binding (ràng buộc dữ liệu một chiều) ?**
+Trong React, one-way data binding (ràng buộc dữ liệu một chiều) là một cách tiếp cận để hiển thị và quản lý dữ liệu trong các thành phần (components). Khi sử dụng one-way data binding, dữ liệu chỉ được truyền từ phần cha (parent component) xuống các phần con (child components), và các phần con không thể thay đổi dữ liệu gốc trực tiếp.
 
-- Dữ liệu di chuyển một chiều từ nguồn dữ liệu (thường là state) đến giao diện người dùng.
-- Thay đổi dữ liệu trong nguồn dữ liệu sẽ thay đổi dữ liệu trong giao diện tương ứng.
-- Chiều duy nhất của data binding là từ nguồn dữ liệu đến giao diện.
-- One-way data binding thường được sử dụng trong 
-- React thông qua việc truyền dữ liệu từ component cha xuống component con thông qua props.
+Cụ thể, trong mô hình one-way data binding, dữ liệu được truyền xuống các thành phần con thông qua props (properties). Một thành phần cha có thể truyền các giá trị dữ liệu hoặc hàm xử lý sự kiện thông qua props cho các thành phần con. Tuy nhiên, các thành phần con không thể thay đổi giá trị của props mà được truyền từ cha của nó.
 
-**🌻Two-way data binding (ràng buộc dữ liệu hai chiều)**
+Với one-way data binding, mọi thay đổi trong dữ liệu phải được thực hiện ở cấp cao nhất của ứng dụng và được truyền xuống các thành phần con thông qua props. Những thay đổi này sau đó sẽ lan tỏa xuống các thành phần con khác trong cây thành phần.
 
-- Dữ liệu có thể di chuyển hai chiều giữa nguồn dữ liệu và giao diện người dùng.
-- Khi dữ liệu trong nguồn dữ liệu thay đổi, nó cũng thay đổi trong giao diện và ngược lại, khi dữ liệu trong giao diện thay đổi, nó cũng thay đổi trong nguồn dữ liệu.
-- Two-way data binding thường được sử dụng trong một số framework như Angular.
+Điều này giúp giảm sự phức tạp và dễ dàng theo dõi luồng dữ liệu trong ứng dụng React. Bạn có thể biết rõ rằng các thành phần con chỉ làm việc với dữ liệu mà nó nhận được thông qua props, và việc thay đổi dữ liệu chỉ xảy ra ở một nơi duy nhất.
 
+**🌻 Two-way data binding (ràng buộc dữ liệu hai chiều)**
 
-Ví dụ: 2.Examples\myapp-js\src\SessionExamples\session-03-State\UpdateState
+Two-way data binding (ràng buộc dữ liệu hai chiều) trong React là một cách để liên kết và đồng bộ hóa dữ liệu giữa thành phần (component) và giao diện người dùng (user interface). Khi sử dụng two-way data binding, thay đổi dữ liệu trong thành phần có thể tự động cập nhật giao diện người dùng, và ngược lại, thay đổi giao diện người dùng cũng có thể tự động cập nhật dữ liệu trong thành phần.
 
-===============================
+Trong React, two-way data binding thường được sử dụng trong các thành phần đầu vào (input components) như các ô input, ô chọn (select), và ô checkbox. Khi người dùng thay đổi giá trị trong giao diện người dùng, dữ liệu trong thành phần được cập nhật tự động. Ngược lại, nếu dữ liệu trong thành phần thay đổi, giao diện người dùng sẽ được cập nhật để phản ánh giá trị mới.
+
+Để thực hiện two-way data binding trong React, bạn có thể sử dụng các thư viện như "react-redux" hoặc "formik" để quản lý trạng thái và đồng bộ hóa dữ liệu giữa thành phần và giao diện người dùng.
+
+Tuy nhiên, trong React, one-way data binding là một phương pháp phổ biến hơn, vì nó giúp đơn giản hóa việc theo dõi và quản lý luồng dữ liệu trong ứng dụng. Two-way data binding có thể tạo ra sự phức tạp và khó kiểm soát nếu không được sử dụng một cách cẩn thận.
 
 ## 🔥 5.3 Khái niệm Lifecycle
-
 
 🌻 **Re-Render trong React là gì?**
 
@@ -203,9 +200,9 @@ Có 2 lí do để 1 component render:
 
 Quá trình xử lý yêu cầu tương tác từ giao diện người dùng có 3 bước:
 
-1. Triggering a render (nhận yêu cầu Order từ khách đưa cho nhà bếp) 
+1. Triggering a render (nhận yêu cầu Order từ khách đưa cho nhà bếp)
 
-2. Rendering the component (nhà bếp chuẩn bị Order) 
+2. Rendering the component (nhà bếp chuẩn bị Order)
 
 3. Committing to the DOM (Mang món ra bàn cho khách)
 
@@ -213,11 +210,11 @@ Quá trình xử lý yêu cầu tương tác từ giao diện người dùng có
 
 Chu trình này trong React Component còn được hiểu với một khái niệm đó là **LifeCycle** - Vòng đời của một Component.
 
-- Component được sinh ra  - Gọi món (**Mounting**)
+- Component được sinh ra - Gọi món (**Mounting**)
 - Component tồn tại và thay đổi - Chuẩn bị Món (**Updation**)
 - Component mất đi - Mang món ra cho khách (**Unmounting**)
 
-***
+---
 
 Xem thêm mô hình LifeCycle đối với Class Components: <https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/>
 
@@ -225,13 +222,11 @@ Xem ví dụ minh họa
 
 Chúng ta sẽ tìm hiểu kỹ hơn các khái niệm này trong bài học về Hook useEffect. Trecking một component để biết khi nào thì nó **Mounting**, khi nào thi nó **Updation**, và khi nào thì nó đã **Unmounting**
 
-
 Đọc thêm bài viết: <https://viblo.asia/p/lifecycle-component-trong-reactjs-gGJ59jzxKX2>
 
-***
+---
 
 Chi tiết các bước nói trên diễn ra như sau:
-
 
 🔸**Step 1: Kích hoạt render**
 
@@ -242,10 +237,10 @@ Khởi chạy App, React gọi Root Component bằng cách gọi createRoot tạ
 Example:
 
 ```js
-import Image from './Image.js';
-import { createRoot } from 'react-dom/client';
+import Image from "./Image.js";
+import { createRoot } from "react-dom/client";
 
-const root = createRoot(document.getElementById('root'))
+const root = createRoot(document.getElementById("root"));
 root.render(<Image />);
 ```
 
@@ -261,28 +256,27 @@ Một component đã được render trước đó (Initial render), bạn có t
 
 Sau khi kích hoạt một render, React gọi đến component lấy nội dung hiển thị ra màn hình. Thuật ngữ **"Rendering"** nghĩa là React đang gọi đến component của bạn.
 
-- Trong lần render đầu tiên (initial render): 
+- Trong lần render đầu tiên (initial render):
 
-    + React sẽ gọi root component
-    + React sẽ tạo các DOM Node
+  - React sẽ gọi root component
+  - React sẽ tạo các DOM Node
 
-- Các lần render tiếp theo: 
+- Các lần render tiếp theo:
 
-  + React gọi đến function component có State thay đổi đã kích hoạt render. 
-  + React sẽ tính toán so sánh các thuộc tính của chúng (state), nếu không có bất kỳ thay đổi nào kể từ lần render trước đó thì React bỏ qua và đến giai đoạn tiếp theo Commit.
+  - React gọi đến function component có State thay đổi đã kích hoạt render.
+  - React sẽ tính toán so sánh các thuộc tính của chúng (state), nếu không có bất kỳ thay đổi nào kể từ lần render trước đó thì React bỏ qua và đến giai đoạn tiếp theo Commit.
 
 🔸Step 3: React cập nhật thay đổi đến DOM
 
 - Trong lần render đầu tiên (initial render): React sử dụng phương thức `appendChild()` DOM API để đặt tất cả các DOM nodes mà nó đã tạo vào `<div id="root">` để hiển thị ra màn hình.
-    
-- Re-renders: 
+- Re-renders:
   - React tạo ra virtual DOM. React sẽ sử dụng thuật toán **Diffing** để nhận biết được đã có điều gì khác hoặc thay đổi trong virtual DOM.
   - Bước tiếp theo là Reconciliation. Ở bước này, virtual DOM sẽ được cập nhật lại với kết quả khác sau khi sử dụng thuật toán Diffing ở bước đầu tiên.
   - React chỉ update lại những gì thay đổi vào "real" DOM (DOM thật).
 
 🔸Step 4 Kết - Commit: Vẽ lại trình duyệt
 
-Sau khi rendering xong and React updated lại DOM, trình duyệt vẽ lại màn hình. 
+Sau khi rendering xong and React updated lại DOM, trình duyệt vẽ lại màn hình.
 
 ===============================
 
@@ -290,40 +284,36 @@ Sau khi rendering xong and React updated lại DOM, trình duyệt vẽ lại m�
 
 ```js
 //App.js
- 
- function App() {
- 
+
+function App() {
   console.log("Parent rendered");
   return (
     <div className="wrap">
-        <h1>Parent Component</h1>
-        <div>-----------------</div>
-        <Child />
+      <h1>Parent Component</h1>
+      <div>-----------------</div>
+      <Child />
     </div>
   );
 }
 
 // Chỉ có biến count thay đổi ở Child
 // Check console để xem
-function Child({name}: {name: string}){
-   const [count,setCount]=useState<number>(0);
-    console.log("Child Rendered");
-    return(
-        <div>
-            <h1>Child Component {name}</h1>
-            <button onClick={()=>setCount(count+1)}>
-            Increase
-            </button>
-            <p>Count:{count}</p>
+function Child({ name }: { name: string }) {
+  const [count, setCount] = useState < number > 0;
+  console.log("Child Rendered");
+  return (
+    <div>
+      <h1>Child Component {name}</h1>
+      <button onClick={() => setCount(count + 1)}>Increase</button>
+      <p>Count:{count}</p>
     </div>
-    );
+  );
 }
- 
-export default App;
 
+export default App;
 ```
 
->`Xem thêm: Khi nào thì React component re-renders lại chính nó ?`
+> `Xem thêm: Khi nào thì React component re-renders lại chính nó ?`
 
 > View: <https://www.developerway.com/posts/react-re-renders-guide>
 
@@ -334,12 +324,11 @@ export default App;
 - Để ngăn Component re-render khi không cần thiết
 - Tối ưu performance, app chạy nhanh hơn.
 
-
 ===============================
 
 ## 🔥 5.3 State là một Snapshot
 
-Giống như mỗi giây thời gian trôi qua, bạn không thể lấy lại được. 
+Giống như mỗi giây thời gian trôi qua, bạn không thể lấy lại được.
 
 State cũng vậy, mỗi lần Component render thì nó tạo ra `một giá trị tham chiếu` MỚI hay còn gọi là Snapshot (một ảnh chụp) tại thời điểm đó.
 
@@ -347,16 +336,15 @@ State cũng vậy, mỗi lần Component render thì nó tạo ra `một giá tr
 
 Xem ví dụ: <https://react.dev/learn/state-as-a-snapshot#setting-state-triggers-renders>
 
-
 Điều gì xảy ra khi bạn click vào button Send:
 
 - Form sẽ submit thông qua sự kiện onSubmit.
-- setIsSent(true) set lại isSent =  true và tạo hàng đợi để re-render mới.
+- setIsSent(true) set lại isSent = true và tạo hàng đợi để re-render mới.
 - React sẽ re-renders lại component theo giá trị isSent mới.
 
 ### 🌻 5.3.2 Rendering takes a snapshot in time
 
-“Rendering” nghĩa là React đang gọi component của bạn, sử dụng function component. JSX trả lại từ function như là một bản chụp  **snapshot** của UI tại thời điểm đó. Bao gồm: các props, event handlers, local variables, tất cả các calculated sử dụng state tại thời điểm render.
+“Rendering” nghĩa là React đang gọi component của bạn, sử dụng function component. JSX trả lại từ function như là một bản chụp **snapshot** của UI tại thời điểm đó. Bao gồm: các props, event handlers, local variables, tất cả các calculated sử dụng state tại thời điểm render.
 
 Khi React re-renders lai một component:
 
@@ -376,7 +364,6 @@ Ví dụ để hiểu Snapshot State
 
 <https://react.dev/learn/state-as-a-snapshot#state-over-time>
 
-
 ===============================
 
 ## 🔥 5.4 State Updates
@@ -390,36 +377,36 @@ Ví dụ để hiểu Snapshot State
 // 4 cách set giá trị mới cho một State
 setNumber(42);
 setNumber(number + 5);
-setNumber(prev => prev + 1);
-setEnabled(e => !e);
-
+setNumber((prev) => prev + 1);
+setEnabled((e) => !e);
 ```
 
 ### 🌻 5.4.2 State là một Object
 
 Khi state là một Object thì ta update như sau
+
 ```js
 //App.js
-import { useState } from 'react';
+import { useState } from "react";
 
 export default function Form() {
   const [person, setPerson] = useState({
-    firstName: 'Barbara',
-    lastName: 'Hepworth',
-    email: 'bhepworth@sculpture.com'
+    firstName: "Barbara",
+    lastName: "Hepworth",
+    email: "bhepworth@sculpture.com",
   });
 
   //Method 1:
   setPerson({
-    firstName: 'Alexander', 
-    lastName: 'Brahma',
-    email: 'alexander@gmail.com'
-    });
-  //Method 2: ... object spread syntax 
+    firstName: "Alexander",
+    lastName: "Brahma",
+    email: "alexander@gmail.com",
+  });
+  //Method 2: ... object spread syntax
   setPerson({
     ...person, // Copy the old fields
-    firstName: 'Alexander' // But override this one
-    });
+    firstName: "Alexander", // But override this one
+  });
 }
 ```
 
@@ -429,17 +416,16 @@ View details: <https://react.dev/learn/updating-objects-in-state>
 
 ### 🌻 5.4.3 State là một Mảng
 
->`Updating arrays without mutation`
+> `Updating arrays without mutation`
 
 Dưới đây là một bảng so sánh phương thức mảng. Khi bạn thao tác với mảng trong React State, bạn cần tránh sử dụng các phương thức bên cột trái, nên sử dụng phương thức bên cột phải để thay thế.
 
-|              |      avoid (mutates the array)        | prefer (returns a new array)     |
-| :------------:|:-------------:|:-----:|
-|  **adding**   |   `push`, `unshift`   |  concat, [...arr] spread syntax    |
-|  **removing** |   `pop`, `shift`, `splice`   |   `filter`, `slice`   |
-|  **replacing**   | `splice`, `arr[i] = ... assignment` |  `map`  |
-|  **sorting**  | `reverse`, `sort`  |  copy the array first  |
-
+|               |      avoid (mutates the array)      |  prefer (returns a new array)  |
+| :-----------: | :---------------------------------: | :----------------------------: |
+|  **adding**   |          `push`, `unshift`          | concat, [...arr] spread syntax |
+| **removing**  |      `pop`, `shift`, `splice`       |       `filter`, `slice`        |
+| **replacing** | `splice`, `arr[i] = ... assignment` |             `map`              |
+|  **sorting**  |          `reverse`, `sort`          |      copy the array first      |
 
 - Thêm phần tử vào mảng:
 
@@ -451,13 +437,10 @@ const [artists, setArtists] = useState([]);
 
 //Thêm giá trị mới vào mảng
 
-setArtists( 
-  [ 
-    ...artists, // that contains all the old items
-    { id: nextId++, name: name } // and one new item at the end
-  ]
-);
-
+setArtists([
+  ...artists, // that contains all the old items
+  { id: nextId++, name: name }, // and one new item at the end
+]);
 ```
 
 - Xóa phần tử của mảng:
@@ -465,35 +448,30 @@ setArtists(
 Xem: <https://react.dev/learn/updating-arrays-in-state#removing-from-an-array>
 
 ```js
-import { useState } from 'react';
-
+import { useState } from "react";
 
 //Mảng giá trị mặc định
 let initialArtists = [
-  { id: 0, name: 'Marta Colvin Andrade' },
-  { id: 1, name: 'Lamidi Olonade Fakeye'},
-  { id: 2, name: 'Louise Nevelson'},
+  { id: 0, name: "Marta Colvin Andrade" },
+  { id: 1, name: "Lamidi Olonade Fakeye" },
+  { id: 2, name: "Louise Nevelson" },
 ];
 
 export default function List() {
-  const [artists, setArtists] = useState(
-    initialArtists
-  );
+  const [artists, setArtists] = useState(initialArtists);
 
   return (
     <>
       <h1>Inspiring sculptors:</h1>
       <ul>
-        {artists.map(artist => (
+        {artists.map((artist) => (
           <li key={artist.id}>
-            {artist.name}{' '}
-            <button onClick={() => {
-              setArtists(
-                artists.filter(a =>
-                  a.id !== artist.id
-                )
-              );
-            }}>
+            {artist.name}{" "}
+            <button
+              onClick={() => {
+                setArtists(artists.filter((a) => a.id !== artist.id));
+              }}
+            >
               Delete
             </button>
           </li>
@@ -502,20 +480,16 @@ export default function List() {
     </>
   );
 }
-
 ```
+
 Khi click nút Delete, thì sẽ xóa đi item có ID tương ứng.
 
 ```js
 //Bản chất là chỉ lọc và giữ lại những ID khác với ID đã xóa
-setArtists(
-  artists.filter(a => a.id !== artist.id)
-);
+setArtists(artists.filter((a) => a.id !== artist.id));
 ```
 
-
-
-- Biến đổi phần tử mảng: 
+- Biến đổi phần tử mảng:
 
 <https://react.dev/learn/updating-arrays-in-state#transforming-an-array>
 
@@ -530,7 +504,6 @@ setArtists(
 - Thay đổi một Object trong một mảng
 
 <https://react.dev/learn/updating-arrays-in-state#making-other-changes-to-an-array>
-
 
 ===============================
 
@@ -556,7 +529,7 @@ const [age] = React.useState<number>(28);
 // Null or undefined
 const [random] = React.useState<null | undefined>();
 
-// Array of string 
+// Array of string
 const [hobbies] = React.useState<Array<string>>(['soccer', 'cooking', 'code']);
 
 // Custom interface
@@ -569,7 +542,7 @@ const [person] = React.useState<PersonProps>({
 
 ```
 
-Tham khảo thêm: 
+Tham khảo thêm:
 
 - https://react-typescript-cheatsheet.netlify.app/docs/basic/getting-started/basic_type_example/
 
