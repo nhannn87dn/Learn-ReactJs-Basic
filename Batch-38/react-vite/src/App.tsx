@@ -3,7 +3,13 @@ import "./App.css";
 import ButtonSocial from "./components/ButtonSocial";
 import SimpleCount from "./components/SimpleCount";
 import ButtonLike from "./components/ButtonLike";
-
+import Attributes from "./components/Attributes";
+import ModalSimple from "./components/ModalSimple";
+import SimpleGallery from "./components/SimpleGallery";
+import RegisterForm from "./components/RegisterForm";
+import RegisterReactHookForm from "./components/RegisterReactHookForm";
+import RegisterReactHookFormValidation from "./components/RegisterReactHookFormValidation";
+import LoginReactHookForm from "./components/LoginReactHookForm";
 /*
 onclick ==> onClick
 onmouseenter ==> onMouseEnter
@@ -38,9 +44,30 @@ function App() {
   const [isShow, setIsShow] = React.useState<boolean>(false);
 
   console.log("<<=== 🚀 email ===>>", email);
+  const [isShowModal, setIsShowModal] = useState(false);
 
   return (
     <div className="container mx-auto">
+      <h2>Form Thường</h2>
+      <RegisterForm />
+      <h2>Form với React Hook Form</h2>
+      <RegisterReactHookForm />
+      <h2>Form với React Hook Form + Validation</h2>
+      <RegisterReactHookFormValidation />
+      <h2>Login Form với React Hook Form + Validation</h2>
+      <LoginReactHookForm />
+      <hr />
+      <SimpleGallery />
+      <button
+        onClick={() => {
+          setIsShowModal(!isShowModal);
+        }}
+        className="btn"
+      >
+        Show Modal
+      </button>
+      <ModalSimple isShow={isShowModal} />
+      <Attributes />
       <ButtonLike />
       <button
         className="btn"
