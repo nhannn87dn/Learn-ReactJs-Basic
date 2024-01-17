@@ -1,150 +1,93 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./App.css";
-import ButtonSocial from "./components/ButtonSocial";
-import SimpleCount from "./components/SimpleCount";
-import ButtonLike from "./components/ButtonLike";
-import Attributes from "./components/Attributes";
-import ModalSimple from "./components/ModalSimple";
-import SimpleGallery from "./components/SimpleGallery";
-import RegisterForm from "./components/RegisterForm";
-import RegisterReactHookForm from "./components/RegisterReactHookForm";
-import RegisterReactHookFormValidation from "./components/RegisterReactHookFormValidation";
-import LoginReactHookForm from "./components/LoginReactHookForm";
-/*
-onclick ==> onClick
-onmouseenter ==> onMouseEnter
-onkeyup ==> onKeyUp
-*/
-const validateEmail = (email: string) => {
-  return String(email)
-    .toLowerCase()
-    .match(
-      /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-    );
-};
+//import CallBackExample from "./components/CallBackExample";
+import UseMemoExample from "./components/UseMemoExample";
+import Child from "./components/Child";
+import { UserProvider } from "./context/userContext";
+import { useBrowserWidth } from "./hooks/useBrowserWidth";
 
 function App() {
   console.log("App Render");
 
-  //handle không có tham số
-  const handleClickLogin = () => {
-    console.log("Clicked");
+  const [isShow, setIsShow] = useState(false);
+
+  const inputRef = useRef();
+
+  const handleClick = () => {
+    inputRef.current.value = "Hello, React!";
   };
 
-  const handleMouseEnterLogin = () => {
-    console.log("Ban da di chuyen len button Login");
+  const audioRef = useRef();
+
+  const user = { id: 1, name: "Nhanv2" };
+
+  // const [count, setCount] = useState(0);
+
+  //user
+  const ACTION_UP = "up";
+  const ACTION_DOWN = "down";
+
+  const reducer = (state: number, action: string) => {
+    switch (action) {
+      case ACTION_UP:
+        return state + 1;
+      case ACTION_DOWN:
+        return state - 1;
+      default:
+        throw new Error(`Action invalid`);
+    }
   };
+  const [count, dispatch] = React.useReducer(reducer, 0);
 
-  //handle có sử dụng tham số
-  const handlePlayTivi = (chanel: string) => {
-    console.log(chanel);
-  };
-
-  const [email, setEmail] = React.useState("");
-  const [isShow, setIsShow] = React.useState<boolean>(false);
-
-  console.log("<<=== 🚀 email ===>>", email);
-  const [isShowModal, setIsShowModal] = useState(false);
+  const bWidth = useBrowserWidth();
 
   return (
     <div className="container mx-auto">
-      <h2>Form Thường</h2>
-      <RegisterForm />
-      <h2>Form với React Hook Form</h2>
-      <RegisterReactHookForm />
-      <h2>Form với React Hook Form + Validation</h2>
-      <RegisterReactHookFormValidation />
-      <h2>Login Form với React Hook Form + Validation</h2>
-      <LoginReactHookForm />
-      <hr />
-      <SimpleGallery />
+      <h1>{bWidth}</h1>
+      {bWidth <= 525 ? <span>UI MObile</span> : <span>UI Desktop</span>}
+      {count}
+
       <button
         onClick={() => {
-          setIsShowModal(!isShowModal);
+          dispatch(ACTION_UP);
         }}
-        className="btn"
       >
-        Show Modal
+        +1
       </button>
-      <ModalSimple isShow={isShowModal} />
-      <Attributes />
-      <ButtonLike />
+
+      <UserProvider user={user}>
+        <Child />
+      </UserProvider>
       <button
         className="btn"
         onClick={() => {
           setIsShow(!isShow);
         }}
       >
-        Toogle SimpleCount
+        Toogle
       </button>
-      {isShow && <SimpleCount />}
+      {isShow && <UseMemoExample />}
 
-      {/* <h2>Handle cho một component</h2>
-
-      <ButtonSocial onClick={() => handlePlayTivi("Google")} label="Google" />
-
-      <div className="block bottom-1 border-slate-900 my-10"></div>
-
-      <button onClick={() => handlePlayTivi("VTV1")} className="btn">
-        VTV1
-      </button>
-      <button onClick={() => handlePlayTivi("VTV2")} className="btn">
-        VTV2
-      </button>
-      <button onClick={() => handlePlayTivi("VTV3")} className="btn">
-        VTV3
-      </button>
-
-      <div className="block bottom-1 border-slate-900 my-10"></div>
-
+      <input type="text" ref={inputRef} />
+      <button onClick={handleClick}>Change Value</button>
+      <audio
+        ref={audioRef}
+        src="https://nhannn87dn.github.io/audio-player-app/media/AnhSaoVaBauTroi.mp3"
+      ></audio>
       <button
-        onClick={handleClickLogin}
-        onMouseEnter={handleMouseEnterLogin}
-        className="btn"
+        onClick={() => {
+          audioRef.current.play();
+        }}
       >
-        Login
+        Play
       </button>
-
-      <input
-        onKeyDown={() => {
-          console.log("Ban da nhap ban phim");
-        }}
-        onChange={(event) => {
-          console.log(event.target.value);
-        }}
-        placeholder="username"
-        type="text"
-      />
-      <form
-        onSubmit={(e) => {
-          //Ngăn form fresh app
-          e.preventDefault();
-
-          console.log("Ban da submit form");
-          //validate form ở đây
-          if (email.length === 0) {
-            console.log("Bạn chưa nhập email");
-          }
-
-          if (!validateEmail(email)) {
-            console.log("Email khong hợp lệ");
-          }
+      <button
+        onClick={() => {
+          audioRef.current.pause();
         }}
       >
-        <input
-          onChange={(event) => {
-            console.log(event.target.value);
-            setEmail(event.target.value);
-          }}
-          value={email}
-          placeholder="email"
-          type="text"
-          name="email"
-        />
-        <button className="btn btn-primary" type="submit">
-          Submit
-        </button>
-      </form> */}
+        Pause
+      </button>
     </div>
   );
 }

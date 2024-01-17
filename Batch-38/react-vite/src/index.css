@@ -11,6 +11,8 @@
 }
 
 @layer components {
+  button,
+  input[type="button"],
   .btn {
     @apply bg-white border border-slate-300 py-2 px-4 rounded text-slate-700;
   }
