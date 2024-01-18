@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Header from "../Header";
 import Footer from "../Footer";
 import AddProductForm from "./AddProducForm";
-
+import axios from "axios";
 /*
 https://developer.mozilla.org/en-US/docs/Web/HTTP/Status
 */
@@ -51,15 +51,29 @@ const ProductListAPI = () => {
     /*
             Khi option rỗng thì GET là mặc định
         */
-    fetch(url, options)
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
+    // fetch(url, options)
+    //   .then((response) => response.json())
+    //   .then((data) => {
+    //     console.log(data);
+    //     setIsLoading(false);
+    //     setProducts(data);
+    //   })
+    //   .catch((err) => {
+    //     console.log(err);
+    //     setIsLoading(false);
+    //   });
+    //Sử dụng với axios
+    axios
+      .get(url)
+      .then(function (response) {
+        // handle success
+        console.log(response);
         setIsLoading(false);
-        setProducts(data);
+        setProducts(response.data);
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(function (error) {
+        // handle error
+        console.log(error);
         setIsLoading(false);
       });
   }, []);
@@ -86,6 +100,19 @@ const ProductListAPI = () => {
     }
   };
 
+  const handleDeleteProductAxios = async (productId: number) => {
+    try {
+      const url = `https://api.escuelajs.co/api/v1/products/${productId}`;
+
+      const result = await axios.delete(url);
+      if (result) {
+        console.log(`Xóa sản phẩm có ID ${productId} thành công !`);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <Header />
@@ -99,7 +126,7 @@ const ProductListAPI = () => {
             products.map((product) => {
               return (
                 <SingleProduct
-                  onClick={() => handleDeleteProduct(product.id)}
+                  onClick={() => handleDeleteProductAxios(product.id)}
                   key={product.id}
                   product={product}
                 />
