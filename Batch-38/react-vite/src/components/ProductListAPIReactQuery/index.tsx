@@ -19,14 +19,16 @@ const SingleProduct = ({
 }) => {
   return (
     <div className="item w-[220px]">
-      <img
-        width={200}
-        height={200}
-        src={product.images[0]}
-        alt={product.title}
-      />
-      <h3>{product.title}</h3>
-      <strong>{product.price}</strong>
+      <Link to={`/products/${product.id}`}>
+        <img
+          width={200}
+          height={200}
+          src={product.images[0]}
+          alt={product.title}
+        />
+        <h3>{product.title}</h3>
+        <strong>{product.price}</strong>
+      </Link>
       <button onClick={onClick} className="btn">
         Delete
       </button>

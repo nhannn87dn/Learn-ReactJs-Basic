@@ -10,6 +10,7 @@ import BlogDetailPage from "./pages/BlogDetailPage";
 import CustomerPage from "./pages/CustomerPage";
 import CustomerProfile from "./pages/CustomerProfile";
 import CustomerOrders from "./pages/CustomerOrders";
+import ProductDetailPage from "./pages/ProductDetailPage";
 
 // Create a client
 const queryClient = new QueryClient();
@@ -34,6 +35,7 @@ function App() {
             :slug ==> Đại diện cho phần chuỗi phía sau blog/
             */}
             <Route path="products" element={<ProductPage />} />
+            <Route path="products/:id" element={<ProductDetailPage />} />
             {/* Nested Layout và route */}
             <Route path="customer" element={<CustomerPage />}>
               <Route path="/customer/profile" element={<CustomerProfile />} />
