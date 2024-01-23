@@ -4,12 +4,17 @@ import CountHangXom from "../components/SimpleCount/CountHangXom";
 
 import { useProducts } from "../hooks/useProducts";
 import { useEffect } from "react";
-import { useBearStore } from "../hooks/useBearStore";
+
+//Redux React
+import { Provider } from "react-redux";
+import { createStore } from "redux";
+import { bankReducer } from "../BankApp/bankReducer";
+import BankAccount from "../BankApp/BankAccount";
+// Create Store
+const store = createStore(bankReducer);
 
 const HomePage = () => {
   const { err, isLoading, products, fetchProducts } = useProducts();
-
-  const { bears, addABear } = useBearStore();
 
   useEffect(() => {
     fetchProducts(); //gọi hàm này để đổ data vào cho products
@@ -23,8 +28,11 @@ const HomePage = () => {
         <link rel="canonical" href="http://mysite.com/example" />
       </Helmet>
       <h1 className="text-3xl font-bold">Home Page</h1>
-      {bears}
-      <button onClick={addABear}>+1</button>
+
+      <Provider store={store}>
+        <BankAccount />
+      </Provider>
+
       <hr />
       <SimpleCount />
       <hr />
