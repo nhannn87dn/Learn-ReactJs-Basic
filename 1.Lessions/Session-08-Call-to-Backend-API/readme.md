@@ -6,6 +6,8 @@ RESTful API là một tiêu chuẩn dùng trong việc thiết kế các API cho
 
 API có thể trả về dữ liệu mà bạn cần cho ứng dụng của mình ở những kiểu dữ liệu phổ biến như JSON hay XML.
 
+![call](call-api.png)
+
 ## ⭐ Fake API
 
 Sử dụng công cụ Fake API để luyện tập call API trong React
@@ -15,6 +17,16 @@ Sử dụng công cụ Fake API để luyện tập call API trong React
 - https://fakeapi.platzi.com/en/about/introduction/
 
 - https://commercejs.com/docs/
+
+## ⭐ HTTP Request ?
+
+- Các methods: GET, POST, PUT, PATH, DELETE
+- Paramters, QueryString, Body String
+
+## ⭐ HTTP Response ?
+
+- Response Result
+- Http Status Code
 
 ## ⭐ Làm quen công cụ TEST API
 
@@ -90,9 +102,11 @@ Giải thích:
 - Sử dụng Promises: [Xem ở đây](Promises.md)
 - Sử dụng Async / await ES8
 
-## ⭐ Call API trong ReactJS
+## ⭐ Tạo ứng dụng CURD đơn giản
 
-![call](call-api.png)
+![call](crud.png)
+
+Sử dụng Fake API: https://fakeapi.platzi.com/en/rest/users/#get-all-users
 
 ### Sử dụng `fetch()`
 
@@ -106,6 +120,69 @@ fetch(url, options);
 - options: là một object tùy chọn, có thể không truyền
 
 Xem chi tiết <https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch>
+
+Phương thức GET: Thường dùng để lấy danh sách
+
+```js
+import { useState, useEffect } from "react";
+
+interface IUser {
+  id: number;
+  name: string;
+  email: string;
+  role: string;
+  avatar: string;
+}
+
+const UserList = () => {
+  const [users, setUsers] = useState<IUser[]>([]);
+
+  useEffect(() => {
+    fetch("https://api.escuelajs.co/api/v1/users")
+      .then((response) => response.json())
+      .then((data) => {
+        // handle success
+        console.log(data);
+        //lấy data gán cho State
+        setUsers(data);
+      })
+      .catch((error) => {
+        // handle error
+        console.log(error);
+      });
+  }, []);
+
+  return (
+    <div>
+      <h1>Users List</h1>
+      <table>
+        <tr>
+          <th>#ID</th>
+          <th>Avatar</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Actions</th>
+        </tr>
+        {users.length > 0 && users.map((user) => {
+          return (
+          <tr key={user.id}>
+            <td>{user.id}</td>
+            <td>{user.avatar}</td>
+            <td>{user.name}</td>
+            <td>{user.email}</td>
+            <td>{user.role}</td>
+            <td>Edit - Delete</td>
+          </tr>
+          )
+        })}
+      </table>
+    </div>
+  );
+};
+
+export default UserList;
+```
 
 ### Sử dụng Axios
 
@@ -122,98 +199,80 @@ Cú pháp của axios gọn gơn fetch một chút
 
 😍 **useEffect CALL API**
 
-Phương thức GET
+Phương thức GET: Thường dùng để lấy danh sách
 
 ```js
+import { useState, useEffect } from "react";
 import axios from "axios";
-const PostsList = () => {
-  const [posts, setPost] = useState([]);
 
-  axios
-    .get("https://jsonplaceholder.typicode.com/posts")
-    .then(function (data) {
-      // handle success
-      console.log(data);
-      //lấy data gán cho State
-      setPosts(data);
-    })
-    .catch(function (error) {
-      // handle error
-      console.log(error);
-    });
+interface IUser {
+  id: number;
+  name: string;
+  email: string;
+  role: string;
+  avatar: string;
+}
+
+const UserList = () => {
+  const [users, setUsers] = useState<IUser[]>([]);
+
+  useEffect(() => {
+    axios
+      .get("https://api.escuelajs.co/api/v1/users")
+      .then((data) => {
+        // handle success
+        console.log(data);
+        //lấy data gán cho State
+        setUsers(data);
+      })
+      .catch((error) => {
+        // handle error
+        console.log(error);
+      });
+  }, []);
 
   return (
     <div>
-      <h1>Posts List</h1>
-      <ul>
-        {post.map((post) => {
-          <li key={post.id}>{post.title}</li>;
-        })}
-      </ul>
+      <h1>Users List</h1>
+      <table>
+        <tr>
+          <th>#ID</th>
+          <th>Avatar</th>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Role</th>
+          <th>Actions</th>
+        </tr>
+        {users.length > 0 &&
+          users.map((user) => {
+            return (
+              <tr key={user.id}>
+                <td>{user.id}</td>
+                <td>{user.avatar}</td>
+                <td>{user.name}</td>
+                <td>{user.email}</td>
+                <td>{user.role}</td>
+                <td>Edit - Delete</td>
+              </tr>
+            );
+          })}
+      </table>
     </div>
   );
 };
+export default UserList;
 ```
 
-Qua ví dụ trên, chúng ta đã call API lấy ra được 100 bài post hiển thị, tuy nhiên có một vấn đề như sau:
+Tôi Ưu thêm cho đúng UI-UX
 
-Mở tab Network lên ta thấy nó gửi request liên tục gọi API ==> Lí do là:
-
-- Nguyên tắc là mỗi khi setState thì component re-render.
-- Nó chạy đến đoạn useEffect thì nó call API, rồi lại đi setState
-
-Vô hình nó tại ra một vòng lặp vô hạn quá trình trên nên dẫn tới việc call API liên tục ==> gây TREO CPU
-
-=> CÁCH GIẢI QUYẾT
-
-Để khắc phục ==> liên tục gọi API ==> dùng `useEffect` với dependency là một mảng rổng []
-
-> useEffect(callback, [])
-
-```jsx
-import axios from "axios";
-const PostsList = () => {
-  const [posts, setPost] = useState([]);
-
-  useEffect(() => {
-    //Gắn cờ đánh dấu data chưa được gọi
-    let isFetched = false;
-
-    const fetchData = async () => {
-      try {
-        const data = await axios
-          .get("https://jsonplaceholder.typicode.com/posts")
-          .then((response) => response.data);
-
-        if (!isFetched) {
-          setPost(data);
-        }
-      } catch (error) {
-        console.log("Error fetching data:", error);
-      }
-    };
-
-    //Nếu chưa thì gọi API lấy data
-    if (!isFetched) {
-      fetchData();
-      //Gọi xong thì đổi cờ là đã gọi
-      isFetched = true;
-    }
-
-    return () => {
-      isFetched = true;
-    };
-  }, []);
-};
-```
-
-Và tối ưu lại với cách viết đúng để gọi một API như trên
-
-==> Thêm `Loading` cho component trên để biết là quá trình call lấy dữ liệu đang diễn ra.
+- Thêm `Loading` cho component trên để biết là quá trình call lấy dữ liệu đang diễn ra.
+- Bắt báo lỗi nếu có
 
 ---
 
 **Phương thức POST**
+
+Phương thức này thường dùng để tạo mới
 
 ```js
     const handleSubmit = async ()=> {
@@ -246,9 +305,60 @@ Và tối ưu lại với cách viết đúng để gọi một API như trên
 
 Trong ví dụ POST này, thì call API thực hiện khi hành động Submit diễn ra cho nên chúng ta không cần đặt nó trong useEffect
 
-Ngoài ra còn có thêm một thư viện rất mạnh khác nữa là React Query
+**Phương thức PUT**
+
+Phương thức này thường dùng để cập nhật thông tin
+
+```js
+const handleUpdate = async (data, id) => {
+  try {
+    const url = `https://api.escuelajs.co/api/v1/users/${id}`;
+    const options = {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+      body: JSON.stringify(data),
+    };
+    const response = await fetch(url, options);
+    const result = await response.json();
+    console.log(result);
+    reset();
+  } catch (error) {
+    console.log(error);
+  }
+};
+```
+
+**Phương thức DELETE**
+
+Phương thức này thường dùng để XÓA
+
+```js
+const handleDelete = async (id: number) => {
+  try {
+    const url = `https://api.escuelajs.co/api/v1/users/${id}`;
+    const options = {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    };
+    const response = await fetch(url, options);
+    const result = await response.json();
+    console.log(result);
+    reset();
+  } catch (error) {
+    console.log(error);
+  }
+};
+```
 
 ---
+
+Ngoài ra còn có thêm một thư viện rất mạnh khác nữa là React Query
 
 ### Sử dụng React Query
 
