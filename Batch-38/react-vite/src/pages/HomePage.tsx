@@ -10,6 +10,7 @@ import { Provider } from "react-redux";
 import { createStore } from "redux";
 import { bankReducer } from "../BankApp/bankReducer";
 import BankAccount from "../BankApp/BankAccount";
+import SwiperGallery from "../SwiperGallery";
 // Create Store
 const store = createStore(bankReducer);
 
@@ -29,6 +30,7 @@ const HomePage = () => {
       </Helmet>
       <h1 className="text-3xl font-bold">Home Page</h1>
 
+      <SwiperGallery />
       <Provider store={store}>
         <BankAccount />
       </Provider>
