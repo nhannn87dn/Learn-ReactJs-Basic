@@ -14,7 +14,6 @@
    - Prettier - Code formatter (Prettier)
    - TSLint (Microsoft)
    - Typescript React code snippets (infeng)
-   
 6. Các tài nguyên
 
    - Avatars: https://pravatar.cc/
@@ -33,7 +32,6 @@
 
      > https://pixabay.com/
 
-
 # ⭐ USING UI KIT WITH ANTD DESIGN & MUI
 
 ## [Xem chi tiết: Ant Design](https://ant.design/)
@@ -50,3 +48,11 @@
 - MUI offers a comprehensive suite of UI tools to help you ship new features faster.
 - Start with Material UI, our fully-loaded component library, or bring your own design system to our production-ready components.
 
+# Youtube Chanel Learn React/ Nextjs
+
+- https://www.youtube.com/@cosdensolutions
+- https://www.youtube.com/@developedbyed
+- https://www.youtube.com/@javascriptmastery
+- https://www.youtube.com/@SonnySangha
+- https://www.youtube.com/@holetex
+- https://www.youtube.com/@ByteGrad
