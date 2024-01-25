@@ -36,6 +36,10 @@ export default App;
 
 Ant Design thường dùng cho các ứng dụng thiên về quản lý: Dashboard, nhập liệu nhiều
 
+Xem code mẫu Dashboard: React + AntDesign + Fake API + Authentication
+
+- https://github.com/nhannn87dn/Learn-Backend-NodeJs/tree/main/02.Examples/react-frontend-dashboard
+
 ### Chakra UI
 
 https://chakra-ui.com/
