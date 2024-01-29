@@ -625,9 +625,53 @@ Quá trình xác thực trong API giúp bảo vệ dữ liệu và đảm bảo 
 
 Thực hành với: <https://fakeapi.platzi.com/en/rest/auth-jwt>
 
-## Custom Hooks Call API
+### Authentication Với Fetch
 
-Xem: https://dev.to/shaedrizwan/building-custom-hooks-in-react-to-fetch-data-4ig6
+```js
+const url = `https://api.escuelajs.co/api/v1/auth/profile`;
+const options = {
+  method: "GET",
+  headers: {
+    "Content-Type": "application/json",
+    // 'Content-Type': 'application/x-www-form-urlencoded',
+    Authorization: "Bearer {your access token}", //Thay Thế Token vào
+  },
+};
+fetch(url, options)
+  .then((response) => response.json())
+  .then((data) => {
+    // handle success
+    console.log(data);
+  })
+  .catch((error) => {
+    // handle error
+    console.log(error);
+  });
+```
+
+### Authentication Với Axios
+
+```js
+const url = `https://api.escuelajs.co/api/v1/auth/profile`;
+const options = {
+  headers: {
+    Authorization: "Bearer {your access token}", //Thay Thế Token vào
+    //Authorization: "Basic {your access token}", //Thay Thế Token vào
+  },
+};
+axios
+  .get(url)
+  .then((data) => {
+    // handle success
+    console.log(data);
+    //lấy data gán cho State
+    setUsers(data);
+  })
+  .catch((error) => {
+    // handle error
+    console.log(error);
+  });
+```
 
 ## ⭐ Tự tạo Fake API
 
