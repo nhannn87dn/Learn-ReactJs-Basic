@@ -11,6 +11,7 @@ import { createStore } from "redux";
 import { bankReducer } from "../BankApp/bankReducer";
 import BankAccount from "../BankApp/BankAccount";
 import SwiperGallery from "../SwiperGallery";
+import MoviesList from "../components/MoviesList";
 // Create Store
 const store = createStore(bankReducer);
 
@@ -29,16 +30,16 @@ const HomePage = () => {
         <link rel="canonical" href="http://mysite.com/example" />
       </Helmet>
       <h1 className="text-3xl font-bold">Home Page</h1>
-
       <SwiperGallery />
       <Provider store={store}>
         <BankAccount />
       </Provider>
-
       <hr />
       <SimpleCount />
       <hr />
       <CountHangXom />
+      <hr />
+      <MoviesList url={`/popular`} title="Popular" />
       <hr />
       <h2>Product Store List</h2>
       {isLoading && <div>Loading...</div>}
@@ -53,6 +54,7 @@ const HomePage = () => {
             );
           })}
       </ul>
+      hr
     </>
   );
 };
