@@ -1,16 +1,12 @@
-# mini Project
+# Làm một CV Online sử dụng React
+
+Mục tiêu tạo và deployment CV lên Github.io có thể gửi được cho nhà tuyển dụng.
 
 ## Task 1
 
 Tạo một profile CV của mình bằng React
 
-Template tham khảo
-
-ở thư mục 3.Homeworks\Session-02-JSX-Components-Props\Resums
-
-hoặc hình sau
-
-![cv](cv-project.jpg)
+![cv](resume-1.jpg)
 
 ## Deploy dự án React Vite
 
