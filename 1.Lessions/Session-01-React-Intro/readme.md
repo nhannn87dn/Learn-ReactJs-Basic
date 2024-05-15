@@ -78,12 +78,6 @@ Nhiều ông lớn sử dụng
 
 ---
 
-## 🔶 Flexbox Css
-
-[Mở Flexbox](Review-Flexbox/flexbox.md)
-
----
-
 ## 🔶 Môi phát triển ReactJS (Node.js, npm/yarn)
 
 ### 🔥 Node.js
@@ -106,7 +100,7 @@ Nhiều ông lớn sử dụng
 
 > Nên dùng yarn để cho tốc độ cài đặt nhanh hơn
 
-## 🔥**npm là gì ?**
+### 🔥**npm là gì ?**
 
 NPM viết tắt của từ **Node Package Manager** là một công cụ tạo và quản lý các thư viện javascript chạy trên môi trường Nodejs
 
@@ -133,7 +127,7 @@ npm update package_name #update gói
 
 ```
 
-**Yarn là một công cụ tương tự NPM**
+### Yarn là một công cụ tương tự NPM
 
 Cài yarn:
 
@@ -177,6 +171,28 @@ Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy Unrestricted
 
 Sau đó nhập A, Enter ==> quay lại cài yarn.
 Tắt VsCode sau đó mở lại, check lại lệnh đã ổn chưa ?
+
+### Các Extention VS Code
+
+- ESLint (Microsoft)
+- IntelliCode (Microsoft)
+- JavaScript (ES6) code snippets (charalampos karypidis)
+- ES7+ React/Redux/React-Native snippets (dsznajder)
+- Prettier - Code formatter (Prettier)
+- TSLint (Microsoft)
+- Typescript React code snippets (infeng)
+
+### Debug
+
+Sử dụng `React Developer Tools` để Debug `Component`
+
+```bash
+# Yarn
+yarn global add react-devtools
+
+# Npm
+npm install -g react-devtools
+```
 
 ---
 
@@ -299,3 +315,7 @@ Xem thêm [React with TypeScript](TypeScript-React.md)
 
 - Nắm một số cách khai báo kiểu dữ liệu trong TypeScript
 - Link: https://www.w3schools.com/typescript
+
+## 🔶 Flexbox Css
+
+[Mở Flexbox](Review-Flexbox/flexbox.md)

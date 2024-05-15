@@ -6,15 +6,7 @@
 2. Yarn (https://yarnpkg.com/lang/en/docs/install/#windows-stable)
 3. Git SCM: https://git-scm.com/download/
 4. Visual Studio Code: https://code.visualstudio.com/Download
-5. Cài đặt các Extensions cho Visual Studio Code
-   - ESLint (Microsoft)
-   - IntelliCode (Microsoft)
-   - JavaScript (ES6) code snippets (charalampos karypidis)
-   - ES7+ React/Redux/React-Native snippets (dsznajder)
-   - Prettier - Code formatter (Prettier)
-   - TSLint (Microsoft)
-   - Typescript React code snippets (infeng)
-6. Các tài nguyên
+5. Các tài nguyên
 
    - Avatars: https://pravatar.cc/
    - Icons: https://react-icons.github.io/react-icons/
@@ -31,22 +23,6 @@
      > https://unsplash.com/
 
      > https://pixabay.com/
-
-# ⭐ USING UI KIT WITH ANTD DESIGN & MUI
-
-## [Xem chi tiết: Ant Design](https://ant.design/)
-
-- 🌈 Enterprise-class UI designed for web applications.
-- 📦 A set of high-quality React components out of the box.
-- 🌻 Written in TypeScript with predictable static types.
-- ⚙️ Whole package of design resources and development tools.
-- 🌍 Internationalization support for dozens of languages.
-- 🎨 Powerful theme customization in every detail.
-
-## [Xem chi tiết: MUI](https://mui.com/)
-
-- MUI offers a comprehensive suite of UI tools to help you ship new features faster.
-- Start with Material UI, our fully-loaded component library, or bring your own design system to our production-ready components.
 
 # Youtube Chanel Learn React/ Nextjs
 

@@ -13,9 +13,9 @@ yarn add -D react-router-dom
 
 Ví dụ bạn muốn khi URL:
 
-- / thì hiển thị trang chủ
-- /blog thì hiển thị trang blog
-- /products thì hiển thị danh sách sản phẩm
+- / thì hiển thị trang chủ Dashboard
+- /categories thì hiển thị trang quản lý danh mục
+- /productss thì hiển thị trang quản lý sản phẩm
 
 ## Tổ chức cấu trúc thư mục tương ứng với từng trang
 
@@ -26,8 +26,8 @@ Ví dụ bạn muốn khi URL:
 
 src/
 ├─ pages/
-│  ├─ HomePage.js
-│  ├─ BlogPage.js
+│  ├─ DashboardPage.js
+│  ├─ CategoryPage.js
 │  ├─ ProductPage.js
 │  ├─ NoPage.js
 
@@ -41,8 +41,8 @@ Tại component App
 //App.js
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Home from "./pages/Home";
-import Blogs from "./pages/Blogs";
+import Dashboard from "./pages/Dashboard";
+import Category from "./pages/Category";
 import Contact from "./pages/Contact";
 import NoPage from "./pages/NoPage";
 
@@ -50,8 +50,8 @@ export default function App() {
   return (
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="blog" element={<BlogPage />} />
+        <Route path="/" element={<DashboardPage />} />
+        <Route path="blog" element={<CategoryPage />} />
         <Route path="product" element={<ProductPage />} />
         <Route path="*" element={<NoPage />} />
       </Routes>
@@ -62,8 +62,8 @@ export default function App() {
 
 Giải thích:
 
-- / => Load nội dung HomePage lên
-- blog : Load nội dung trang BlogPage lên
+- / => Load nội dung DashboardPage lên
+- blog : Load nội dung trang CategoryPage lên
 - `*` : Không tìm thấy url khớp với ruote thì load NoPage lên
 
 ## Layout
@@ -85,13 +85,13 @@ const Layout = () => {
         <nav>
           <ul>
             <li>
-              <Link to="/">Home</Link>
+              <Link to="/">Dashboard</Link>
             </li>
             <li>
-              <Link to="/blog">Blog</Link>
+              <Link to="/categories">Categories</Link>
             </li>
             <li>
-              <Link to="/product">Product</Link>
+              <Link to="/products">Products</Link>
             </li>
           </ul>
         </nav>
@@ -108,6 +108,8 @@ const Layout = () => {
 export default Layout;
 ```
 
+Đọc thêm: [Multi Layout](Multi-Layout-React.md)
+
 Khi đã dùng React Route rồi thì để chuyển trang phải dùng đến component `Link` của `react-router-dom`
 
 Khi đó bạn sửa App lại thành như sau
@@ -118,9 +120,9 @@ export default function App() {
     <BrowserRouter>
       <Routes>
           <Route path="/" element={<Layout />} >
-            <Route index element={<HomePage />} >
-            <Route path="blog" element={<BlogPage />} />
-            <Route path="product" element={<ProductPage />} />
+            <Route index element={<DashboardPage />} >
+            <Route path="categories" element={<CategoryPage />} />
+            <Route path="products" element={<ProductPage />} />
             <Route path="*" element={<NoPage />} />
           </Route>
       </Routes>
@@ -141,19 +143,19 @@ Trang nào bạn không muốn dùng Layout thì đặt Route đó ra ngoài Rou
 
 Ví dụ bạn muốn URL chi tiết 1 sản phẩm có ID = 4:
 
-> /products/4
+> /productss/4
 
 Để lấy được phân thông tin này ta làm như sau:
 
 Khai báo thêm một Route ở App
 
 ```js
-<Route path="product/:id" element={<ParameterPage />} />
+<Route path="products/:id" element={<ParameterPage />} />
 ```
 
 - Khi đó biến `id` chính = con số 4 ở trên URL trình duyệt
 
-> /products/my-string
+> /productss/my-string
 
 - Nếu bạn truyền vào là chuỗi như trên thì `id` = `my-string`
 
@@ -214,28 +216,26 @@ export default QueryPage;
 
 ## Nested Routes
 
-Ở ví dụ trên chúng ta có /blog là đến trang Blog.
-
 Bấy giờ mở rộng thêm kiểu như sau
 
 ```code
-"/blog" --> posts list
-"/blog/new" --> create new post
-"/blog/123" -->  a post detail
+"settings"
+"settings/commons"
+"settings/display"
 ```
 
 Khi đó chúng ta có Route như sau:
 
 ```js
-<Route path="blog" element={<Blog />}>
-  <Route path="new" element={<NewPost />} />
+<Route path="settings" element={<Settings />}>
+  <Route path="commons" element={<Commons />} />
   /*A nested route!*/
-  <Route path=":postId" element={<Post />} />
+  <Route path="display" element={<Display />} />
 </Route>
 /*A nested route!*/
 ```
 
-Route có path blog có 2 Route con ==> gọi là Nested route (Route lồng vào nhau)
+Route có path `settings` có 2 Route con ==> gọi là Nested route (Route lồng vào nhau)
 
 ## Chuyến hướng giữa các Routes
 
@@ -264,135 +264,31 @@ yarn add -D @types/react-helmet
 
 Cách sử dụng
 
-HomePage
+DashboardPage
 
 ```tsx
 import { Helmet } from "react-helmet";
 
-const Home = () => {
+const Dashboard = () => {
   return (
     <>
       <Helmet>
         <meta charSet="utf-8" />
-        <title>Home Page</title>
+        <title>Dashboard Page</title>
         <link rel="canonical" href="http://localhost:5173/" />
         <meta name="description" content="Learn React at Softech Aptech" />
       </Helmet>
-      <h1 className="py-5">Home Page</h1>
+      <h1 className="py-5">Dashboard Page</h1>
     </>
   );
 };
 
-export default Home;
+export default Dashboard;
 ```
 
-Với Social Metadata
+## Private Route
 
-## Multi Layout
-
-Một dự án thực tế các Pages sẽ có nhiều dạng layout khác nhau
-
-- Page thì có cả header, footer
-- Page thì chỉ có header
-- Page thì không có header và footer
-
-Vậy làm thế nào bạn có thể tạo ra tùy chọn Layout riêng cho từng Page theo ý muốn ?
-
-### Step 1 - Chuyển danh sách các Routes thành một mảng
-
-```js
-import Home from "../pages/Home";
-import Product from "../pages/Product";
-import Category from "../pages/Category";
-import Customers from "../pages/Customers";
-import CustomerProfile from "../pages/Customers/CustomerProfile";
-import CustomerOrders from "../pages/Customers/CustomerOrders";
-import ProductDetails from "../pages/ProductDetails";
-import Login from "../pages/Login";
-import EmptyLayout from "../components/Layouts/EmptyLayout";
-import OnlyHeaderLayout from "../components/Layouts/OnlyHeaderLayout";
-
-interface Routes {
-  id: number;
-  path: string;
-  element: () => JSX.Element;
-  layout?: () => JSX.Element;
-}
-
-//Public routes
-
-const publicRoutes: Routes[] = [
-  { id: 1, path: "/", element: Home },
-  { id: 2, path: "/product", element: Product },
-  { id: 3, path: "/product/:id", element: ProductDetails },
-  { id: 4, path: "/category", element: Category },
-  { id: 5, path: "/login", element: Login, layout: EmptyLayout },
-  { id: 6, path: "/customers", element: Customers, layout: OnlyHeaderLayout },
-  {
-    id: 7,
-    path: "/customers/profile",
-    element: CustomerProfile,
-    layout: OnlyHeaderLayout,
-  },
-  {
-    id: 8,
-    path: "/customers/orders",
-    element: CustomerOrders,
-    layout: OnlyHeaderLayout,
-  },
-];
-
-//Private routes
-const privateRoutes: Routes[] = [];
-
-export { publicRoutes, privateRoutes };
-```
-
-### Step 2 - Cấu hình Route trong App
-
-```js
-//App.js
-import React, { Fragment } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import "./App.css";
-import { publicRoutes } from "./data/routesList";
-import DefaultLayout from "./components/Layouts/DefaultLayout";
-
-function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        {publicRoutes.map((route) => {
-          const Page = route.element;
-          const Layout = route.layout ? route.layout : DefaultLayout;
-
-          return (
-            <>
-              <Route key={route.id} path={route.path} element={<Layout />}>
-                <Route index element={<Page />} />
-              </Route>
-            </>
-          );
-        })}
-      </Routes>
-    </BrowserRouter>
-  );
-}
-
-export default App;
-```
-
-Tại dòng
-
-```js
-const Layout = route.layout ? route.layout : DefaultLayout;
-```
-
-Khi bạn định nghĩa Layout riêng thì nó lấy Layout đó, còn không thì nó lấy Layout mặc định chung.
-
-## Private Routes
-
-Có nghĩa là có một số Routes các bạn không muốn public cho người khác xem. Mà chỉ có người nào có quyền truy cập mới xem được.
+Có nghĩa là có một số Route các bạn không muốn public cho người khác xem. Mà chỉ có người nào có quyền truy cập mới xem được.
 
 Tham khảo:
 
