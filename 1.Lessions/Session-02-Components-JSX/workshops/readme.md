@@ -29,3 +29,15 @@ Tạo một Component:
 ## Task 6
 
 Tạo ra một component chứa tất cả các component đã tạo từ Task 1 - 4
+
+## Task 7
+
+Tại một UI như hình
+
+![icon](ex2.png)
+
+## Task 8
+
+Nâng cấp task 2, thêm icon vào để có được như hình
+
+![button](../img/button-shop.png)
