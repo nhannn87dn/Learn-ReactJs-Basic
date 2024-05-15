@@ -32,7 +32,7 @@ Tạo ra một component chứa tất cả các component đã tạo từ Task 1
 
 ## Task 7
 
-Tại một UI như hình
+Tại một UI như hình (Lưu ý: không cần Css)
 
 ![icon](ex2.png)
 
