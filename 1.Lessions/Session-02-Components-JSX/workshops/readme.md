@@ -11,4 +11,21 @@ Tạo một Component : Hiển thị ra mành hình chữ "Hello World"
 
 ## Task 3
 
-- Tạo một Component : Hiển thị ra mành hình một hình ảnh
+- Tạo một Component : Hiển thị ra màn hình một hình ảnh
+
+## Task 4
+
+Tạo một Component:
+
+- Trong component đó định nghĩa các biến: name = Tên của bạn, age = Tuổi của bạn
+- Dùng các biến trên, đưa vào phần `return` của Component.
+
+## Task 5
+
+- Tạo một UI như hình (Lưu ý:Chưa áp áp dụng Css)
+
+  ![artilce](task4.png)
+
+## Task 6
+
+Tạo ra một component chứa tất cả các component đã tạo từ Task 1 - 4
