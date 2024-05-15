@@ -1,6 +1,5 @@
 import "./App.css";
-import Header from "./components/Header";
-import ButtonAddToCart from "./components/ButtonAddToCart";
+import buttonImgage from "./assets/button-shop.png";
 
 /* đầy là hàm js bình thường */
 function sum(a, b) {
@@ -47,7 +46,10 @@ function App() {
       <h1 style={{ color: "blue", backgroundColor: "yellow", fontSize: 18 }}>
         Hello React, {name}
       </h1>
-      <img src="" alt="" />
+      <p>Assets</p>
+      <img src={buttonImgage} alt="" />
+      <p>Public</p>
+      <img src="button-shop.png" />
       <div className="product_item">
         <span className="discount">-25%</span>
         <img
