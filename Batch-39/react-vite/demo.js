@@ -1,4 +1,4 @@
-const name = "Softech";
-const sologan = <h2>Học lập trình tại " + name + " </h2>;
+const style = { btn_dark: "3d2ca7" };
+const key = "btn_dark";
 
-console.log(sologan);
+console.log(style[key]);

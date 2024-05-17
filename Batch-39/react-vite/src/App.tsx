@@ -1,69 +1,62 @@
 import "./App.css";
-import buttonImgage from "./assets/button-shop.png";
+import Button from "./components/Button";
+import { FaShoppingCart, FaHeart } from "react-icons/fa";
+import Attributes from "./components/Attributes";
+import Todo from "./components/Todo";
+import TodoItem from "./components/Todo/TodoItem";
+import ButtonV2 from "./components/ButtonV2";
+import ProcessBar from "./components/ProcessBar";
 
-/* đầy là hàm js bình thường */
-function sum(a, b) {
-  return a + b;
-}
-
-/* 
-Component
-- Cách đặt tên: Theo cú pháp Pascal Case: Từ đầu tiên của mỗi từ là viết HO
-*/
-function ButtonLogin() {
-  return (
-    <>
-      <button>Login</button>
-      <button>Logout</button>
-    </>
-  );
-}
-
-/* component viết theo kiểu arrow function */
-const Link = () => {
-  return <a href="#">Home</a>;
-};
-
-/*
-component
-1. Cách tạo một component ?
-- Đặt hàm có tên hàm với kí tự đầu tiên viết HOA
-ví dụ:
-
-function Link(){
-  return (
-    <a href="#">Home</a>
-  )
-}
-- Hàm đó phải return về một đoạn code HTML và tất cả phải nằm trong 1 thẻ CHA
-
-*/
+// function sum(a,b=0){
+//   return a+b;
+// }
+// sam(1,4)
 
 function App() {
-  const name = "softech";
   return (
     <>
-      <h1 style={{ color: "blue", backgroundColor: "yellow", fontSize: 18 }}>
-        Hello React, {name}
-      </h1>
-      <p>Assets</p>
-      <img src={buttonImgage} alt="" />
-      <p>Public</p>
-      <img src="button-shop.png" />
-      <div className="product_item">
-        <span className="discount">-25%</span>
-        <img
-          width={100}
-          src="https://img.tgdd.vn/imgt/f_webp,fit_outside,quality_100/https://cdn.tgdd.vn/Products/Images/42/324893/honor-x8b-green-thumb-1-600x600.jpg"
-          alt=""
-        />
-        <h3>Cáp chuyển đổi USB-C sang SD</h3>
-        <div className="price">
-          <strong>1.290.000đ</strong>
-          <del>790.000đ</del>
-        </div>
-        {/* lfkdlsfkdlfkl */}
+      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+      <ProcessBar
+        percent={20}
+        label="Bandwidth"
+        bwbg="bg-red-600"
+        pcbg="bg-red-500"
+      />
+      <ProcessBar
+        percent={50}
+        label="Storage"
+        bwbg="bg-sky-600"
+        pcbg="bg-sky-500"
+      />
+      <ProcessBar
+        percent={70}
+        label="User"
+        bwbg="bg-green-600"
+        pcbg="bg-green-500"
+      />
+      <div>
+        <h2>Ví dụ về TailwindCss</h2>
+        <button className="bg-orange-500 text-white py-2 px-3 rounded hover:bg-orange-700">
+          Default
+        </button>
       </div>
+
+      <Button icon={<FaShoppingCart />} label="Thêm vào giỏ hàng" />
+      <Button type="btn_dark" icon={<FaHeart />} label="Yêu thích" />
+      <Button label="Đăng ký" />
+      <Button type="btn_detail" label="Xem chi tiết" />
+      <hr />
+      <h2>Button V2</h2>
+      <ButtonV2 label="Login" />
+      <ButtonV2 type="btn_dark" label="Logout" />
+      <hr />
+      <Attributes />
+      <hr />
+      <Todo>
+        <TodoItem text="Giặt đồ" />
+        <TodoItem text="làu nhà" />
+      </Todo>
+      <button style={{ fontSize: 40 }}>Login</button>
     </>
   );
 }
