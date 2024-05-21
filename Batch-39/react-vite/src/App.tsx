@@ -6,6 +6,9 @@ import Todo from "./components/Todo";
 import TodoItem from "./components/Todo/TodoItem";
 import ButtonV2 from "./components/ButtonV2";
 import ProcessBar from "./components/ProcessBar";
+import ConditionalRendering from "./components/ConditionalRendering";
+import AccessoriesRelate from "./components/AccessoriesRelate";
+import { todos, todosV2 } from "./data/todos";
 
 // function sum(a,b=0){
 //   return a+b;
@@ -15,6 +18,12 @@ import ProcessBar from "./components/ProcessBar";
 function App() {
   return (
     <>
+      <div className="container mx-auto">
+        <ConditionalRendering />
+        <hr />
+        <AccessoriesRelate />
+      </div>
+
       <h1 className="text-3xl font-bold underline">Hello world!</h1>
       <ProcessBar
         percent={20}
@@ -52,11 +61,34 @@ function App() {
       <hr />
       <Attributes />
       <hr />
+      <h2>Todo List</h2>
       <Todo>
-        <TodoItem text="Giặt đồ" />
-        <TodoItem text="làu nhà" />
+        {/* item: là phần tử hiện tại đang lặp qua */}
+        {/* index: là vị trí index của phần tử trong mảng */}
+        {/* 
+        Todo_1
+        Todo_2
+        Todo_3
+         */}
+        {todos.map((item, index) => {
+          return <TodoItem key={`Todo_${item.id}`} text={item.title} />;
+        })}
+
+        {/* <TodoItem text={todos[1].title} />
+        <TodoItem text={todos[2].title} /> */}
       </Todo>
-      <button style={{ fontSize: 40 }}>Login</button>
+      <h2>Todo2</h2>
+      <Todo>
+        {/* 
+        Thêm một Prefix_ trước key
+        Todo2_1
+        Todo2_2
+        Todo2_3
+         */}
+        {todosV2.map((item, index) => {
+          return <TodoItem key={`Todo2_${item.id}`} text={item.title} />;
+        })}
+      </Todo>
     </>
   );
 }

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script>
+      const users = [
+        { id: 1, name: "jonh" },
+        { id: 2, name: "Shara" },
+      ];
+
+      let html = "<ul>";
+      for (i = 0; i < users.length; i++) {
+        html += `<li>${users[i].name}</li>`;
+      }
+      html += "</ul>";
+
+      console.log(html);
+      document.getElementById("root").innerHTML = html;
+    </script>
+  </body>
+</html>
