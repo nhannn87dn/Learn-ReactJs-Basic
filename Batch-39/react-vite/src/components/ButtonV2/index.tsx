@@ -11,13 +11,18 @@ const ButtonV2 = ({
   label,
   icon,
   type = "btn_orange",
+  onHandleV2, //đặt tên phải bắt đầu = on
 }: {
   label: string;
   icon?: React.ReactNode;
   type?: string;
+  onHandleV2: () => void;
 }) => {
   return (
-    <button className={`${style.btn} ${style[type]}`}>
+    <button
+      onClick={onHandleV2}
+      className={`${style.btn} ${style[type]}`}
+    >
       {icon} {label}
     </button>
   );

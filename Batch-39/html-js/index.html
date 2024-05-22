@@ -5,22 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
   </head>
+
   <body>
-    <div id="root"></div>
+    <button onclick="handleClick()">Click</button>
     <script>
-      const users = [
-        { id: 1, name: "jonh" },
-        { id: 2, name: "Shara" },
-      ];
+      let index = 0;
 
-      let html = "<ul>";
-      for (i = 0; i < users.length; i++) {
-        html += `<li>${users[i].name}</li>`;
+      function handleClick() {
+        index = index + 1;
+        console.log(index);
       }
-      html += "</ul>";
-
-      console.log(html);
-      document.getElementById("root").innerHTML = html;
     </script>
   </body>
 </html>
