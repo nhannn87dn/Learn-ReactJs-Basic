@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+/**
+css mặc định cho các thẻ
+*/
 @layer base {
   button {
     @apply bg-indigo-600 text-white py-1 px-3 rounded hover:bg-indigo-500;
@@ -10,7 +13,9 @@
     @apply py-1 px-3 rounded border border-slate-300;
   }
 }
-
+/**
+định nghĩa thêm class
+*/
 @layer components {
   .btn_link {
     @apply bg-transparent hover:bg-transparent text-black;
@@ -18,5 +23,14 @@
 
   .btn_blue {
     @apply bg-transparent hover:bg-transparent text-sky-700;
+  }
+}
+/*
+các class tiện ích
+hoặc ghi đè lại class mặc định của tailwind
+*/
+@layer utilities {
+  .pyc-1 {
+    padding: 5px 0;
   }
 }

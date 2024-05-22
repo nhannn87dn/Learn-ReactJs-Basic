@@ -1,11 +1,10 @@
 # Bài tập Basic
 
-Xem Demo: 5.Demo-Projects/product.html
+Làm UI phần như hình sau:
 
-Làm UI phần **Thông số sản phẩm**
+![tags](tag.png)
 
-Yêu cầu: 
+Yêu cầu:
 
-- Tạo ra 10 dòng thông số
-- Mặc định sẽ ẩn đi dòng từ 7-10
-- Khi Click button Xem chi tiết thì show thêm dòng 7-10 ra.
+- Mặc định sẽ có 3 tags
+- Click vào dấu x ở mỗi tags thì tag đó bị xóa đi.
