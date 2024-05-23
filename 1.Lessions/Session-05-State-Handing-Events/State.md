@@ -16,15 +16,9 @@ Trong Session này chúng ta tìm hiểu:
 
 ## 🔥 5.1 State ?
 
-> State: A Component's Memory
-
-State giống như một kho lưu trữ dữ liệu cho các component trong ReactJS.
-
-Trong React, state (trạng thái) là một khái niệm quan trọng để lưu trữ và quản lý dữ liệu của một thành phần (component) khi người dùng thực hiện một số hành động như nhấp vào nút, nhập một số văn bản, nhấn một số phím, v.v. làm thay đổi kết quả hiển thị ra màn hình.
+Trong React, State là một khái niệm quan trọng để quản lý trạng thái của một thành phần. State đại diện cho trạng thái hiện tại của thành phần đó và có thể thay đổi trong quá trình thực thi ứng dụng. Khi state của một thành phần thay đổi, React sẽ tự động cập nhật giao diện người dùng để phản ánh trạng thái mới.
 
 State, Nó chỉ hoạt động trong phạm vi Component đó thôi.
-
-State được sử dụng để lưu trữ các giá trị dữ liệu có thể thay đổi, như thông tin người dùng nhập vào, kết quả của một tác vụ bất đồng bộ, hoặc bất kỳ dữ liệu nào mà thành phần cần theo dõi và sử dụng trong quá trình render lại giao diện người dùng.
 
 Khi giá trị của state thay đổi, React sẽ tự động cập nhật giao diện người dùng của thành phần để phản ánh trạng thái mới. Tức là, React sẽ thực hiện quá trình render lại chỉ những phần cần thiết của giao diện người dùng, không phải render lại toàn bộ.
 
@@ -112,7 +106,7 @@ Khi state thay đổi, React sẽ tự động render lại giao diện người
 - Button Rating 5 sao
 - Modal open/close
 
-Ví dụ về simple todo list
+Ví dụ về `simple todo list`
 
 ```js
 import React, { useState } from "react";
@@ -152,28 +146,6 @@ const ListExample = () => {
 export default ListExample;
 ```
 
-### 🔥 One-Way / Two-way binding
-
-**🌻 One-way data binding (ràng buộc dữ liệu một chiều) ?**
-
-Trong React, one-way data binding (ràng buộc dữ liệu một chiều) là một cách tiếp cận để hiển thị và quản lý dữ liệu trong các thành phần (components). Khi sử dụng one-way data binding, dữ liệu chỉ được truyền từ phần cha (parent component) xuống các phần con (child components), và các phần con không thể thay đổi dữ liệu gốc trực tiếp.
-
-Cụ thể, trong mô hình one-way data binding, dữ liệu được truyền xuống các thành phần con thông qua props (properties). Một thành phần cha có thể truyền các giá trị dữ liệu hoặc hàm xử lý sự kiện thông qua props cho các thành phần con. Tuy nhiên, các thành phần con không thể thay đổi giá trị của props mà được truyền từ cha của nó.
-
-Với one-way data binding, mọi thay đổi trong dữ liệu phải được thực hiện ở cấp cao nhất của ứng dụng và được truyền xuống các thành phần con thông qua props. Những thay đổi này sau đó sẽ lan tỏa xuống các thành phần con khác trong cây thành phần.
-
-Điều này giúp giảm sự phức tạp và dễ dàng theo dõi luồng dữ liệu trong ứng dụng React. Bạn có thể biết rõ rằng các thành phần con chỉ làm việc với dữ liệu mà nó nhận được thông qua props, và việc thay đổi dữ liệu chỉ xảy ra ở một nơi duy nhất.
-
-**🌻 Two-way data binding (ràng buộc dữ liệu hai chiều)**
-
-Two-way data binding (ràng buộc dữ liệu hai chiều) trong React là một cách để liên kết và đồng bộ hóa dữ liệu giữa thành phần (component) và giao diện người dùng (user interface). Khi sử dụng two-way data binding, thay đổi dữ liệu trong thành phần có thể tự động cập nhật giao diện người dùng, và ngược lại, thay đổi giao diện người dùng cũng có thể tự động cập nhật dữ liệu trong thành phần.
-
-Trong React, two-way data binding thường được sử dụng trong các thành phần đầu vào (input components) như các ô input, ô chọn (select), và ô checkbox. Khi người dùng thay đổi giá trị trong giao diện người dùng, dữ liệu trong thành phần được cập nhật tự động. Ngược lại, nếu dữ liệu trong thành phần thay đổi, giao diện người dùng sẽ được cập nhật để phản ánh giá trị mới.
-
-Để thực hiện two-way data binding trong React, bạn có thể sử dụng các thư viện như "react-redux" hoặc "formik" để quản lý trạng thái và đồng bộ hóa dữ liệu giữa thành phần và giao diện người dùng.
-
-Tuy nhiên, trong React, one-way data binding là một phương pháp phổ biến hơn, vì nó giúp đơn giản hóa việc theo dõi và quản lý luồng dữ liệu trong ứng dụng. Two-way data binding có thể tạo ra sự phức tạp và khó kiểm soát nếu không được sử dụng một cách cẩn thận.
-
 ## 🔥 5.3 Khái niệm Lifecycle
 
 🌻 **Re-Render trong React là gì?**
@@ -196,7 +168,7 @@ Có 2 lí do để 1 component render:
 
 ===============================
 
-🌻 **Các bước liên quan đến việc hiển thị một thành phần trên màn hình**
+🌻 **LifeCycle**
 
 Quá trình xử lý yêu cầu tương tác từ giao diện người dùng có 3 bước:
 
@@ -226,7 +198,7 @@ Chúng ta sẽ tìm hiểu kỹ hơn các khái niệm này trong bài học v�
 
 ---
 
-Chi tiết các bước nói trên diễn ra như sau:
+QUY TRÌNH 1 COMPONENT RENDER:
 
 🔸**Step 1: Kích hoạt render**
 
