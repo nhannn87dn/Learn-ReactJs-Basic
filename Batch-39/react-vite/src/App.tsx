@@ -1,27 +1,16 @@
 import "./App.css";
-import React from "react";
-import Count from "./components/Count";
-import ButtonLike from "./components/ButtonLike";
-import Price from "./components/Price";
+import Attributes from "./components/Attributes";
+import FormExample from "./components/FormExample";
+import Tags from "./components/Tags";
 
 function App() {
-  const [isOpen, setIsOpen] = React.useState(false);
   console.log("app render");
+
   return (
     <div className="container mx-auto">
-      <button
-        onClick={() => {
-          setIsOpen(!isOpen);
-        }}
-      >
-        Toggle
-      </button>
-      <div className="container mx-auto">
-        {isOpen && <Count />}
-
-        <ButtonLike />
-        <Price />
-      </div>
+      <Attributes />
+      <Tags />
+      <FormExample />
     </div>
   );
 }
