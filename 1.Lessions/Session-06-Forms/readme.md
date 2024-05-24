@@ -486,8 +486,21 @@ Dưới đây là một ví dụ về đối tượng "user" với nhiều trư�
 import * as yup from "yup";
 
 const schema = yup.object().shape({
-  username: yup.string().required("Username is required"),
-  email: yup.string().email("Invalid email").required("Email is required"),
+  username: yup
+    .string()
+    .min(4, "Tên tối thiểu 4 kí tự")
+    .max(20, "Tối đa 2o kí tự")
+    .required("Username is required"),
+
+  nickName: yup.string().default("").nullable(), //mặc định là '' nếu ko điền, chấp nhận giá trị null
+  email: yup
+    .string()
+    .lowercase()
+    .trim()
+    .email("Invalid email")
+    .required("Email is required"),
+  birthDate: yup.date().nullable().min(new Date(1900, 0, 1)), //kiểu ngày tháng năm, chấp nhật null
+  website: yup.string().url().optional(), //kiểu  string | undefine
   age: yup
     .number()
     .integer()
@@ -528,8 +541,11 @@ schema
 
 Trong ví dụ trên, chúng ta đã sử dụng Yup để tạo một schema đối tượng cho "user". Các trường của "user" bao gồm `username`, `email`, `age`, `password`, `confirmPassword`, và `gender`. Mỗi trường được định nghĩa với các quy tắc xác thực tương ứng.
 
-- `username` phải là một chuỗi bắt buộc.
-- `email` phải là một chuỗi hợp lệ đại diện cho địa chỉ email.
+- `username` phải là một chuỗi bắt buộc, tối thiểu 4 kí tự, tối đa 20 kí tự
+- `email` phải là một chuỗi hợp lệ đại diện cho địa chỉ email. covert thành chữ thường, bỏ kí tự trống 2 đầu.
+- `nickName`: là chuỗi, mặc định ko điền là `""`, chấp nhận giá trị `null`
+- `birthDate`: là kiểu ngày tháng, chấp nhận giá trị `null`, năm tối thiểu 1990
+- `website`: là chuỗi, định dạng url, chấp nhận giá trị `undefine`
 - `age` phải là một số nguyên dương và ít nhất 18 tuổi.
 - `password` phải là một chuỗi có ít nhất 6 ký tự.
 - `confirmPassword` phải giống với giá trị của trường `password`.
