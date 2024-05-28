@@ -14,8 +14,13 @@ const StartRating = () => {
           <div key={index}>
             {currentIndex >= star ? (
               <FaStar
-                onMouseOver={() => {
+                onMouseEnter={() => {
                   console.log("re chuot len ", star);
+                  if (currentIndex == star) {
+                    setCurrentIndex(0);
+                  } else {
+                    setCurrentIndex(star);
+                  }
                 }}
                 onClick={() => {
                   console.log(star);
@@ -28,8 +33,13 @@ const StartRating = () => {
               />
             ) : (
               <FaRegStar
-                onMouseOver={() => {
+                onMouseEnter={() => {
                   console.log("re chuot len ", star);
+                  if (currentIndex == star) {
+                    setCurrentIndex(0);
+                  } else {
+                    setCurrentIndex(star);
+                  }
                 }}
                 onClick={() => {
                   console.log(star);
