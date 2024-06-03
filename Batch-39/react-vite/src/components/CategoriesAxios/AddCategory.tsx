@@ -10,7 +10,12 @@ const schema = yup
   })
   .required();
 
-const AddCategory = ({ setIsFresh }: { setIsFresh: (v: boolean) => void }) => {
+type TAddCategory = {
+  isFresh: number;
+  setIsFresh: (v: number) => void;
+};
+
+const AddCategory = ({ isFresh, setIsFresh }: TAddCategory) => {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [error, setError] = React.useState<string>("");
   const [isSuccess, setIsSuccess] = React.useState<boolean>(false);
@@ -34,9 +39,10 @@ const AddCategory = ({ setIsFresh }: { setIsFresh: (v: boolean) => void }) => {
       });
       console.log("response", response);
       if (response.status === 201) {
+        setIsFresh(isFresh + 1);
         setIsLoading(false);
         setIsSuccess(true);
-        setIsFresh(true);
+
         //reset form
         reset();
       }

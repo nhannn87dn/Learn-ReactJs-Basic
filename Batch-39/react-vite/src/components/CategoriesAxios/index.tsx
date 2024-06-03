@@ -15,11 +15,12 @@ const CategoriesAxios = () => {
   const [categories, setCategories] = React.useState<TCategories>([]);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [error, setError] = React.useState<string>("");
-  const [isFresh, setIsFresh] = React.useState<boolean>(false);
+  const [isFresh, setIsFresh] = React.useState<number>(0);
   const [selected, setSelected] = React.useState<TCategory | null>(null);
 
   console.log("categories", categories);
   console.log("selected", selected);
+  console.log("isFresh", isFresh);
 
   React.useEffect(() => {
     try {
@@ -55,8 +56,8 @@ const CategoriesAxios = () => {
       const response = await axios.delete(url);
       console.log(response);
       if (response.status === 200) {
+        setIsFresh((prev) => prev + 1);
         alert("Xoa thanh cong");
-        setIsFresh(true);
       }
     } catch (error) {
       console.log(error);
@@ -69,10 +70,16 @@ const CategoriesAxios = () => {
       <h1 className="text-3xl">Categories</h1>
 
       <div>
-        <AddCategory setIsFresh={setIsFresh} />
+        <AddCategory isFresh={isFresh} setIsFresh={setIsFresh} />
       </div>
       <div>
-        <EditCategory category={selected} setIsFresh={setIsFresh} />
+        {selected !== null && (
+          <EditCategory
+            isFresh={isFresh}
+            category={selected}
+            setIsFresh={setIsFresh}
+          />
+        )}
       </div>
 
       {error !== "" && (

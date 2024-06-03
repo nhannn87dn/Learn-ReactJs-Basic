@@ -18,11 +18,12 @@ const schema = yup
   .required();
 
 type TEditCategory = {
-  setIsFresh: (v: boolean) => void;
+  isFresh: number;
+  setIsFresh: (v: number) => void;
   category: TCategory;
 };
 
-const EditCategory = ({ setIsFresh, category }: TEditCategory) => {
+const EditCategory = ({ isFresh, setIsFresh, category }: TEditCategory) => {
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
   const [error, setError] = React.useState<string>("");
   const [isSuccess, setIsSuccess] = React.useState<boolean>(false);
@@ -53,9 +54,10 @@ const EditCategory = ({ setIsFresh, category }: TEditCategory) => {
       });
       console.log("response", response);
       if (response.status === 200) {
+        setIsFresh(isFresh + 1);
         setIsLoading(false);
         setIsSuccess(true);
-        setIsFresh(true);
+
         //reset form
         reset();
       }
