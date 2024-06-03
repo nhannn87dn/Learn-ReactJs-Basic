@@ -1,0 +1,4 @@
+### METHOD GET
+
+### Get all Cateogiores
+GET https://api.escuelajs.co/api/v1/categories
