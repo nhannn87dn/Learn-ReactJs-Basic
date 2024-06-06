@@ -35,7 +35,9 @@ const queryClient = new QueryClient();
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Các thành phần con của bạn ở đây */}
+      {/* 
+      Component nào có sử dụng react query thì được đặt trong QueryClientProvider
+      */}
     </QueryClientProvider>
   );
 }
@@ -47,7 +49,7 @@ export default App;
 
 React Query cung cấp một số hooks để bạn có thể dễ dàng gọi và quản lý các request mạng.
 
-Xem chi tiết: <https://tanstack.com/query/v4>
+Xem chi tiết: <https://tanstack.com/query/v5>
 
 `useQuery` và `useMutation` là hai hooks trong React Query được sử dụng để quản lý hai khía cạnh khác nhau của việc làm việc với dữ liệu trong ứng dụng:
 
@@ -96,11 +98,11 @@ interface Product {
 
 const Products: React.FC = () => {
 
-  //Có thể sử dụng queryFn với fetch
+  //Có thể sử dụng queryFn với fetch, phải return về kết quả cuối cùng
   const getProduct = async ()=>{
       return fetch('https://api.escuelajs.co/api/v1/products').then(res => res.json());
   }
-  //Có thể sử dụng queryFn với axios
+  //Có thể sử dụng queryFn với axios, phải return về kết quả cuối cùng
   const getProductAxios = async ()=>{
       return axios.get('https://api.escuelajs.co/api/v1/products').then(res => res.data);
   }
@@ -127,7 +129,7 @@ const Products: React.FC = () => {
       <ul>
         {data.map((product: Product) => (
           <li key={product.id}>
-            {product.title} - {product.price}
+            #{product.id} - {product.title} - {product.price}
           </li>
         ))}
       </ul>
@@ -172,7 +174,7 @@ interface Product {
 function AddProduct() {
   const queryClient = useQueryClient();
 
-  //Mutation với fetch
+  //Mutation với fetch, phải return về kết quả cuối cùng
   const postProduct = async (newProduct: Product) =>
     fetch("https://api.escuelajs.co/api/v1/products/", {
       method: "POST",
@@ -185,23 +187,20 @@ function AddProduct() {
   //Mutation với axios
   const postProduct = async (newProduct: Product) =>
     axios
-      .post("https://api.escuelajs.co/api/v1/products/", newProduct, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-      })
+      .post("https://api.escuelajs.co/api/v1/products/", newProduct)
       .then((response) => response.data);
 
   // Mutations
   const addProductMutation = useMutation({
     mutationFn: postProduct,
     onSuccess: () => {
-      // Invalidate and refetch
+      // Làm tươi lại dữ liệu, ở trang danh sách
       queryClient.invalidateQueries({ queryKey: ["products"] });
     },
   });
 
   const handleAddProduct = () => {
+    //Giả lập dữ liệu lấy lên được từ Form, sau đó đưa vào mutate
     addProductMutation.mutate({
       title: "New Product 3",
       price: 480,
@@ -239,6 +238,114 @@ Như vậy, cùng với `useQuery`, `useMutation` là một trong những hooks 
 
 ---
 
-Ví dụ: Cập nhật và xóa sản phẩm
+**Ví dụ về Xóa sản phẩm**
 
-Sử dụng `useMutation`
+```jsx
+//Edit lại từ component Products
+//========== DELETE PRODUCT==============//
+const deleteProduct = async (productId) => {
+  return axios
+    .delete(`https://api.escuelajs.co/api/v1/products/${productId}`)
+    .then((response) => response.data);
+};
+
+const deleteProductMutation = useMutation({
+  mutationFn: deleteProduct,
+  onSuccess: () => {
+    // Làm tươi lại product list , sau khi xóa thành công
+    queryClient.invalidateQueries({ queryKey: ["products"] });
+  },
+});
+
+const handleDeleteProduct = (productId) => {
+  // Sử dụng phương thức mutate, truyền vào id cần xóa
+  deleteProductMutation.mutate(productId);
+};
+
+return (
+  <div>
+    <h1>Danh sách sản phẩm</h1>
+    <ul>
+      {data.map((product: Product) => (
+        <li key={product.id}>
+          #{product.id} - {product.title} - {product.price}
+          <button
+            disabled={deleteProductMutation.isLoading}
+            onClick={() => handleDeleteProduct(product.id)}
+          >
+            {deleteProductMutation.isLoading ? (
+              <span>Deleting ...</span>
+            ) : (
+              <span>Delete</span>
+            )}
+          </button>
+        </li>
+      ))}
+    </ul>
+
+    {deleteProductMutation.isSuccess && (
+      <span>Product deleted successfully!</span>
+    )}
+    {deleteProductMutation.isError && <span>Failed to delete Product.</span>}
+  </div>
+);
+```
+
+**Ví dụ về Edit sản phẩm**
+
+```jsx
+const editProduct = (updatedProduct) => {
+  /*
+  id được gửi kèm trên form, sau đó tách ra
+  */
+  const { id, ...payloads } = updatedProduct;
+  return axios
+    .put(`https://api.escuelajs.co/api/v1/products/${id}`, payloads)
+    .then((response) => response.data);
+};
+
+const editProductMutation = useMutation({
+  mutationFn: editProduct,
+  onSuccess: () => {
+    // Làm tươi lại danh sách khi update thành công
+    queryClient.invalidateQueries({ queryKey: ["products"] });
+  },
+});
+
+const handleEditProduct = (updatedProduct) => {
+  // Use the mutate method, passing in the id and updated product data
+  editProductMutation.mutate(updatedProduct);
+};
+
+return (
+  <div>
+    <h1>Edit Product</h1>
+    {data.map((product: Product) => (
+      <div key={product.id}>
+        <p>
+          #{product.id} - {product.title} - {product.price}
+        </p>
+        <button
+          disabled={editProductMutation.isLoading}
+          onClick={() =>
+            //Giả lập cứng data thay đổi
+            handleEditProduct(product.id, {
+              title: "New Title",
+              price: product.price,
+            })
+          }
+        >
+          {editProductMutation.isLoading ? (
+            <span>Editing...</span>
+          ) : (
+            <span>Edit</span>
+          )}
+        </button>
+      </div>
+    ))}
+
+    {editProductMutation.isSuccess && <span>Product edited successfully!</span>}
+    {editProductMutation.isError && <span>Failed to edit Product.</span>}
+  </div>
+);
+```
