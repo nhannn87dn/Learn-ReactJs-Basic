@@ -1,10 +1,18 @@
 import "./App.css";
-import {
-  QueryClient,
-  QueryClientProvider,
-  useQuery,
-} from "@tanstack/react-query";
-import ProductsReactQuery from "./components/ProductsReactQuery";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+import HomePage from "./pages/HomePage";
+import ProductPage from "./pages/ProductPage";
+import BlogPage from "./pages/BlogPage";
+import DefaultLayout from "./layouts/DefaultLayout";
+import NoPage from "./pages/NoPage";
+import ProductDetailPage from "./pages/ProductDetailPage";
+import CustomerPage from "./pages/CustomerPage";
+import CustomerProfilePage from "./pages/CustomerProfilePage";
+import CustomerOrdersPage from "./pages/CustomerOrdersPage";
+import CustomerDashboardPage from "./pages/CustomerDashboardPage";
+import ChangleTitle from "./components/ChangleTitle";
 //import Categories from "./components/Categories";
 //import CategoriesAxios from "./components/CategoriesAxios";
 
@@ -15,13 +23,29 @@ function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <div className="container mx-auto">
-        {/* <h2>Categories Fetch</h2>
-        <Categories /> */}
-        {/* <h2>CategoriesAxios</h2>
-        <CategoriesAxios /> */}
-        <ProductsReactQuery />
-      </div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<DefaultLayout />}>
+            <Route index element={<HomePage />} />
+            <Route path="/products" element={<ProductPage />} />
+            <Route path="/products/:id" element={<ProductDetailPage />} />
+            <Route path="/blog" element={<BlogPage />} />
+            <Route path="/customers" element={<CustomerPage />}>
+              <Route index element={<CustomerDashboardPage />} />
+              <Route
+                path="/customers/profile"
+                element={<CustomerProfilePage />}
+              />
+              <Route
+                path="/customers/orders"
+                element={<CustomerOrdersPage />}
+              />
+            </Route>
+          </Route>
+          {/* bao loi 404 */}
+          <Route path="*" element={<NoPage />} />
+        </Routes>
+      </BrowserRouter>
     </QueryClientProvider>
   );
 }

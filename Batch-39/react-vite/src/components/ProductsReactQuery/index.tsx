@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Table,
   Button,
@@ -12,7 +12,8 @@ import {
 import type { TableProps, PaginationProps, FormProps } from "antd";
 import { useQueryClient, useMutation, useQuery } from "@tanstack/react-query";
 import axios from "axios";
-
+import { Link } from "react-router-dom";
+import { useLocation, useSearchParams, useNavigate } from "react-router-dom";
 /**
  * TypeScript cho data đưa vào table
  */
@@ -55,6 +56,26 @@ type FieldType = {
 // ];
 
 const ProductsReactQuery = () => {
+  //Lay search params
+  const location = useLocation();
+  const [params] = useSearchParams();
+  const navigate = useNavigate();
+
+  const page_str = params.get("page");
+  const page = page_str ? parseInt(page_str) : 1; //Mac dinh page = 1
+  const limit = 10;
+  const offset = (page - 1) * limit;
+
+  useEffect(() => {
+    console.log("<<=== 🚀 page ===>>", page);
+    if (page === 1) {
+      navigate("/products");
+    }
+  }, [page]);
+
+  console.log(location);
+  console.log(page_str);
+
   const [formCreate] = Form.useForm();
   const [formUpdate] = Form.useForm();
 
@@ -63,7 +84,7 @@ const ProductsReactQuery = () => {
   const getProducts = async () => {
     //trả về kết quả cuối cùng cần lấy
     const response = await axios.get(
-      "https://api.escuelajs.co/api/v1/products?offset=0&limit=100"
+      `https://api.escuelajs.co/api/v1/products?offset=${offset}&limit=10`
     );
     return response.data;
   };
@@ -78,7 +99,7 @@ const ProductsReactQuery = () => {
 
   */
   const { isLoading, isError, error, data } = useQuery<DataType[], Error>({
-    queryKey: ["products"], // Tên bộ nhớ cache, không trùng lặp
+    queryKey: ["products", page], // Tên bộ nhớ cache, không trùng lặp
     queryFn: getProducts, // Hàm fetch API, có return
     enabled: true, // Cho phép gọi API hay là không, false là chặn, true là gọi API
   });
@@ -114,8 +135,8 @@ const ProductsReactQuery = () => {
       queryClient.invalidateQueries({ queryKey: ["products"] });
       //reset form
       formCreate.resetFields();
-       //Hiển thị message thành công
-       messageApi.open({
+      //Hiển thị message thành công
+      messageApi.open({
         type: "success",
         content: "Thêm mới thành công !",
       });
@@ -236,6 +257,9 @@ const ProductsReactQuery = () => {
       title: "Title",
       dataIndex: "title",
       key: "title",
+      render: (_, record) => {
+        return <Link to={`/products/${record.id}`}>{record.title}</Link>;
+      },
     },
     {
       title: "Price",
@@ -346,10 +370,16 @@ const ProductsReactQuery = () => {
         loading={isLoading}
       />
       <Pagination
-        showSizeChanger
+        style={{ marginTop: 30 }}
+        onChange={(page, pageSize) => {
+          console.log(page, pageSize);
+          //tao search string page=1
+          navigate(`/products/?page=${page}`);
+        }}
+        showSizeChanger={false}
         onShowSizeChange={onShowSizeChange}
         defaultCurrent={1}
-        total={500}
+        total={100} //API phai tra ve con so nay de dien vao day
       />
       {/* BEGIN MODAL UPDATE */}
       <Modal

@@ -2,3 +2,14 @@
 
 ### Get all Cateogiores
 GET https://api.escuelajs.co/api/v1/categories
+
+###
+DELETE https://api.escuelajs.co/api/v1/products/29
+
+### 
+PUT https://api.escuelajs.co/api/v1/products/34
+Content-Type: application/json
+
+{
+  "price": 1
+}
