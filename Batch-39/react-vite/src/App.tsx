@@ -13,6 +13,7 @@ import CustomerProfilePage from "./pages/CustomerProfilePage";
 import CustomerOrdersPage from "./pages/CustomerOrdersPage";
 import CustomerDashboardPage from "./pages/CustomerDashboardPage";
 import ChangleTitle from "./components/ChangleTitle";
+import LoginPage from "./pages/LoginPage";
 //import Categories from "./components/Categories";
 //import CategoriesAxios from "./components/CategoriesAxios";
 
@@ -27,6 +28,7 @@ function App() {
         <Routes>
           <Route path="/" element={<DefaultLayout />}>
             <Route index element={<HomePage />} />
+            <Route path="/login" element={<LoginPage />} />
             <Route path="/products" element={<ProductPage />} />
             <Route path="/products/:id" element={<ProductDetailPage />} />
             <Route path="/blog" element={<BlogPage />} />

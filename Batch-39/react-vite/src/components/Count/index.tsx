@@ -14,15 +14,10 @@ const Count = () => {
     <>
       <button
         onClick={() => {
-          // setIndex(index + 1);
-          // setIndex(index + 1);
-          // setIndex(index + 1);
-          setIndex((n) => n + 1); //1. snapshot index = 0
-          setIndex((n) => n + 1); //2.
-          setIndex((n) => n + 1); //3.
+          setIndex((n) => n + 1);
         }}
       >
-        + 3
+        + 1
       </button>
       <h3>{index}</h3>
     </>

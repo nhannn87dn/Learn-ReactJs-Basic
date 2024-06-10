@@ -1,4 +1,6 @@
 import { Helmet } from "react-helmet";
+import Count from "../components/Count";
+import CountHangXom from "../components/Count/CountHangXom";
 
 const HomePage = () => {
   return (
@@ -10,6 +12,10 @@ const HomePage = () => {
         <meta name="description" content="Learn React at Softech Aptech" />
       </Helmet>
       <h1>Home Page</h1>
+      Count
+      <Count />
+      <hr />
+      <CountHangXom />
     </>
   );
 };

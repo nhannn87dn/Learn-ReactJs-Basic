@@ -1,7 +1,13 @@
 import { Outlet, Link } from "react-router-dom";
-
+import { useCount } from "../stores/useCount";
+import { useAuth } from "../stores/useAuth";
 const DefaultLayout = () => {
   console.log("Layout render");
+
+  const { count } = useCount();
+
+  const { user } = useAuth();
+  console.log("<<=== 🚀 user ===>>", user);
   return (
     <>
       <header className="bg-indigo-500 text-white py-5">
@@ -24,6 +30,16 @@ const DefaultLayout = () => {
                 </li>
                 <li>
                   <Link to={"/customers"}>Customer</Link>
+                </li>
+                <li>{count}</li>
+                <li>
+                  {user !== null ? (
+                    <>
+                      <strong>{user?.name}</strong>
+                    </>
+                  ) : (
+                    <Link to={"/login"}>Login</Link>
+                  )}
                 </li>
               </ul>
             </nav>
