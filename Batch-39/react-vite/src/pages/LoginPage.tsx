@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useAuth } from "../stores/useAuth";
 
 type TUser = {
@@ -13,7 +13,14 @@ const LoginPage = () => {
     password: "",
   });
 
-  const { setUser } = useAuth();
+  const { user, setUser } = useAuth();
+
+  useEffect(() => {
+    //Đã login, thức user sẽ khác null
+    if (user !== null) {
+      //navigate('/customer'); //chuyển trang khi đã login rồi. Mà quay lại trang login lần nữa
+    }
+  }, [user]);
 
   return (
     <div>
