@@ -6,38 +6,31 @@ Tạo một Component : Hiển thị ra mành hình chữ "Hello World"
 
 ## Task 2
 
-- Tạo một Component : Hiển thị ra mành hình Button: Thêm vào giỏ hàng
-- Tạo một Component : Hiển thị ra mành hình Button: Gọi lại tư vấn
+- Tạo một Component : Hiển thị ra màn hình một hình ảnh
+
+![ex2](ex-1.png)
 
 ## Task 3
 
-- Tạo một Component : Hiển thị ra màn hình một hình ảnh
+Tạo một Component : Hiển thị ra mành hình chữ "Đồng hồ MVW 44 mm Nam MSC003-02" trong một thẻ h3
 
 ## Task 4
 
 Tạo một Component:
 
-- Trong component đó định nghĩa các biến: name = Tên của bạn, age = Tuổi của bạn
-- Dùng các biến trên, đưa vào phần `return` của Component.
+- Trong component đó định nghĩa các biến: price = giá niêm yết, promoPrice = giá khuyến mãi.
+- Dùng các biến trên, đưa vào phần `return` của Component để được như hình sau:
+
+![ex2](ex-4.png)
 
 ## Task 5
 
-- Tạo một UI như hình (Lưu ý:Chưa áp áp dụng Css)
+Tạo một Component : Hiển thị ra mành hình Button: Mua ngay
 
-  ![artilce](task4.png)
+![button](ex-2.png)
 
 ## Task 6
 
-Tạo ra một component chứa tất cả các component đã tạo từ Task 1 - 4
+Tạo component như sau
 
-## Task 7
-
-Tại một UI như hình (Lưu ý: không cần Css)
-
-![icon](ex2.png)
-
-## Task 8
-
-Nâng cấp task 2, thêm icon vào để có được như hình
-
-![button](../img/button-shop.png)
+![sp](ex-6.png)

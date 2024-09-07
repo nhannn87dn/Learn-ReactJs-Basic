@@ -1,7 +1,5 @@
 # Session 02 - JSX, Components
 
-# ⭐ Components and Props
-
 ## 🔥 Component trong React là gì ?
 
 - Trong React, "component" (thành phần) là một phần của giao diện người dùng được chia thành các phần nhỏ, có thể tái sử dụng và độc lập. Chúng giúp bạn chia nhỏ các phần phức tạp của ứng dụng thành các phần nhỏ hơn, dễ quản lý và tái sử dụng.
@@ -211,14 +209,20 @@ Cách mà làm cho Component trở nên Dynamic hơn
 
 ### JSX là gì ?
 
-JSX là một cú pháp mở rộng cho JavaScript được sử dụng trong ReactJS để xây dựng giao diện người dùng. JSX cho phép chúng ta viết mã HTML tương tự và sử dụng các thành phần React để xây dựng giao diện.
+JSX là một cú pháp mở rộng cho JavaScript được sử dụng trong ReactJS để xây dựng giao diện người dùng.
 
 JSX giúp chúng ta tạo ra các đối tượng React Element, mô tả cách giao diện người dùng sẽ được hiển thị. JSX kết hợp các thành phần React và HTML trong một cú pháp duy nhất, giúp mã nguồn trở nên dễ đọc và dễ hiểu hơn.
+
+- JSX stands for JavaScript XML.
+
+- JSX allows us to write HTML in React.
+
+- JSX makes it easier to write and add HTML in React
 
 - https://www.w3schools.com/REACT/react_jsx.asp
 - https://react.dev/learn/writing-markup-with-jsx
 
-### ⭐1. Cách sử dụng JSX
+### Cách Code JSX
 
 Để tạo ra một câu Hello world bằng HTML
 
@@ -229,11 +233,14 @@ JSX giúp chúng ta tạo ra các đối tượng React Element, mô tả cách 
 Trong React bạn phải sử dụng phương thức JavaScript để tạo các phần tử HTML:
 
 ```js
-const element = React.createElement(
+//Without JSX
+const myElement = React.createElement(
   "h1",
   { className: "greeting" },
   "Hello, world!"
 );
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(myElement);
 ```
 
 Cách viết này khá phức tạp và tồn thời gian để tạo ra một UI.
@@ -241,15 +248,34 @@ Thay vào đó người ta phát triển ra một thư viện giúp bạn đơn 
 
 JSX giúp bạn tạo ra các elements trong javascript như code bên HTML thuần túy
 
-Mở file index.js/index.ts trong thư mục src
+```javascript
+//JSX
+const myElement = <h1>I Love JSX!</h1>;
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(myElement);
+```
+
+### Một số ưu điểm của JSX trong ReactJs
+
+- Dễ đọc và dễ viết: Cú pháp giống HTML giúp viết các thành phần React một cách dễ dàng và tự nhiên.
+- Tích hợp JavaScript: Có thể sử dụng các biểu thức JavaScript để tích hợp logic vào trong mã JSX.
+- Tối ưu hóa mã: JSX giúp viết mã gọn gàng và tổ chức tốt hơn, dễ dàng bảo trì và phát triển
+
+### JSX làm được gì ?
+
+#### 1. Đơn giản hóa việc code HTML trong JavaScript
 
 ```js
 //html 1 dòng
 const element = <h1 className="greeting">Hello, world!</h1>;
 ```
 
+Chèn khối HTML lớn với nhiều dòng code. Bắt buộc phải bọc ngoài một thẻ CHA.
+
+Bạn có thể sử dụng thẻ `<div>`
+
 ```js
-//Chèn khối HTML lớn
 const element = (
   <div>
     <h1>Hello!</h1>
@@ -258,54 +284,109 @@ const element = (
 );
 ```
 
-Khi ứng dụng chạy thì JSX được biên dịch ngược lại cú pháp của javascript như ví dụ trên.
-
-Bạn có thể render ra giao diện người dùng
+Hoặc một thẻ fragment giống như một thẻ HTML trống `<></>`
 
 ```js
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  element,
-)
+const element = (
+  <>
+    <h1>Hello!</h1>
+    <h2>Good to see you here.</h2>
+  </>
+);
 ```
 
+#### 2. Thực thi một biểu thức
+
+Bạn có thể thực thi một biểu thức trong một cặp ngoặc nhón `{}`
+
+Một biểu thức có thể là một biến React, một thuộc tính, hoặc bất kỳ biểu thức javascript hợp lệ khác. JSX sẽ thực thi và return lại kết quả.
+
 ```js
-//Biểu thức trong JSX
-const name = "Josh Perez";
-const element = <h1>Hello, {name}</h1>;
+// Biến
+const name = "John Smith";
+const myelement = <h1>I am {name}</h1>;
 
-const element = <a href="https://www.reactjs.org"> link </a>;
-
+// Biểu thức toán học
 const myelement = <h1>React is {5 + 5} times better with JSX</h1>;
+
+function greet() {
+  return "Hello, world!";
+}
+//Gọi hàm
+const myelement = <h1>{greet()}</h1>;
+
+//Object
+const info = {
+  id: 1,
+  name: "John",
+  email: "john@example.com",
+};
+const myelement = (
+  <ul>
+    <li>{info.name}</li>
+    <li>{info.email}</li>
+  </ul>
+);
 ```
 
-### ⭐ 2. Một số ưu điểm của JSX trong ReactJs
-
-- Dễ đọc và dễ viết: Cú pháp giống HTML giúp viết các thành phần React một cách dễ dàng và tự nhiên.
-- Tích hợp JavaScript: Có thể sử dụng các biểu thức JavaScript để tích hợp logic vào trong mã JSX.
-- Tối ưu hóa mã: JSX giúp viết mã gọn gàng và tổ chức tốt hơn, dễ dàng bảo trì và phát triển
-
-### ⭐3. Mốt số lưu ý trong JSX ?
-
-### 3.1. Luôn trả lại một một Root element
-
-hay còn gọi là container tag
-
-Trả về nhiều dòng --> đặt chúng trong một thẻ cha
-
-```js
-return <div>... .... ....</div>;
-```
-
-#### 3.2. Đóng tất cả các thẻ
+#### 3. Đóng tất cả các thẻ
 
 Các thẻ standalone như `<img>` `<input>` thì buộc phải đóng lại như sau `<img />`, `<input />`
 
-#### 3.3. Sử dụng cú pháp camelCase trong tất cả mọi trường hợp
+```js
+const myElement = <input type="text" />;
+```
 
-- class ==> className
+#### 4. Thuộc tính class đổi thành className
+
+```js
+const myElement = <h1 className="myclass">Hello World</h1>;
+```
+
+#### 5. Sử dụng cú pháp camelCase trong tất cả mọi trường hợp
+
 - JSX Style:
   - background-image ==> backgroundImage
   - background-color ==> backgroundColor
+
+```js
+const myElement = (
+  <h1
+    style={{
+      backgroundColor: "yellow",
+      fontWeight: "bold",
+    }}
+  >
+    Hello World
+  </h1>
+);
+```
+
+#### 6. Biểu thức điểu kiện if với JSX
+
+React hỗ trợ câu lệnh `if` nhưng không phải trong JSX.
+
+Do vậy để sử dụng `if` bạn có 2 cách:
+
+Cách 1:
+
+```javascript
+const x = 5;
+let text = "Goodbye";
+if (x < 10) {
+  text = "Hello";
+}
+
+const myElement = <h1>{text}</h1>;
+```
+
+Cách 2:
+
+```javascript
+const x = 5;
+
+const myElement = <h1>{x < 10 ? "Hello" : "Goodbye"}</h1>;
+```
 
 ### ⭐ 4.Converting HTML to JSX
 
@@ -366,80 +447,6 @@ let elements =  (
 
 ```
 
-### ⭐ 6. JavaScript in JSX with Curly Braces
-
-Doc: <https://beta.reactjs.org/learn/javascript-in-jsx-with-curly-braces>
-
-Bằng cách sử dụng cặp dấu ngoặc nhọn {...}, bạn có thể sử dụng cú pháp Javascript bên trong nó.
-
-```js
-const name = "Lionel Messi";
-let myElement = <h1>Xin chào {name} !</h1>;
-```
-
-Như vậy bạn có thể sử dụng BIẾN ngay trong HTML với hỗ trợ của JSX.
-
-#### **❓ 6.1 Cặp dấu {...} được sử dụng ở đâu ?**
-
-Bạn có thể sử dụng {...} với 2 cách trong JSX:
-
-1. Như là text trực tiếp giữa một thẻ JSX
-2. Nằm sau dấu =, làm giá trị của một thuộc tính ví dụ như: src={avatar}
-
-```js
-const avatar = '';
-// {avatar} là một biến
-<img src={avatar} alt="avatar" />
-//Trường hợp dưới đây {avatar} được hiểu là một chuổi
-<img src="{avatar}" alt="avatar" />
-```
-
-#### ❤️ 6.2 Sử dụng “double curlies” {{...}}
-
-**🔹 inline CSS**
-
-```js
-let Courses = (
-  <ul
-    style={{
-      backgroundColor: "black",
-      color: "pink",
-    }}
-  >
-    <li>Javascript</li>
-    <li>React JS</li>
-    <li>Node JS</li>
-  </ul>
-);
-```
-
-Thì ở đây Css Inline là một Object với các properties của CSS thì chuyển qua dạng camelCase nếu nó có 2 từ trở lên.
-
-> background-color ==> backgroundColor
-
-**🔹JavaScript Objects**
-
-```js
-const subject = {
-  name: "ReactJS Basic",
-  room: "Lab 1",
-  address: "38 Yen Bai",
-  theme: {
-    backgroundColor: "black",
-    color: "pink",
-  },
-};
-let Courses = (
-  <div style={subject.theme}>
-    <h1>{subject.name}</h1>
-    <ul>
-      <li>Room: {subject.room}</li>
-      <li>Address: {subject.address}</li>
-    </ul>
-  </div>
-);
-```
-
 ---
 
 ## 🔥 Sử dụng các Font trong React
@@ -472,9 +479,22 @@ function MyComponent() {
 
 ## 🌻 Chèn hình vào React
 
-Bước 1: Lưu tất cả hình vào một folder `images` trong thư mục public
+Trong cấu trúc của react vite bạn có thể lưu trữ hình ảnh vào 2 nơi
 
-Bước 2: Cách sử dụng hình
+```code
+react-vite/
+├─ public/
+│  ├─ images/
+│     ├── ten-hinh.png
+├─ src/
+│  ├─ assets/
+│     ├── ten-hinh.png
+```
+
+- 1 là trong thư mục public
+- 2 là trong src/assets/
+
+Với cách 1 thì trong các components bạn chỉ cần dẫn đường dẫn như sau:
 
 ```jsx
 <img src="./images/ten-hinh.png" alt="" />
@@ -482,15 +502,15 @@ Bước 2: Cách sử dụng hình
 
 Khi ứng dụng chạy thì thư mục public là thư mục gốc
 
-Hoặc với cách sau
+Với cách 2 bạn cần import
 
 ```jsx
-//Import dưới dạng biến images
-import images from "./images/ten-hinh.png";
+//App.tsx
+import images from "./assets/ten-hinh.png";
 <img src={images} alt="" />;
 ```
 
-Nếu sử dụng với React Vite bạn cần cấu hình thêm `vite.config.ts`
+Nếu sử dụng với React Vite không cấu hình thư mục public bạn cần cấu hình thêm `vite.config.ts`
 
 ```ts
 //Sửa hàm defineConfig thành như sau
