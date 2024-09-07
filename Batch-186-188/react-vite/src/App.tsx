@@ -36,11 +36,17 @@ function Link() {
 }
 
 function App() {
-  const r = sum(2, 4);
-  console.log(r);
+  const name = "Nhan";
+  const h1 = <p>Hello {name}</p>;
+
+  const pheptinh = <p>Mot cong mot = {1 + 1}</p>;
 
   return (
     <>
+      {4 / 2}
+      {h1}
+      {console.log("Hello ----")}
+      {pheptinh}
       <ProductList />
       <h1>Hello React</h1>
       <Button />
