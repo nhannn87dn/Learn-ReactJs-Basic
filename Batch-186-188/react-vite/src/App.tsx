@@ -1,13 +1,62 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
+//Nhung component Button vao de su dung
+import Button from "./components/Button";
+// Được gọi làm javascript
+function sum(a: number, b: number) {
+  return a + b;
+}
+
+// Đây được gọi là function component
+// function Button() {
+//   return <button>Button</button>;
+// }
+// arrow function component
+const ButtonArrow = () => {
+  return <button>Button</button>;
+};
+
+const ProductList = () => {
+  return (
+    <ul>
+      <li>
+        <Button />
+      </li>
+      <li>1</li>
+      <li>1</li>
+    </ul>
+  );
+};
+
+function ListItem() {
+  return <li>Item</li>;
+}
+
+function Link() {
+  return <a href="https://react.dev">React</a>;
+}
 
 function App() {
-  const [count, setCount] = useState(0);
+  const r = sum(2, 4);
+  console.log(r);
+
   return (
     <>
-      <h1>Hello React !</h1>
+      <ProductList />
+      <h1>Hello React</h1>
+      <Button />
+      <ButtonArrow />
+      <Link />
+      <Link />
+      <Link />
+      <Link />
+      <ul>
+        <ListItem />
+        <ListItem />
+        <ListItem />
+        <ListItem />
+
+        <ListItem />
+      </ul>
     </>
   );
 }
