@@ -1,10 +1,12 @@
 import "./App.css";
 //Nhung component Button vao de su dung
 import Button from "./components/Button";
+import Profile from "./components/Profile";
+
 // Được gọi làm javascript
-function sum(a: number, b: number) {
-  return a + b;
-}
+// function sum(a: number, b: number) {
+//   return a + b;
+// }
 
 // Đây được gọi là function component
 // function Button() {
@@ -43,6 +45,7 @@ function App() {
 
   return (
     <>
+      <Profile />
       {4 / 2}
       {h1}
       {console.log("Hello ----")}
