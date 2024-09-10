@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 
+css mặc định cho các thẻ 
+ví: input, button, a, textarea, h1-h6
+*/
+@layer base {
+  h2 {
+    @apply text-3xl font-bold;
+  }
+}
+
+/*
+Để tạo ra các class cho từng component
+*/
+@layer components {
+  .btn {
+    @apply text-slate-900 px-3 py-1 rounded bg-transparent border-0 cursor-pointer;
+  }
+  .btn-primary {
+    @apply text-white bg-blue-700;
+  }
+}
+/*
+Các class tiện ích bổ sung, ghi đè lại một phần
+các class từ 2 lớp trên.
+*/
+@layer utilities {
+}
