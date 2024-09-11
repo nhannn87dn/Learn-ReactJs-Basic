@@ -22,6 +22,10 @@ ví: input, button, a, textarea, h1-h6
   .btn-primary {
     @apply text-white bg-blue-700;
   }
+
+  .btn-danger {
+    @apply text-white bg-red-600;
+  }
 }
 /*
 Các class tiện ích bổ sung, ghi đè lại một phần
