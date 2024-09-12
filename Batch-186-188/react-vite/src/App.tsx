@@ -7,10 +7,12 @@ import { FaShoppingCart, FaHeart } from "react-icons/fa";
 import ListItem from "./components/List/ListItem";
 import List from "./components/List";
 import BlockUI4 from "./components/BlockUI4";
+import BlockUI1 from "./components/BlockUI1";
 
 function App() {
   return (
     <div className="container mx-auto">
+      <BlockUI1 />
       <div
         className="block-bg p-5 flex gap-x-3"
         style={{
