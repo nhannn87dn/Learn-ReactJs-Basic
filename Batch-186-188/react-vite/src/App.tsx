@@ -6,17 +6,34 @@ import Button from "./components/Button";
 import { FaShoppingCart, FaHeart } from "react-icons/fa";
 import ListItem from "./components/List/ListItem";
 import List from "./components/List";
-import Header from "./components/Header";
+import BlockUI4 from "./components/BlockUI4";
 
 function App() {
   return (
     <div className="container mx-auto">
-      <Header>
-        <div>Logo</div>
-        <nav></nav>
-        gfgf
-      </Header>
-
+      <div
+        className="block-bg p-5 flex gap-x-3"
+        style={{
+          backgroundColor: "#F4F7FC",
+        }}
+      >
+        <BlockUI4
+          count={24599}
+          chartData={[
+            { dayName: "MON", bgColor: "bg-red-500", percent: "40%" },
+            { dayName: "TUE", bgColor: "bg-green-500", percent: "30%" },
+            { dayName: "WED", bgColor: "bg-yellow-500", percent: "60%" },
+          ]}
+        />
+        <BlockUI4
+          count={15699}
+          chartData={[
+            { dayName: "MON", bgColor: "bg-red-500", percent: "40%" },
+            { dayName: "TUE", bgColor: "bg-green-500", percent: "30%" },
+            { dayName: "WED", bgColor: "bg-yellow-500", percent: "60%" },
+          ]}
+        />
+      </div>
       <List>
         <ListItem content="Item 1" />
         <ListItem content="Item 2" />
