@@ -1,6 +1,7 @@
 import ProductItem from "../ProductItem";
 
 const AccessoriesList = () => {
+  console.log("AccessoriesList render");
   return (
     <div className="product_list flex gap-3">
       <ProductItem

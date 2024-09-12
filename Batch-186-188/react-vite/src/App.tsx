@@ -9,31 +9,68 @@ import AccessoriesList from "./components/AccessoriesList";
 // import List from "./components/List";
 // import BlockUI4 from "./components/BlockUI4";
 import BlockUI1 from "./components/BlockUI1";
+import ListItem from "./components/List/ListItem";
 
-const ListItem = ({
-  content,
-  isDone = false,
-}: {
-  content: string;
-  isDone?: boolean;
-}) => {
-  return (
-    <li>
-      {content} {isDone && "✔"}
-    </li>
-  );
-};
+// const ListItem = ({
+//   content,
+//   isDone = false,
+// }: {
+//   content: string;
+//   isDone?: boolean;
+// }) => {
+//   return (
+//     <li>
+//       {content} {isDone && "✔"}
+//     </li>
+//   );
+// };
+
+// Biến tất cả dữ liệu của phần UI thành một mảng
+// array object
+const todos = [
+  { id: 1, content: "Quet nha", isDone: true },
+  { id: 2, content: "Giat do", isDone: true },
+  { id: 3, content: "Nau com", isDone: true },
+  { id: 4, content: "Xem Tivi", isDone: false },
+  { id: 5, content: "Di ngu", isDone: false },
+];
 
 function App() {
   const isShow = true;
-
+  console.log("App render");
   return (
     <div className="container mx-auto">
       <AccessoriesList />
       <ul>
-        <ListItem content="Quet nha" isDone={true} />
+        {/* <ListItem content="Quet nha" isDone={true} />
         <ListItem content="Rua chen" isDone={true} />
-        <ListItem content="Nau com" />
+        <ListItem content="Nau com" /> */}
+        {todos.length > 0 &&
+          todos.map((todo) => {
+            return (
+              <ListItem
+                key={`todoOne_${todo.id}`}
+                content={todo.content}
+                isDone={todo.isDone}
+              />
+            );
+          })}
+      </ul>
+
+      <ul>
+        {/* <ListItem content="Quet nha" isDone={true} />
+        <ListItem content="Rua chen" isDone={true} />
+        <ListItem content="Nau com" /> */}
+        {todos.length > 0 &&
+          todos.map((todo) => {
+            return (
+              <ListItem
+                key={`todoTwo_${todo.id}`}
+                content={todo.content}
+                isDone={todo.isDone}
+              />
+            );
+          })}
       </ul>
 
       {isShow && <BlockUI1 />}
