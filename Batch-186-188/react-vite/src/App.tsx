@@ -1,19 +1,43 @@
 import "./App.css";
-import Attribute from "./components/Attributes";
+import AccessoriesList from "./components/AccessoriesList";
+//import Attribute from "./components/Attributes";
 // import ButtonAddToCart from "./components/ButtonAddToCard";
 //import ButtonCallCenter from "./components/ButtonCallCenter";
-import Button from "./components/Button";
-import { FaShoppingCart, FaHeart } from "react-icons/fa";
-import ListItem from "./components/List/ListItem";
-import List from "./components/List";
-import BlockUI4 from "./components/BlockUI4";
+// import Button from "./components/Button";
+// import { FaShoppingCart, FaHeart } from "react-icons/fa";
+// import ListItem from "./components/List/ListItem";
+// import List from "./components/List";
+// import BlockUI4 from "./components/BlockUI4";
 import BlockUI1 from "./components/BlockUI1";
 
+const ListItem = ({
+  content,
+  isDone = false,
+}: {
+  content: string;
+  isDone?: boolean;
+}) => {
+  return (
+    <li>
+      {content} {isDone && "✔"}
+    </li>
+  );
+};
+
 function App() {
+  const isShow = true;
+
   return (
     <div className="container mx-auto">
-      <BlockUI1 />
-      <div
+      <AccessoriesList />
+      <ul>
+        <ListItem content="Quet nha" isDone={true} />
+        <ListItem content="Rua chen" isDone={true} />
+        <ListItem content="Nau com" />
+      </ul>
+
+      {isShow && <BlockUI1 />}
+      {/* <div
         className="block-bg p-5 flex gap-x-3"
         style={{
           backgroundColor: "#F4F7FC",
@@ -48,7 +72,7 @@ function App() {
         bgColor="btn-primary"
         label="Thêm vào giỏ hàng"
       />
-      <Button icon={<FaHeart />} bgColor="btn-danger" label="Yêu thích" />
+      <Button icon={<FaHeart />} bgColor="btn-danger" label="Yêu thích" /> */}
 
       {/* <button className="btn btn-primary">Default button</button>
       <h2>heading 2</h2>
