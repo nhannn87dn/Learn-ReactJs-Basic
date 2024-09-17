@@ -7,8 +7,16 @@
     <link rel="stylesheet" href="product.css" />
   </head>
   <body>
-    <div class="product"></div>
+    <button onclick="addToCart()">Add to cart</button>
+    <div onmouseenter="onMouse()" class="product"></div>
     <script>
+      function onMouse() {
+        console.log("bạn để rê chuột lên ô màu vàng");
+      }
+      function addToCart() {
+        console.log("Thêm vào giỏ hàng thành công !");
+      }
+
       const n = "Nhan";
       const h1 = `hello ${n}`;
       console.log(h1);

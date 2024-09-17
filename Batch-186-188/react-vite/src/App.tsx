@@ -1,5 +1,6 @@
 import "./App.css";
 import AccessoriesList from "./components/AccessoriesList";
+import AttributesV2 from "./components/AttributesV2";
 //import Attribute from "./components/Attributes";
 // import ButtonAddToCart from "./components/ButtonAddToCard";
 //import ButtonCallCenter from "./components/ButtonCallCenter";
@@ -35,11 +36,111 @@ const todos = [
   { id: 5, content: "Di ngu", isDone: false },
 ];
 
+const ButtonChannel = ({
+  label,
+  onHandleClick,
+}: {
+  label: string;
+  onHandleClick: () => void;
+}) => {
+  return <button onClick={onHandleClick}>{label}</button>;
+};
+
 function App() {
   const isShow = true;
   console.log("App render");
+
+  const onHandleSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log("Submit Form");
+  };
+  const onHandleChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //lấy được giá trị từ input
+    console.log(e.target.value);
+  };
+
+  const onHandleClickAddToCart = () => {
+    console.log("Thêm giỏ hàng thành công");
+  };
+
+  const onHandleClickChannel = (channel: string) => {
+    console.log(`Ban dang chọn: ${channel}`);
+  };
+
   return (
     <div className="container mx-auto">
+      <ButtonChannel
+        onHandleClick={() => {
+          onHandleClickChannel("vtv1");
+        }}
+        label="vtv1"
+      />
+      <ButtonChannel
+        onHandleClick={() => {
+          onHandleClickChannel("vtv2");
+        }}
+        label="vtv2"
+      />
+      <hr />
+
+      <button
+        onClick={() => {
+          onHandleClickChannel("vtv1");
+        }}
+      >
+        VTV1
+      </button>
+      <button
+        onClick={() => {
+          onHandleClickChannel("vtv2");
+        }}
+      >
+        VTV2
+      </button>
+      <button
+        onClick={() => {
+          onHandleClickChannel("vtv3");
+        }}
+      >
+        VTV3
+      </button>
+
+      <form onSubmit={onHandleSubmitForm}>
+        <input onChange={onHandleChangeInput} placeholder="Email" type="text" />
+        <label>
+          <input
+            onChange={(e) => {
+              console.log(e.target.checked);
+            }}
+            value={1}
+            type="checkbox"
+            className="checkbox"
+          />{" "}
+          Đồng ý với điều khoản
+        </label>
+        <button type="submit" className="btn btn-primary">
+          Submit
+        </button>
+      </form>
+
+      <button className="btn btn-primary" onClick={onHandleClickAddToCart}>
+        Add to Cart
+      </button>
+
+      <div
+        onMouseEnter={() => {
+          console.log("Rê chuột lên Div");
+        }}
+        style={{
+          backgroundColor: "yellow",
+          width: 50,
+          height: 50,
+        }}
+      >
+        Tôi là thẻ Div
+      </div>
+
+      <AttributesV2 />
       <AccessoriesList />
       <ul>
         {/* <ListItem content="Quet nha" isDone={true} />

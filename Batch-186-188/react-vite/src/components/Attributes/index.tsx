@@ -16,7 +16,8 @@ const Attribute = () => {
     <div>
       Màu sắc:
       <AttrItem label="Xanh" />
-      <AttrItem label="Đen" /> <AttrItem label="Hồng" />
+      <AttrItem label="Đen" />
+      <AttrItem label="Hồng" />
       <AttrItem />
     </div>
   );
