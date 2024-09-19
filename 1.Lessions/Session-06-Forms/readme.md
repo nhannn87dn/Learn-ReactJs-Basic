@@ -4,6 +4,8 @@
 
 - Trong React, mỗi khi người dùng nhập liệu vào form, chúng ta sử dụng `state` để theo dõi giá trị của các `input fields`. Điều này đảm bảo rằng giao diện (UI) luôn nhất quán với dữ liệu trong component
 
+Xem doc: https://react.dev/learn/reacting-to-input-with-state
+
 ## 🔥 Cách xử lý dữ liệu từ Form
 
 ### 🌻 Input Value quản lý một State tương ứng

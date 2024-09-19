@@ -502,15 +502,20 @@ setArtists(artists.filter((a) => a.id !== artist.id));
 
 ===============================
 
-## 🔥 Khai báo kiểu dữ liệu của State trong TypeScript
+## 🔥 5.5 Tôi ưu Quản lý State (Option)
+
+Bạn nên xem thêm các Example sau trên trang chính thức để tối ưu cách vận hàng State:
+
+- https://react.dev/learn/choosing-the-state-structure
+- https://react.dev/learn/sharing-state-between-components
+- https://react.dev/learn/preserving-and-resetting-state
+
+===============================
+
+## 🔥 5.6 Khai báo kiểu dữ liệu của State trong TypeScript (Option)
 
 ```js
-interface PersonProps {
-  name: string;
-  age: number;
-  hobbies: Array<string>;
-  isCool: boolean;
-}
+
 
 // Boolean type
 const [isCool] = React.useState<boolean>(true);
@@ -528,6 +533,12 @@ const [random] = React.useState<null | undefined>();
 const [hobbies] = React.useState<Array<string>>(['soccer', 'cooking', 'code']);
 
 // Custom interface
+interface PersonProps {
+  name: string;
+  age: number;
+  hobbies: Array<string>;
+  isCool: boolean;
+}
 const [person] = React.useState<PersonProps>({
   isCool,
   name,
