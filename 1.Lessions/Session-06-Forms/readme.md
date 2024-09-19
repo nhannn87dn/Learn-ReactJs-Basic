@@ -1,197 +1,150 @@
-# 6. Xử lý Form
+# Form trong React
 
-## 1. Lấy value từ Input
+- Form là một phần quan trọng trong ứng dụng web, được sử dụng để thu thập dữ liệu từ người dùng.
 
-```js
-function MyForm() {
-  const [name, setName] = useState("");
+- Trong React, mỗi khi người dùng nhập liệu vào form, chúng ta sử dụng `state` để theo dõi giá trị của các `input fields`. Điều này đảm bảo rằng giao diện (UI) luôn nhất quán với dữ liệu trong component
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    console.log(`Current Value: ${name}`);
+## 🔥 Cách xử lý dữ liệu từ Form
+
+### 🌻 Input Value quản lý một State tương ứng
+
+Dưới đây là một ví dụ về form trong React, trong đó mỗi loại input sẽ được lưu trữ trong một **state** riêng biệt tương ứng với từng trường nhập liệu:
+
+```jsx
+import React, { useState } from "react";
+
+function SeparateStateForm() {
+  // Khai báo state riêng cho từng input
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [gender, setGender] = useState("");
+  const [description, setDescription] = useState("");
+  const [agreement, setAgreement] = useState(false);
+
+  // Xử lý sự thay đổi giá trị của từng input
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert(`
+      Tên người dùng: ${username}
+      Email: ${email}
+      Mật khẩu: ${password}
+      Giới tính: ${gender}
+      Mô tả: ${description}
+      Đồng ý điều khoản: ${agreement ? "Có" : "Không"}
+    `);
   };
 
   return (
     <form onSubmit={handleSubmit}>
+      {/* Input cho Username */}
       <label>
-        Enter your name:
+        Username:
         <input
           type="text"
-          value={name}
-          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-            setName(e.target.value)
-          }
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
         />
       </label>
-      <input type="submit" />
-    </form>
-  );
-}
-export default MyForm;
-```
+      <br />
 
-## 2. Lấy value từ Textarea
-
-```js
-function MyForm() {
-  const [textarea, setTextarea] = useState(
-    "The content of a textarea goes in the value attribute"
-  );
-
-  //Tách sự kiện onChange ra ngoài
-  // Xử lý sự kiện khi người dùng thay đổi giá trị của các trường input
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTextarea(e.target.value);
-  };
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    console.log(`Current Value: ${textarea}`);
-  };
-
-  return (
-    <form onSubmit={handleSubmit}>
-      <textarea value={textarea} onChange={handleChange} />
-      <button type="submit">Submit</button>
-    </form>
-  );
-}
-```
-
-## 3. Lấy value từ Select
-
-```js
-function MyForm() {
-  const [myCar, setMyCar] = useState("Volvo");
-
-  const handleChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setMyCar(e.target.value);
-  };
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    console.log(`Current Value: ${myCar}`);
-  };
-
-  return (
-    <form onSubmit={handleSubmit}>
-      <select value={myCar} onChange={handleChange}>
-        <option value="Ford">Ford</option>
-        <option value="Volvo">Volvo</option>
-        <option value="Fiat">Fiat</option>
-      </select>
-      <button type="submit">Submit</button>
-    </form>
-  );
-}
-```
-
-## 4 Lấy value từ Radio
-
-```js
-import { useState } from "react";
-
-function MyForm() {
-  const [topping, setTopping] = useState("Medium");
-
-  const onOptionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setTopping(e.target.value);
-  };
-
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    console.log(`Current Value: ${topping}`);
-  };
-
-  return (
-    <div className="App">
-      <h3>Select Pizza Size</h3>
-      <form onSubmit={handleSubmit}>
+      {/* Input cho Email */}
+      <label>
+        Email:
         <input
-          type="radio"
-          name="topping"
-          value="Regular"
-          id="regular"
-          checked={topping === "Regular"}
-          onChange={onOptionChange}
+          type="email"
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
-        <label htmlFor="regular">Regular</label>
+      </label>
+      <br />
 
+      {/* Input cho Password */}
+      <label>
+        Password:
         <input
-          type="radio"
-          name="topping"
-          value="Medium"
-          id="medium"
-          checked={topping === "Medium"}
-          onChange={onOptionChange}
+          type="password"
+          value={password}
+          onChange={(e) => setPassword(e.target.value)}
         />
-        <label htmlFor="medium">Medium</label>
+      </label>
+      <br />
 
-        <input
-          type="radio"
-          name="topping"
-          value="Large"
-          id="large"
-          checked={topping === "Large"}
-          onChange={onOptionChange}
+      {/* Input cho Gender (radio button) */}
+      <label>
+        Giới tính:
+        <label>
+          <input
+            type="radio"
+            value="Nam"
+            checked={gender === "Nam"}
+            onChange={(e) => setGender(e.target.value)}
+          />{" "}
+          Nam
+        </label>
+        <label>
+          <input
+            type="radio"
+            value="Nữ"
+            checked={gender === "Nữ"}
+            onChange={(e) => setGender(e.target.value)}
+          />{" "}
+          Nữ
+        </label>
+      </label>
+      <br />
+
+      {/* Input cho Textarea */}
+      <label>
+        Mô tả về bản thân:
+        <textarea
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
         />
-        <label htmlFor="large">Large</label>
+      </label>
+      <br />
 
-        <p>
-          Select topping <strong>{topping}</strong>
-        </p>
-        <button type="submit">Submit</button>
-      </form>
-    </div>
-  );
-}
-
-export default MyForm;
-```
-
-## 5. Lấy value từ Checkbox
-
-```js
-export default function MyForm() {
-  const [isChecked, setIsChecked] = useState(false);
-
-  const handleOnChange = (e: ChangeEvent<HTMLInputElement>) => {
-    console.log(e.target.checked);
-    setIsChecked(!isChecked);
-  };
-
-  return (
-    <div className="App">
-      Select your pizza topping:
-      <div className="topping">
+      {/* Input cho Checkbox */}
+      <label>
         <input
           type="checkbox"
-          id="topping"
-          name="topping"
-          value="Paneer"
-          checked={isChecked}
-          onChange={handleOnChange}
+          checked={agreement}
+          onChange={(e) => setAgreement(e.target.checked)}
         />
-        Paneer
-      </div>
-      <div className="result">
-        Above checkbox is {isChecked ? "checked" : "un-checked"}.
-      </div>
-    </div>
+        Tôi đồng ý với các điều khoản
+      </label>
+      <br />
+
+      <button type="submit">Gửi</button>
+    </form>
   );
 }
+
+export default SeparateStateForm;
 ```
 
-## 6. Lấy value từ Multi Checkbox
+### Giải thích:
+
+- **State riêng cho mỗi input**:
+  - `username`, `email`, `password`, `gender`, `description`, và `agreement` là những state riêng biệt, mỗi state lưu giá trị của một input.
+- **Xử lý sự kiện**:
+  - Khi người dùng nhập liệu hoặc thay đổi giá trị trong input, ta sử dụng hàm `onChange` để cập nhật state tương ứng.
+  - Ví dụ: `setUsername(e.target.value)` cập nhật state `username` với giá trị mà người dùng đã nhập.
+- **Submit form**:
+  - Khi người dùng bấm nút submit, hàm `handleSubmit` sẽ ngăn trang reload (bằng `e.preventDefault()`) và hiển thị thông tin từ các state.
+
+Form này bao gồm nhiều loại input: text, email, password, radio button, textarea và checkbox, với mỗi loại input tương ứng với một state riêng để quản lý giá trị.
+
+### 🌻 Lấy value từ Multi Checkbox
 
 ```js
-//App.js
+import React, { useState } from "react";
 const courses = [
   { id: 1, name: "Html" },
   { id: 2, name: "Javascript" },
   { id: 3, name: "React Js" },
 ];
-export default function App() {
+export default function myForm() {
   const [checked, setChecked] = useState([]);
 
   const handelCheck = (id) => {
@@ -231,14 +184,14 @@ export default function App() {
 }
 ```
 
-## 7. Cách lấy khi có nhiều loại một lúc
+### 🌻 Khi Form có quá nhiều trường
 
-Dùng khi có nhiều loại input khác nhau
+Có một giải pháp để quản lý State được tối ưu hơn là gom tất cả các state thành một Object.
 
 ```js
 import React, { ChangeEvent, FormEvent, useState } from 'react';
 
-function TestForm() {
+function SignupFormWithValidation() {
   const [inputs, setInputs] = useState({
     userName: '',
     passwords: '',
@@ -248,6 +201,7 @@ function TestForm() {
     comments: '',
   });
 
+  //Dùng 1 hàm Handle dữ liệu chung
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     if (e.target.type === 'checkbox') {
       const target = e.target as HTMLInputElement; // Kiểm tra kiểu
@@ -258,9 +212,23 @@ function TestForm() {
     }
   };
 
+  //Tạo một hàm check thông tin cơ bản
+  const validateForm = () => {
+    const newErrors = {};
+    if (!inputs.userName) newErrors.userName = 'Username là bắt buộc';
+    if (inputs.password.length < 6) newErrors.password = 'Mật khẩu phải có ít nhất 6 ký tự';
+    //Thêm logic ở đây
+    return newErrors;
+  };
+
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    console.log('Current Values:', inputs);
+    const validationErrors = validateForm();
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+    } else {
+      console.log('Dữ liệu hợp lệ:', formData);
+    }
   };
 
   return (
@@ -333,17 +301,17 @@ function TestForm() {
   );
 }
 
-export default TestForm;
+export default SignupFormWithValidation;
 
 ```
 
 ===========================================
 
-## 8. Thư viện hỗ trợ hay dùng
+## 🔥 Thư viện hỗ trợ xử lý FORM
 
 Thay vì đi làm việc thủ công với FORM như vậy thì có các thư viện giúp xử lí form nhanh hơn, kèm theo tính năng validate form, báo lỗi....
 
-### React hook form
+### 🌻 React hook form
 
 ```bash
 npm install react-hook-form
@@ -553,7 +521,7 @@ Trong ví dụ trên, chúng ta đã sử dụng Yup để tạo một schema đ
 
 Nếu các giá trị của "user" không tuân thủ các quy tắc xác thực tương ứng, Yup sẽ sinh ra các lỗi tương ứng. Bằng cách sử dụng phương thức `validate` của schema, chúng ta có thể kiểm tra xem "user" có hợp lệ hay không và xử lý các lỗi nếu có.
 
-### Formik
+### 🌻 Formik
 
 Ngoài React Hook Form bạn có thêm một lựa chọn nữa khá tốt là `Formik`
 

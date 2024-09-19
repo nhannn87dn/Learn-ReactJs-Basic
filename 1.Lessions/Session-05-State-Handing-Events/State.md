@@ -14,56 +14,57 @@ Trong Session này chúng ta tìm hiểu:
 
 ===============================
 
-## 🔥 5.1 State ?
+## 🔥 5.1 Khái niệm State trong React
 
-Trong React, State là một khái niệm quan trọng để quản lý trạng thái của một thành phần. State đại diện cho trạng thái hiện tại của thành phần đó và có thể thay đổi trong quá trình thực thi ứng dụng. Khi state của một thành phần thay đổi, React sẽ tự động cập nhật giao diện người dùng để phản ánh trạng thái mới.
-
-State, Nó chỉ hoạt động trong phạm vi Component đó thôi.
-
-Khi giá trị của state thay đổi, React sẽ tự động cập nhật giao diện người dùng của thành phần để phản ánh trạng thái mới. Tức là, React sẽ thực hiện quá trình render lại chỉ những phần cần thiết của giao diện người dùng, không phải render lại toàn bộ.
-
-===============================
+- State là một đối tượng lưu trữ dữ liệu hoặc thông tin có thể thay đổi trong vòng đời của một component.
+- Mỗi component trong React có thể quản lý riêng state của nó, và khi state thay đổi, component sẽ tự động re-render để hiển thị lại nội dung mới.
 
 ### 🌻Tại sao lại cần đến State ?
+
+- **Phản hồi theo sự thay đổi:** State cho phép React theo dõi sự thay đổi của dữ liệu và tự động cập nhật giao diện tương ứng.
+
+- **Quản lý thông tin động:** Các thông tin như nhập liệu, click button, dữ liệu từ API đều có thể được lưu trữ và quản lý qua state.
 
 Cùng xem một ví dụ minh họa để thấy sự cần thiết State.
 
 ```js
 export default function Count() {
-  let index = 0;
+  let count = 0;
 
   function handleClick() {
-    index = index + 1;
+    count = count + 1;
   }
   return (
     <>
-      <button onClick={handleClick}>Increment</button>
-      <h3>{index}</h3>
+      <div>
+        <p>Bạn đã bấm {count} lần</p>
+        <button onClick={handleClick}>Tăng</button>
+      </div>
     </>
   );
 }
 ```
+
+==> Biến count không thể tăng lên như mong muốn.
 
 ### 🌻Khởi tạo một State
 
 Ví dụ có biến count, và một button, khi click Button thì biến count tăng lên 1 giá trị.
 
 ```js
-import React from 'react';
-export default function Count() {
-    // Tạo một State count, sử dụng hook useState
-    const [count, setCount] = React.useState(0);
-    const increase()=> {
-        setCount(count + 1);
-    }
-    return (
-        <h1>{count}</h1>
-        <button onClick={increase()}>
-        Increase
-      </button>
-    )
-}
+import React, { useState } from "react";
 
+function Counter() {
+  // Khai báo state: count, hàm setCount
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>Bạn đã bấm {count} lần</p>
+      <button onClick={() => setCount(count + 1)}>Bấm tôi</button>
+    </div>
+  );
+}
 ```
 
 Cú pháp tạo một State
@@ -73,12 +74,15 @@ Cú pháp tạo một State
 const [count, setCount] = React.useState(0);
 ```
 
-Bản chất `React.useState(0)` là một function return về một mảng [] có 2 phần tử.
+Giải thích:
 
-`[count, setCount]` là đang sử dụng cú pháp `Destructuring assignment` của JavaScript
+- Bản chất `React.useState(0)` là một function return về một mảng [] có 2 phần tử. Tạo ra một state với giá trị ban đầu là `0`
 
-- count: tên của State
-- setCount: là phương thức để thay đổi giá trị của State tương ứng
+- `[count, setCount]` là đang sử dụng cú pháp `Destructuring assignment` của JavaScript
+
+- `count`: Biến lưu trữ giá trị hiện tại của state
+- `setCount`: Hàm để cập nhật giá trị của `count`.
+- Mỗi khi `setCount` được gọi, component sẽ được re-render với giá trị `count` mới
 
 ### 🌻Khi nào thì cần đến State
 
@@ -298,62 +302,81 @@ export default App;
 
 ===============================
 
-## 🔥 5.3 State là một Snapshot
-
-Giống như mỗi giây thời gian trôi qua, bạn không thể lấy lại được.
-
-State cũng vậy, mỗi lần Component render thì nó tạo ra `một giá trị tham chiếu` MỚI hay còn gọi là Snapshot (một ảnh chụp) tại thời điểm đó.
-
-### 🌻 5.3.1 Thay đổi State kích hoạt Render
-
-Xem ví dụ: <https://react.dev/learn/state-as-a-snapshot#setting-state-triggers-renders>
-
-Điều gì xảy ra khi bạn click vào button Send:
-
-- Form sẽ submit thông qua sự kiện onSubmit.
-- setIsSent(true) set lại isSent = true và tạo hàng đợi để re-render mới.
-- React sẽ re-renders lại component theo giá trị isSent mới.
-
-### 🌻 5.3.2 Rendering takes a snapshot in time
-
-“Rendering” nghĩa là React đang gọi component của bạn, sử dụng function component. JSX trả lại từ function như là một bản chụp **snapshot** của UI tại thời điểm đó. Bao gồm: các props, event handlers, local variables, tất cả các calculated sử dụng state tại thời điểm render.
-
-Khi React re-renders lai một component:
-
-- React gọi đến component function một lần nữa.
-- function trả lại một JSX snapshot mới.
-- React sau đó update màn hình để khớp với snapshot mà bạn trả lại.
-
-![render 3](img/render-3.png)
-
-Chi tiết hơn
-
-![render 4](img/render-4.png)
-
-Ví dụ để hiểu Snapshot State
-
-<https://react.dev/learn/state-as-a-snapshot#rendering-takes-a-snapshot-in-time>
-
-<https://react.dev/learn/state-as-a-snapshot#state-over-time>
-
-===============================
-
 ## 🔥 5.4 State Updates
 
-### 🌻 5.4.1 Khái niệm `queue` = hàng đợi
+Cập nhật state trong React là một phần quan trọng khi bạn muốn thay đổi giá trị và giao diện dựa trên dữ liệu mới. Dưới đây là các cách phổ biến để cập nhật state và cách áp dụng chúng.
 
-- Details: <https://react.dev/learn/queueing-a-series-of-state-updates>
-- Làm rõ vấn đề cách update State
+### 🌻 5.4.1 Cập nhật State với giá trị mới
 
-```js
-// 4 cách set giá trị mới cho một State
-setNumber(42);
-setNumber(number + 5);
-setNumber((prev) => prev + 1);
-setEnabled((e) => !e);
+Đây là cách cơ bản nhất để cập nhật state bằng cách cung cấp một giá trị mới cho state. Trong functional component, bạn sử dụng hàm `setState` được trả về từ hook `useState`.
+
+Ví dụ: Cập nhật State với giá trị mới
+
+```jsx
+import React, { useState } from "react";
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  return (
+    <div>
+      <p>Bạn đã bấm {count} lần</p>
+      <button onClick={() => setCount(5)}>Đặt giá trị = 5</button>
+    </div>
+  );
+}
+
+export default Counter;
 ```
 
-### 🌻 5.4.2 State là một Object
+Giải thích: Khi người dùng bấm vào nút, `setCount(5)` sẽ đặt giá trị của `count` thành `5`, và React sẽ render lại component với giá trị mới này.
+
+Tất cả các cách thức sau đây đều mang ý nghĩa: thay đổi thành giá trị mới
+
+```jsx
+setCount(count + 1); // Biểu thức
+setIsSuccess(true); // Boolean
+setMsg("Invalid username or password !"); // String
+```
+
+### 🌻 5.4.2 Cập nhật State dựa trên State hiện tại
+
+Khi bạn muốn cập nhật state dựa trên giá trị hiện tại của nó, cần sử dụng một hàm callback trong `setState` (đối với cả functional component và class component). Cách này giúp đảm bảo rằng state được cập nhật chính xác ngay cả khi có nhiều cập nhật xảy ra liên tiếp.
+
+Ví dụ: Tăng giá trị count dựa trên giá trị trước đó
+
+```jsx
+import React, { useState } from "react";
+
+function Counter() {
+  const [count, setCount] = useState(0);
+
+  const onHandleClick = () => {
+    setCount((prevCount) => prevCount + 1);
+  };
+
+  return (
+    <div>
+      <p>Bạn đã bấm {count} lần</p>
+      <button onClick={onHandleClick}>Tăng</button>
+    </div>
+  );
+}
+
+export default Counter;
+```
+
+Giải thích:
+
+- Hàm callback `prevCount => prevCount + 1` sử dụng giá trị hiện tại của `count` để tính toán giá trị mới. Điều này rất hữu ích khi bạn muốn cập nhật state nhiều lần liên tiếp, ví dụ trong các hành động như tăng hoặc giảm số lượng.
+- `prevCount`: Là một biến đại diện (có thể đặt tên khác) nắm giữ giá trị của `count` trước khi nó thay đổi. Trong ví dụ trên: `prevCount = 0`
+
+Xem thêm:
+
+- https://react.dev/learn/state-as-a-snapshot
+- https://react.dev/learn/queueing-a-series-of-state-updates
+
+### 🌻 5.4.3 State là một Object
 
 Khi state là một Object thì ta update như sau
 
@@ -479,7 +502,7 @@ setArtists(artists.filter((a) => a.id !== artist.id));
 
 ===============================
 
-## Khai báo kiểu dữ liệu của State trong TypeScript
+## 🔥 Khai báo kiểu dữ liệu của State trong TypeScript
 
 ```js
 interface PersonProps {
