@@ -10,6 +10,9 @@ ví: input, button, a, textarea, h1-h6
   h2 {
     @apply text-3xl font-bold;
   }
+  input {
+    @apply border border-slate-400 rounded py-1 px-2;
+  }
 }
 
 /*
