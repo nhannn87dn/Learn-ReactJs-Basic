@@ -19,6 +19,9 @@ ví: input, button, a, textarea, h1-h6
   .btn {
     @apply text-slate-900 px-3 py-1 rounded bg-transparent border-0 cursor-pointer;
   }
+  .btn-default {
+    @apply text-gray-900 bg-gray-300;
+  }
   .btn-primary {
     @apply text-white bg-blue-700;
   }

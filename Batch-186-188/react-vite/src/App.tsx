@@ -1,23 +1,48 @@
 import "./App.css";
-
-function ButtonDemo({ label }: { label: string }) {
-  return <button className="btn btn-primary">{label}</button>;
-}
-
-// function sum({a,b}: {a: number, b: number}){
-//   console.log( a + b)
-// }
-
-// sum(2,4) = 6
-// sum(4,4) = 8
+import { useState } from "react";
+import CarouselSimple from "./components/CarouselSimple";
+import TodoList from "./components/TodoList";
 
 function App() {
+  const [count, setCount] = useState<number>(1);
+  const [isShow, setIsShow] = useState(false);
+
+  console.log("render", isShow);
+
   return (
-    <>
-      <h1>Components</h1>
-      <ButtonDemo label={"Them vao gio hang"} />
-      <ButtonDemo label={"Goi Lai Tu Va"} />
-    </>
+    <div className="container mx-auto">
+      <TodoList />
+      <hr />
+
+      <CarouselSimple />
+      <hr />
+      <h1>State</h1>
+
+      <button
+        onClick={() => {
+          console.log("Button Toggle");
+          setIsShow(!isShow);
+        }}
+        className="btn btn-primary"
+      >
+        Toggle
+      </button>
+      <hr />
+      {isShow && (
+        <div className="component_count">
+          <h2>Count: {count}</h2>
+          <button
+            onClick={() => {
+              console.log("Button clicked");
+              setCount(count + 1);
+            }}
+            className="btn btn-primary"
+          >
+            Click me
+          </button>
+        </div>
+      )}
+    </div>
   );
 }
 
