@@ -1,4 +1,5 @@
 import "./App.css";
+import LoginFormReactHook from "./components/LoginFormReactHook";
 import SimpleForm from "./components/SimpleForm";
 
 function App() {
@@ -6,6 +7,8 @@ function App() {
 
   return (
     <div className="container mx-auto">
+      <h2>React Hook Form</h2>
+      <LoginFormReactHook />
       <SimpleForm />
     </div>
   );
