@@ -1,19 +1,25 @@
+import { useState } from "react";
 import "./App.css";
-import CreateAccountForm from "./components/CreateAccountForm";
-import LoginFormReactHook from "./components/LoginFormReactHook";
-import SimpleForm from "./components/SimpleForm";
+import HeaderBlock from "./components/HeaderBlock";
+import { UserProvider } from "./context/userContext";
+import { useBrowserWidth } from "./hooks/useBrowserWidth";
 
 function App() {
   console.log("render");
 
+  const user = { id: 1, name: "Nhan 2" };
+
+  const browserWidth = useBrowserWidth();
+
   return (
-    <div className="container mx-auto">
-      <h2>Create Account Form</h2>
-      <CreateAccountForm />
-      <h2>React Hook Form</h2>
-      <LoginFormReactHook />
-      <SimpleForm />
-    </div>
+    <UserProvider user={user}>
+      <div className="container mx-auto">
+        <HeaderBlock />
+        {browserWidth}
+        {browserWidth > 980 && <div>Desktop</div>}
+        {browserWidth < 525 && <div>Mobile</div>}
+      </div>
+    </UserProvider>
   );
 }
 
