@@ -1,25 +1,15 @@
-import { useState } from "react";
 import "./App.css";
-import HeaderBlock from "./components/HeaderBlock";
-import { UserProvider } from "./context/userContext";
-import { useBrowserWidth } from "./hooks/useBrowserWidth";
+import UserProfileToken from "./components/UserProfileToken";
+import UsersCRUD from "./components/UsersCRUD";
 
 function App() {
-  console.log("render");
-
-  const user = { id: 1, name: "Nhan 2" };
-
-  const browserWidth = useBrowserWidth();
-
   return (
-    <UserProvider user={user}>
-      <div className="container mx-auto">
-        <HeaderBlock />
-        {browserWidth}
-        {browserWidth > 980 && <div>Desktop</div>}
-        {browserWidth < 525 && <div>Mobile</div>}
-      </div>
-    </UserProvider>
+    <div className="container mx-auto">
+      <h2>user Profile</h2>
+      <UserProfileToken />
+      <h1>Simple CRUD</h1>
+      <UsersCRUD />
+    </div>
   );
 }
 
