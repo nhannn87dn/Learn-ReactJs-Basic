@@ -8,6 +8,84 @@ Xem doc: https://react.dev/learn/reacting-to-input-with-state
 
 ## 🔥 Cách xử lý dữ liệu từ Form
 
+### 🌻 Lấy dữ liệu từ các Input trong Form
+
+Ví dụ bạn có một component `SimpleForm` như sau:
+
+```jsx
+const SimpleForm = () => {
+  return (
+    <from>
+      <input type="text" name="username" placeholder="Username" value="" />
+      <button type="submit">Submit</button>
+    </from>
+  );
+};
+```
+
+Để lấy được giá trị từ input username. Bạn cần một state để quản lý trạng thái thay đổi dữ liệu (value) của nó.
+
+```jsx
+import { useState } from "react";
+const SimpleForm = () => {
+  const [userName, setUserName] = useState("");
+  return (
+    <from>
+      <input
+        type="text"
+        name="username"
+        placeholder="Username"
+        value={userName}
+        onChange={(e) => {
+          //Lấy giá trị nhập từ input, gán lại cho state userName
+          setUserName(e.target.value);
+        }}
+      />
+      <button type="submit">Submit</button>
+    </from>
+  );
+};
+```
+
+Giải thích:
+
+- Khi bạn nhập dữ liệu vào input username. Sự kiện `onChange` được kích hoạt, và nó gọi hàm `setUserName` để cập nhật lại giá trị mới cho state `UserName`
+- `value={userName}`: để input luôn được nhận giá trị từ người dùng nhập vào.
+
+Tuy nhiên khi bạn click nút `submit` thì form nó làm load lại page. ==> Bạn không kiểm soát được Form.
+
+Bạn cần làm bước tiếp theo:
+
+```jsx
+import { useState } from "react";
+const SimpleForm = () => {
+  const [userName, setUserName] = useState("");
+  return (
+    <from
+      onSubmit={(e) => {
+        e.preventDefault(); //Ngăn không cho load lại page
+        //Bạn có thể kiểm soát giá trị lấy được userName từ đây.
+        console.log(userName);
+      }}
+    >
+      <input
+        type="text"
+        name="username"
+        placeholder="Username"
+        value={userName}
+        onChange={(e) => {
+          //Lấy giá trị nhập từ input, gán lại cho state userName
+          setUserName(e.target.value);
+        }}
+      />
+      <button type="submit">Submit</button>
+    </from>
+  );
+};
+```
+
+Bạn cùng xem ví dụ tiếp theo có nhiều Input hơn thì như thế nào nhé !
+
 ### 🌻 Input Value quản lý một State tương ứng
 
 Dưới đây là một ví dụ về form trong React, trong đó mỗi loại input sẽ được lưu trữ trong một **state** riêng biệt tương ứng với từng trường nhập liệu:

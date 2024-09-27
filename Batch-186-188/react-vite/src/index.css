@@ -10,6 +10,9 @@ ví: input, button, a, textarea, h1-h6
   h2 {
     @apply text-3xl font-bold;
   }
+  input {
+    @apply border border-slate-400 rounded py-1 px-2;
+  }
 }
 
 /*
@@ -18,6 +21,9 @@ ví: input, button, a, textarea, h1-h6
 @layer components {
   .btn {
     @apply text-slate-900 px-3 py-1 rounded bg-transparent border-0 cursor-pointer;
+  }
+  .btn-default {
+    @apply text-gray-900 bg-gray-300;
   }
   .btn-primary {
     @apply text-white bg-blue-700;

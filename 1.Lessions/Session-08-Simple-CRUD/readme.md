@@ -212,6 +212,39 @@ Tôi Ưu thêm cho đúng UI-UX
 
 Phương thức này thường dùng để tạo mới
 
+Với Fetch
+
+```js
+const handleSubmit = async () => {
+  try {
+    let url = "https://jsonplaceholder.typicode.com/posts";
+
+    let payloads = {
+      title: "foo",
+      body: "bar",
+      userId: 1,
+    };
+
+    const options = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(payloads),
+    };
+
+    const response = await fetch(url, options);
+    const data = await response.json();
+    console.log(data);
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+};
+```
+
+Còn với Axios
+
 ```js
     const handleSubmit = async ()=> {
         try {
@@ -369,7 +402,7 @@ const options = {
   },
 };
 axios
-  .get(url)
+  .get(url, options)
   .then((data) => {
     // handle success
     console.log(data);
