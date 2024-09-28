@@ -1,37 +1,17 @@
 import "./App.css";
-import ProductCURDAxios from "./components/ProductCURDAxios";
+//import ProductCURDAxios from "./components/ProductCURDAxios";
+import ProductReactQuery from "./components/ProductReactQuery";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 function App() {
-  const [isLike, setIsLike] = React.useState<boolean>(false); // false là chưa click
-  const [isOpen, setIsOpen] = React.useState(false); // false có nghĩa chưa mở
-  console.log("App render");
   return (
-    <>
-      <h1>State</h1>
-      <button
-        onClick={() => {
-          setIsOpen(!isOpen);
-        }}
-        className="btn btn-primary"
-      >
-        Add To Cart
-      </button>
-      {isOpen && (
-        <div className="modal">
-          <p>Thêm vào giỏ hàng thành công</p>
-        </div>
-      )}
-      <hr />
-      <ButtonLike
-        onHandleClick={() => {
-          console.log("đã click");
-          setIsLike(!isLike);
-        }}
-        liked={isLike}
-      />{" "}
-      <br />
-      <Count />
-    </>
+    <QueryClientProvider client={queryClient}>
+      <div className="container mx-auto">
+        <ProductReactQuery />
+      </div>
+    </QueryClientProvider>
   );
 }
 
