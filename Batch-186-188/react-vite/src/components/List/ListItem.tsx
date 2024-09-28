@@ -3,7 +3,7 @@ const ListItem = ({
   isDone = false,
 }: {
   content: string;
-  isDone: boolean;
+  isDone?: boolean;
 }) => {
   console.log("ListItem render", content);
 
