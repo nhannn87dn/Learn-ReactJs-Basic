@@ -148,7 +148,7 @@ Sử dụng công cụ Fake API để luyện tập call API trong React
 
 - https://fakeapi.platzi.com/en/about/introduction/
 
-- https://commercejs.com/docs/
+- https://fakestoreapi.com/docs
 
 ![call](call-api.png)
 
