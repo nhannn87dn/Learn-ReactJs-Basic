@@ -1,15 +1,23 @@
 import { Link } from "react-router-dom";
+import { useCountStore } from "../../stores/useCountStore";
+
 /*
 
 Dùng component Link để chuyển trang khi cần chuyển trang nội bộ.
 Dùng thẻ a khi cần chuyển trang ra link bên ngoài ...
 */
 const Header = () => {
+  const { changeCount } = useCountStore();
   return (
     <header className="bg-indigo-500 text-white py-5">
       <div className="container mx-auto">
         <div className="header_wrapper flex justify-between">
-          <div className="logo">LOGO</div>
+          <div className="logo">
+            LOGO
+            <button onClick={changeCount} className="btn btn-default">
+              + 1
+            </button>
+          </div>
           <nav>
             <ul className="flex gap-x-[20px]">
               <li>
