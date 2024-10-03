@@ -1,14 +1,48 @@
-# ⭐ Session 3 - Conditional Rendering
+# ⭐ Session 4 - Conditional Rendering
 
-Component của bạn sẽ thường xuyên cần hiển thị khác nhau tương ứng với các điều kiện khác nhau. Trong React, Bạn có thể render JSX có điều kiện bằng cách sử dụng cú pháp JavaScript như **`if`** statements, `&&`, và  `? : ` toán tử 3 ngôi.
+**Conditional Rendering** trong React là quá trình hiển thị các thành phần (components) hoặc phần tử (elements) dựa trên một điều kiện nhất định. Điều này tương tự như cách bạn sử dụng câu lệnh điều kiện như `if` hoặc toán tử `ternary` trong JavaScript để quyết định logic nào sẽ chạy.
 
+Trong React, bạn có thể sử dụng conditional rendering để kiểm soát xem phần tử nào sẽ được hiển thị trên giao diện người dùng (UI) tùy theo trạng thái (state) hoặc props.
 
-> **Trong Session này bạn sẽ nắm được**
-> - Làm thể nào để trả về một JSX phụ thuộc vào một điều kiện
-> - Điều kiện bao gồm include hoặc loại trừ exclude một phần của JSX.
-> - Cú pháp shorthand ràng buộc điều kiện bạn thường thấy trong React
->
+Ví dụ minh họa
 
+```jsx
+const App = () => {
+  /* Bạn có 1 biến isShow như sau */
+  const isShow = false;
+
+  return (
+    <div>
+      <h1>Conditional Rendering</h1>
+      {/* Bạn muốn button này chỉ hiển thị ra khi biến isShow = true */}
+      <button>Button</button>
+    </div>
+  );
+};
+```
+
+Điều này có nghĩa là element/Component button cần có `điều kiện cần đáp ứng` để mới được hiển thị.
+
+Khi đó bạn có thể code lại như sau:
+
+```jsx
+const App = () => {
+  /* Bạn có 1 biến isShow như sau */
+  const isShow = false;
+
+  return (
+    <div>
+      <h1>Conditional Rendering</h1>
+      {/* Bạn muốn button này chỉ hiển thị ra khi biến isShow = true */}
+      {isShow === true ? <button>Button</button> : null}
+    </div>
+  );
+};
+```
+
+Để một thành phần UI hiển thị hay không hiển thị thì có nhiều cách code. Cùng xem phần tiếp theo.
+
+## 🔥 Một số cách phổ biến để thực hiện conditional rendering trong React:
 
 Ví dụ minh họa
 
@@ -16,12 +50,12 @@ Ví dụ minh họa
 
 Tạo một component để thực hiện ví dụ trên.
 
-## 🔥 Điều kiện trả về biểu thức `JSX`
+## 🔥 Điều kiện `if` trả về biểu thức `JSX`
 
 ```js
-//App.js
+//App.jsx
 
-function Item({ name, isPacked } : {name: string, isPacked: boolean}) {
+function Item({ name, isPacked }: { name: string, isPacked: boolean }) {
   if (isPacked) {
     //returning JSX
     return <li className="item">{name} ✔</li>;
@@ -35,24 +69,13 @@ export default function PackingList() {
     <section>
       <h1>Sally Ride's Packing List</h1>
       <ul>
-        <Item 
-          isPacked={true} 
-          name="Space suit" 
-        />
-        <Item 
-          isPacked={true} 
-          name="Helmet with a golden leaf" 
-        />
-        <Item 
-          isPacked={false} 
-          name="Photo of Tam" 
-        />
+        <Item isPacked={true} name="Space suit" />
+        <Item isPacked={true} name="Helmet with a golden leaf" />
+        <Item isPacked={false} name="Photo of Tam" />
       </ul>
     </section>
   );
 }
-
-
 ```
 
 ## 🔥 Điều kiện trả về không có gì với `null`
@@ -103,18 +126,13 @@ function Item({ name, isPacked } : {name: string, isPacked: boolean}) {
 ## 🔥 Điều kiện gán một JSX như là một biến
 
 ```js
-function Item({ name, isPacked } : {name: string, isPacked: boolean}) {
+function Item({ name, isPacked }: { name: string, isPacked: boolean }) {
   let itemContent = name;
   if (isPacked) {
     itemContent = name + " ✔";
   }
-  return (
-    <li className="item">
-      {itemContent}
-    </li>
-  );
+  return <li className="item">{itemContent}</li>;
 }
-
 ```
 
 Ví dụ thực tế:

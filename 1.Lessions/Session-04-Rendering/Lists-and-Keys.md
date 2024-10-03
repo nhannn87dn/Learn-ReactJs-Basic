@@ -1,9 +1,12 @@
 # ⭐ Session 3 - Lists and Keys
 
->**Bạn sẽ nắm được**
->- Làm thế nào để render component từ một mảng sử dụng `map()`
->- Làm thế nào để Render một component đặc biệt sử dụng `filter()`
->- Khi nào và tại sao lại cần đến key
+> **Bạn sẽ nắm được**
+>
+> - Làm thế nào để render component từ một mảng sử dụng `map()`
+> - Làm thế nào để Render một component đặc biệt sử dụng `filter()`
+> - Khi nào và tại sao lại cần đến key
+
+Xem thêm: https://react.dev/learn/rendering-lists
 
 ## 🔥List là gì ?
 
@@ -18,6 +21,7 @@ List trong React là một dạng danh sách thông tin được hiển thị v�
   <li>Subrahmanyan Chandrasekhar: astrophysicist</li>
 </ul>
 ```
+
 Cho ra được UI
 
 ![list simple](img/list-simple.png)
@@ -28,23 +32,23 @@ Thông thường trong React thông tin này được chuyển thành một mả
 
 ```js
 const people = [
-  'Creola Katherine Johnson: mathematician',
-  'Mario José Molina-Pasquel Henríquez: chemist',
-  'Mohammad Abdus Salam: physicist',
-  'Percy Lavon Julian: chemist',
-  'Subrahmanyan Chandrasekhar: astrophysicist'
+  "Creola Katherine Johnson: mathematician",
+  "Mario José Molina-Pasquel Henríquez: chemist",
+  "Mohammad Abdus Salam: physicist",
+  "Percy Lavon Julian: chemist",
+  "Subrahmanyan Chandrasekhar: astrophysicist",
 ];
 ```
+
 Rồi sử dụng `map()` để duyệt qua mảng
 
 ```js
-  export default function List(){
-    const listItems = people.map(person => <li>{person}</li>);
+export default function List() {
+  const listItems = people.map((person) => <li>{person}</li>);
 
-    return <ul>{listItems}</ul>;
-  }
+  return <ul>{listItems}</ul>;
+}
 ```
-
 
 ## 🔥 Tại sao lại cần đến Key khi sử dụng `map()` ?
 
@@ -70,19 +74,19 @@ Chúng ta tạo ra một mảng có 4 phần tử
 Tương tự như ví dụ trên chúng ta tạo ra một component để hiển thị 1 sản phẩm.
 
 ```js
-function SingleProduct(product){
+function SingleProduct(product) {
   return (
     <div className="item">
-       <span class="discount">{product.discount}</span>
-       <div class="thumb">
-       <img src={product.thumbUrl} alt="" />
-       </div>
-       <h3 className="name">{product.name}</h3>
-       <div className="prices">
-          <strong>{product.price}</strong>
-       </div>
+      <span class="discount">{product.discount}</span>
+      <div class="thumb">
+        <img src={product.thumbUrl} alt="" />
+      </div>
+      <h3 className="name">{product.name}</h3>
+      <div className="prices">
+        <strong>{product.price}</strong>
+      </div>
     </div>
-  )
+  );
 }
 ```
 
@@ -102,15 +106,12 @@ function ProductList(){
 
 Danh sách hiển thị ra ok, nhưng cũng xem trong tab Console.
 
-
 ## 🔥 Lọc các phần tử của Mảng với `filter()`
 
 Ví dụ chỉ cần hiển thị ra những sản phẩm có giá khuyến mãi, hoặc có discount.
 
 ```js
-const products = products.filter(product =>
-  product.discount > 0
-);
+const products = products.filter((product) => product.discount > 0);
 ```
 
 Tùy vào mỗi trường hợp, điều kiện lọc khác nhau có thể dùng `includes()`, `find()`

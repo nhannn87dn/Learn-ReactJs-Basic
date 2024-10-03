@@ -105,12 +105,141 @@ Khi state thay đổi, React sẽ tự động render lại giao diện người
 
 ### 🌻 Ví dụ về State
 
-- Button Like
-- Button Thả tim
-- Button Rating 5 sao
-- Modal open/close
+#### 🎁 Button Like
 
-Ví dụ về `simple todo list`
+Dưới đây là ví dụ cập nhật về **Button Like**, trong đó khi người dùng nhấn "Like", số lượng like sẽ tăng lên và màu chữ của nút sẽ thay đổi.
+
+### Code ví dụ:
+
+```jsx
+import React, { useState } from "react";
+
+function LikeButton() {
+  const [likeCount, setLikeCount] = useState(0);
+  const [isLiked, setIsLiked] = useState(false);
+
+  // Hàm xử lý sự kiện khi người dùng nhấn nút "Like"
+  const handleLike = () => {
+    setLikeCount(likeCount + 1);
+    setIsLiked(true); // Đánh dấu rằng đã nhấn Like
+  };
+
+  return (
+    <div>
+      <button
+        onClick={handleLike}
+        style={{ color: isLiked ? "red" : "black" }} // Đổi màu chữ
+      >
+        Like ({likeCount})
+      </button>
+    </div>
+  );
+}
+
+export default LikeButton;
+```
+
+### Giải thích:
+
+1. **useState**:
+   - `likeCount`: lưu trữ số lượng like.
+   - `isLiked`: lưu trữ trạng thái liệu người dùng đã nhấn nút like hay chưa.
+2. **handleLike**: Khi người dùng nhấn nút, hàm này sẽ:
+
+   - Tăng giá trị `likeCount` lên 1.
+   - Đặt `isLiked` thành `true` để thay đổi màu chữ.
+
+3. **style**: Sử dụng thuộc tính `style` để kiểm tra trạng thái `isLiked`. Nếu `isLiked` là `true`, màu chữ của nút sẽ chuyển sang **màu đỏ**, ngược lại sẽ giữ **màu đen**.
+
+#### 🎁 Button Đèn Xanh, Đèn Đỏ
+
+Dưới đây là ví dụ **mô phỏng đèn giao thông** với 3 nút để đổi màu thành **Đỏ**, **Xanh**, và **Vàng**:
+
+### Code ví dụ:
+
+```jsx
+import React, { useState } from "react";
+
+function TrafficLight() {
+  // State để theo dõi trạng thái của đèn (đỏ, xanh, vàng)
+  const [lightColor, setLightColor] = useState("red");
+
+  // Hàm thay đổi màu đèn
+  const changeLight = (color) => {
+    setLightColor(color);
+  };
+
+  return (
+    <div style={{ textAlign: "center", marginTop: "50px" }}>
+      <div
+        style={{
+          width: "100px",
+          height: "100px",
+          borderRadius: "50%",
+          backgroundColor: lightColor, // Đổi màu đèn theo state
+          margin: "0 auto",
+          transition: "background-color 0.5s ease", // Hiệu ứng chuyển đổi mượt mà
+        }}
+      ></div>
+
+      {/* Các nút để thay đổi trạng thái của đèn */}
+      <div style={{ marginTop: "20px" }}>
+        <button
+          onClick={() => changeLight("red")}
+          style={{ marginRight: "10px" }}
+        >
+          Red
+        </button>
+        <button
+          onClick={() => changeLight("yellow")}
+          style={{ marginRight: "10px" }}
+        >
+          Yellow
+        </button>
+        <button onClick={() => changeLight("green")}>Green</button>
+      </div>
+    </div>
+  );
+}
+
+export default TrafficLight;
+```
+
+### Giải thích:
+
+1. **useState**: State `lightColor` được sử dụng để lưu màu hiện tại của đèn. Ban đầu, nó có giá trị là `'red'`.
+2. **changeLight**: Hàm này được gọi khi người dùng nhấn một trong ba nút. Mỗi nút sẽ truyền vào một giá trị màu khác nhau (`'red'`, `'yellow'`, `'green'`) để thay đổi màu của đèn.
+
+3. **style**:
+
+   - `backgroundColor`: Đèn sẽ đổi màu theo giá trị `lightColor`.
+   - `transition`: Thêm hiệu ứng mượt mà khi chuyển đổi giữa các màu đèn.
+
+4. **button**: Có 3 nút, mỗi nút tương ứng với một màu (Đỏ, Vàng, Xanh). Khi nhấn vào các nút, hàm `changeLight` sẽ thay đổi màu của đèn dựa trên màu tương ứng của nút.
+
+Với ví dụ này, bạn có thể dễ dàng chuyển đổi qua lại giữa 3 màu **Đỏ**, **Vàng**, và **Xanh** bằng cách nhấn vào các nút.
+
+#### 🎁 Modal open/close
+
+```jsx
+const App = () => {
+  const [isShow, setIsShow] = useState(false);
+
+  const handleModal = () => {
+    setIsShow(!isShow);
+  };
+
+  return (
+    <div>
+      <h1>Simple Modal</h1>
+      <button onClick={handleModal}>Toogle Modal</button>
+      {isShow && <div className="modal">This is a Modal</div>}
+    </div>
+  );
+};
+```
+
+#### 🎁 Simple todo list
 
 ```js
 import React, { useState } from "react";

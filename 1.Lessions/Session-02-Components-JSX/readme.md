@@ -4,7 +4,7 @@
 
 - Trong React, "component" (thành phần) là một phần của giao diện người dùng được chia thành các phần nhỏ, có thể tái sử dụng và độc lập. Chúng giúp bạn chia nhỏ các phần phức tạp của ứng dụng thành các phần nhỏ hơn, dễ quản lý và tái sử dụng.
 
--React được xây dựng trên cơ sở của các thành phần. Mỗi thành phần là một đoạn mã JavaScript độc lập có thể nhận dữ liệu đầu vào và trả về một phần giao diện người dùng (UI) cụ thể. Khi dữ liệu đầu vào thay đổi, giao diện người dùng sẽ được cập nhật một cách tự động mà không cần phải thực hiện lại trang web.
+- React được xây dựng trên cơ sở của các thành phần. Mỗi thành phần là một đoạn mã JavaScript độc lập có thể nhận dữ liệu đầu vào và trả về một phần giao diện người dùng (UI) cụ thể. Khi dữ liệu đầu vào thay đổi, giao diện người dùng sẽ được cập nhật một cách tự động mà không cần phải thực hiện lại trang web.
 
 - Chúng ta có thể xây dựng giao diện người dùng bằng cách kết hợp các Component lại với nhau
 - Có 2 loại component là Function Component và Class Component.
@@ -22,7 +22,7 @@ Doc:
 
 ![is component](img/thing-component.png)
 
-![is component](img/thing-component-2.png)
+![is component](img/what-component.png)
 
 Ví dụ thực tế Components: 5.Demo-Projects\product.html
 
@@ -37,7 +37,10 @@ Thử tạo 2 button đó trong React
 Trong file `App.tsx` bạn thêm đoạn code sau
 
 ```js
-//Định nghĩa một component
+/* 
+- Định nghĩa 1 hàm bắt đầu với kí tự HOA
+- React hiểu là bạn đang định nghĩa một component 
+*/
 function ButtonAddToCart() {
   return <button type="button">Thêm giỏ hàng</button>;
 }
@@ -156,7 +159,7 @@ React nổi bật với việc tái sử dụng, do vậy bạn nên chia nhỏ 
 
 Theo convension bạn nên tạo ra một folder tên là components bên trong src.
 
-Ví dụ: Tạo một một file src/components/ButtonAddToCart.js (tên file bằng tên Component)
+Ví dụ: Tạo một một file src/components/ButtonAddToCart.tsx (tên file bằng tên Component)
 
 ```js
 function ButtonAddToCart() {
@@ -171,7 +174,7 @@ Bây giờ tại component muốn sử dụng lại Car.js thì import vào
 ```js
 import React from "react";
 //ES6 import
-import ButtonAddToCart from "./ButtonAddToCart.js";
+import ButtonAddToCart from "./ButtonAddToCart";
 
 function App() {
   return (
@@ -205,9 +208,11 @@ Ví dụ:
 
 ## 🔥 Cú Pháp JSX ?
 
-Cách mà làm cho Component trở nên Dynamic hơn
+Cách mà làm cho Component trở nên hay ho hơn
 
-### JSX là gì ?
+![jsx](img/jsx.png)
+
+### 🔷 JSX là gì ?
 
 JSX là một cú pháp mở rộng cho JavaScript được sử dụng trong ReactJS để xây dựng giao diện người dùng.
 
@@ -222,7 +227,7 @@ JSX giúp chúng ta tạo ra các đối tượng React Element, mô tả cách 
 - https://www.w3schools.com/REACT/react_jsx.asp
 - https://react.dev/learn/writing-markup-with-jsx
 
-### Cách Code JSX
+### 🔷 Cách Code JSX
 
 Để tạo ra một câu Hello world bằng HTML
 
@@ -256,13 +261,13 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(myElement);
 ```
 
-### Một số ưu điểm của JSX trong ReactJs
+### 🔷 Một số ưu điểm của JSX trong ReactJs
 
 - Dễ đọc và dễ viết: Cú pháp giống HTML giúp viết các thành phần React một cách dễ dàng và tự nhiên.
 - Tích hợp JavaScript: Có thể sử dụng các biểu thức JavaScript để tích hợp logic vào trong mã JSX.
 - Tối ưu hóa mã: JSX giúp viết mã gọn gàng và tổ chức tốt hơn, dễ dàng bảo trì và phát triển
 
-### JSX làm được gì ?
+### 🔷 JSX làm được gì ?
 
 #### 1. Đơn giản hóa việc code HTML trong JavaScript
 
@@ -388,21 +393,17 @@ const x = 5;
 const myElement = <h1>{x < 10 ? "Hello" : "Goodbye"}</h1>;
 ```
 
-### ⭐ 4.Converting HTML to JSX
+### 🔷 4.Converting HTML to JSX
 
 Html
 
-```js
+```html
 <h1>Hedy Lamarr's Todos</h1>
-<img
-  src="https://i.imgur.com/yXOvdOSs.jpg"
-  alt="Hedy Lamarr"
-  class="photo"
->
+<img src="https://i.imgur.com/yXOvdOSs.jpg" alt="Hedy Lamarr" class="photo" />
 <ul>
-    <li>Invent new traffic lights
-    <li>Rehearse a movie scene
-    <li>Improve the spectrum technology
+  <li>Invent new traffic lights</li>
+  <li>Rehearse a movie scene</li>
+  <li>Improve the spectrum technology</li>
 </ul>
 ```
 
@@ -427,7 +428,7 @@ export default function TodoList() {
 }
 ```
 
-### ⭐ 5. Comment strong JSX
+### 🔷 5. Comment strong JSX
 
 ```js
 let elements =  (
