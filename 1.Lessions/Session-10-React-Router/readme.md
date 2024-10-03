@@ -2,14 +2,14 @@
 
 Giúp bạn tạo ra một dự án website bằng React có nhiều trang nội dung như HTML
 
-## Thêm React Router vào dự án
+## 🔥 Thêm React Router vào dự án
 
 ```bash
 npm i -D react-router-dom
 yarn add -D react-router-dom
 ```
 
-## Ý tưởng sitemap
+## 🔥 Ý tưởng sitemap
 
 Ví dụ bạn muốn khi URL:
 
@@ -33,7 +33,7 @@ src/
 
 ```
 
-## Cấu hình Routes
+## 🔥 Cấu hình Routes
 
 Tại component App
 
@@ -66,7 +66,7 @@ Giải thích:
 - blog : Load nội dung trang CategoryPage lên
 - `*` : Không tìm thấy url khớp với ruote thì load NoPage lên
 
-## Layout
+## 🔥 Layout
 
 Qua ví dụ trên thì các bạn nhận thấy, thực tế có các trang sẽ chung nhau một cấu trúc chung là Header và Footer. Chỉ khác nhau phần Body.
 
@@ -135,7 +135,7 @@ Tất cả các trang sẽ bọc trong Route sử dụng Layout chung.
 
 Trang nào bạn không muốn dùng Layout thì đặt Route đó ra ngoài Route Layout
 
-## Parameter & Query String
+## 🔥 Parameter & Query String
 
 ### Parameter
 
@@ -214,7 +214,7 @@ function QueryPage() {
 export default QueryPage;
 ```
 
-## Nested Routes
+## 🔥 Nested Routes
 
 Bấy giờ mở rộng thêm kiểu như sau
 
@@ -237,7 +237,7 @@ Khi đó chúng ta có Route như sau:
 
 Route có path `settings` có 2 Route con ==> gọi là Nested route (Route lồng vào nhau)
 
-## Chuyến hướng giữa các Routes
+## 🔥 Chuyến hướng giữa các Routes
 
 Để chuyến hướng giữa các routes sử dụng
 
@@ -248,7 +248,7 @@ const navigate = useNavigate();
 navigate("/login");
 ```
 
-## SEO and Metadata
+## 🔥 SEO and Metadata
 
 React là một ứng dụng **Single Page Application** với cơ chế Client Side Rendering
 
@@ -285,12 +285,3 @@ const Dashboard = () => {
 
 export default Dashboard;
 ```
-
-## Private Route
-
-Có nghĩa là có một số Route các bạn không muốn public cho người khác xem. Mà chỉ có người nào có quyền truy cập mới xem được.
-
-Tham khảo:
-
-- <https://www.robinwieruch.de/react-router-private-routes/>
-- <https://ui.dev/react-router-protected-routes-authentication>
