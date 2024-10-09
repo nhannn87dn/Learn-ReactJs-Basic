@@ -279,7 +279,61 @@ const ListExample = () => {
 export default ListExample;
 ```
 
-## 🔥 5.3 Khái niệm Lifecycle
+## 🔥 5.2 Một Component có thể dùng nhiều State
+
+Trong một component bạn có thể sử dụng nhiều State để quản lý thay đổi UI trên component đó.
+
+Sau đây là một ví dụ:
+
+```jsx
+import React, { useState } from "react";
+
+function HelloCount() {
+  // State cho count
+  const [count, setCount] = useState(0);
+  // State cho việc hiển thị count
+  const [isShow, setIsShow] = useState(false);
+  //Và có thể State sau phụ thuộc vào State trước
+  return (
+    <div>
+      <h1>HelloCount</h1>
+      {isShow && (
+        <div className="section_count">
+          <p>
+            Count: <strong>{count}</strong>
+          </p>
+          <button onClick={() => setCount(count + 1)}>+ 1</button>
+        </div>
+      )}
+      <button onClick={() => setIsShow(!isShow)}>Toogle Count</button>
+    </div>
+  );
+}
+
+export default HelloCount;
+```
+
+## 🔥 5.3 State là cô lập và cục bộ
+
+State là một trạng thái cục bộ và cô lập cho một phiên bản (instance) trên một mành hình UI.
+
+Nói cách khác. Nếu bạn `render` 2 lần một component, thì mỗi bản sao sẽ có trạng thái cô lập hoàn toàn, có nghĩa là thay đổi trạng thái của một trong số chúng thì cái kia không ảnh hưởng.
+
+```jsx
+//Dùng component HelloCount 2 lần
+const App = () => {
+  return (
+    <>
+      <h1>Hello State</h1>
+      <HelloCount /> {/*  bản sao 1 */}
+      <HelloCount /> {/*  bản sao 2 */}
+    </>
+  );
+};
+export default App;
+```
+
+## 🔥 5.4 Khái niệm Lifecycle
 
 🌻 **Re-Render trong React là gì?**
 
@@ -431,11 +485,11 @@ export default App;
 
 ===============================
 
-## 🔥 5.4 State Updates
+## 🔥 5.5 State Updates
 
 Cập nhật state trong React là một phần quan trọng khi bạn muốn thay đổi giá trị và giao diện dựa trên dữ liệu mới. Dưới đây là các cách phổ biến để cập nhật state và cách áp dụng chúng.
 
-### 🌻 5.4.1 Cập nhật State với giá trị mới
+### 🌻 5.5.1 Cập nhật State với giá trị mới
 
 Đây là cách cơ bản nhất để cập nhật state bằng cách cung cấp một giá trị mới cho state. Trong functional component, bạn sử dụng hàm `setState` được trả về từ hook `useState`.
 
@@ -468,11 +522,11 @@ setIsSuccess(true); // Boolean
 setMsg("Invalid username or password !"); // String
 ```
 
-### 🌻 5.4.2 Cập nhật State dựa trên State hiện tại
+### 🌻 5.5.2 Cập nhật State dựa trên State hiện tại
 
 Khi bạn muốn cập nhật state dựa trên giá trị hiện tại của nó, cần sử dụng một hàm callback trong `setState` (đối với cả functional component và class component). Cách này giúp đảm bảo rằng state được cập nhật chính xác ngay cả khi có nhiều cập nhật xảy ra liên tiếp.
 
-Ví dụ: Tăng giá trị count dựa trên giá trị trước đó
+Ví dụ 1: Tăng giá trị count dựa trên giá trị trước đó
 
 ```jsx
 import React, { useState } from "react";
@@ -505,7 +559,59 @@ Xem thêm:
 - https://react.dev/learn/state-as-a-snapshot
 - https://react.dev/learn/queueing-a-series-of-state-updates
 
-### 🌻 5.4.3 State là một Object
+Ví dụ 2: Tăng giá trị count lên `3 lần`
+
+```jsx
+import { useState } from "react";
+
+export default function Counter() {
+  const [number, setNumber] = useState(0);
+
+  return (
+    <>
+      <h1>{number}</h1>
+      <button
+        onClick={() => {
+          setNumber(number + 1);
+          setNumber(number + 1);
+          setNumber(number + 1);
+        }}
+      >
+        +3
+      </button>
+    </>
+  );
+}
+```
+
+**Giải thích**:
+
+- Khi người dùng nhấn vào nút, hàm onClick sẽ chạy.
+- Bên trong hàm onClick, bạn gọi setNumber ba lần liên tiếp với giá trị là number + 1
+- Nhưng bạn không thấy nó tăng lên 3.
+
+**Cách React xử lý state:**
+
+- React batch (gom nhóm) các cập nhật state trong cùng một sự kiện (như sự kiện nhấn nút). Điều này có nghĩa là dù bạn gọi setNumber(number + 1) ba lần liên tiếp, React sẽ chỉ thực hiện cập nhật cuối cùng. Kết quả là state sẽ chỉ tăng thêm 1 chứ không phải 3.
+- Điều này xảy ra vì trong mỗi lần bạn gọi setNumber, React sử dụng giá trị number hiện tại để tính toán, và nó không cập nhật ngay lập tức. Thay vào đó, tất cả các cập nhật trong sự kiện sẽ được gom lại và chỉ thực hiện cập nhật một lần sau khi sự kiện hoàn tất.
+
+Nếu bạn muốn `tăng chính xác 3 đơn vị` khi nhấn nút, có thể sử dụng hàm `callback` của `setNumber`, như sau:
+
+```jsx
+<button
+  onClick={() => {
+    setNumber((prev) => prev + 1);
+    setNumber((prev) => prev + 1);
+    setNumber((prev) => prev + 1);
+  }}
+>
+  +3
+</button>
+```
+
+### 🌻 5.5.3 State là một Object
+
+Xem thêm: https://www.w3schools.com/react/react_es6_spread.asp
 
 Khi state là một Object thì ta update như sau
 
@@ -538,11 +644,13 @@ View details: <https://react.dev/learn/updating-objects-in-state>
 
 ===============================
 
-### 🌻 5.4.3 State là một Mảng
+### 🌻 5.5.3 State là một Mảng
 
 > `Updating arrays without mutation`
 
 Dưới đây là một bảng so sánh phương thức mảng. Khi bạn thao tác với mảng trong React State, bạn cần tránh sử dụng các phương thức bên cột trái, nên sử dụng phương thức bên cột phải để thay thế.
+
+Xem thêm: https://www.w3schools.com/react/react_es6_spread.asp
 
 |               |      avoid (mutates the array)      |  prefer (returns a new array)  |
 | :-----------: | :---------------------------------: | :----------------------------: |
@@ -631,7 +739,7 @@ setArtists(artists.filter((a) => a.id !== artist.id));
 
 ===============================
 
-## 🔥 5.5 Tôi ưu Quản lý State (Option)
+## 🔥 5.6 Tôi ưu Quản lý State (Option)
 
 Bạn nên xem thêm các Example sau trên trang chính thức để tối ưu cách vận hàng State:
 
@@ -641,7 +749,7 @@ Bạn nên xem thêm các Example sau trên trang chính thức để tối ưu 
 
 ===============================
 
-## 🔥 5.6 Khai báo kiểu dữ liệu của State trong TypeScript (Option)
+## 🔥 5.7 Khai báo kiểu dữ liệu của State trong TypeScript (Option)
 
 ```js
 
