@@ -8,6 +8,7 @@ import NoPage from "./pages/NoPage";
 import DefaultLayout from "./layouts/DefaultLayout";
 import GioiThieuPage from "./pages/GioiThieuPage";
 import ProductDetails from "./pages/ProductDetails";
+import LoginPage from "./pages/LoginPage";
 
 const queryClient = new QueryClient();
 
@@ -27,6 +28,7 @@ function App() {
             <Route path="/products/:id" element={<ProductDetails />} />
             <Route path="/products" element={<ProductPage />} />
             <Route path="/gioi-thieu.html" element={<GioiThieuPage />} />
+            <Route path="/login" element={<LoginPage />} />
           </Route>
 
           {/* 
