@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+            let success = true;
+            function getUsers() {
+                return new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                    if (success) {
+                        resolve([
+                        { username: 'john', email: 'john@test.com' },
+                        { username: 'jane', email: 'jane@test.com' },
+                        ]);
+                    } else {
+                        reject('Failed to the user list');
+                    }
+                    }, 1000);
+                });
+            }
+
+            const users  = getUsers()
+                        .then((users) => users)
+                        .catch((error) => {
+                            console.log(error);
+                        });
+
+            async function findUser(username) {
+                const users  = await getUsers()
+                        .then((users) => users)
+                        .catch((error) => {
+                            console.log(error);
+                        });
+                const user = await users.find((user) => user.username === username);
+                console.log(user);
+            }
+        
+            findUser('john');
+           
+           
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+GET https://api.escuelajs.co/api/v1/products HTTP/1.1
+
+### Để ngăn cách giữa các request
+
+POST  https://api.escuelajs.co/api/v1/products HTTP/1.1
+content-type: application/json
+
+{
+  "title": "New Product",
+  "price": 10,
+  "description": "A description",
+  "categoryId": 1,
+  "images": ["https://placeimg.com/640/480/any"]
+}
+
+###
+
+PUT  https://api.escuelajs.co/api/v1/products/95 HTTP/1.1
+content-type: application/json
+
+{
+  "title": "iphone 18 edited"
+}
+
+### Xóa sản phẩm
+DELETE  https://api.escuelajs.co/api/v1/products/97

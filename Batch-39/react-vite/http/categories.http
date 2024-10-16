@@ -1,0 +1,29 @@
+### METHOD GET
+
+### Get all Cateogiores
+GET https://api.escuelajs.co/api/v1/categories
+
+###
+DELETE https://api.escuelajs.co/api/v1/products/29
+
+### 
+PUT https://api.escuelajs.co/api/v1/products/34
+Content-Type: application/json
+
+{
+  "price": 1
+}
+
+###
+GET https://api.escuelajs.co/api/v1/auth/profile
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOjEsImlhdCI6MTcxODAxOTcwMSwiZXhwIjoxNzE5NzQ3NzAxfQ.Q9o1FTO7P7HTt4s7epzYGL2wLNIUL_ucAbGCeEOJ0ok
+
+### Login
+POST https://api.escuelajs.co/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "john@mail.com",
+  "password": "changeme"
+}
+

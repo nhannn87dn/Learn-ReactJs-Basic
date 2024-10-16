@@ -1,0 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Ưu tiên css tăng dần base->components->utilities */
+
+/* lớp cở bản */
+@layer base {
+
+    input, textarea, select {
+      @apply focus:outline-none 
+  }
+  input, textarea{
+      @apply block w-full rounded-md border-0 px-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-400 sm:text-sm sm:leading-6
+  }
+  select{
+      @apply block w-full rounded-md border-0 ps-3 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-400  sm:text-sm sm:leading-6 appearance-none
+  }
+
+
+  form label {
+      @apply inline-block text-sm font-medium leading-6 text-gray-900
+  }
+  button {
+      @apply rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50
+  }
+  button[type='submit'] {
+      @apply bg-indigo-600 hover:bg-indigo-500 text-white
+  }
+  button[disabled] {
+    @apply cursor-not-allowed opacity-50
+  }
+
+ 
+}
+
+/* Lớp biến thể */
+@layer components {
+  
+  .btn {
+      @apply rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50
+  }
+  .btn-empty{
+      @apply shadow-none ring-0
+  }
+  .btn-primary{
+      @apply bg-indigo-600 hover:bg-indigo-500 text-white
+  }
+
+  .btn-orange {
+    @apply  bg-orange-500 hover:bg-orange-600  text-white
+  }
+
+  .btn-sky {
+    @apply  bg-sky-500 hover:bg-sky-600  text-white
+  }
+}
+
+/* ưu tiên cao  */
+@layer utilities {
+  
+  .btn-small {
+     @apply py-1 px-2
+  }
+
+  .btn-xl {
+    @apply py-3 px-5
+  }
+}
+select {
+  background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+  background-position: right 0.5rem center;
+  background-repeat: no-repeat;
+  background-size: 1.5em 1.5em;
+  padding-right: 2.5rem;
+  -webkit-print-color-adjust: exact;
+}
+
+input[type='radio'], input[type='checkbox'] {
+  display: inline-block;
+  box-shadow: none;
+  width: auto;
+  margin: 0 5px;
+  vertical-align: middle;
+}
+
+/* ưu tiên cao nhất */
+.button{
+  padding: 10px 12px;
+  appearance: none;
+  background-color: rgb(65, 0, 131);
+  color: #fff;
+  text-align: center;
+  border: none;
+  margin-right: 10px;
+}

@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  h1 {
+  }
+  input {
+    @apply border rounded border-slate-300 py-2 px-4;
+  }
+}
+
+@layer components {
+  button,
+  input[type="button"],
+  .btn {
+    @apply bg-white border border-slate-300 py-2 px-4 rounded text-slate-700;
+  }
+  .btn-primary {
+    @apply bg-indigo-700 border-indigo-700 text-white;
+  }
+}
+
+@layer utilities {
+  .pdy-2 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+}

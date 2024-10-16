@@ -1,0 +1,58 @@
+import "./App.css";
+import Attributes from "./components/Attributes";
+import ButtonSocial from "./components/ButtonSocial";
+import { FaApple, FaFacebook, FaGoogle, FaGithub } from "react-icons/fa";
+import TodoList from "./components/TodoList";
+import TodoListItem from "./components/TodoListItem";
+import ProductsList from "./components/ProductList";
+
+const todos = [
+  { id: 1, text: "Quet nha", icon: <FaApple /> },
+  { id: 2, text: "Giat quan áo", icon: <FaGoogle /> },
+  { id: 3, text: "nau com", icon: <FaGithub /> },
+  { id: 4, text: "Xem tivi", icon: <FaFacebook /> },
+  { id: 5, text: "Di ngu" },
+];
+
+function App() {
+  console.log("App Render");
+  return (
+    <div className="container mx-auto">
+      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+      <ProductsList />
+      <TodoList>
+        {/* <TodoListItem done={true} text="Quet Nha" />
+        <TodoListItem done={true} text="Giat Do" />
+        <TodoListItem text="nau com" />
+        <TodoListItem text="Xem tivi" />
+        <TodoListItem text="Di ngu" /> */}
+        {/* 
+        TodoList_1 
+        TodoList_2 
+        Products_1 
+        Products_2 
+        */}
+        {todos.map((todo) => {
+          return (
+            <TodoListItem
+              key={`TodoList_${todo.id}`}
+              text={todo.text}
+              icon={todo.icon}
+            />
+          );
+        })}
+      </TodoList>
+
+      <Attributes />
+      <hr />
+      <div className="flex flex-col gap-y-5">
+        <ButtonSocial icon={<FaApple />} label="Apple" />
+        <ButtonSocial varian="outline" icon={<FaGoogle />} label="Google" />
+        <ButtonSocial varian="outline" icon={<FaFacebook />} label="Facebook" />
+        <ButtonSocial varian="success" icon={<FaGithub />} label="Github" />
+      </div>
+    </div>
+  );
+}
+
+export default App;

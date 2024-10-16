@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //Mô phỏng trả về một mảng users từ Database
+        function getUsers() {
+            let users = [];
+            //Sử dụng setTimeout để Delay 3 giây
+            setTimeout(() => {
+                users = [
+                { username: 'john', email: 'john@test.com' },
+                { username: 'jane', email: 'jane@test.com' },
+                ];
+            }, 3000);
+            return users;
+            }
+            // Định nghĩa hàm Tìm user có tên john
+            function findUser(username) {
+                const users = getUsers(); //3 sau no moi tra ve ket qua
+                const user = users.find((user) => user.username === username);
+            return user;
+            }
+            //Gọi hàm 
+            console.log(findUser('john'));
+
+            //Kết quả
+            //{ username: 'john', email: 'john@test.com' }
+
+            /**
+             * Sử dụng callback để xử lý bất đông bộ
+             * 
+             */
+            // function getUsers(callback) {
+            // setTimeout(() => {
+            //     callback([
+            //     { username: 'john', email: 'john@test.com' },
+            //     { username: 'jane', email: 'jane@test.com' },
+            //     ]);
+            // }, 1000);
+            // }
+
+            // function findUser(username, callback) {
+            //     getUsers((users) => {
+            //         const user = users.find((user) => user.username === username);
+            //         callback(user);
+            //     });
+            // }
+
+            // findUser('john', console.log);
+    </script>
+</body>
+</html>

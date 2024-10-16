@@ -1,0 +1,37 @@
+GET https://jsonplaceholder.typicode.com/posts HTTP/1.1
+
+## Có thể soạn nhiều request trong 1 file
+## Sử dụng 3 dấu ### để ngắn cách giữa các requests
+
+###
+GET https://jsonplaceholder.typicode.com/users HTTP/1.1
+
+
+### Method POST
+## Giữa header content và body phải có 1 dòng trắng
+## Phần tử cuối cùng trong chuỗi JSON ko được để dấu phẩy ,
+
+POST https://jsonplaceholder.typicode.com/posts HTTP/1.1
+content-type: application/json
+
+{
+    "title": "Review IPhone 16 promax",
+    "body": "desc",
+    "userId": 2
+}
+
+###
+
+GET https://api.escuelajs.co/api/v1/products
+
+### 
+POST https://api.escuelajs.co/api/v1/products/
+content-type: application/json
+
+{
+  "title": "New Product",
+  "price": 10,
+  "description": "A description",
+  "categoryId": 1,
+  "images": ["https://placeimg.com/640/480/any"]
+}

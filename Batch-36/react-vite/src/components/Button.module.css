@@ -1,0 +1,20 @@
+.btn {
+    padding: 10px 12px;
+    background-color: #f80;
+    color: #fff;
+    text-align: center;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    margin-right: 5px;
+}
+
+.btn_dark {
+    background-color: #212121;
+} 
+
+.btn_outline {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    color: #f80;
+}

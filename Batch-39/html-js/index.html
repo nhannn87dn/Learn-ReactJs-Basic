@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+
+  <body>
+    <input name="age" value="0" type="text" />
+    <button class="btn text-orange-500" onclick="handleClick()">Click</button>
+    <script>
+      let index = 0;
+
+      document.querySelector("button").classList("text-orange-500");
+
+      function handleClick() {
+        index = index + 1;
+        console.log(index);
+        document.querySelector("input[name='age']").value = 10;
+      }
+    </script>
+  </body>
+</html>

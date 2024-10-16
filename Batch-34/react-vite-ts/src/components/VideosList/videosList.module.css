@@ -1,0 +1,26 @@
+.video_wrapper {
+    background-color: #fff;
+    padding: 20px;
+    max-width: 600px;
+}
+
+.video_item {
+    display: flex;
+    column-gap: 10px;
+    align-items: center;
+    margin: 10px 0;
+}
+.thumb{
+    width: 141px;
+    overflow: hidden;
+}
+.thumb img{
+    width: 100%;
+    height: auto;
+}
+.content {
+    flex: 1
+}
+.icons {
+    width: 40px;
+}

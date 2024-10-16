@@ -1,0 +1,20 @@
+.video_item {
+  display: flex;
+  max-width: 500px;
+  column-gap: 20px;
+  align-items: center;
+}
+.thumb {
+  width: 120px;
+  overflow: hidden;
+}
+.thumb img {
+  width: 100%;
+  height: auto;
+}
+.content {
+  display: flex;
+  flex: 1;
+  justify-content: space-between;
+  align-items: center;
+}
