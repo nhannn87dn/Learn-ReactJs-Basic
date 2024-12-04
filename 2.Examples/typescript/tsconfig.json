@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 {
     "compilerOptions": {
       "allowJs": true,
@@ -5,4 +6,13 @@
       "module": "commonjs",
       "sourceMap": true
     }
+=======
+{
+    "compilerOptions": {
+      "allowJs": true,
+      "target": "es5",
+      "module": "commonjs",
+      "sourceMap": true
+    }
+>>>>>>> a03215a3c2ae63bd44efff88246e53491ab9f157
 }

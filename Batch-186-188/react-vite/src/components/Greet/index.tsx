@@ -1,69 +1,82 @@
 import { useEffect, useState } from "react";
 
 function Greet({ name }: { name: string }) {
+  const [title, setTitle] = useState("APtech");
+  const [color, setColor] = useState("yellow");
+  const [count, setCount] = useState(0);
   const message = `Hello, ${name}!`; // Calculates output
-  const [title, setTitle] = useState("");
-  const [person, setPerson] = useState("Jonh");
 
-  console.log("<<=== 🚀 person ===>>", person);
-  console.log("<<=== 🚀 title ===>>", title);
-
-  //TH1, chỉ có tham số 1
+  //TH 1
   // useEffect(() => {
   //   console.log("2");
+  //   //callback luon chay khi component render
   //   document.title = `Greetings to ${name}`; // Side-effect!
   // });
 
-  //TH2, chỉ có tham số 1,2, với 2 là mảng rỗng.
-  //useEffect(()=>{}, [])
+  //TH 2, callback no chi chay lan dau tien
   // useEffect(() => {
   //   console.log("2");
-  //   document.title = `Greetings to ${person}`; // Side-effect!
-  // }, []); //dependency là một mảng rỗng
+  //   //callback luon chay khi component render
+  //   document.title = `Greetings to ${color}`; // Side-effect!
+  // }, []); // dependency la mảng rỗng
 
-  //TH3: Có cả 2 tham số, tham số thứ 2 ko phải mảng rỗng
-  //uuseEffect(()=>{}, [abc])
+  //TH 3, callback no chi chay lan dau tien + chay lại khi dependencies thay đổi
   useEffect(() => {
     console.log("2");
-    document.title = `Greetings to ${person}`; // Side-effect!
-  }, [person]); // Callback nó phụ thuộc vào giá trị của biến person
+    //callback luon chay khi component render
+    document.title = `Greetings to ${color}`; // Side-effect!
+  }, [color]); // khi mảng thay đổi, callback chạy lại
+
+  console.log("<<=== 🚀 color ===>>", color);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCount((count) => count + 1);
+      console.log("This will run every second!");
+    }, 1000);
+
+    return () => {
+      console.log("Unmout greet khoi home page");
+      clearInterval(interval);
+    };
+  }, []);
 
   return (
     <div>
-      {console.log("1")}
+      <h1>{title}</h1>
       {message}
       <input
         onChange={(e) => {
           setTitle(e.target.value);
         }}
-        placeholder="title"
+        placeholder="name"
         type="text"
       />
-      <hr />
       <button
         onClick={() => {
-          setPerson("Jonh");
+          setColor("yellow");
         }}
         className="btn btn-default"
       >
-        Jonh
+        yellow
       </button>
       <button
         onClick={() => {
-          setPerson("Alice");
+          setColor("green");
         }}
         className="btn btn-default"
       >
-        Alice
+        green
       </button>
       <button
         onClick={() => {
-          setPerson("Sarah");
+          setColor("red");
         }}
         className="btn btn-default"
       >
-        Sarah
+        red
       </button>
+      <h1>{count}</h1>
     </div>
   ); // Calculates output
 }

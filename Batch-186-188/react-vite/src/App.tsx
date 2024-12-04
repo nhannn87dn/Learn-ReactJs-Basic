@@ -8,6 +8,10 @@ import NoPage from "./pages/NoPage";
 import DefaultLayout from "./layouts/DefaultLayout";
 import GioiThieuPage from "./pages/GioiThieuPage";
 import ProductDetails from "./pages/ProductDetails";
+<<<<<<< HEAD
+=======
+import LoginPage from "./pages/LoginPage";
+>>>>>>> a03215a3c2ae63bd44efff88246e53491ab9f157
 
 const queryClient = new QueryClient();
 
@@ -27,6 +31,10 @@ function App() {
             <Route path="/products/:id" element={<ProductDetails />} />
             <Route path="/products" element={<ProductPage />} />
             <Route path="/gioi-thieu.html" element={<GioiThieuPage />} />
+<<<<<<< HEAD
+=======
+            <Route path="/login" element={<LoginPage />} />
+>>>>>>> a03215a3c2ae63bd44efff88246e53491ab9f157
           </Route>
 
           {/* 
