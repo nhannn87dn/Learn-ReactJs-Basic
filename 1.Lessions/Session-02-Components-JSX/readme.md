@@ -524,3 +524,106 @@ export default defineConfig({
   plugins: [react()],
 });
 ```
+
+## 🌻 Hướng dẫn nhúng font vào React App
+
+### 1. Nhúng Font Local
+
+#### Bước 1: Chuẩn bị file font
+
+- Tải các file font bạn muốn sử dụng (thường là `.ttf`, `.woff`, hoặc `.woff2`).
+- Lưu file font vào thư mục dự án, ví dụ: `src/assets/fonts`.
+
+#### Bước 2: Khai báo font trong CSS
+
+- Tạo file CSS (hoặc SCSS) trong dự án, ví dụ: `src/styles/fonts.css`.
+- Sử dụng `@font-face` để khai báo font:
+
+```css
+@font-face {
+  font-family: "CustomFont";
+  src: url("../assets/fonts/custom-font.woff2") format("woff2"), url("../assets/fonts/custom-font.woff")
+      format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+```
+
+#### Bước 3: Import file CSS vào ứng dụng
+
+- Mở file `src/index.js` hoặc `src/index.tsx` và import file CSS:
+
+```javascript
+import "./styles/fonts.css";
+```
+
+#### Bước 4: Sử dụng font trong ứng dụng
+
+- Áp dụng font trong CSS:
+
+```css
+body {
+  font-family: "CustomFont", sans-serif;
+}
+```
+
+### 2. Nhúng Google Font
+
+#### Bước 1: Lấy link Google Font
+
+- Truy cập [Google Fonts](https://fonts.google.com/), chọn font bạn muốn, và sao chép URL embed:
+
+```html
+<link
+  href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+  rel="stylesheet"
+/>
+```
+
+#### Bước 2: Nhúng Google Font vào dự án
+
+Có hai cách để nhúng Google Font:
+
+**Cách 1: Nhúng vào file `public/index.html`**
+
+- Mở file `public/index.html` và thêm thẻ `<link>` trong phần `<head>`:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <title>React App</title>
+  </head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>
+```
+
+**Cách 2: Import vào file CSS**
+
+- Thêm link Google Font vào file CSS (hoặc SCSS) của bạn:
+
+```css
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
+
+body {
+  font-family: "Roboto", sans-serif;
+}
+```
+
+#### Bước 3: Sử dụng font trong ứng dụng
+
+- Dùng font đã khai báo:
+
+```css
+/* App.css */
+h1 {
+  font-family: "Roboto", sans-serif;
+}
+```

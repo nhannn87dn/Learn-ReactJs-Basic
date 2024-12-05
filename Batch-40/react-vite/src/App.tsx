@@ -1,16 +1,30 @@
-import { useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
 import "./App.css";
+import Header from "./components/Header";
+
+const info = {
+  id: 1,
+  name: "John",
+  email: "john@example.com",
+};
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
-      <h1>Hello ReactJs</h1>
-      jdskdjk
-      <p>dsds</p>
+      {5 + 5}
+      <Header />
+      <p
+        className="ten-class"
+        style={{
+          backgroundColor: "#fff",
+          fontSize: "2rem",
+        }}
+      >
+        Para
+      </p>
+      {info.email}
+      <img src="" alt="" />
+      <input type="text" />
+      {/* đây là comment CTRL + / */}
     </>
   );
 }
