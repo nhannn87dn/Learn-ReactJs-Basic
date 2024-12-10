@@ -1,0 +1,16 @@
+.header {
+  color: #fff;
+  padding: 10px;
+  background-color: crimson;
+}
+
+.btn {
+  padding: 8px 12px;
+  background-color: orange;
+  color: #333;
+  border: 1px solid #ababab;
+  outline: none;
+  cursor: pointer;
+  appearance: none;
+  border-radius: 6px;
+}

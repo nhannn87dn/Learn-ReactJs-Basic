@@ -1,3 +1,12 @@
+@font-face {
+  font-family: "GeistVF";
+  src: url("./assets/fonts/GeistVF.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+.local_font {
+  font-family: "GeistVF";
+}
 .box_tim {
   background-color: purple;
 }
@@ -28,4 +37,8 @@
 .nav ul li a {
   color: #fff;
   text-decoration: none;
+}
+
+.h3 {
+  font-family: "Roboto", sans-serif;
 }
