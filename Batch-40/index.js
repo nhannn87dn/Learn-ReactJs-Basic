@@ -1,5 +1,1 @@
-function sum(a, b) {
-  console.log(a + b);
-}
-sum(1, 2);
-sum(2, 2);
+document.getElementById("root").innerHTML = "<p>Hello JS</p>";
