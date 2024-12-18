@@ -1,11 +1,17 @@
 import "./App.css";
+import Attributes from "./components/Attributes";
 import Tags from "./components/Tags";
+import SimpleCarousel from "./components/SimpleCarousel";
+import ReactHookFormExample from "./components/ReactHookFormExample";
 
 function App() {
   return (
-    <main className="container mx-auto bg-gray-200 p-5">
+    <div className="container mx-auto my-10">
+      <Attributes />
       <Tags />
-    </main>
+      <SimpleCarousel />
+      <ReactHookFormExample />
+    </div>
   );
 }
 
