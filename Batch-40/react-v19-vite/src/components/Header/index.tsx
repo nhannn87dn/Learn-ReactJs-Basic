@@ -1,5 +1,8 @@
+import { useBrowserWidth } from "../../hooks/useBrowserWidth";
 import "./Header.css";
+import UserInfo from "./UserInfo";
 function Header() {
+  const browserWidth = useBrowserWidth();
   return (
     <header className="header">
       <div
@@ -11,7 +14,11 @@ function Header() {
       >
         LOGO
       </div>
-      <div className="nav">Nav</div>
+      <div className="nav">
+        Nav
+        <UserInfo />
+        {browserWidth}
+      </div>
     </header>
   );
 }

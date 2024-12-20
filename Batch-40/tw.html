@@ -8,10 +8,15 @@
 </head>
 
 <body>
-    <div id="root"></div>
+    <div id="root">
+        <input class="border" id="name" type="text">
+        <button onclick="onClick()">OK</button>
+    </div>
 </body>
 <script>
-    document.getElementById('root').innerHTML = '<p>Hello JS</p>'
+    function onClick() {
+        document.getElementById('name').value = 'Hello World';
+    }
 </script>
 
 </html>
