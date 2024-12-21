@@ -7,6 +7,9 @@ import DefaultLayout from "./layouts/DefaultLayout";
 import CustomerPage from "./pages/CustomerPage";
 import CustomerOrderPage from "./pages/CustomerOrderPage";
 import CustomerLayout from "./layouts/CustomerLayout";
+import ProductPage from "./pages/ProductPage";
+import ProductDetailPage from "./pages/ProductDetailPage";
+import BlogDetail from "./pages/BlogDetail";
 function App() {
   return (
     <BrowserRouter>
@@ -19,6 +22,10 @@ function App() {
         <Route path="/" element={<DefaultLayout />}>
           <Route index element={<HomePage />} />
           <Route path="blog" element={<BlogPage />} />
+          <Route path="blog/:id" element={<BlogDetail />} />
+          <Route path="product" element={<ProductPage />} />
+          {/* Định route động */}
+          <Route path="product/:slug" element={<ProductDetailPage />} />
           {/* --> Gọi là nested route */}
           <Route path="customer" element={<CustomerLayout />}>
             <Route index element={<CustomerPage />} />
