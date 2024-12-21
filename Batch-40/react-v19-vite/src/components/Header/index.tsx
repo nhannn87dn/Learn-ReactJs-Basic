@@ -13,6 +13,11 @@ function Header() {
             <Link to="/">Home</Link>
             {/* <a href="/blog">Blog</a> */}
             <Link to="/blog">Blog</Link>
+            <Link to="/customer">Customer</Link>
+            {/* Khi bạn muốn liên kết với một URL bên ngoài */}
+            <a target="_blank" href="https://dev.to">
+              Dev.to
+            </a>
           </div>
         </div>
       </div>

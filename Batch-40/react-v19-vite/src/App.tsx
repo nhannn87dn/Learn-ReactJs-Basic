@@ -4,6 +4,9 @@ import HomePage from "./pages/HomePage";
 import BlogPage from "./pages/BlogPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import DefaultLayout from "./layouts/DefaultLayout";
+import CustomerPage from "./pages/CustomerPage";
+import CustomerOrderPage from "./pages/CustomerOrderPage";
+import CustomerLayout from "./layouts/CustomerLayout";
 function App() {
   return (
     <BrowserRouter>
@@ -14,8 +17,13 @@ function App() {
          khi đường dẫn URL khớp với path
         */}
         <Route path="/" element={<DefaultLayout />}>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/blog" element={<BlogPage />} />
+          <Route index element={<HomePage />} />
+          <Route path="blog" element={<BlogPage />} />
+          {/* --> Gọi là nested route */}
+          <Route path="customer" element={<CustomerLayout />}>
+            <Route index element={<CustomerPage />} />
+            <Route path="orders" element={<CustomerOrderPage />} />
+          </Route>
         </Route>
 
         {/* 
