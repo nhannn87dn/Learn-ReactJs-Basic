@@ -1,27 +1,31 @@
-import { useEffect, useState } from "react";
 import "./App.css";
-import Header from "./components/Header";
-import { userContext } from "./context/userContext";
-import { useBrowserWidth } from "./hooks/useBrowserWidth";
-
+import { BrowserRouter, Routes, Route } from "react-router";
+import HomePage from "./pages/HomePage";
+import BlogPage from "./pages/BlogPage";
+import NotFoundPage from "./pages/NotFoundPage";
+import DefaultLayout from "./layouts/DefaultLayout";
 function App() {
-  const userInfo = {
-    id: 1,
-    name: "John 123",
-    avatarUrl: "http://",
-  };
-
-  const browserWidth = useBrowserWidth();
-
   return (
-    <div className="container mx-auto my-10">
-      {browserWidth}
-      {browserWidth < 768 ? <p>Mobile</p> : <p>Desktop</p>}
-      <userContext.Provider value={userInfo}>
-        {/* Đặt các component cần sử dụng context ở đây */}
-        <Header />
-      </userContext.Provider>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        {/*
+        path: là đường dẫn URL
+        element: là component sẽ được hiển thị
+         khi đường dẫn URL khớp với path
+        */}
+        <Route path="/" element={<DefaultLayout />}>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/blog" element={<BlogPage />} />
+        </Route>
+
+        {/* 
+        - Dòng này phải đặt cuối cùng
+        - Nếu mà không khớp với bất kỳ route nào ở trên
+         thì sẽ hiển thị component NotFoundPage
+         */}
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
