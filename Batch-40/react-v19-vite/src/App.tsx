@@ -10,6 +10,7 @@ import CustomerLayout from "./layouts/CustomerLayout";
 import ProductPage from "./pages/ProductPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import BlogDetail from "./pages/BlogDetail";
+import { ProductsPage } from "./pages/dashboard/ProductsPage";
 function App() {
   return (
     <BrowserRouter>
@@ -21,6 +22,7 @@ function App() {
         */}
         <Route path="/" element={<DefaultLayout />}>
           <Route index element={<HomePage />} />
+          <Route path="dashboard/products" element={<ProductsPage />} />
           <Route path="blog" element={<BlogPage />} />
           <Route path="blog/:id" element={<BlogDetail />} />
           <Route path="product" element={<ProductPage />} />

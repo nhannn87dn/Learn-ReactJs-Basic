@@ -1,0 +1,2 @@
+# Cách gọi API với REST Client
+GET https://api.escuelajs.co/api/v1/products

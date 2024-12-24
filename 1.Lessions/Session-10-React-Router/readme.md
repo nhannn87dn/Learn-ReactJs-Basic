@@ -5,8 +5,8 @@ Giúp bạn tạo ra một dự án website bằng React có nhiều trang nội
 ## 🔥 Thêm React Router vào dự án
 
 ```bash
-npm i -D react-router
-yarn add -D react-router
+npm i -D react-router-dom
+yarn add -D react-router-dom
 ```
 
 ## 🔥 Ý tưởng sitemap
@@ -26,10 +26,10 @@ Ví dụ bạn muốn khi URL:
 
 src/
 ├─ pages/
-│  ├─ DashboardPage.ts
-│  ├─ CategoryPage.ts
-│  ├─ ProductPage.ts
-│  ├─ NoPage.ts
+│  ├─ DashboardPage.js
+│  ├─ CategoryPage.js
+│  ├─ ProductPage.js
+│  ├─ NoPage.js
 
 ```
 
@@ -38,8 +38,8 @@ src/
 Tại component App
 
 ```js
-//App.ts
-import { BrowserRouter, Routes, Route } from "react-router";
+//App.js
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Dashboard from "./pages/Dashboard";
 import Category from "./pages/Category";
@@ -75,8 +75,8 @@ Khi đó React cho phép chúng ta dùng Layout để chứa phần thông tin C
 Tạo một folder src/layouts
 
 ```js
-//Tạo file Layout.ts:
-import { Outlet, Link } from "react-router";
+//Tạo file Layout.js:
+import { Outlet, Link } from "react-router-dom";
 
 const Layout = () => {
   return (
@@ -110,7 +110,7 @@ export default Layout;
 
 Đọc thêm: [Multi Layout](Multi-Layout-React.md)
 
-Khi đã dùng React Route rồi thì để chuyển trang phải dùng đến component `Link` của `react-router`
+Khi đã dùng React Route rồi thì để chuyển trang phải dùng đến component `Link` của `react-router-dom`
 
 Khi đó bạn sửa App lại thành như sau
 
@@ -159,12 +159,12 @@ Khai báo thêm một Route ở App
 
 - Nếu bạn truyền vào là chuỗi như trên thì `id` = `my-string`
 
-> Lưu ý: Kể từ react-router V6, không còn hỗ trợ Regular expression nữa
+> Lưu ý: Kể từ react-router-dom V6, không còn hỗ trợ Regular expression nữa
 
-Để lấy được số 4 ở URL ta làm cần sử dụng hook `useParams` từ thư viện `react-router`
+Để lấy được số 4 ở URL ta làm cần sử dụng hook `useParams` từ thư viện `react-router-dom`
 
 ```js
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom";
 
 const ParameterPage = () => {
   let params = useParams();
@@ -190,10 +190,10 @@ Ví dụ bạn muốn phân trang sản phẩm với url: products?page=2
 
 Để lấy được phân thông tin page=2 từ URL này ta làm như sau:
 
-Sử dụng hook `useSearchParams` từ thư viện `react-router`
+Sử dụng hook `useSearchParams` từ thư viện `react-router-dom`
 
 ```js
-import { useLocation, useSearchParams } from "react-router";
+import { useLocation, useSearchParams } from "react-router-dom";
 
 function QueryPage() {
   let location = useLocation();
@@ -242,7 +242,7 @@ Route có path `settings` có 2 Route con ==> gọi là Nested route (Route lồ
 Để chuyến hướng giữa các routes sử dụng
 
 ```js
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 //
 const navigate = useNavigate();
 navigate("/login");
@@ -284,23 +284,4 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
-```
-
-UPDATE MỚI TỪ `React v19.x`
-
-Bạn chỉ đưa các thẻ meta vào Component, React tự biết đưa lên trên thẻ `head`
-
-```js
-function BlogPost({ post }) {
-  return (
-    <article>
-      <h1>{post.title}</h1>
-      <title>{post.title}</title>
-      <meta name="author" content="Josh" />
-      <link rel="author" href="https://twitter.com/joshcstory/" />
-      <meta name="keywords" content={post.keywords} />
-      <p>Eee equals em-see-squared...</p>
-    </article>
-  );
-}
 ```

@@ -269,6 +269,8 @@ Cú pháp của axios gọn gơn fetch một chút
 
 Phương thức GET: Thường dùng để lấy danh sách
 
+Nếu muốn danh sách hiển thị ngay khi component vừa load lên thì ta dùng `useEffect` để fetch data.
+
 ```js
 import { useState, useEffect } from "react";
 import axios from "axios";
@@ -297,7 +299,7 @@ const UserList = () => {
         // handle error
         console.log(error);
       });
-  }, []);
+  }, []); //Mảng rỗng để chỉ thực hiện 1 lần
 
   return (
     <div>
@@ -362,9 +364,10 @@ const handleSubmit = async () => {
       },
       body: JSON.stringify(payloads),
     };
-
+    //Sử dụng async/await --> không cần then catch
     const response = await fetch(url, options);
     const data = await response.json();
+
     console.log(data);
     return data;
   } catch (error) {
@@ -412,6 +415,8 @@ Trong ví dụ POST này, thì call API thực hiện khi hành động Submit d
 
 Phương thức này thường dùng để cập nhật thông tin
 
+Với `fetch`:
+
 ```js
 const handleUpdate = async (data, id) => {
   try {
@@ -420,7 +425,6 @@ const handleUpdate = async (data, id) => {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        // 'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: JSON.stringify(data),
     };
@@ -434,11 +438,29 @@ const handleUpdate = async (data, id) => {
 };
 ```
 
+Với `axios`:
+
+```js
+const handleUpdate = async (data, id) => {
+  try {
+    const url = `https://api.escuelajs.co/api/v1/users/${id}`;
+
+    const response = await axios.put(url, data);
+
+    console.log(response);
+  } catch (error) {
+    console.log(error);
+  }
+};
+```
+
 ---
 
 **Phương thức DELETE**
 
 Phương thức này thường dùng để XÓA
+
+Với `fetch`:
 
 ```js
 const handleDelete = async (id: number) => {
@@ -448,13 +470,26 @@ const handleDelete = async (id: number) => {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
-        // 'Content-Type': 'application/x-www-form-urlencoded',
       },
     };
     const response = await fetch(url, options);
     const result = await response.json();
     console.log(result);
-    reset();
+  } catch (error) {
+    console.log(error);
+  }
+};
+```
+
+Với `axios`:
+
+```js
+const handleDelete = async (id: number) => {
+  try {
+    const url = `https://api.escuelajs.co/api/v1/users/${id}`;
+
+    const response = await axios.delete(url);
+    console.log(response);
   } catch (error) {
     console.log(error);
   }
