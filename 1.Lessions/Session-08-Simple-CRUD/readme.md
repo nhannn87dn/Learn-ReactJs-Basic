@@ -17,12 +17,14 @@ Xác định loại yêu cầu được thực hiện, ví dụ:
 
 1. **Parameter (Tham số)**: Tham số được gửi qua URL hoặc trong thân của yêu cầu, và nó có thể xuất hiện ở nhiều vị trí khác nhau trong một HTTP request.
 
-   - **Query Parameters (Tham số truy vấn)**: Đây là phần dữ liệu nằm trong URL sau dấu `?`. Các tham số này được sử dụng để truyền dữ liệu động trong yêu cầu GET.
-     Ví dụ:
-     ```
-     GET /search?query=car&page=2
-     ```
-     Ở đây `query` và `page` là các query parameters.
+   Ví dụ:
+
+   ```
+   GET /products/1
+   GET /user/nickname
+   ```
+
+   Ở đây `1` và `nickname` là các parameters.
 
 2. **QueryString (Chuỗi truy vấn)**: Là tập hợp các cặp key-value nối với nhau bằng dấu `&` và bắt đầu từ dấu `?` trong URL.
    Ví dụ:
@@ -159,24 +161,11 @@ Sử dụng một số API Public phổ biến để test
 - POST MAN
 - REST Client
 
-## ⭐ Tạo ứng dụng CURD đơn giản
-
-![call](crud.png)
-
-Sử dụng Fake API: https://fakeapi.platzi.com/en/rest/users/#get-all-users
-
-Tech Tips:
-
-- fetch, axios, ReactQuery
-- AntDesign
-
 ---
 
-### 💥Cách gọi một API trong React
+## ⭐Cách gọi một API trong React
 
-#### 🔹 Sử dụng `fetch()`
-
-Cú pháp:
+Sử dụng hàm `fetch` của javascript:
 
 ```js
 fetch(url, options);
@@ -186,6 +175,30 @@ fetch(url, options);
 - options: là một object tùy chọn, có thể không truyền
 
 Xem chi tiết <https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API/Using_Fetch>
+
+---
+
+Hoặc thư viện `axios`
+
+```bash
+npm i axios
+yarn add axios
+```
+
+Doc: <https://axios-http.com/docs/intro>
+
+Cú pháp của axios gọn gơn fetch một chút
+
+---
+
+> => Học thêm về Promise: [Promise](Promiss.md)
+
+### 💥Phương thức GET
+
+- Thường dùng để lấy danh sách
+
+- Nếu muốn danh sách hiển thị ngay khi component vừa load lên thì ta dùng `useEffect` để fetch data.
+- Còn muốn lấy danh sách sau sự kiện gì đó thì không cần `useEffect`
 
 Phương thức GET: Thường dùng để lấy danh sách
 
@@ -250,26 +263,7 @@ const UserList = () => {
 export default UserList;
 ```
 
----
-
-#### 🔹 Sử dụng Axios
-
-Cài đặt thư viện axios
-
-```bash
-npm i axios
-yarn add axios
-```
-
-Doc: <https://axios-http.com/docs/intro>
-
-Cú pháp của axios gọn gơn fetch một chút
-
-😍 **useEffect CALL API**
-
-Phương thức GET: Thường dùng để lấy danh sách
-
-Nếu muốn danh sách hiển thị ngay khi component vừa load lên thì ta dùng `useEffect` để fetch data.
+Còn với `axios`, code gọn hơn một chút.
 
 ```js
 import { useState, useEffect } from "react";
@@ -333,18 +327,13 @@ const UserList = () => {
 export default UserList;
 ```
 
-Tôi Ưu thêm cho đúng UI-UX
-
-- Thêm `Loading` cho component trên để biết là quá trình call lấy dữ liệu đang diễn ra.
-- Bắt báo lỗi nếu có
-
 ---
 
-**Phương thức POST**
+### 💥Phương thức POST
 
 Phương thức này thường dùng để tạo mới
 
-Với Fetch
+Với `Fetch`
 
 ```js
 const handleSubmit = async () => {
@@ -376,7 +365,7 @@ const handleSubmit = async () => {
 };
 ```
 
-Còn với Axios
+Còn với `Axios`
 
 ```js
     const handleSubmit = async ()=> {
@@ -411,7 +400,7 @@ Trong ví dụ POST này, thì call API thực hiện khi hành động Submit d
 
 ---
 
-**Phương thức PUT**
+### 💥Phương thức PUT
 
 Phương thức này thường dùng để cập nhật thông tin
 
@@ -456,7 +445,7 @@ const handleUpdate = async (data, id) => {
 
 ---
 
-**Phương thức DELETE**
+### 💥Phương thức DELETE
 
 Phương thức này thường dùng để XÓA
 
@@ -524,7 +513,7 @@ Dữ liệu từ phản hồi API có sẵn và có thể được sử dụng �
 Xảy ra lỗi trong quá trình gửi yêu cầu hoặc xử lý yêu cầu API fetch.
 Thông báo lỗi có thể hiển thị hoặc xử lý lỗi để đưa ra các biện pháp khắc phục.
 
-Để tăng trải nghiệm người dùng UX, bạn phải làm cho UI thể hiện các trạng thái đó trong 1 chu kỳ call API
+==> Để tăng trải nghiệm người dùng UX, bạn phải làm cho UI thể hiện các trạng thái đó trong 1 chu kỳ call API
 
 ## ⭐ API with Authentication
 
@@ -579,6 +568,17 @@ axios
     console.log(error);
   });
 ```
+
+## ⭐ Tạo ứng dụng CURD đơn giản
+
+![call](crud.png)
+
+Sử dụng Fake API: https://fakeapi.platzi.com/en/rest/users/#get-all-users
+
+Tech Tips:
+
+- fetch, axios, ReactQuery
+- AntDesign
 
 ## ⭐ Tự tạo Fake API
 
