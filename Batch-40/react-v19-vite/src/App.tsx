@@ -11,8 +11,21 @@ import ProductPage from "./pages/ProductPage";
 import ProductDetailPage from "./pages/ProductDetailPage";
 import BlogDetail from "./pages/BlogDetail";
 import { ProductsPage } from "./pages/dashboard/ProductsPage";
+import ProductsReactQuery from "./pages/dashboard/ProductsReactQuery";
+
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+} from '@tanstack/react-query'
+
+const queryClient = new QueryClient();
+
 function App() {
   return (
+    <QueryClientProvider client={queryClient}>
+
+    
     <BrowserRouter>
       <Routes>
         {/*
@@ -23,6 +36,10 @@ function App() {
         <Route path="/" element={<DefaultLayout />}>
           <Route index element={<HomePage />} />
           <Route path="dashboard/products" element={<ProductsPage />} />
+          <Route
+            path="dashboard/products-react-query"
+            element={<ProductsReactQuery />}
+          />
           <Route path="blog" element={<BlogPage />} />
           <Route path="blog/:id" element={<BlogDetail />} />
           <Route path="product" element={<ProductPage />} />
@@ -43,6 +60,7 @@ function App() {
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </BrowserRouter>
+    </QueryClientProvider>
   );
 }
 
