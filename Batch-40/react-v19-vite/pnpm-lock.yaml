@@ -47,6 +47,9 @@ importers:
       yup:
         specifier: ^1.6.0
         version: 1.6.0
+      zustand:
+        specifier: ^5.0.2
+        version: 5.0.2(@types/react@18.3.14)(react@19.0.0)
     devDependencies:
       '@eslint/js':
         specifier: ^9.15.0
@@ -1855,6 +1858,24 @@ packages:
   yup@1.6.0:
     resolution: {integrity: sha512-/dny6arMf5CV6ZPAGpXYVw0wR8qcDF15H8zILTQWoRf6jHN1nJNFL1IAlFfUMlO7QGifMVHZle/l8YJdxtWfxg==}
 
+  zustand@5.0.2:
+    resolution: {integrity: sha512-8qNdnJVJlHlrKXi50LDqqUNmUbuBjoKLrYQBnoChIbVph7vni+sY+YpvdjXG9YLd/Bxr6scMcR+rm5H3aSqPaw==}
+    engines: {node: '>=12.20.0'}
+    peerDependencies:
+      '@types/react': '>=18.0.0'
+      immer: '>=9.0.6'
+      react: '>=18.0.0'
+      use-sync-external-store: '>=1.2.0'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      immer:
+        optional: true
+      react:
+        optional: true
+      use-sync-external-store:
+        optional: true
+
 snapshots:
 
   '@alloc/quick-lru@5.2.0': {}
@@ -3648,3 +3669,8 @@ snapshots:
       tiny-case: 1.0.3
       toposort: 2.0.2
       type-fest: 2.19.0
+
+  zustand@5.0.2(@types/react@18.3.14)(react@19.0.0):
+    optionalDependencies:
+      '@types/react': 18.3.14
+      react: 19.0.0

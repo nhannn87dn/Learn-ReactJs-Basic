@@ -1,10 +1,17 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { useProduct } from "../stores/useProduct";
 interface Category {
   id: number;
   name: string;
 }
 export default function HomePage() {
+  const { products, fetchProducts } = useProduct();
+
+  useEffect(() => {
+    fetchProducts();
+  }, [fetchProducts]);
+
   const [categories, setCategories] = useState<Category[]>([]);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -94,6 +101,11 @@ export default function HomePage() {
       <ul>
         {categories.map((category) => (
           <li key={category.id}>{category.name}</li>
+        ))}
+      </ul>
+      <ul>
+        {products.map((product) => (
+          <li key={product.id}>{product.title}</li>
         ))}
       </ul>
     </>
