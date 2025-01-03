@@ -1,3 +1,4 @@
+import { Button } from "@/components/ui/button";
 import { Link } from "react-router";
 import { useNavigate, useSearchParams } from "react-router";
 export default function BlogPage() {
@@ -6,6 +7,7 @@ export default function BlogPage() {
   const page = searchParams.get("page") || 1;
   return (
     <>
+      <Button>Shadcn/UI Button</Button>
       <title>Blog Page</title>
       <meta name="description" content="blog desc" />
       <h1>Blog Page</h1>
