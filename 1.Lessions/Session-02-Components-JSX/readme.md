@@ -224,8 +224,8 @@ JSX giúp chúng ta tạo ra các đối tượng React Element, mô tả cách 
 
 - JSX makes it easier to write and add HTML in React
 
-- https://www.w3schools.com/REACT/react_jsx.asp
-- https://react.dev/learn/writing-markup-with-jsx
+- <https://www.w3schools.com/REACT/react_jsx.asp>
+- <https://react.dev/learn/writing-markup-with-jsx>
 
 ### 🔷 Cách Code JSX
 
@@ -450,7 +450,68 @@ let elements =  (
 
 ---
 
-## 🔥 Sử dụng các Font trong React
+## 🔥 Thêm Css vào Dự Án
+
+Trong React bạn sử dụng CSS class với tên là className. Nó giống như HTML class attribute:
+
+```js
+
+<img className="avatar" />
+
+/* In your CSS */
+.avatar {
+  border-radius: 50%;
+}
+
+```
+
+## 🌻 React Components Style Methods
+
+### 🔥 1. CSS Stylesheet
+
+Đơn giản là các bạn sẽ import file css vào component bằng cách
+
+```js
+import "./App.css";
+```
+
+Lưu ý: Nếu bạn import css vào trong file App thì css đó sẽ có tính toàn cục (tức tất cả mọi nơi đều có thể sử dụng)
+
+### 🔥 2. Inline styling
+
+Trong React, inline styles không được viết dưới dạng string (chuỗi) như html thông thường. Thay vào đó nó sẽ được viết dưới dạng Object với key được viết theo kiểu camelCased còn style của value sẽ thường là kiểu string.
+
+```js
+<div style={{ backgroundColor: "white", color: "red" }}>Hello</div>
+```
+
+Ngoài ra, chúng ta cũng có thể tạo một biến lưu trữ giá trị css rồi truyền nó vào các element như sau:
+
+```js
+const styleObject = {backgroundColor: 'white', color: 'red'}
+
+<div style={styleObject}>Hello</div>
+```
+
+### 🔥 3. CSS Module ?
+
+Giúp bạn tránh bị xung đột css
+
+```js
+    //Cách thực hiện: Tạo một file css có tên
+    ComponentName.module.
+    // đặt nó cùng với file component sử dụng nó
+    /* Import  */
+    import styles from "./ComponentName.module.scss";
+
+    ...
+    return (
+        <div className={styles.container}>
+
+        </div>
+    );
+
+```
 
 ## 🌻 Embed icon Font React
 
