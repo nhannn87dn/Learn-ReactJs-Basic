@@ -2,14 +2,31 @@ import "./App.css";
 import ButtonV2 from "./components/ButtonV2";
 import { LuCircleUser, LuCircleArrowOutDownLeft } from "react-icons/lu";
 import ButtonV3 from "./components/ButtonV3";
-import ButtonAction from "./components/ButtonAction";
-import withPermissions from "./components/withPermissions";
 import Attributes from "./components/Attributes";
+import React from "react";
+
+// Component gốc
+const UserProfile = ({ name }: { name: string }) => {
+  return <div>Xin chào, {name}!</div>;
+};
+
+// Higher-Order Component kiểm tra quyền truy cập
+const withAuth = (WrappedComponent) => {
+  return class extends React.Component {
+    render() {
+      const isAuthenticated = true; // Giả sử người dùng đã đăng nhập
+      if (!isAuthenticated) {
+        return <div>Bạn cần đăng nhập để truy cập.</div>;
+      }
+      return <WrappedComponent {...this.props} />;
+    }
+  };
+};
+
 // Sử dụng HOC
-const ButtonWithAuth = withPermissions(ButtonAction);
+const UserProfileWithAuth = withAuth(UserProfile);
 
 function App() {
-  const isAuthenticated = false; // Thay đổi thành true để kiểm tra khi đã đăng nhập
   const userName = "Ngọc Nguyễn";
   return (
     <div className="container mx-auto my-5">
@@ -30,7 +47,7 @@ function App() {
         <ButtonV3 icon="a" label="Add to Cart" />
         <ButtonV3 icon="b" label="Buy Now" />
         <hr />
-        <ButtonWithAuth isAuthenticated={isAuthenticated} name={userName} />
+        <UserProfileWithAuth name={userName} />
       </div>
     </div>
   );
