@@ -1,69 +1,37 @@
 import "./App.css";
-import Button from "./components/Button";
-import { FaShoppingCart } from "react-icons/fa";
-import { FaSmile } from "react-icons/fa";
-// Được gọi là component
-function ViewMore() {
-  //1 hàm return về 1 chuỗi giống HTML.
-  //Lí do vì chuỗi này không phải là HTML.
-  return <a href="#">View more</a>;
-}
+import ButtonV2 from "./components/ButtonV2";
+import { LuCircleUser, LuCircleArrowOutDownLeft } from "react-icons/lu";
+import ButtonV3 from "./components/ButtonV3";
+import ButtonAction from "./components/ButtonAction";
+import withPermissions from "./components/withPermissions";
+import Attributes from "./components/Attributes";
+// Sử dụng HOC
+const ButtonWithAuth = withPermissions(ButtonAction);
 
-function ButtonRegister() {
-  return (
-    <>
-      <button>Đăng ký</button>
-      <button>Mua ngay</button>
-    </>
-  );
-}
-
-/**
- * Muốn cho component xuất hiện ra bên ngoài
- * thì phải đưa vào App
- */
 function App() {
-  //
-  const elemet = <h1>Đây là thẻ h1</h1>;
-  const name = "Nhan";
-
+  const isAuthenticated = false; // Thay đổi thành true để kiểm tra khi đã đăng nhập
+  const userName = "Ngọc Nguyễn";
   return (
-    <div className="heading">
-      <FaShoppingCart /> <FaSmile />
+    <div className="container mx-auto my-5">
+      <Attributes />
       <hr />
-      <input type="text" />
-      <p className="remote-image">Remote image</p>
-      <img
-        src="https://cdn.tgdd.vn/Products/Images/7264/328200/g-shock-gst-b100gb-1a9dr-nam-thumb-600x600.jpg"
-        alt=""
-      />
-      <p>Local image</p>
-      <img src="images/ban-phim-co-khong-day-akko-3087.jpg" alt="" />
-      <p
-        style={{
-          backgroundColor: "#fff",
-          fontSize: 14,
-        }}
-      >
-        Tôi là {name}
-      </p>
-      {2 + 4}
-      {elemet}
-      <h1>Hello React</h1>
-      {/* Gọi function component như một thẻ standalone html */}
-      <hr />
-      <ButtonRegister />
-      <ButtonRegister />
-      <ButtonRegister />
-      <ButtonRegister />
-      <hr />
-      <ViewMore />
-      <ViewMore />
-      <ViewMore />
-      <hr />
-      <Button />
-      <Button />
-      <Button />
+      <div className="flex gap-x-3">
+        <ButtonV2 icon={<LuCircleUser />} type="default" label="Login" />
+        <ButtonV2
+          icon={<LuCircleArrowOutDownLeft />}
+          type="dark"
+          label="Logout"
+          onHandleCLick={() => {
+            console.log("logout");
+          }}
+        />
+
+        <hr />
+        <ButtonV3 icon="a" label="Add to Cart" />
+        <ButtonV3 icon="b" label="Buy Now" />
+        <hr />
+        <ButtonWithAuth isAuthenticated={isAuthenticated} name={userName} />
+      </div>
     </div>
   );
 }

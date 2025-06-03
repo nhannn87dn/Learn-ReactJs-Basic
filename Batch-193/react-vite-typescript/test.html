@@ -9,8 +9,11 @@
 
 <body>
     <script>
-        const elemet = '<h1>Đây là thẻ h1</h1>';
-        console.log(elemet);
+        function ButtonV2(props) {
+            console.log('Hello', props);
+        }
+        ButtonV2({ label: 'login' })
+        ButtonV2({ label: 'logout' })
     </script>
 </body>
 
