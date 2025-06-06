@@ -1,54 +1,57 @@
 import "./App.css";
-import ButtonV2 from "./components/ButtonV2";
-import { LuCircleUser, LuCircleArrowOutDownLeft } from "react-icons/lu";
-import ButtonV3 from "./components/ButtonV3";
-import Attributes from "./components/Attributes";
-import React from "react";
+import Policy from "./components/Policy";
+import ProductList from "./components/ProductList";
+import Tags from "./components/Tags";
+import Videos from "./components/Videos";
 
-// Component gốc
-const UserProfile = ({ name }: { name: string }) => {
-  return <div>Xin chào, {name}!</div>;
+const NotiItem = ({
+  message,
+  isRead = false,
+}: {
+  message: string;
+  isRead?: boolean;
+}) => {
+  if (isRead) {
+    return <li>{message} ✔</li>;
+  }
+  return <li>{message}</li>;
 };
 
-// Higher-Order Component kiểm tra quyền truy cập
-const withAuth = (WrappedComponent) => {
-  return class extends React.Component {
-    render() {
-      const isAuthenticated = true; // Giả sử người dùng đã đăng nhập
-      if (!isAuthenticated) {
-        return <div>Bạn cần đăng nhập để truy cập.</div>;
-      }
-      return <WrappedComponent {...this.props} />;
-    }
-  };
-};
-
-// Sử dụng HOC
-const UserProfileWithAuth = withAuth(UserProfile);
+const people = [
+  "Creola Katherine Johnson: mathematician",
+  "Mario José Molina-Pasquel Henríquez: chemist",
+  "Mohammad Abdus Salam: physicist",
+  "Percy Lavon Julian: chemist",
+  "Subrahmanyan Chandrasekhar: astrophysicist",
+];
 
 function App() {
-  const userName = "Ngọc Nguyễn";
+  const isShowPolicy = false;
+  const isShowNotification = true;
   return (
     <div className="container mx-auto my-5">
-      <Attributes />
+      <h1>Learn React Basic</h1>
+      <Tags />
       <hr />
-      <div className="flex gap-x-3">
-        <ButtonV2 icon={<LuCircleUser />} type="default" label="Login" />
-        <ButtonV2
-          icon={<LuCircleArrowOutDownLeft />}
-          type="dark"
-          label="Logout"
-          onHandleCLick={() => {
-            console.log("logout");
-          }}
-        />
+      <Videos />
+      <hr />
+      <ul>
+        {people.map((value, index) => {
+          return <li key={index}>{value}</li>;
+        })}
+      </ul>
+      <ProductList />
+      <hr />
+      <p>Render ra component Policy khi isShowPolicy == true</p>
+      {/* {isShowPolicy === true ? <Policy /> : null} */}
+      {isShowPolicy && <Policy />}
 
-        <hr />
-        <ButtonV3 icon="a" label="Add to Cart" />
-        <ButtonV3 icon="b" label="Buy Now" />
-        <hr />
-        <UserProfileWithAuth name={userName} />
-      </div>
+      {isShowNotification && (
+        <ul>
+          <NotiItem isRead={true} message="Thông báo 1" />
+          <NotiItem isRead={false} message="Thông báo 2" />
+        </ul>
+      )}
     </div>
   );
 }
