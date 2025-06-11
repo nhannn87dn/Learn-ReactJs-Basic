@@ -7,11 +7,16 @@
  */
 interface IButtonProps {
   label: string;
-  type: string;
+  type: "dark" | "outline" | "default";
   icon?: React.ReactNode; //tuy chon
   onHandleCLick?: () => void;
 }
-const ButtonV2 = ({ label, type, icon, onHandleCLick }: IButtonProps) => {
+const ButtonV2 = ({
+  label,
+  type = "default",
+  icon,
+  onHandleCLick,
+}: IButtonProps) => {
   let defaultStyle = "bg-orange-500 text-white hover:bg-orange-600";
   if (type && type === "dark") {
     defaultStyle = "bg-slate-800 text-white hover:bg-slate-900";

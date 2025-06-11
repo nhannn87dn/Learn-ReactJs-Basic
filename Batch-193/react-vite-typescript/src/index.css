@@ -1,1 +1,25 @@
 @import "tailwindcss";
+
+/* Định dạng style cơ bản cho các thẻ */
+@layer base {
+  button {
+    /* sử dụng @apply để áp các class sẵn của tailwind cho thẻ button */
+    @apply bg-indigo-500 border border-indigo-500 hover:bg-indigo-600 cursor-pointer text-white py-2 px-4 rounded;
+  }
+  input {
+    @apply bg-white text-slate-500 border border-gray-200 rounded focus-within:outline-indigo-500 py-2 px-4;
+  }
+}
+
+/* tạo ra các biến thể component */
+@layer components {
+  .btn_outline {
+    @apply bg-white text-indigo-500 hover:bg-slate-100;
+  }
+}
+/* Xây dựng các class tiện ích */
+@layer utilities {
+  .fs-16 {
+    font-size: 16px;
+  }
+}
