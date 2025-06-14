@@ -1,6 +1,6 @@
 function Navigation() {
   return (
-    <ul>
+    <ul className="flex gap-x-2">
       <li>Home</li>
       <li>Blog</li>
       <li>Product</li>

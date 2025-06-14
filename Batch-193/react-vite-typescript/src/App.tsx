@@ -1,25 +1,25 @@
-import "./App.css";
-import AddToCart from "./components/AddToCart";
-import AttributesV2 from "./components/AttributesV2";
-import ManualForm from "./components/ManualForm";
-import ReactHookForm from "./components/ReactHookForm";
-import ReactHookFormValidation from "./components/ReactHookFormValidation";
-
+import Header from "./components/Header";
+import { userContext, UserProvider } from "./context/userContext";
+import { useBrowserWidth } from "./hooks/usebrowserWidth";
 function App() {
+  const userInfo = {
+    id: 1,
+    name: "John",
+    avatarUrl: "http://",
+  };
+
+  const browserWidth = useBrowserWidth();
+
   return (
-    <div className="container mx-auto my-5">
-      <AddToCart />
-      <AttributesV2 />
-      <hr />
-      <ManualForm />
-      <hr />
-      <h1 className="text-2xl font-bold my-5">React Hook Form</h1>
-      <ReactHookForm />
-      <hr />
-      <h1 className="text-2xl font-bold my-5">React Hook Form Validation</h1>
-      <ReactHookFormValidation />
-    </div>
+    <UserProvider user={userInfo}>
+      <h1 className={`${browserWidth === 768 ? "text-red-500" : ""} `}>
+        Hello Heading 1
+      </h1>
+      <h2>{browserWidth}</h2>
+      <div style={{ padding: "15px" }}>
+        <Header />
+      </div>
+    </UserProvider>
   );
 }
-
 export default App;
