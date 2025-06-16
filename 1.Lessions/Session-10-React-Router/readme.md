@@ -1,21 +1,40 @@
-# React Router
+# Giới thiệu về React Router
 
-Giúp bạn tạo ra một dự án website bằng React có nhiều trang nội dung như HTML
+## React Router là gì?
+
+`react-router` là một thư viện phổ biến và mạnh mẽ trong hệ sinh thái React, cho phép bạn **quản lý định tuyến (routing)** trong ứng dụng React của mình.
+
+**Vậy định tuyến là gì?**
+Hãy tưởng tượng bạn đang duyệt một trang web truyền thống. Khi bạn click vào một liên kết, trình duyệt sẽ tải lại toàn bộ trang mới. Trong một ứng dụng React SPA, điều này không xảy ra. Khi bạn di chuyển giữa các "trang" (thực chất là các component khác nhau), trình duyệt không tải lại toàn bộ trang. Thay vào đó, `react-router-dom` sẽ giúp bạn:
+
+* **Thay đổi URL** trên thanh địa chỉ của trình duyệt.
+* **Hiển thị các component React khác nhau** tương ứng với URL đó.
+* **Cập nhật giao diện** một cách linh hoạt mà không cần tải lại toàn bộ trang.
+
+Nói cách khác, `react-router` giúp ứng dụng SPA của bạn "giả vờ" như một ứng dụng đa trang truyền thống, mang lại trải nghiệm người dùng liền mạch và nhanh chóng.
+
+## 🔥 Tại sao chúng ta cần React Router?
+
+* **Tạo ra các "trang" khác nhau:** Ứng dụng thực tế cần nhiều màn hình (ví dụ: Trang chủ, Giới thiệu, Sản phẩm, Liên hệ). `react-router` giúp bạn ánh xạ mỗi URL đến một component cụ thể.
+* **Trải nghiệm người dùng tốt hơn:** Thay vì tải lại toàn bộ trang, chỉ phần nội dung cần thiết được cập nhật, mang lại cảm giác mượt mà và nhanh chóng.
+* **SEO và Bookmark:** Cho phép người dùng bookmark các URL cụ thể hoặc các công cụ tìm kiếm index các "trang" khác nhau của ứng dụng bạn.
+* **Quản lý lịch sử trình duyệt:** Bạn có thể sử dụng nút quay lại/tiến lên của trình duyệt để điều hướng trong ứng dụng.
 
 ## 🔥 Thêm React Router vào dự án
 
 ```bash
 npm i -D react-router-dom
 yarn add -D react-router-dom
+pnpm add -D react-router-dom
 ```
 
 ## 🔥 Ý tưởng sitemap
 
 Ví dụ bạn muốn khi URL:
 
-- / thì hiển thị trang chủ Dashboard
-- /categories thì hiển thị trang quản lý danh mục
-- /productss thì hiển thị trang quản lý sản phẩm
+* / thì hiển thị trang chủ Dashboard
+* /categories thì hiển thị trang quản lý danh mục
+* /productss thì hiển thị trang quản lý sản phẩm
 
 ## Tổ chức cấu trúc thư mục tương ứng với từng trang
 
@@ -62,9 +81,9 @@ export default function App() {
 
 Giải thích:
 
-- / => Load nội dung DashboardPage lên
-- blog : Load nội dung trang CategoryPage lên
-- `*` : Không tìm thấy url khớp với ruote thì load NoPage lên
+* / => Load nội dung DashboardPage lên
+* blog : Load nội dung trang CategoryPage lên
+* `*` : Không tìm thấy url khớp với ruote thì load NoPage lên
 
 ## 🔥 Layout
 
@@ -153,11 +172,11 @@ Khai báo thêm một Route ở App
 <Route path="products/:id" element={<ParameterPage />} />
 ```
 
-- Khi đó biến `id` chính = con số 4 ở trên URL trình duyệt
+* Khi đó biến `id` chính = con số 4 ở trên URL trình duyệt
 
 > /productss/my-string
 
-- Nếu bạn truyền vào là chuỗi như trên thì `id` = `my-string`
+* Nếu bạn truyền vào là chuỗi như trên thì `id` = `my-string`
 
 > Lưu ý: Kể từ react-router-dom V6, không còn hỗ trợ Regular expression nữa
 

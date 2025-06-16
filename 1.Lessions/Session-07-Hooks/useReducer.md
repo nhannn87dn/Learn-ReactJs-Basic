@@ -1,181 +1,168 @@
-# useReducer Hook
+# Giới thiệu về `useReducer`
 
-Trong React, useReducer là một hook cho phép bạn quản lý trạng thái của thành phần sử dụng một hàm reducer. 
+## 1. `useReducer` là gì?
 
-Nó cung cấp một cách thay thế cho useState khi bạn cần quản lý các trạng thái phức tạp hoặc logic trạng thái phức tạp hơn.
+`useReducer` là một React Hook thay thế cho `useState` khi bạn có **logic trạng thái phức tạp hơn**. Nó được lấy cảm hứng từ cách hoạt động của Redux (một thư viện quản lý trạng thái nổi tiếng).
 
-Các State được lưu trữ ở một nơi gọi là kho (Store) và sử dụng chung cho nhiều components
+Về cơ bản, `useReducer` cho phép bạn quản lý trạng thái bằng cách sử dụng một hàm "reducer" và một hàm "dispatch".
 
-## ⭐ Đặt vấn đề
+* **State:** Là dữ liệu hiện tại của bạn.
+* **Action:** Là một đối tượng mô tả "điều gì đã xảy ra" (ví dụ: 'INCREASE_COUNT', 'ADD_TODO', 'LOGIN_SUCCESS').
+* **Reducer:** Là một hàm thuần túy (pure function) nhận vào `state` hiện tại và một `action`, sau đó trả về **`state` mới**. Nó chứa toàn bộ logic để cập nhật trạng thái.
+* **Dispatch:** Là một hàm mà bạn sử dụng để "gửi" (dispatch) một `action` đến reducer. Khi một action được dispatch, reducer sẽ chạy và tính toán ra state mới, sau đó React sẽ re-render component với state mới đó.
 
-Dưới đây là một ví dụ về một App Countdown đơn giản sử dụng useSate.
+Hãy tưởng tượng `useReducer` như một **"Trung tâm điều khiển"** cho trạng thái của bạn:
 
-Sử dụng các phương thức handler để thay đổi giá trị State
+* Bạn **gửi các lệnh** (actions) đến trung tâm.
+* Trung tâm có một **quy tắc rõ ràng** (reducer) về cách xử lý từng lệnh đó và tạo ra một trạng thái mới.
+* Sau đó, nó **cập nhật bản đồ hiện tại** (state) của bạn.
 
-```js
+Lưu ý rằng:
 
-const CountApp = () => {
+* Những gì `useState` làm được, thì `useReducer` làm được
+* Những gì `useReducer` làm được, thì `useState` làm được
 
-  const [count,setCount] = React.useState(0);
+## 2. Tại sao chúng ta cần `useReducer`? (Vấn đề nó giải quyết)
 
-  const handlerDown = () => {
-      setCount(prev => prev - 1);
-  }
-  const handlerUp = () => {
-    setCount(prev => prev + 1);
-  }
+`useReducer` trở nên hữu ích khi:
+
+* **Logic cập nhật trạng thái trở nên phức tạp**: Khi một hành động cần cập nhật nhiều phần của trạng thái cùng một lúc, hoặc khi trạng thái tiếp theo phụ thuộc vào trạng thái trước đó một cách phức tạp.
+* **Nhiều hành động (actions) khác nhau có thể thay đổi cùng một trạng thái**: Với `useState`, bạn sẽ có nhiều hàm `set...` khác nhau, dẫn đến nhiều dòng code lặp lại hoặc khó quản lý.
+* **Bạn cần truyền hàm dispatch xuống các component con**: Hàm `dispatch` được `useReducer` trả về luôn ổn định (stable), nên bạn có thể truyền nó xuống các component con mà không lo ngại về việc nó sẽ gây re-render không cần thiết cho các component con được `memo` hóa. Điều này làm cho việc quản lý trạng thái chia sẻ dễ dàng hơn so với việc truyền nhiều hàm `set...` từ `useState`.
+
+**Ví dụ về khi `useState` trở nên phức tạp (Counter với nhiều hành động):**
+
+```jsx
+import React, { useState } from 'react';
+
+function CounterWith useState() {
+  const [count, setCount] = useState(0);
+  const [step, setStep] = useState(1);
+
+  const increment = () => {
+    setCount(prevCount => prevCount + step);
+  };
+
+  const decrement = () => {
+    setCount(prevCount => prevCount - step);
+  };
+
+  const reset = () => {
+    setCount(0);
+    setStep(1); // Cập nhật nhiều phần của state
+  };
+
+  // Giả sử có thêm nhiều hành động phức tạp khác...
+  // Ví dụ: Đặt lại về một giá trị cụ thể, nhân đôi, chia đôi...
+  // Mỗi lần cập nhật cần nhiều logic hoặc nhiều setCount -> phức tạp
+
   return (
     <div>
-      <h1>{count}</h1>
-      <button onClick={handlerDown}>Down</button><button onClick={handlerUp}>Up</button>
+      <h2>Counter with useState (Complex)</h2>
+      <p>Count: {count}</p>
+      <p>Step: {step}</p>
+      <button onClick={increment}>Increment</button>
+      <button onClick={decrement}>Decrement</button>
+      <button onClick={() => setStep(prevStep => prevStep + 1)}>Increase Step</button>
+      <button onClick={reset}>Reset</button>
     </div>
-  )
+  );
 }
 ```
 
-`useReducer` cung cấp cho bạn thêm một lựa chọn nữa để quản lý State trong function component 
+Trong ví dụ này, việc `reset` cần cập nhật cả `count` và `step`. Nếu có thêm nhiều hành động phức tạp hơn, hoặc có thêm các state phụ thuộc vào nhau, component sẽ chứa rất nhiều logic cập nhật state, làm cho nó trở nên khó đọc và khó quản lý.
 
-- Những gì `useState` làm được, thì `useReducer` làm được
-- Những gì `useReducer` làm được, thì `useState` làm được
+## 3. `useReducer` hoạt động như thế nào?
 
+`useReducer` nhận vào hai đối số:
 
+1. **Hàm `reducer`**: Là trái tim của `useReducer`. Hàm này định nghĩa cách trạng thái thay đổi dựa trên các `action` được gửi đến. Nó có dạng `(state, action) => newState`.
+2. **`initialState`**: Giá trị khởi tạo của trạng thái.
 
+Và nó trả về một cặp giá trị:
 
-## ⭐ Vậy khi nào thì dùng useSate, Khi nào dùng useReducer
+1. **`state`**: Trạng thái hiện tại của bạn.
+2. **`dispatch`**: Một hàm mà bạn dùng để gửi các `action`.
 
+**Cú pháp cơ bản:**
 
-### 🔥 useState 
-
-- Thường dùng với những components có State đơn giản
-- State có kiểu dữ liệu nguyên thủy: chỉ là số, string, boolean, hoặc object, array đơn giản.
-- Số lượng State trong một component ít
-
-### 🔥 useReducer 
-
-- Thường dùng với những components có State phức tạp: array, object có nhiều lớp
-- Số lượng State trong một component nhiều
-
-- State sau lại cần kết quả của State trước để thực hiện việc tính toán, xử lý logic
-
-Phân tích cách thực hiện
-
-```js
-//useState
-// 1. Init state: 0
-// 2. Actions: Up (state + 1), Down (state - 1 )
-
-
-//useReducer
-// 1. Init state: 0
-// 2. Actions: Up (state + 1), Down (state - 1)
-// 3. Tạo Reducer (Xử lý logic để thay đổi State)
-// 4. Dispatch (Kích hoạt một action)
-
+```jsx
+const [state, dispatch] = useReducer(reducer, initialState);
 ```
 
-Doc: <https://react.dev/reference/react/useReducer>
+**Ví dụ minh họa (Giải quyết vấn đề Counter với `useReducer`):**
 
-Cú pháp
+Chúng ta sẽ chuyển đổi ví dụ Counter phức tạp trên sang sử dụng `useReducer`.
 
-```js
-useReducer(<reducer>, <initialState>)
-```
+Đầu tiên, chúng ta định nghĩa hàm `reducer` (thường nằm ngoài component để nó không bị tạo lại mỗi lần render):
 
-- **reducer** là một Function chứa logic xử lý cập nhật State
-
-- **initialState** Là giá trị khởi tạo mặc định của State
-
-**useReducer Hook** trả về State hiện tại và một dispatch method.
-
-Áp dụng ví dụ trên với useReducer
-
-```js
-//Init State
-// Giá trị khởi tạo lúc đầu là 0
-const initialState = 0;
-
-//Actions
-
-const ACTION_UP = 'up';
-const ACTION_DOWN = 'down';
-
-/**
- * 
- * @param state state hiện tại
- * @param action hành động thay đổi state
- * reducer sẽ dự vào action để thực hiện hành động tương ứng, sau đó trả về state mới (cùng kiểu dữ liệu với initialState)
- */
-const reducer = (state, action) =>{
-  // Lúc đầu reducer nó chưa chạy
-  // Cho đến khi dispatch được gọi
-  console.log('reducer running');
-  switch(action) {
-    case ACTION_UP:
-      return state + 1;
-    case ACTION_DOWN:
-      return state - 1;
+```jsx
+// Hàm Reducer: Định nghĩa cách state thay đổi dựa trên action
+function counterReducer(state, action) {
+  switch (action.type) {
+    case 'increment':
+      return { ...state, count: state.count + state.step };
+    case 'decrement':
+      return { ...state, count: state.count - state.step };
+    case 'set_step':
+      return { ...state, step: action.payload }; // payload là dữ liệu đi kèm action
+    case 'reset':
+      return { count: 0, step: 1 }; // Reset cả count và step
     default:
-      throw new Error(`Action invalid`);
+      throw new Error(); // Luôn ném lỗi nếu action type không hợp lệ
   }
 }
 
-//dispatch sử dụng bên trong components
+// Component sử dụng useReducer
+import React, { useReducer } from 'react';
 
-const CountApp = () => {
+function CounterWithReducer() {
+  // Khởi tạo useReducer
+  // const [state, dispatch] = useReducer(reducerFunction, initialStateObject);
+  const [state, dispatch] = useReducer(counterReducer, { count: 0, step: 1 });
 
-  /**
-   * useReducer là một hàm nhận 3 tham số đầu vào, chủ yếu dùng 2.
-   * Tham số 1: reducer
-   * Tham số 2: initialState
-   * 
-   * useReducer chạy và tạm thời để reducer ở đó, nó chạy giá trị khởi tạo initialState trước và trả về mảng có 2 phần tử:
-   * - state hiện tại (count)
-   * - dispatch (dùng nó để kích hoạt action, DOWN hay UP để có hành động thay đổi state tương ứng)
-   * 
-   * 
-   * 
-   */
-  const [count,dispatch] = React.useReducer(reducer,initialState);
-
-  const handlerDown = () => {
-      dispatch(ACTION_DOWN);
-  }
-  const handlerUp = () => {
-    dispatch(ACTION_UP);
-  }
   return (
     <div>
-      <h1>{count}</h1>
-      <button onClick={handlerDown}>Down</button><button onClick={handlerUp}>Up</button>
+      <h2>Counter with useReducer</h2>
+      <p>Count: {state.count}</p>
+      <p>Step: {state.step}</p>
+      {/* Gửi (dispatch) các action đến reducer */}
+      <button onClick={() => dispatch({ type: 'increment' })}>Increment</button>
+      <button onClick={() => dispatch({ type: 'decrement' })}>Decrement</button>
+      <button onClick={() => dispatch({ type: 'set_step', payload: state.step + 1 })}>
+        Increase Step
+      </button>
+      <button onClick={() => dispatch({ type: 'reset' })}>Reset</button>
     </div>
-  )
+  );
 }
 ```
 
-========================
+Trong ví dụ này:
 
+1. Chúng ta định nghĩa `counterReducer` bên ngoài component. Hàm này nhận `state` hiện tại và `action`, sau đó trả về `state` mới. Nó rất rõ ràng về cách mỗi loại `action` thay đổi trạng thái.
+2. Trong `CounterWithReducer`, chúng ta gọi `useReducer(counterReducer, { count: 0, step: 1 })`.
+3. Khi người dùng click vào các nút, chúng ta gọi `dispatch` và truyền vào một đối tượng `action` (thường có thuộc tính `type` để mô tả hành động, và `payload` nếu cần truyền thêm dữ liệu).
+4. Khi `dispatch` được gọi, React sẽ gọi `counterReducer` với `state` hiện tại và `action` đã gửi. Reducer tính toán `state` mới, và React sẽ re-render component với `state` mới đó.
 
-**Ví dụ về một Component có state Phức tạp hơn sử dụng useReducer**
+Bạn thấy đấy, logic cập nhật trạng thái đã được tách biệt hoàn toàn vào hàm `reducer`, làm cho component gọn gàng hơn và dễ hiểu hơn nhiều.
 
-Xem chi tiết: <https://react.dev/learn/extracting-state-logic-into-a-reducer#>
+## 4. Khi nào nên sử dụng `useReducer`?
 
-**Sử dụng useReducer kết hợp với useContex**
+* **Logic trạng thái phức tạp**: Khi một state cần nhiều hành động để cập nhật, hoặc các hành động phụ thuộc vào trạng thái trước đó.
+* **Trạng thái phức tạp là một đối tượng hoặc mảng**: Khi state là một cấu trúc dữ liệu phức tạp mà bạn cần thay đổi một cách có cấu trúc.
+* **Cập nhật nhiều trường của trạng thái cùng lúc**: Ví dụ, trong một form với nhiều trường, một hành động `UPDATE_FIELD` có thể cập nhật `value` và `isValid` của một trường cụ thể.
+* **Chia sẻ logic cập nhật trạng thái giữa các component**: Bạn có thể định nghĩa một `reducer` ở một file riêng và tái sử dụng nó ở nhiều component khác nhau.
+* **Tối ưu hóa hiệu suất khi truyền hàm xuống component con**: Hàm `dispatch` từ `useReducer` luôn ổn định về tham chiếu, nên bạn có thể truyền nó xuống các component con được `React.memo` hóa mà không gây re-render không cần thiết (tương tự như `useCallback` với các hàm).
 
-Tham khảo bài viết sau: <https://react.dev/learn/scaling-up-with-reducer-and-context>
+### 5. Khi nào KHÔNG nên sử dụng `useReducer`?
 
-**Một số ví dụ khác**
+* **Logic trạng thái đơn giản**: Nếu trạng thái của bạn chỉ là một giá trị đơn giản (ví dụ: một boolean, một số nguyên) và chỉ thay đổi bởi một hoặc hai hành động đơn giản, thì `useState` là đủ và dễ hiểu hơn.
+* **Khi chỉ có một vài hành động đơn giản**: Nếu bạn chỉ có `toggle`, `increment`, `decrement` mà không có sự phức tạp về phụ thuộc, `useState` sẽ gọn gàng hơn.
+* **Để thay thế hoàn toàn Redux**: Mặc dù `useReducer` rất giống với Redux, nó không cung cấp các tính năng như middleware, DevTools, hoặc một store toàn cục mà Redux có. Đối với các ứng dụng rất lớn và phức tạp, Redux hoặc các thư viện quản lý trạng thái chuyên dụng khác vẫn có thể là lựa chọn tốt hơn.
 
-<https://devtrium.com/posts/how-to-use-react-usereducer-hook>
+## Tổng kết
 
-## ⭐ Kết Luận
+`useReducer` là một Hook mạnh mẽ giúp chúng ta quản lý trạng thái phức tạp trong React một cách có tổ chức và dễ bảo trì hơn. Bằng cách tách biệt logic cập nhật trạng thái vào một hàm `reducer` riêng biệt, chúng ta làm cho component của mình gọn gàng hơn và dễ đọc hơn.
 
-Để vận hành được `useReducer` trong một ứng dụng lớp rất phức tạp, khó bảo trì code.
-
-May mắn là Luôn có một giải pháp khác đơn giản những vẫn đạt được hiệu quả tương tự.
-
-Một số thư viện thay thế `useReducer`:
-
-* React Redux
-* Redux Toolkit
-* Redux Saga
-* [Zustand](Manage-State/4.Zustand.md) --> Đơn giản mà hiệu quả
+Hãy xem xét sử dụng `useReducer` khi bạn nhận thấy logic `useState` của mình trở nên quá rườm rà, hoặc khi bạn có nhiều hành động khác nhau cùng tác động lên một phần của trạng thái.
