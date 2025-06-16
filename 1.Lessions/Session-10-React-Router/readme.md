@@ -32,9 +32,9 @@ pnpm add -D react-router-dom
 
 Ví dụ bạn muốn khi URL:
 
-* / thì hiển thị trang chủ Dashboard
-* /categories thì hiển thị trang quản lý danh mục
-* /productss thì hiển thị trang quản lý sản phẩm
+* `/` thì hiển thị trang chủ Dashboard
+* `/categories` thì hiển thị trang quản lý danh mục
+* `/productss` thì hiển thị trang quản lý sản phẩm
 
 ## Tổ chức cấu trúc thư mục tương ứng với từng trang
 
