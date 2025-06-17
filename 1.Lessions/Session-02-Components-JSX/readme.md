@@ -22,6 +22,9 @@ Doc:
 
 ![is component](img/thing-component.png)
 
+- Component là viên gạch xây dựng nên UI trong React.
+- Mỗi component là một hàm (hoặc lớp) trả về một phần tử JSX.
+
 ![is component](img/what-component.png)
 
 Ví dụ thực tế Components: 5.Demo-Projects\product.html
@@ -206,6 +209,13 @@ Ví dụ:
 
 ---
 
+## ✅ Best Practices khi viết component
+
+- Tên component nên rõ ràng, dùng PascalCase
+- Mỗi file chỉ nên có 1 component chính
+- Tách UI thành nhiều component nhỏ dễ quản lý
+- Dùng props để truyền dữ liệu vào component (học ở bài sau)
+
 ## 🔥 Cú Pháp JSX ?
 
 Cách mà làm cho Component trở nên hay ho hơn
@@ -214,18 +224,22 @@ Cách mà làm cho Component trở nên hay ho hơn
 
 ### 🔷 JSX là gì ?
 
-JSX là một cú pháp mở rộng cho JavaScript được sử dụng trong ReactJS để xây dựng giao diện người dùng.
+JSX (JavaScript XML) là một cú pháp mở rộng cho JavaScript, cho phép bạn viết HTML-like trong JavaScript.
 
-JSX giúp chúng ta tạo ra các đối tượng React Element, mô tả cách giao diện người dùng sẽ được hiển thị. JSX kết hợp các thành phần React và HTML trong một cú pháp duy nhất, giúp mã nguồn trở nên dễ đọc và dễ hiểu hơn.
+### Tại sao dùng JSX?
 
-- JSX stands for JavaScript XML.
+- Giúp viết UI dễ hiểu, gần giống HTML
+- Tăng tính trực quan khi mô tả giao diện
+- JSX được biên dịch thành React.createElement trước khi chạy
 
-- JSX allows us to write HTML in React.
+### 📌 JSX khác gì HTML?
 
-- JSX makes it easier to write and add HTML in React
-
-- <https://www.w3schools.com/REACT/react_jsx.asp>
-- <https://react.dev/learn/writing-markup-with-jsx>
+| HTML                    | JSX (React)                                 |
+| ----------------------- | ------------------------------------------- |
+| `class`                 | `className`                                 |
+| `for`                   | `htmlFor`                                   |
+| attribute viết tự do    | phải dùng camelCase (`onClick`, `tabIndex`) |
+| không hỗ trợ JavaScript | có thể nhúng `{ biểu thức JS }`             |
 
 ### 🔷 Cách Code JSX
 

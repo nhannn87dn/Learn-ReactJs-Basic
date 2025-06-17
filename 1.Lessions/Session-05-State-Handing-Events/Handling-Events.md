@@ -1,351 +1,306 @@
-# ⭐ Session 5 - Event Handling
+# 🎯 Xử lý Sự kiện (Event Handling) trong React
 
->**Bạn sẽ nắm được**
->
->- Các cách khác nhau để tạo ra một event handler
->- Làm thế nào để truyền event handling logic từ một  component CHA
->
->- Thế nào là một sự kiện lan truyền và cách khắc phục
+## 1. 🧠 Khái niệm Event trong React là gì?
 
-## 🔥 Responding to Events (Phản hồi sự kiện)
+* **Event** (sự kiện) là các hành động mà người dùng thực hiện trên giao diện như: click chuột, nhập bàn phím, di chuyển chuột, gửi form,...
+* **Event Handling** là việc xử lý các hành động đó bằng các hàm (event handlers) để tạo tương tác.
 
-Khi bạn click chuột, rê chuột, focus vào một input... thì đó là những sự kiện. React cho phép bạn tạo ra các phản hồi lại giao diện người dùng tương ứng với từng sự kiện.
+👉 Trong React, event được xử lý thông qua **JSX** và sử dụng cú pháp tương tự như HTML nhưng là **camelCase**.
 
-Doc: <https://react.dev/learn/responding-to-events>
+---
 
-Handling events trong React elements rất giống với handling events trong DOM elements (DOM thật), chỉ khác cú pháp.
+## 2. 🆚 So sánh với HTML/JavaScript thuần
 
-- React events có tên đặt theo kiểu camelCase.
-- Với JSX bạn truyền một function như là một event handler, hơn là chuỗi.
+| So sánh                 | HTML/JS truyền thống                 | React                            |
+| ----------------------- | ------------------------------------ | -------------------------------- |
+| Cách gắn sự kiện        | `<button onclick="handleClick()">`   | `<button onClick={handleClick}>` |
+| Cách viết hàm           | Trong file script hoặc gắn trực tiếp | Viết trong component             |
+| Ngữ pháp tên thuộc tính | chữ thường (onclick)                 | camelCase (onClick, onSubmit)    |
 
-DOM Events Javascript: <https://www.w3schools.com/jsref/dom_obj_event.asp>
+---
 
-Cú pháp Typescript cho Events: <https://react-typescript-cheatsheet.netlify.app/docs/basic/getting-started/forms_and_events/>
+## 3. 🧩 Cú pháp xử lý sự kiện trong React
 
-🌻 Ví dụ một sự kiện click trong HTML:
-
-```js
-<button onclick="activateLasers()">
-  Activate Lasers
-</button>
-```
-
-## 🔥 Sự kiện về Chuột
-
-
-```js
+```jsx
 function handleClick() {
-    alert('You clicked me!');
+  alert('Bạn đã bấm nút!');
 }
-<button onClick={handleClick}>
-  Click me
-</button>
 
-//inline
-
-<button onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-   e.preventDefault();
-  console.log('You clicked me!');
-}}> Click Me</button>
-
+function MyButton() {
+  return (
+    <button onClick={handleClick}>Bấm tôi!</button>
+  );
+}
 ```
 
+* ✅ `onClick` là tên thuộc tính sự kiện.
+* ✅ `handleClick` là hàm xử lý.
 
-Lưu ý: Để truyền một Event handlers thì ta truyền chứ không được GỌI. Ví dụ:
+---
 
-| passing a function (correct)   | calling a function (incorrect)   |
-|--------------------------------|----------------------------------|
-| `<button onClick={handleClick}>` | `<button onClick={handleClick()}>` |
+## 4. Các loại sự kiện thường gặp
 
-Ví dụ khác về sự kiện chuột
+## 4.1. 🖱️ Các sự kiện chuột (Mouse Events) trong React
 
-```js
-const MouseExample = () => {
-  
+| Sự kiện         | Ý nghĩa                    |
+| --------------- | -------------------------- |
+| `onClick`       | Khi nhấp chuột trái        |
+| `onDoubleClick` | Khi nhấp đúp chuột         |
+| `onMouseEnter`  | Khi rê chuột vào phần tử   |
+| `onMouseLeave`  | Khi chuột rời khỏi phần tử |
+| `onMouseDown`   | Khi ấn chuột xuống         |
+| `onMouseUp`     | Khi thả chuột ra           |
+| `onContextMenu` | Khi nhấp chuột phải        |
 
-  const handleMouseEnter = () => {
-    console.log('MouseEnter')
-  };
+### 📌 Ví dụ: Hover chuột để thay đổi màu
 
-  const handleMouseLeave = () => {
-    console.log('MouseLeave')
-  };
+```jsx
+import { useState } from "react";
+
+function HoverBox() {
+  const [color, setColor] = useState('lightblue');
 
   return (
-    <button
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
+    <div
+      onMouseEnter={() => setColor('lightgreen')}
+      onMouseLeave={() => setColor('lightblue')}
+      style={{
+        width: '200px',
+        height: '100px',
+        backgroundColor: color,
+        textAlign: 'center',
+        lineHeight: '100px',
+      }}
     >
       Di chuột vào đây
-    </button>
-  );
-};
-
-export default MouseExample;
-
-```js
-
-```
-
-
-## 🔥 Sự kiện bàn phím
-
-```js
-import React, { KeyboardEvent } from 'react';
-
-const KeyboardEventsExample = () => {
- 
-  const handleKeyDown = (event:  KeyboardEvent<HTMLInputElement>) => {
-    console.log('Bạn đã nhấn phím', event.key);
-  };
-
-  const handleKeyUp = (event:  KeyboardEvent<HTMLInputElement>) => {
-    console.log('Bạn đã rời tay khỏi phím', event.key);
-  };
-
-  return (
-    <div>
-      <input
-        type="text"
-        onKeyDown={handleKeyDown}
-        onKeyUp={handleKeyUp}
-        placeholder="Nhấn phím bất kỳ vào đây..."
-      />
     </div>
   );
-};
-
-export default KeyboardEventsExample;
-
+}
 ```
 
-Tham khảo TypeScript cho Event Keyboard: <https://felixgerschau.com/react-typescript-onkeyup-event-type/>
+---
 
-## 🔥 Sự kiện về Form
+## 4.2. ⌨️ Các sự kiện bàn phím (Keyboard Events) trong React
 
+| Sự kiện      | Ý nghĩa                                                |
+| ------------ | ------------------------------------------------------ |
+| `onKeyDown`  | Khi nhấn xuống một phím bất kỳ                         |
+| `onKeyUp`    | Khi thả phím ra                                        |
+| `onKeyPress` | (Cũ - deprecated) Chỉ kích hoạt với phím gõ được ký tự |
 
-🌻 Form Submit
+> 📝 Ghi chú: Nên dùng `onKeyDown` hoặc `onKeyUp` vì `onKeyPress` đang dần bị loại bỏ.
 
-```js
-export default function Signup() {
+### 📌 Ví dụ: Nhấn Enter để gửi
+
+```jsx
+function KeyInput() {
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      alert('Bạn đã nhấn Enter!');
+    }
+  };
+
   return (
-    <form onSubmit={(e: React.FormEvent<HTMLFormElement>) => {
-      //Ngăn chặn form fresh lại trang
-      e.preventDefault();
-      //test alert
-      alert('Submitting!');
-    }}>
-      <input name="username" />
-      <button type="submit">Send</button>
+    <input type="text" onKeyDown={handleKeyDown} placeholder="Nhấn Enter thử xem" />
+  );
+}
+```
+
+---
+
+## 4.3. 📎 Tổng hợp thêm các sự kiện khác
+
+| Loại sự kiện | Tên sự kiện               | Mô tả ngắn                |
+| ------------ | ------------------------- | ------------------------- |
+| Chuột        | `onClick`, `onMouseEnter` | Click, rê chuột           |
+| Bàn phím     | `onKeyDown`, `onKeyUp`    | Nhấn phím, thả phím       |
+| Form         | `onChange`, `onSubmit`    | Nhập dữ liệu, gửi form    |
+| Input        | `onFocus`, `onBlur`       | Focus vào, rời khỏi input |
+
+---
+
+## 5. 📦 Truyền tham số vào hàm xử lý
+
+```jsx
+function handleGreet(name) {
+  alert(`Xin chào ${name}`);
+}
+
+function App() {
+  return (
+    <button onClick={() => handleGreet('Tomy')}>Greet</button>
+  );
+}
+```
+
+> ⚠️ Lưu ý: **Dùng arrow function** để tránh gọi hàm ngay khi component render.
+
+---
+
+## 6. 🏗️ Event trong Class vs Function Component
+
+| Function Component (Hook)   | Class Component                      |
+| --------------------------- | ------------------------------------ |
+| Dùng arrow function, Hooks  | Dùng `this` và phải bind phương thức |
+| Ngắn gọn, phổ biến hiện nay | Dài hơn, ít dùng cho code mới        |
+
+Ví dụ class component:
+
+```jsx
+class MyButton extends React.Component {
+  handleClick = () => {
+    alert('Clicked!');
+  }
+
+  render() {
+    return <button onClick={this.handleClick}>Click</button>;
+  }
+}
+```
+
+---
+
+## 7. ⚠️ Lỗi phổ biến người mới hay gặp
+
+| Lỗi                           | Nguyên nhân                                                   |
+| ----------------------------- | ------------------------------------------------------------- |
+| Hàm xử lý bị gọi khi render   | Ghi `onClick={handleClick()}` thay vì `onClick={handleClick}` |
+| Không dùng camelCase          | Ghi `onclick` thay vì `onClick`                               |
+| Không bind `this` trong class | Trong class component quên bind phương thức                   |
+
+---
+
+## 8. ✅ Best Practices
+
+* Đặt tên hàm theo hành động (vd: `handleSubmit`, `handleClick`)
+* Tránh viết logic phức tạp trực tiếp trong JSX
+* Tách hàm xử lý ra ngoài để dễ bảo trì
+
+---
+
+## 9. 🚀 Phần nâng cao
+
+### 9.1. 🛑 Ngăn hành vi mặc định với `preventDefault()`
+
+Ví dụ: chặn form reload trang khi submit
+
+```jsx
+function MyForm() {
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert('Đã gửi dữ liệu!');
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input type="text" placeholder="Tên của bạn" />
+      <button type="submit">Gửi</button>
     </form>
   );
 }
 ```
 
+---
 
-## 🔥 Event Handlers có sử dụng tham số
+### 9.2. ⛔ Dừng lan truyền sự kiện với `stopPropagation()`
 
-```js
-
-const EventHandlerWithParameterExample = () => {
-
-  const handlePlay = (number) => {
-    console.log('Bạn đã play bài ',number)
+```jsx
+function Parent() {
+  const handleParentClick = () => {
+    alert("Parent clicked");
   };
 
-  const handleNext = (number) => {
-    console.log('Bạn đã next sang bài ',number)
+  const handleChildClick = (e) => {
+    e.stopPropagation(); // Ngăn sự kiện lan lên parent
+    alert("Child clicked");
   };
 
   return (
-    <div>
-      <h1>Play Music</h1>
-      <button onClick={() => handlePlay(5)}>Play bài số 5</button>
-      <button onClick={() => handleNext(2)}>Nhảy sang bài số 2</button>
+    <div onClick={handleParentClick} style={{ padding: 30, backgroundColor: '#eee' }}>
+      <button onClick={handleChildClick}>Click child</button>
     </div>
   );
-};
-
-export default EventHandlerWithParameterExample;
-
+}
 ```
 
-## Truyền Event Handlers như là Props
+---
 
-`onClick ` function event handler dùng như một props, được lấy từ props
+## 10. 📩 Truyền hàm xử lý sự kiện như một Props cho Component con
 
-Dùng cách này thì tên của nó bắt buộc bắt đầu bằng `on`
+### 🔍 Tại sao cần truyền hàm xử lý (event handler) từ component cha xuống con?
 
-```js
-type ButtonTypeProps = {
-  onClick: () => void;
-  children?: React.ReactNode;
+Trong React:
+
+* **Dữ liệu chỉ truyền từ cha xuống con** (one-way binding).
+* Nếu component con cần **kích hoạt một hành động hoặc thay đổi ở component cha** (ví dụ: click nút trong con để thay đổi trạng thái ở cha), thì component cha cần **truyền một hàm xuống con như một prop**.
+* Component con không tự thay đổi state của cha được, mà chỉ **gọi lại hàm được truyền xuống**.
+
+✅ Điều này giúp:
+
+* Phân tách rõ ràng **giao diện (UI)** và **logic điều khiển (state/handlers)**.
+* Dễ kiểm soát luồng dữ liệu.
+* Dễ tái sử dụng component con.
+
+---
+
+### 📌 Ví dụ: Truyền event handler từ cha xuống con
+
+#### 🧩 Component cha
+
+```jsx
+function Parent() {
+  const handleSayHello = () => {
+    alert("Xin chào từ component cha!");
+  };
+
+  return <Child onGreet={handleSayHello} />;
+}
+```
+
+#### 🧩 Component con
+
+```jsx
+function Child({ onGreet }) {
+  return (
+    <button onClick={onGreet}>
+      Gửi lời chào từ con
+    </button>
+  );
+}
+```
+
+#### ✅ Kết quả
+
+Khi click nút trong component `Child`, hàm `handleSayHello` trong component `Parent` sẽ được gọi.
+
+---
+
+### 📚 Tổng kết lợi ích
+
+| Lý do                                    | Ý nghĩa                                                        |
+| ---------------------------------------- | -------------------------------------------------------------- |
+| Duy trì nguyên tắc "cha kiểm soát state" | Component cha làm chủ logic, con chỉ hiển thị hoặc gửi yêu cầu |
+| Tăng tính tái sử dụng của component con  | Component con không bị ràng buộc logic cụ thể                  |
+| Dễ quản lý và test                       | Dễ test độc lập các component và logic                         |
+
+---
+
+### 🛠️ Mở rộng thêm: Truyền **tham số** qua event
+
+```jsx
+function Parent() {
+  const handleChoose = (color) => {
+    alert(`Bạn chọn màu: ${color}`);
+  };
+
+  return <ColorButton color="red" onChoose={handleChoose} />;
 }
 
-function Button({ onClick, children } : ButtonTypeProps) {
-    return (
-      <button onClick={onClick}>
-        {children}
-      </button>
-    );
-  }
-
+function ColorButton({ color, onChoose }) {
+  return (
+    <button onClick={() => onChoose(color)}>
+      Chọn {color}
+    </button>
+  );
+}
 ```
-Trường hợp này còn được gọi là Handler dưới dạng callback
-
-Ví dụ có component CON
-
-```js
-function Button({label}) {
-    function handlePlayClick() {
-      console.log(`Playing + tên của phim `);
-    }
-
-    return (
-      <button onClick={handlePlayClick}>
-        {label}
-      </button>
-    );
-  }
-```
-và component CHA
-
-```js
-  function PlayMovies(){
-    const movieTitle = 'Captain America';
-    return <Button label="Play" />
-  }
-
-```
-
-- Mong muốn khi click nút Play thì in ra `Playing + tên của phim`
-- Nhưng tên của phim thì nằm ở component CHA
-
-
-Để làm được yêu cầu trên có thể sửa lại như sau:
-
-```js
-  function Button({label, name}) {
-    function handlePlayClick() {
-      console.log(`Playing + ${name} `);
-    }
-
-    return (
-      <button onClick={handlePlayClick}>
-        {label}
-      </button>
-    );
-  }
-  function PlayMovies(){
-    const movieTitle = 'Captain America';
-    return <Button label="Play" name={movieTitle} />
-  }
-```
-
-Nhưng như thế nó lại làm mất đi tính TÁI SỬ DỤNG của component Button
-
-Ví dụ muốn tạo một Button Next, và công việc của nó là đi nhảy sang bài kế tiếp thì sao ?
-
-==> KẾT LUẬN
-
-- Component nên chỉ đảm nhận việc hiển thị UI
-- Xử lí Logic nên tách ra ngoài
-
-
-Khi đó ta sửa lại thành như sau:
-
-
-```js
-  function Button({onHandleClick, label, name}) {
-    return (
-      <button onClick={onHandleClick}>
-        {label}
-      </button>
-    );
-  }
-  function PlayMovies(){
-    const movieTitle = 'Captain America';
-    //chuyển handler xử lí qua cho component CHA
-    function handlePlayClick() {
-      console.log(`Playing + ${name} `);
-    }
-    return <Button onClick={handlePlayClick} label="Play" name={movieTitle} />
-  }
-```
-
-==>  ở component CON mà thực hiện một event ở component CHA (callback)
-
-Lưu ý:
-
-- Ở trong PlayMovies chúng ta dùng thuộc tính onClick
-- Nhưng ở phần định nghĩa props cho component Button, chúng ta lại khai báo là onHandleClick mà không phải là onClick (Tất nhiên có thể dùng tên onClick)
-- Điều đó không quan trọng, React chỉ yêu cầu tên bắt đầu phải là là `on`
-
-
-## Event propagation
-
-Có hai cách để sự kiện được lan truyền (event propagation) trong HTML DOM: `bubbling` và `capturing`.
-
-Khái niệm **Event propagation** là cách định nghĩa thứ tự của HTML element khi event xảy ra.
-
-Ví dụ nếu ta có một phần tử `<p>` bên trong một phần tử `<div>`.
-
-```html
-<!-- Trong Html -->
-<div onclick="suKienA">
-    <p onclick="suKienB"></p>
-</div>
-```
-
-Nếu Khi người dùng click lên phần tử `<p>`, thì sự kiện “click” của phần tử nào sẽ được xử lý trước?
-
-
-Trong bubbling, sự kiện của phần tử bên trong cùng sẽ được xử lý trước:
-
-- Với ví dụ trên, sự kiện “click” của phần tử `<p>` sẽ được xử lý trước
-- Sau đó đến sự kiện của phần tử `<div>`.
-
-Trong capturing thì ngược lại, sự kiện của phần tử bên ngoài cùng sẽ được xử lý trước:
-
-- Sự kiện “click” của phần tử `<div>`được xử lý trước
-- Sau đó tới phần tử `<p>`.
-
-Ví dụ trong React: <https://react.dev/learn/responding-to-events#event-propagation>
-
-## Stopping propagation
-
-Xem: <https://react.dev/learn/responding-to-events#stopping-propagation>
-
-Hoặc ví dụ với Typescript trong Folder ví dụ
-
-## Preventing default behavior
-
-Xem: <https://react.dev/learn/responding-to-events#preventing-default-behavior>
-
-```js
-<button onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-   e.preventDefault();
-  console.log('You clicked me!');
-}}> Click Me</button>
-
-```
-
-Với một function handler
-
-```js
-
-const handlerClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    e.preventDefault();
-    alert('Clicked!');
-  }
-
-<button onClick={(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => handlerClick(e)}>
- Click Me
- </button>
-
-```
-
-
-
-
-Nội dung liên quan: hook useRef, làm MusicPlayler

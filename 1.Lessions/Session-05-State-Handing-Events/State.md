@@ -1,91 +1,48 @@
-# ⭐ State and Lifecycle
+# 📘 `State` trong React
 
-Trong Session này chúng ta tìm hiểu:
+## 1. State là gì?
 
-===============================
+**State** là một **đối tượng dữ liệu đặc biệt** trong React, dùng để lưu **trạng thái hiện tại** của một component. Khi state thay đổi, React sẽ **render lại giao diện** để phản ánh sự thay đổi đó.
 
-✅ State là gì ?
+### ✅ Tại sao cần state?
 
-✅ Cách Update một State
+* Giúp component **ghi nhớ** thông tin theo thời gian.
+* Là cách React biết **khi nào cần cập nhật UI**.
+* Là phần cốt lõi của các ứng dụng tương tác (form, button, v.v.).
 
-===============================
+---
 
-## 🔥 5.1 Khái niệm State trong React
+## 2. So sánh State và Props
 
-- State là một đối tượng lưu trữ dữ liệu hoặc thông tin có thể thay đổi trong vòng đời của một component.
-- Mỗi component trong React có thể quản lý riêng state của nó, và khi state thay đổi, component sẽ tự động re-render để hiển thị lại nội dung mới.
+| Tiêu chí         | Props                                      | State                             |
+| ---------------- | ------------------------------------------ | --------------------------------- |
+| Định nghĩa       | Dữ liệu được truyền từ component cha xuống | Dữ liệu nội bộ của component      |
+| Ai quản lý?      | Component cha                              | Component hiện tại (self-managed) |
+| Có thể thay đổi? | Không (read-only)                          | Có thể thay đổi (mutable)         |
+| Dùng để làm gì?  | Truyền dữ liệu và cấu hình                 | Lưu trạng thái thay đổi động      |
 
-### 🌻Tại sao lại cần đến State ?
+---
 
-- **Phản hồi theo sự thay đổi:** State cho phép React theo dõi sự thay đổi của dữ liệu và tự động cập nhật giao diện tương ứng.
+## 3. Cách khai báo và sử dụng state với `useState` trong function component
 
-- **Quản lý thông tin động:** Các thông tin như nhập liệu, click button, dữ liệu từ API đều có thể được lưu trữ và quản lý qua state.
+React cung cấp hook `useState` để dùng state trong function component.
 
-Cùng xem một ví dụ minh họa để thấy sự cần thiết State.
+### 📌 Cú pháp
 
-```js
-export default function Count() {
-  let count = 0;
-
-  function handleClick() {
-    count = count + 1;
-  }
-  return (
-    <>
-      <div>
-        <p>Bạn đã bấm {count} lần</p>
-        <button onClick={handleClick}>Tăng</button>
-      </div>
-    </>
-  );
-}
+```jsx
+const [stateValue, setStateValue] = useState(initialValue);
 ```
 
-==> Biến count không thể tăng lên như mong muốn.
-
-### 🌻Khởi tạo một State
-
-Ví dụ có biến count, và một button, khi click Button thì biến count tăng lên 1 giá trị.
-
-```js
-import React, { useState } from "react";
-
-function Counter() {
-  // Khai báo state: count, hàm setCount
-  const [count, setCount] = useState(0);
-
-  return (
-    <div>
-      <p>Bạn đã bấm {count} lần</p>
-      <button onClick={() => setCount(count + 1)}>Bấm tôi</button>
-    </div>
-  );
-}
-```
-
-Cú pháp tạo một State
-
-```js
-//const [stateName, setStateName] = React.useState(initialState);
-const [count, setCount] = React.useState(0);
-```
-
-Giải thích:
-
-- Bản chất `React.useState(0)` là một function return về một mảng [] có 2 phần tử. Tạo ra một state với giá trị ban đầu là `0`
-
-- `[count, setCount]` là đang sử dụng cú pháp `Destructuring assignment` của JavaScript
-
-- `count`: Biến lưu trữ giá trị hiện tại của state
-- `setCount`: Hàm để cập nhật giá trị của `count`.
-- Mỗi khi `setCount` được gọi, component sẽ được re-render với giá trị `count` mới
+* `stateValue`: giá trị hiện tại
+* `setStateValue`: hàm để cập nhật giá trị
+* `initialValue`: giá trị khởi tạo (số, chuỗi, mảng, object,...)
 
 ### 🌻Khi nào thì cần đến State
 
 Bất cứ khi nào dữ liệu thay đổi trong một component, State có thể được sử dụng.
 
-- ví dụ: Từ ẩn sang hiện, từ không có thành có... Nói chung là trạng thái lúc đầu khác với lúc sau
-- Ví dụ: một form nhập input type text mỗi trường trong Form sẽ giữ lại trạng thái của nó dựa trên dữ liệu đầu vào của người dùng (user input). Nếu đầu vào của người dùng thay đổi, trạng thái của các text input sẽ thay đổi, đây là nguyên nhân cần re-rendering của component và tất cả các component con của nó. Và khi này chúng ta sẽ sử dụng state
+* ví dụ: Từ ẩn sang hiện, từ không có thành có... Nói chung là trạng thái lúc đầu khác với lúc sau
+* Ví dụ: một form nhập input type text mỗi trường trong Form sẽ giữ lại trạng thái của nó dựa trên dữ liệu đầu vào của người dùng (user input). Nếu đầu vào của người dùng thay đổi, trạng thái của các text input sẽ thay đổi, đây là nguyên nhân cần re-rendering của component và tất cả các component con của nó. Và khi này chúng ta sẽ sử dụng state
 
 ### 🌻 State hoạt động như thế nào ?
 
@@ -99,13 +56,44 @@ Khi state thay đổi, React sẽ tự động render lại giao diện người
 
 ===============================
 
-### 🌻 Ví dụ về State
+---
 
-#### 🎁 Button Like
+## 4. Ví dụ cơ bản
+
+### 4.1 🎁 Bộ đếm số lần bấm nút
+
+```jsx
+import { useState } from "react";
+
+function Counter() {
+  const [count, setCount] = useState(0); // Khởi tạo count = 0
+
+  return (
+    <div>
+      <p>Số lần bấm: {count}</p>
+      <button onClick={() => setCount(count + 1)}>
+        Bấm tôi!
+      </button>
+    </div>
+  );
+}
+```
+
+🧠 Giải thích
+
+* Bản chất `useState(0)` là một function return về một mảng [] có 2 phần tử. Tạo ra một state với giá trị ban đầu là `0`
+* `[count, setCount]` là đang sử dụng cú pháp `Destructuring assignment` của JavaScript
+* `count`: Biến lưu trữ giá trị hiện tại của state
+* `setCount`: Hàm để cập nhật giá trị của `count`.
+* Mỗi khi `setCount` được gọi, component sẽ được re-render với giá trị `count` mới
+
+---
+
+### 4.2  🎁 Button Like
 
 Dưới đây là ví dụ cập nhật về **Button Like**, trong đó khi người dùng nhấn "Like", số lượng like sẽ tăng lên và màu chữ của nút sẽ thay đổi.
 
-### Code ví dụ
+Code ví dụ
 
 ```jsx
 import React, { useState } from "react";
@@ -135,23 +123,23 @@ function LikeButton() {
 export default LikeButton;
 ```
 
-### Giải thích
+🧠 Giải thích
 
 1. **useState**:
-   - `likeCount`: lưu trữ số lượng like.
-   - `isLiked`: lưu trữ trạng thái liệu người dùng đã nhấn nút like hay chưa.
+   * `likeCount`: lưu trữ số lượng like.
+   * `isLiked`: lưu trữ trạng thái liệu người dùng đã nhấn nút like hay chưa.
 2. **handleLike**: Khi người dùng nhấn nút, hàm này sẽ:
 
-   - Tăng giá trị `likeCount` lên 1.
-   - Đặt `isLiked` thành `true` để thay đổi màu chữ.
+   * Tăng giá trị `likeCount` lên 1.
+   * Đặt `isLiked` thành `true` để thay đổi màu chữ.
 
 3. **style**: Sử dụng thuộc tính `style` để kiểm tra trạng thái `isLiked`. Nếu `isLiked` là `true`, màu chữ của nút sẽ chuyển sang **màu đỏ**, ngược lại sẽ giữ **màu đen**.
 
-#### 🎁 Button Đèn Xanh, Đèn Đỏ
+### 4.3 🎁 Button Đèn Xanh, Đèn Đỏ
 
 Dưới đây là ví dụ **mô phỏng đèn giao thông** với 3 nút để đổi màu thành **Đỏ**, **Xanh**, và **Vàng**:
 
-### Code ví dụ
+Code ví dụ
 
 ```jsx
 import React, { useState } from "react";
@@ -201,212 +189,75 @@ function TrafficLight() {
 export default TrafficLight;
 ```
 
-### Giải thích
+🧠 Giải thích
 
 1. **useState**: State `lightColor` được sử dụng để lưu màu hiện tại của đèn. Ban đầu, nó có giá trị là `'red'`.
 2. **changeLight**: Hàm này được gọi khi người dùng nhấn một trong ba nút. Mỗi nút sẽ truyền vào một giá trị màu khác nhau (`'red'`, `'yellow'`, `'green'`) để thay đổi màu của đèn.
 
 3. **style**:
 
-   - `backgroundColor`: Đèn sẽ đổi màu theo giá trị `lightColor`.
-   - `transition`: Thêm hiệu ứng mượt mà khi chuyển đổi giữa các màu đèn.
+   * `backgroundColor`: Đèn sẽ đổi màu theo giá trị `lightColor`.
+   * `transition`: Thêm hiệu ứng mượt mà khi chuyển đổi giữa các màu đèn.
 
 4. **button**: Có 3 nút, mỗi nút tương ứng với một màu (Đỏ, Vàng, Xanh). Khi nhấn vào các nút, hàm `changeLight` sẽ thay đổi màu của đèn dựa trên màu tương ứng của nút.
 
 Với ví dụ này, bạn có thể dễ dàng chuyển đổi qua lại giữa 3 màu **Đỏ**, **Vàng**, và **Xanh** bằng cách nhấn vào các nút.
 
-#### 🎁 Modal open/close
+---
 
-```jsx
-const App = () => {
-  const [isShow, setIsShow] = useState(false);
-
-  const handleModal = () => {
-    setIsShow(!isShow);
-  };
-
-  return (
-    <div>
-      <h1>Simple Modal</h1>
-      <button onClick={handleModal}>Toogle Modal</button>
-      {isShow && <div className="modal">This is a Modal</div>}
-    </div>
-  );
-};
-```
-
-#### 🎁 Simple todo list
-
-```js
-import React, { useState } from "react";
-
-const ListExample = () => {
-  const [items, setItems] = useState([
-    { id: 1, text: "Mua sữa" },
-    { id: 2, text: "Đi chợ" },
-    { id: 3, text: "Làm bài tập" },
-  ]);
-
-  const handleAddItem = () => {
-    const newItem = { id: items.length + 1, text: "Việc mới" };
-    setItems([...items, newItem]);
-  };
-
-  const handleRemoveItem = (id) => {
-    const updatedItems = items.filter((item) => item.id !== id);
-    setItems(updatedItems);
-  };
-
-  return (
-    <div>
-      <ul>
-        {items.map((item) => (
-          <li key={item.id}>
-            {item.text}
-            <button onClick={() => handleRemoveItem(item.id)}>Xóa</button>
-          </li>
-        ))}
-      </ul>
-      <button onClick={handleAddItem}>Thêm việc mới</button>
-    </div>
-  );
-};
-
-export default ListExample;
-```
-
-## 🔥 5.2 Một Component có thể dùng nhiều State
-
-Trong một component bạn có thể sử dụng nhiều State để quản lý thay đổi UI trên component đó.
-
-Sau đây là một ví dụ:
-
-```jsx
-import React, { useState } from "react";
-
-function HelloCount() {
-  // State cho count
-  const [count, setCount] = useState(0);
-  // State cho việc hiển thị count
-  const [isShow, setIsShow] = useState(false);
-  //Và có thể State sau phụ thuộc vào State trước
-  return (
-    <div>
-      <h1>HelloCount</h1>
-      {isShow && (
-        <div className="section_count">
-          <p>
-            Count: <strong>{count}</strong>
-          </p>
-          <button onClick={() => setCount(count + 1)}>+ 1</button>
-        </div>
-      )}
-      <button onClick={() => setIsShow(!isShow)}>Toogle Count</button>
-    </div>
-  );
-}
-
-export default HelloCount;
-```
-
-## 🔥 5.3 State là cô lập và cục bộ
+## 🔥 5. State là cô lập và cục bộ
 
 State là một trạng thái cục bộ và cô lập cho một phiên bản (instance) trên một mành hình UI.
 
 Nói cách khác. Nếu bạn `render` 2 lần một component, thì mỗi bản sao sẽ có trạng thái cô lập hoàn toàn, có nghĩa là thay đổi trạng thái của một trong số chúng thì cái kia không ảnh hưởng.
 
 ```jsx
-//Dùng component HelloCount 2 lần
+//Dùng component Count 2 lần
 const App = () => {
   return (
     <>
       <h1>Hello State</h1>
-      <HelloCount /> {/*  bản sao 1 */}
-      <HelloCount /> {/*  bản sao 2 */}
+      <Count /> {/*  bản sao 1 */}
+      <Count /> {/*  bản sao 2 */}
     </>
   );
 };
 export default App;
 ```
 
-## 🔥 5.5 State Updates
+## 6. Cập nhật state và các lưu ý quan trọng
 
-Cập nhật state trong React là một phần quan trọng khi bạn muốn thay đổi giá trị và giao diện dựa trên dữ liệu mới. Dưới đây là các cách phổ biến để cập nhật state và cách áp dụng chúng.
+### ❗ KHÔNG được cập nhật state trực tiếp
 
-### 🌻 5.5.1 Cập nhật State với giá trị mới
+```js
+count = count + 1; // ❌ Không đúng!
+```
+
+### ✅ Luôn dùng hàm cập nhật
 
 Đây là cách cơ bản nhất để cập nhật state bằng cách cung cấp một giá trị mới cho state. Trong functional component, bạn sử dụng hàm `setState` được trả về từ hook `useState`.
 
-Ví dụ: Cập nhật State với giá trị mới
-
-```jsx
-import React, { useState } from "react";
-
-function Counter() {
-  const [count, setCount] = useState(0);
-
-  return (
-    <div>
-      <p>Bạn đã bấm {count} lần</p>
-      <button onClick={() => setCount(5)}>Đặt giá trị = 5</button>
-    </div>
-  );
-}
-
-export default Counter;
+```js
+setCount(count + 1); // ✔️ Đúng
+setIsSuccess(true); // ✔️ Đúng
+setMsg("Invalid username or password !");// ✔️ Đúng
 ```
 
-Giải thích: Khi người dùng bấm vào nút, `setCount(5)` sẽ đặt giá trị của `count` thành `5`, và React sẽ render lại component với giá trị mới này.
-
-Tất cả các cách thức sau đây đều mang ý nghĩa: thay đổi thành giá trị mới
-
-```jsx
-setCount(count + 1); // Biểu thức
-setIsSuccess(true); // Boolean
-setMsg("Invalid username or password !"); // String
-```
-
-### 🌻 5.5.2 Cập nhật State dựa trên State hiện tại
+### ⚠️ Cập nhật State dựa trên State hiện tại
 
 Khi bạn muốn cập nhật state dựa trên giá trị hiện tại của nó, cần sử dụng một hàm callback trong `setState` (đối với cả functional component và class component). Cách này giúp đảm bảo rằng state được cập nhật chính xác ngay cả khi có nhiều cập nhật xảy ra liên tiếp.
 
-Ví dụ 1: Tăng giá trị count dựa trên giá trị trước đó
+Để tối ưu hiệu suất, React không cập nhật state và re-render từng tí một ngay lập tức. Thay vào đó:
+
+* Nó dồn nhiều thay đổi lại thành một “batch”.
+* Sau đó mới render lại một lần duy nhất.
+
+Trong react gọi đây là hàng đợi `Queue`. Xem thêm [ở đây](https://react.dev/learn/queueing-a-series-of-state-updates)
+
+Một ví dụ dễ bị lỗi:
 
 ```jsx
-import React, { useState } from "react";
-
-function Counter() {
-  const [count, setCount] = useState(0);
-
-  const onHandleClick = () => {
-    setCount((prevCount) => prevCount + 1);
-  };
-
-  return (
-    <div>
-      <p>Bạn đã bấm {count} lần</p>
-      <button onClick={onHandleClick}>Tăng</button>
-    </div>
-  );
-}
-
-export default Counter;
-```
-
-Giải thích:
-
-- Hàm callback `prevCount => prevCount + 1` sử dụng giá trị hiện tại của `count` để tính toán giá trị mới. Điều này rất hữu ích khi bạn muốn cập nhật state nhiều lần liên tiếp, ví dụ trong các hành động như tăng hoặc giảm số lượng.
-- `prevCount`: Là một biến đại diện (có thể đặt tên khác) nắm giữ giá trị của `count` trước khi nó thay đổi. Trong ví dụ trên: `prevCount = 0`
-
-Xem thêm:
-
-- <https://react.dev/learn/state-as-a-snapshot>
-- <https://react.dev/learn/queueing-a-series-of-state-updates>
-
-Ví dụ 2: Tăng giá trị count lên `3 lần`
-
-```jsx
-import { useState } from "react";
+import { useState } from 'react';
 
 export default function Counter() {
   const [number, setNumber] = useState(0);
@@ -414,223 +265,190 @@ export default function Counter() {
   return (
     <>
       <h1>{number}</h1>
-      <button
-        onClick={() => {
-          setNumber(number + 1);
-          setNumber(number + 1);
-          setNumber(number + 1);
-        }}
-      >
-        +3
-      </button>
+      <button onClick={() => {
+        setNumber(number + 1);
+        setNumber(number + 1);
+        setNumber(number + 1);
+      }}>+3</button>
     </>
-  );
+  )
 }
 ```
 
-**Giải thích**:
+💥 Sai! count + 1 ba lần vẫn chỉ tăng 1. Vì `count` nắm giữ giá trị hiện tại nhất là `0`
 
-- Khi người dùng nhấn vào nút, hàm onClick sẽ chạy.
-- Bên trong hàm onClick, bạn gọi setNumber ba lần liên tiếp với giá trị là number + 1
-- Nhưng bạn không thấy nó tăng lên 3.
-
-**Cách React xử lý state:**
-
-- React batch (gom nhóm) các cập nhật state trong cùng một sự kiện (như sự kiện nhấn nút). Điều này có nghĩa là dù bạn gọi setNumber(number + 1) ba lần liên tiếp, React sẽ chỉ thực hiện cập nhật cuối cùng. Kết quả là state sẽ chỉ tăng thêm 1 chứ không phải 3.
-- Điều này xảy ra vì trong mỗi lần bạn gọi setNumber, React sử dụng giá trị number hiện tại để tính toán, và nó không cập nhật ngay lập tức. Thay vào đó, tất cả các cập nhật trong sự kiện sẽ được gom lại và chỉ thực hiện cập nhật một lần sau khi sự kiện hoàn tất.
-
-Nếu bạn muốn `tăng chính xác 3 đơn vị` khi nhấn nút, có thể sử dụng hàm `callback` của `setNumber`, như sau:
+✅ Sửa bằng cách dùng prevState:
 
 ```jsx
-<button
-  onClick={() => {
-    setNumber((prev) => prev + 1);
-    setNumber((prev) => prev + 1);
-    setNumber((prev) => prev + 1);
-  }}
->
-  +3
-</button>
-```
+import { useState } from 'react';
 
-### 🌻 5.5.3 State là một Object
-
-Xem thêm: <https://www.w3schools.com/react/react_es6_spread.asp>
-
-Khi state là một Object thì ta update như sau
-
-```js
-//App.js
-import { useState } from "react";
-
-export default function Form() {
-  const [person, setPerson] = useState({
-    firstName: "Barbara",
-    lastName: "Hepworth",
-    email: "bhepworth@sculpture.com",
-  });
-
-  //Method 1:
-  setPerson({
-    firstName: "Alexander",
-    lastName: "Brahma",
-    email: "alexander@gmail.com",
-  });
-  //Method 2: ... object spread syntax
-  setPerson({
-    ...person, // Copy the old fields
-    firstName: "Alexander", // But override this one
-  });
-}
-```
-
-View details: <https://react.dev/learn/updating-objects-in-state>
-
-===============================
-
-### 🌻 5.5.3 State là một Mảng
-
-> `Updating arrays without mutation`
-
-Dưới đây là một bảng so sánh phương thức mảng. Khi bạn thao tác với mảng trong React State, bạn cần tránh sử dụng các phương thức bên cột trái, nên sử dụng phương thức bên cột phải để thay thế.
-
-Xem thêm: <https://www.w3schools.com/react/react_es6_spread.asp>
-
-|               |      avoid (mutates the array)      |  prefer (returns a new array)  |
-| :-----------: | :---------------------------------: | :----------------------------: |
-|  **adding**   |          `push`, `unshift`          | concat, [...arr] spread syntax |
-| **removing**  |      `pop`, `shift`, `splice`       |       `filter`, `slice`        |
-| **replacing** | `splice`, `arr[i] = ... assignment` |             `map`              |
-|  **sorting**  |          `reverse`, `sort`          |      copy the array first      |
-
-- Thêm phần tử vào mảng:
-
-View details: <https://react.dev/learn/updating-arrays-in-state#adding-to-an-array>
-
-```js
-//Lúc đầu giá trị mặc định là mảng rỗng
-const [artists, setArtists] = useState([]);
-
-//Thêm giá trị mới vào mảng
-
-setArtists([
-  ...artists, // that contains all the old items
-  { id: nextId++, name: name }, // and one new item at the end
-]);
-```
-
-- Xóa phần tử của mảng:
-
-Xem: <https://react.dev/learn/updating-arrays-in-state#removing-from-an-array>
-
-```js
-import { useState } from "react";
-
-//Mảng giá trị mặc định
-let initialArtists = [
-  { id: 0, name: "Marta Colvin Andrade" },
-  { id: 1, name: "Lamidi Olonade Fakeye" },
-  { id: 2, name: "Louise Nevelson" },
-];
-
-export default function List() {
-  const [artists, setArtists] = useState(initialArtists);
+export default function Counter() {
+  const [number, setNumber] = useState(0);
 
   return (
     <>
-      <h1>Inspiring sculptors:</h1>
+      <h1>{number}</h1>
+      <button onClick={() => {
+        setNumber(n => n + 1); //react sẽ thêm nó vào hàng đợi
+        setNumber(n => n + 1); //react sẽ thêm nó vào hàng đợi
+        setNumber(n => n + 1); //react sẽ thêm nó vào hàng đợi
+      }}>+3</button>
+    </>
+  )
+}
+```
+
+Quá trình diễn ra như sau:
+
+| queued update | n |  returns  |
+|:-------------:|:-:|:---------:|
+| n => n + 1    | 0 | 0 + 1 = 1 |
+| n => n + 1    | 1 | 1 + 1 = 2 |
+| n => n + 1    | 2 | 2 + 1 = 3 |
+
+Kết quả cuối cùng nó xử lý 1 lần: tăng đúng 3 đơn vị.
+
+---
+
+---
+
+## 7. Quản lý nhiều state hoặc state là object
+
+### 📌 Cách khai báo nhiều state
+
+```jsx
+const [name, setName] = useState('');
+const [age, setAge] = useState(0);
+```
+
+### 📌 Hoặc dùng object
+
+Cách này khuyến nghị khi component có nhiều state và các state xâu chuỗi với nhau. Ví dụ như các inputs của form, thông tin của một đối tượng.
+
+```jsx
+const [user, setUser] = useState({ name: '', age: 0 });
+
+function updateName(newName) {
+  setUser(prev => ({ ...prev, name: newName }));
+}
+```
+
+---
+
+## 8.1. Xử lý state là mảng
+
+Nếu state là một `mảng`, Hãy xem ví dụ sau đây về cách cập nhật state
+
+### 🎯 Mục tiêu: thêm và xoá công việc
+
+```jsx
+import { useState } from 'react';
+
+function TodoApp() {
+  const [tasks, setTasks] = useState([]);
+  const [input, setInput] = useState('');
+
+  const handleAdd = () => {
+    if (input.trim()) {
+      setTasks([...tasks, input]);
+      setInput('');
+    }
+  };
+
+  const handleDelete = (index) => {
+    setTasks(tasks.filter((_, i) => i !== index));
+  };
+
+  return (
+    <div>
+      <h3>Todo List</h3>
+      <input value={input} onChange={e => setInput(e.target.value)} />
+      <button onClick={handleAdd}>Thêm</button>
       <ul>
-        {artists.map((artist) => (
-          <li key={artist.id}>
-            {artist.name}{" "}
-            <button
-              onClick={() => {
-                setArtists(artists.filter((a) => a.id !== artist.id));
-              }}
-            >
-              Delete
-            </button>
+        {tasks.map((task, index) => (
+          <li key={index}>
+            {task} <button onClick={() => handleDelete(index)}>Xoá</button>
           </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 }
 ```
 
-Khi click nút Delete, thì sẽ xóa đi item có ID tương ứng.
+---
 
-```js
-//Bản chất là chỉ lọc và giữ lại những ID khác với ID đã xóa
-setArtists(artists.filter((a) => a.id !== artist.id));
+## 9. ✅ Best Practices và ❌ Lỗi thường gặp
+
+| ✅ Best Practice                            | ❌ Lỗi phổ biến                             |
+| ------------------------------------------ | ------------------------------------------ |
+| Luôn dùng `setState` để cập nhật state     | Thay đổi state trực tiếp                   |
+| Cập nhật dựa trên giá trị cũ khi cần thiết | Không dùng prevState khi cần               |
+| Tách nhiều state nhỏ nếu logic khác nhau   | Nhét quá nhiều thứ vào một object state    |
+| Giữ state đơn giản, dễ đọc                 | Lồng quá nhiều cấp trong object hoặc array |
+
+---
+
+## 10. Sử dụng TypeScript với State
+
+### 10.1. Khai báo kiểu dữ liệu cho state
+
+```tsx
+const [count, setCount] = useState<number>(0);
+const [name, setName] = useState<string>('React');
 ```
 
-- Biến đổi phần tử mảng:
+---
 
-<https://react.dev/learn/updating-arrays-in-state#transforming-an-array>
+### 10.2. Định nghĩa interface cho object state hoặc mảng
 
-- Thay thế phần tử mảng:
-
-<https://react.dev/learn/updating-arrays-in-state#replacing-items-in-an-array>
-
-- Chèn một phần tử vào mảng:
-
-<https://react.dev/learn/updating-arrays-in-state#inserting-into-an-array>
-
-- Thay đổi một Object trong một mảng
-
-<https://react.dev/learn/updating-arrays-in-state#making-other-changes-to-an-array>
-
-===============================
-
-## 🔥 5.6 Tôi ưu Quản lý State (Option)
-
-Bạn nên xem thêm các Example sau trên trang chính thức để tối ưu cách vận hàng State:
-
-- <https://react.dev/learn/choosing-the-state-structure>
-- <https://react.dev/learn/sharing-state-between-components>
-- <https://react.dev/learn/preserving-and-resetting-state>
-
-===============================
-
-## 🔥 5.7 Khai báo kiểu dữ liệu của State trong TypeScript (Option)
-
-```js
-
-
-// Boolean type
-const [isCool] = React.useState<boolean>(true);
-
-// String type
-const [name] = React.useState<string>('Ruben');
-
-// Number type
-const [age] = React.useState<number>(28);
-
-// Null or undefined
-const [random] = React.useState<null | undefined>();
-
-// Array of string
-const [hobbies] = React.useState<Array<string>>(['soccer', 'cooking', 'code']);
-
-// Custom interface
-interface PersonProps {
-  name: string;
-  age: number;
-  hobbies: Array<string>;
-  isCool: boolean;
+```tsx
+interface Todo {
+  id: number;
+  text: string;
 }
-const [person] = React.useState<PersonProps>({
-  isCool,
-  name,
-  age,
-  hobbies
-});
 
+const [todos, setTodos] = useState<Todo[]>([]);
 ```
 
-Tham khảo thêm:
+---
 
-- <https://react-typescript-cheatsheet.netlify.app/docs/basic/getting-started/basic_type_example/>
+### 10.3. Ví dụ Todo List dùng TypeScript
 
-- <https://github.com/typescript-cheatsheets/react#reacttypescript-cheatsheets>
+```tsx
+import { useState } from 'react';
+
+interface Todo {
+  id: number;
+  text: string;
+}
+
+function TodoAppTS() {
+  const [todos, setTodos] = useState<Todo[]>([]);
+  const [input, setInput] = useState<string>('');
+
+  const handleAdd = () => {
+    if (input.trim()) {
+      const newTodo: Todo = {
+        id: Date.now(),
+        text: input
+      };
+      setTodos(prev => [...prev, newTodo]);
+      setInput('');
+    }
+  };
+
+  return (
+    <div>
+      <h3>Todo List (TS)</h3>
+      <input value={input} onChange={e => setInput(e.target.value)} />
+      <button onClick={handleAdd}>Thêm</button>
+      <ul>
+        {todos.map(todo => (
+          <li key={todo.id}>{todo.text}</li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+```

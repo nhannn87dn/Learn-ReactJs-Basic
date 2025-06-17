@@ -4,7 +4,7 @@
 
 **HTTP Request** (Yêu cầu HTTP) là một thông điệp được gửi từ máy khách (client) đến máy chủ (server) nhằm yêu cầu tài nguyên hoặc thực hiện một hành động cụ thể.
 
-### Phương thức HTTP (HTTP Method):
+### Phương thức HTTP (HTTP Method)
 
 Xác định loại yêu cầu được thực hiện, ví dụ:
 
@@ -13,7 +13,7 @@ Xác định loại yêu cầu được thực hiện, ví dụ:
 - **PUT**: Cập nhật hoặc thay thế tài nguyên trên máy chủ.
 - **DELETE**: Xóa tài nguyên trên máy chủ.
 
-### Dữ liệu của một HTTP request thường bao gồm các thành phần sau:
+### Dữ liệu của một HTTP request thường bao gồm các thành phần sau
 
 1. **Parameter (Tham số)**: Tham số được gửi qua URL hoặc trong thân của yêu cầu, và nó có thể xuất hiện ở nhiều vị trí khác nhau trong một HTTP request.
 
@@ -49,6 +49,7 @@ Xác định loại yêu cầu được thực hiện, ví dụ:
    ```
 
 4. **Header String (Tiêu đề)**: Tiêu đề chứa các thông tin bổ sung về yêu cầu như kiểu dữ liệu, thông tin xác thực, mã hóa... Ví dụ:
+
    ```
    Content-Type: application/json
    Authorization: Bearer token123
@@ -146,11 +147,11 @@ Các thành phần chính của API bao gồm:
 
 Sử dụng công cụ Fake API để luyện tập call API trong React
 
-- https://jsonplaceholder.typicode.com
+- <https://jsonplaceholder.typicode.com>
 
-- https://fakeapi.platzi.com/en/about/introduction/
+- <https://fakeapi.platzi.com/en/about/introduction/>
 
-- https://fakestoreapi.com/docs
+- <https://fakestoreapi.com/docs>
 
 ![call](call-api.png)
 
@@ -487,7 +488,24 @@ const handleDelete = async (id: number) => {
 
 Ngoài ra còn có thêm một thư viện rất mạnh khác nữa là React Query
 
+## 🔍 So sánh `fetch` vs `axios`
+
+| Tiêu chí                 | `fetch` (native)         | `axios` (thư viện)       |
+| ------------------------ | ------------------------ | ------------------------ |
+| Có sẵn trong trình duyệt | ✅                        | ❌ Cần cài qua npm        |
+| Tự động chuyển JSON      | ❌ `.json()` cần gọi thêm | ✅ Tự động                |
+| Xử lý lỗi HTTP           | ❌ Không tự bắt lỗi       | ✅ Có `try/catch` rõ ràng |
+| Timeout                  | ❌ Không hỗ trợ           | ✅ Hỗ trợ `timeout`       |
+| Tối ưu dev experience    | ⚠️ Viết dài hơn          | ✅ Cú pháp ngắn gọn       |
+
 ---
+
+## ⭐ Lưu ý khi gọi API
+
+- Gọi API thường được đặt trong `useEffect`
+- Truyền `[]` để gọi một lần khi component mount
+- Tránh gọi nhiều lần hoặc vòng lặp vô hạn
+- Luôn xử lý `loading`, `error`
 
 ## ⭐ Các trạng thái trong Call API
 
@@ -573,7 +591,7 @@ axios
 
 ![call](crud.png)
 
-Sử dụng Fake API: https://fakeapi.platzi.com/en/rest/users/#get-all-users
+Sử dụng Fake API: <https://fakeapi.platzi.com/en/rest/users/#get-all-users>
 
 Tech Tips:
 
