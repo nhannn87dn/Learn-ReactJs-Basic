@@ -16,6 +16,9 @@
   .btn_outline {
     @apply bg-white text-indigo-500 hover:bg-slate-100;
   }
+  .btn_danger {
+    @apply bg-red-100 text-red-400 hover:bg-red-200 border-red-400;
+  }
 }
 /* Xây dựng các class tiện ích */
 @layer utilities {
