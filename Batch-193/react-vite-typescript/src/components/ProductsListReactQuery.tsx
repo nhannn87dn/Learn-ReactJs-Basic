@@ -1,19 +1,22 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 
 interface IProduct {
   id: number;
   title: string;
-  image: string;
+  images: string[];
   price: number;
   description: string;
-  category: string;
 }
 
 const ProductsListReactQuery = () => {
+  const queryClient = useQueryClient();
+
   //Code một hàm để fetch Product với axios
   const getAllProducts = async () => {
-    const response = await axios.get("https://fakestoreapi.com/products");
+    const response = await axios.get(
+      "https://api.escuelajs.co/api/v1/products"
+    );
     //bắt buộc hàm này phải return về dữ liệu mà bạn muốn lấy
     //mặc định dữ liệu backend trả về thì nằm trong thuộc tính data của axios
     return response.data;
@@ -44,6 +47,30 @@ const ProductsListReactQuery = () => {
   isSuccess: gọi thành công = true/false
 
   */
+
+  /**  ============= XÓA PRODUCT ================== */
+  const deleteProduct = async (id: number) => {
+    const response = await axios.delete(
+      `https://api.escuelajs.co/api/v1/products/${id}`
+    );
+    //bắt buộc hàm này phải return về dữ liệu mà bạn muốn lấy
+    //mặc định dữ liệu backend trả về thì nằm trong thuộc tính data của axios
+    return response.data;
+  };
+  const queryDeleteProduct = useMutation({
+    mutationFn: deleteProduct,
+    //callback, hành động bạn muốn làm khi xóa thành công
+    onSuccess: () => {
+      console.log("Xóa sản phẩm thành công");
+      //Làm tươi lại danh sách sản phẩm, cần truyền đúng key khi đặt cho danh sách
+      // Invalidate and refetch
+      queryClient.invalidateQueries({ queryKey: ["get-all-products"] });
+    },
+    //callback, hành động khi gọi api bị lỗi
+    onError: () => {
+      console.log("Xóa sản phẩm KO thành công");
+    },
+  });
 
   //Dữ liệu lấy được từ API thì nó nằm ở queryProducts.data
   console.log("<<=== 🚀 queryProducts.data ===>>", products);
@@ -84,7 +111,7 @@ const ProductsListReactQuery = () => {
                   </td>
                   <td className="px-4 py-2">
                     <img
-                      src={product.image}
+                      src={product.images[0]}
                       alt={product.title}
                       className="h-12 w-12 object-cover rounded"
                     />
@@ -98,7 +125,16 @@ const ProductsListReactQuery = () => {
                   <td>
                     <div className="space-x-3">
                       <button>Edit</button>
-                      <button className="btn_danger">Delete</button>
+                      <button
+                        onClick={async () => {
+                          console.log("Xóa sp có ID", product.id);
+                          //Sử dụng react query để xóa
+                          await queryDeleteProduct.mutateAsync(product.id);
+                        }}
+                        className="btn_danger"
+                      >
+                        Delete
+                      </button>
                     </div>
                   </td>
                 </tr>
