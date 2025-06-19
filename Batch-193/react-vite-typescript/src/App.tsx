@@ -1,16 +1,15 @@
-//import PostsList from "./components/PostsList";
-import AddNewPostAxios from "./components/AddNewPostAxios";
-import PostsListAxios from "./components/PostsListAxios";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import ProductsListReactQuery from "./components/ProductsListReactQuery";
+
+// Create a client
+const queryClient = new QueryClient();
 
 function App() {
   return (
-    <>
-      <h1>Call API</h1>
-      {/* <PostsList /> */}
-      <AddNewPostAxios />
-      <hr />
-      <PostsListAxios />
-    </>
+    <QueryClientProvider client={queryClient}>
+      <h1>Những component nào nằm giữa nó thì dùng được react-query</h1>
+      <ProductsListReactQuery />
+    </QueryClientProvider>
   );
 }
 export default App;
