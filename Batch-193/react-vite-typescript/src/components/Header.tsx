@@ -4,11 +4,15 @@ import UserInfo from "./UserInfo";
 
 function Header() {
   return (
-    <header className="flex justify-between">
-      {/* component lồng vào nhau */}
-      <Logo />
-      <Navigation />
-      <UserInfo />
+    <header className=" bg-indigo-500 text-white py-4">
+      <div className="container mx-auto">
+        {/* component lồng vào nhau */}
+        <div className="header-middle flex justify-between">
+          <Logo />
+          <Navigation />
+          <UserInfo />
+        </div>
+      </div>
     </header>
   );
 }

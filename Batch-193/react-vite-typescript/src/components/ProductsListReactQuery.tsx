@@ -1,5 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
+import { Link, useSearchParams } from "react-router";
 
 interface IProduct {
   id: number;
@@ -12,10 +13,18 @@ interface IProduct {
 const ProductsListReactQuery = () => {
   const queryClient = useQueryClient();
 
+  const [params] = useSearchParams();
+  const page = params.get("page");
+  const currentPage = page ? parseInt(page) : 1;
+
+  console.log("<<=== 🚀 page ===>>", page);
+
   //Code một hàm để fetch Product với axios
   const getAllProducts = async () => {
+    const limit = 10;
+    const offset = (currentPage - 1) * limit; //thuật toán phân trang
     const response = await axios.get(
-      "https://api.escuelajs.co/api/v1/products"
+      `https://api.escuelajs.co/api/v1/products?offset=${offset}&limit=${limit}`
     );
     //bắt buộc hàm này phải return về dữ liệu mà bạn muốn lấy
     //mặc định dữ liệu backend trả về thì nằm trong thuộc tính data của axios
@@ -36,7 +45,7 @@ const ProductsListReactQuery = () => {
     error,
     isSuccess,
   } = useQuery<IProduct[], Error>({
-    queryKey: ["get-all-products"], // là tên mà đặt cho bộ nhớ cache
+    queryKey: ["get-all-products", currentPage], // là tên mà đặt cho bộ nhớ cache
     queryFn: getAllProducts, //truyên tên hàm, chứ ko gọi hàm
   });
   /*
@@ -124,6 +133,7 @@ const ProductsListReactQuery = () => {
                   </td>
                   <td>
                     <div className="space-x-3">
+                      <Link to={`/products/${product.id}`}>View</Link>
                       <button>Edit</button>
                       <button
                         onClick={async () => {
@@ -142,6 +152,26 @@ const ProductsListReactQuery = () => {
             })}
         </tbody>
       </table>
+      <div className="mt-5 space-x-5">
+        <Link
+          className="py-2 px-3 border border-blue-500 rounded"
+          to={"/products?page=1"}
+        >
+          1
+        </Link>
+        <Link
+          className="py-2 px-3 border border-blue-500 rounded"
+          to={"/products?page=2"}
+        >
+          2
+        </Link>
+        <Link
+          className="py-2 px-3 border border-blue-500 rounded"
+          to={"/products?page=3"}
+        >
+          3
+        </Link>
+      </div>
     </div>
   );
 };
