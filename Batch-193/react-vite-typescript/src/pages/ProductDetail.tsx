@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { useParams } from "react-router";
-
+import { useShoppingCartStore } from "../stores/shoppingCartStore";
 interface IProduct {
   id: number;
   title: string;
@@ -11,6 +11,9 @@ interface IProduct {
 }
 
 const ProductDetail = () => {
+  //lấy phương thức thêm vào giỏ hàngh
+  const addToCart = useShoppingCartStore((state) => state.addItemToCart);
+
   const params = useParams();
   const id = params.id ?? "0";
   //gọi api để lấy thông tin sp có id đó
@@ -34,12 +37,23 @@ const ProductDetail = () => {
   }
 
   return (
-    <div>
+    <div className="container mx-auto">
       <h1>ProductDetail</h1>
       {data ? <img width={200} src={data.images[0]} /> : ""}
       <h2>{data?.title}</h2>
       <p>{data?.price}</p>
       <p>{data?.description}</p>
+      <button
+        onClick={() => {
+          addToCart({
+            id: data?.id || 1,
+            name: data?.title || "",
+            price: data?.price || 0,
+          });
+        }}
+      >
+        Add To Cart
+      </button>
     </div>
   );
 };
