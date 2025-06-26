@@ -7,7 +7,9 @@
 
 Yêu cầu:
 
-- Layout: Bên trái là cây danh mục sản phẩm. Bên phải là sản phẩm tương ứng với danh mục đang chọn. Nếu chưa chọn danh mục nào thì hiển thị sản phẩm không thuộc danh mục nào cả.
+- Làm 2 trang:
+  - Trang Category: Bên trái là cây danh mục sản phẩm. Bên phải là sản phẩm tương ứng với danh mục đang chọn. Nếu chưa chọn danh mục nào thì hiển thị sản phẩm không thuộc danh mục nào cả.
+  - Trang Product: Hiển thị thông tin chi tiết 1 sản phẩm
 
 - Lấy danh sách sản phẩm hiển thị ra như Demo  CÓ PHÂN TRANG: Xem tại mục `Products->Pagination`
 - API Danh mục: Xem tại mục `Products->Get Categories`
