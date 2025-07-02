@@ -1,35 +1,28 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./App.css";
+import ButtonA from "./components/ButtonA";
+import ButtonB from "./components/ButtonB";
+import { AtSign } from "lucide-react";
+import { BrushCleaning } from "lucide-react";
+/*
+Code một component có tên là HelloReact
+Hiển thị ra ngoài: Hello React !
+*/
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div>
+      <AtSign />{" "}
+      <BrushCleaning style={{ color: "red" }} height={40} width={40} />
+      <img height={150} src="images/vivo.jpg" alt="" />
+      <img
+        height={150}
+        src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Products/Images/7264/231776/elio-es045-01-nam-thumb-fix-600x600.jpg"
+        alt=""
+      />
+      <ButtonA />
+      <ButtonB />
+    </div>
+  );
 }
 
-export default App
+export default App;
