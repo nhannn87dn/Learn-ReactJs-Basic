@@ -1,6 +1,8 @@
 import "./App.css";
 import Button from "./components/Button";
 import { ShoppingCart, Heart } from "lucide-react";
+import Tags from "./components/Tags";
+import Policy from "./components/Policy";
 function App() {
   const handleClickButton = () => {
     console.log("Clicked");
@@ -17,6 +19,10 @@ function App() {
         icon={<Heart />}
         label={"Yêu thích"}
       />
+      <hr />
+      <Tags />
+      <hr />
+      <Policy />
     </div>
   );
 }
