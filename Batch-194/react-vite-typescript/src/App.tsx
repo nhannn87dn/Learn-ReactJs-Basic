@@ -2,6 +2,7 @@
 // import Excersie03 from "./components/Excersie03";
 // import Exercise04 from "./components/Exercise04";
 import FormMultiField from "./components/FormMultiField";
+import FormReactHookForm from "./components/FormReactHookForm";
 import FormSimpleExample from "./components/FormSimpleExample";
 
 function App() {
@@ -15,6 +16,8 @@ function App() {
       <FormSimpleExample />
       <hr />
       <FormMultiField />
+      <hr />
+      <FormReactHookForm />
     </div>
   );
 }
