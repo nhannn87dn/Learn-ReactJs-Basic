@@ -73,3 +73,26 @@
     vertical-align: middle;
     margin-right: 8px;
 }
+
+.pagination {
+    display: flex;
+    margin: 20px 0;
+    gap: 5px;
+    flex-wrap: wrap;
+}
+
+.pagination a{
+    color: #333;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 8px 12px;
+    background-color: #fff;
+}
+.pagination a:hover{
+    background-color: #fefefe;
+}
+.pagination a.active{
+    background-color: var(--main-color);
+    color: #fff;
+    border: 1px solid var(--main-color); 
+}
