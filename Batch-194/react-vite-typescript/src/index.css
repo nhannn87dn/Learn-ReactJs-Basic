@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+/* Lớp css cơ bản cho các thẻ html */
+@layer base {
+  button {
+    @apply flex gap-x-[8px] bg-indigo-500 text-white py-2 px-4 rounded cursor-pointer hover:bg-indigo-600;
+  }
+  button:disabled {
+    @apply opacity-50 cursor-not-allowed;
+  }
+  input {
+    @apply border border-slate-400 py-2 px-4 rounded outline-indigo-500 bg-white;
+  }
+  input:disabled {
+    @apply opacity-50 bg-slate-100;
+  }
+}
+
+/* Lớp css cho các thành phần UI tái sử dụng */
+@layer component {
+  .btn_outline {
+    @apply bg-white text-indigo-500 border border-indigo-500 hover:bg-slate-100;
+  }
+  .btn_link {
+    @apply bg-transparent text-indigo-500 hover:text-indigo-600 border-none underline;
+  }
+  .tag {
+    @apply border border-slate-500 py-1 px-3 text-slate-500;
+  }
+}
+/* Các class tiện tích */
+@layer utilities {
+  .fs-40 {
+    font-size: 40px;
+    /* @apply text-[40px] */
+  }
+}

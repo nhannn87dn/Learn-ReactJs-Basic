@@ -1,26 +1,23 @@
-import "./App.css";
-import ButtonA from "./components/ButtonA";
-import ButtonB from "./components/ButtonB";
-import { AtSign } from "lucide-react";
-import { BrushCleaning } from "lucide-react";
-/*
-Code một component có tên là HelloReact
-Hiển thị ra ngoài: Hello React !
-*/
+// import Attributes from "./components/Attributes";
+// import Excersie03 from "./components/Excersie03";
+// import Exercise04 from "./components/Exercise04";
+import FormMultiField from "./components/FormMultiField";
+import FormReactHookForm from "./components/FormReactHookForm";
+import FormSimpleExample from "./components/FormSimpleExample";
 
 function App() {
+  console.log("App re-render");
+
   return (
-    <div>
-      <AtSign />{" "}
-      <BrushCleaning style={{ color: "red" }} height={40} width={40} />
-      <img height={150} src="images/vivo.jpg" alt="" />
-      <img
-        height={150}
-        src="https://cdnv2.tgdd.vn/mwg-static/tgdd/Products/Images/7264/231776/elio-es045-01-nam-thumb-fix-600x600.jpg"
-        alt=""
-      />
-      <ButtonA />
-      <ButtonB />
+    <div className="container mx-auto">
+      {/* <Attributes />
+      <Excersie03 />
+      <Exercise04 /> */}
+      <FormSimpleExample />
+      <hr />
+      <FormMultiField />
+      <hr />
+      <FormReactHookForm />
     </div>
   );
 }
