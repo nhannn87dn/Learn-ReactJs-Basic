@@ -24,6 +24,9 @@
   .btn_link {
     @apply bg-transparent text-indigo-500 hover:text-indigo-600 border-none underline;
   }
+  .btn_delete {
+    @apply bg-red-100 text-red-400 border border-red-400;
+  }
   .tag {
     @apply border border-slate-500 py-1 px-3 text-slate-500;
   }
