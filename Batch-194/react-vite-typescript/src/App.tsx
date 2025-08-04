@@ -11,6 +11,8 @@ import CustomerProfile from "./pages/CustomerProfile";
 import CustomerOrder from "./pages/CustomerOrder";
 import CustomerLayout from "./layouts/CustomerLayout";
 import ProductDetail from "./pages/ProductDetail";
+import LoginPage from "./pages/LoginPage";
+import CartPage from "./pages/CartPage";
 
 // Create a client
 const queryClient = new QueryClient();
@@ -25,6 +27,8 @@ function App() {
             <Route path="products" element={<ProductsPage />} />
             <Route path="products/:id" element={<ProductDetail />} />
             <Route path="blog" element={<BlogPage />} />
+            <Route path="login" element={<LoginPage />} />
+            <Route path="cart" element={<CartPage />} />
             <Route path="customer/" element={<CustomerLayout />}>
               <Route index element={<CustomerDashboard />} />
               <Route path="profile" element={<CustomerProfile />} />

@@ -1,7 +1,9 @@
-import { useNavigate } from "react-router";
+//import { useNavigate } from "react-router";
+import Count from "../components/Count";
+import CountB from "../components/CountB";
 
 const HomePage = () => {
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   return (
     <>
@@ -9,7 +11,9 @@ const HomePage = () => {
       <meta name="description" content="Home description" />
       <main className="container mx-auto">
         <h1>HomePage</h1>
-        <button onClick={() => navigate("/blog")}>Go Blog</button>
+        <Count />
+        <hr />
+        <CountB />
       </main>
       ;
     </>

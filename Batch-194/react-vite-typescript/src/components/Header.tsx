@@ -1,6 +1,9 @@
 import { NavLink } from "react-router";
+import CartInfo from "./CartInfo";
+import { useAuthStore } from "../stores/useAuthStore";
 
 const Header = () => {
+  const { isAuthenticated, logout } = useAuthStore();
   return (
     <header className="bg-indigo-600 text-white py-5">
       <div className="container mx-auto">
@@ -50,6 +53,23 @@ const Header = () => {
                 >
                   Customer
                 </NavLink>
+              </li>
+              <li>
+                {isAuthenticated ? (
+                  <button onClick={logout}>Logout</button>
+                ) : (
+                  <NavLink
+                    className={({ isActive, isPending }) =>
+                      isPending ? "pending" : isActive ? "font-bold" : ""
+                    }
+                    to={"/login"}
+                  >
+                    Login
+                  </NavLink>
+                )}
+              </li>
+              <li>
+                <CartInfo />
               </li>
             </ul>
           </nav>

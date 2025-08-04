@@ -4,9 +4,12 @@ import type { IProductResponse } from "../types/product.type";
 import { Link, useSearchParams } from "react-router";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { useShoppingCartStore } from "../stores/useShoppingCart";
 
 const ProductsPage = () => {
   const [params] = useSearchParams();
+
+  const { addItem } = useShoppingCartStore();
 
   const page = params.get("page");
   const pageInt = page ? Number(page) : 1;
@@ -43,23 +46,40 @@ const ProductsPage = () => {
                 queryProducts.data.products.length > 0 &&
                 queryProducts.data.products.map((p) => {
                   return (
-                    <Link
-                      to={`/products/${p.id}`}
+                    <div
                       className="product-item border border-slate-100 rounded p-3"
                       key={p.id}
                     >
-                      <div className="thumbnail w-full h-48 overflow-hidden flex justify-center">
-                        <img
-                          className="h-auto max-h-48"
-                          src={p.thumbnail}
-                          alt=""
-                        />
+                      <Link to={`/products/${p.id}`}>
+                        <div className="thumbnail w-full h-48 overflow-hidden flex justify-center">
+                          <img
+                            className="h-auto max-h-48"
+                            src={p.thumbnail}
+                            alt=""
+                          />
+                        </div>
+                        <h3>{p.title}</h3>
+                        <div className="price">
+                          <strong className="text-red-500">{p.price}</strong>
+                        </div>
+                      </Link>
+                      <div className="action flex justify-center">
+                        <button
+                          onClick={() => {
+                            console.log(p.id);
+                            addItem({
+                              id: p.id,
+                              title: p.title,
+                              price: p.price,
+                              thumbnail: p.thumbnail,
+                              quantity: 1,
+                            });
+                          }}
+                        >
+                          Add To Cart
+                        </button>
                       </div>
-                      <h3>{p.title}</h3>
-                      <div className="price">
-                        <strong className="text-red-500">{p.price}</strong>
-                      </div>
-                    </Link>
+                    </div>
                   );
                 })}
             </div>
