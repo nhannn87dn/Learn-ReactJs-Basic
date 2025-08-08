@@ -1,0 +1,28 @@
+@baseUrl = https://learn-backend-nodejs.onrender.com
+//@baseUrl = http://localhost:9000
+
+POST {{baseUrl}}/api/v1/seed
+content-type: application/json
+
+{
+    "password": "seed@123"
+}
+
+### 
+
+PUT {{baseUrl}}/api/v1/products/30
+content-type: application/json
+
+{
+    "price": 800
+}
+
+### Login
+
+POST {{baseUrl}}/api/v1/auth/login
+content-type: application/json
+
+{
+    "email": "kitty_lockman2@yahoo.com",
+    "password": "fake123456"
+}
