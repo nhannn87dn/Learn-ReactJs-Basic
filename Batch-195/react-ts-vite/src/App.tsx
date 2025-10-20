@@ -1,64 +1,36 @@
+import { Heart, ShoppingCart } from "lucide-react";
 import "./App.css";
-import OurServices from "./components/OurServices";
-import Profile from "./components/Profile";
-import SimpleButton from "./components/SimpleButton";
-import appleWatch from "../public/images/apple-watch-series-11.jpg";
+//import Button from "./components/Button";
+import ButtonV1 from "./components/ButtonV1";
+import SayHello from "./components/SayHello";
+import Card from "./components/Card";
 
-//Day la ham
-function sum(a: number, b: number) {
-  return a + b;
-}
+// cont sum = (a,b){
+
+// }
+// sum(2,4)
 
 //component App
 function App() {
-  const total = sum(2, 5);
-  console.log(total);
-  const subject = "ReactJs";
-
-  const info = {
-    id: 1,
-    name: "John",
-    email: "john@example.com",
-  };
-
   return (
-    <>
-      <ul>
-        <li>Name: {info.name}</li>
-        <li>Email: {info.email}</li>
-      </ul>
-      <p>
-        <img width={100} height={100} src={appleWatch} alt="" />
-      </p>
-      <p>
-        <img
-          width={200}
-          height={200}
-          src="images/apple-watch-series-11.jpg"
-          alt=""
-        />
-      </p>
-      <img
-        width={200}
-        height={200}
-        src="https://cdn.tgdd.vn/Products/Images/42/342676/iphone-17-pro-cam-thumb-600x600.jpg"
-        alt=""
-      />
-      <h1 className="heading">Hello {subject}</h1>
-      <h2 className="font_montserrat">
-        {total} - {total > 0 ? "So duong" : "so sam"}
-      </h2>
-      <SimpleButton />
-      <SimpleButton />
-      <SimpleButton />
-      {/* BEGIN UI PROFILE HERE + CTRL+/ */}
-      <div>
-        <Profile />
-        <Profile />
-        <Profile />
-      </div>
-      <OurServices />
-    </>
+    <div>
+      <Card title="Thông số sản phẩm">
+        <p>Body cua thong so</p>
+      </Card>
+
+      <Card title="Goi lai tu van">
+        <p>Body Goi tu van</p>
+      </Card>
+    </div>
+
+    /* <SayHello name="Nhan" />
+      <SayHello name="Tuan" />
+      <hr />
+
+      <ButtonV1 icon={<ShoppingCart />} bgColor="#f80" label={"Login"} />
+      <ButtonV1 icon={<Heart />} bgColor="#212121" label={"Logout"} /> */
+    /* <Button bgColor="bg-orange-500" icon={<ShoppingCart />} label="Login" />
+      <Button bgColor="bg-gray-700" icon={<Heart />} label="Logout" /> */
   );
 }
 
