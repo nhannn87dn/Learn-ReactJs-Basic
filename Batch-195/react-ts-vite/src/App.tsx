@@ -1,36 +1,22 @@
-import { Heart, ShoppingCart } from "lucide-react";
 import "./App.css";
-//import Button from "./components/Button";
-import ButtonV1 from "./components/ButtonV1";
-import SayHello from "./components/SayHello";
-import Card from "./components/Card";
-
-// cont sum = (a,b){
-
-// }
-// sum(2,4)
+import AttributeColor from "./components/AttributeColor";
+import RenderListExaple from "./components/RenderListExaple";
 
 //component App
 function App() {
+  // const isLoggedIn = true; //chưa login
+  // if (isLoggedIn) {
+  //   return <p>Xin chào</p>;
+  // }
+  // return <p>Đăng nhập</p>;
+  //const weather = "rainys";
+  //return <p>{weather == "sunny" ? "Học Offline" : "Học Online"}</p>;
+
   return (
-    <div>
-      <Card title="Thông số sản phẩm">
-        <p>Body cua thong so</p>
-      </Card>
-
-      <Card title="Goi lai tu van">
-        <p>Body Goi tu van</p>
-      </Card>
-    </div>
-
-    /* <SayHello name="Nhan" />
-      <SayHello name="Tuan" />
-      <hr />
-
-      <ButtonV1 icon={<ShoppingCart />} bgColor="#f80" label={"Login"} />
-      <ButtonV1 icon={<Heart />} bgColor="#212121" label={"Logout"} /> */
-    /* <Button bgColor="bg-orange-500" icon={<ShoppingCart />} label="Login" />
-      <Button bgColor="bg-gray-700" icon={<Heart />} label="Logout" /> */
+    <>
+      <AttributeColor />
+      <RenderListExaple />
+    </>
   );
 }
 

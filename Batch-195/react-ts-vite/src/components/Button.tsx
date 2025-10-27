@@ -1,4 +1,8 @@
-export default function Button(props) {
+export default function Button(props: {
+  icon: React.ReactNode;
+  label: string;
+  bgColor?: string;
+}) {
   console.log("props", props);
   let bgDefault = "bg-indigo-500";
   if (props.bgColor) {
