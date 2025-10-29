@@ -1,11 +1,29 @@
 @import "tailwindcss";
 
+@layer base {
+  button {
+    @apply bg-indigo-600 hover:bg-indigo-700 cursor-pointer text-white py-2 px-4 border border-indigo-600 rounded;
+  }
+  input,
+  textarea,
+  select {
+    @apply border border-gray-300 rounded-md px-3 py-2 focus:outline-none focus:ring-1 focus:ring-indigo-200 focus:border-indigo-200;
+  }
+}
+
 body {
   font-family: "Montserrat", sans-serif;
+  background-color: #f0f0f0;
+  padding: 20px 0;
 }
 .heading {
   font-family: "Montserrat", sans-serif;
 }
 .font_montserrat {
   font-family: "Montserrat", sans-serif;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: #fff;
 }

@@ -1,22 +1,17 @@
 import "./App.css";
-import AttributeColor from "./components/AttributeColor";
-import RenderListExaple from "./components/RenderListExaple";
-
+import ExampleEventHandle from "./components/ExampleEventHandle";
+import ExampleState from "./components/ExampleState";
+import Session4Exercise6 from "./Homeworks/Session4Exercise6";
+import Session4ProductList from "./Homeworks/Session4ProductList";
 //component App
 function App() {
-  // const isLoggedIn = true; //chưa login
-  // if (isLoggedIn) {
-  //   return <p>Xin chào</p>;
-  // }
-  // return <p>Đăng nhập</p>;
-  //const weather = "rainys";
-  //return <p>{weather == "sunny" ? "Học Offline" : "Học Online"}</p>;
-
   return (
-    <>
-      <AttributeColor />
-      <RenderListExaple />
-    </>
+    <div className="container">
+      <Session4Exercise6 />
+      <Session4ProductList />
+      <ExampleState />
+      <ExampleEventHandle />
+    </div>
   );
 }
 
