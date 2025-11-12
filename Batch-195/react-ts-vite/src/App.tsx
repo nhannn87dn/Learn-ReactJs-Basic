@@ -1,18 +1,13 @@
-import "./App.css";
-import AttributeColor from "./components/AttributeColor";
-import ExampleForm from "./components/ExampleForm";
-import ExampleFormV2 from "./components/ExampleFormV2";
-import ExampleReactHookForm from "./components/ExampleReactHookForm";
-import SimpleGallery from "./components/SimpleGallery";
+import { useBrowserWidth } from "./hooks/useBrowserWith";
+
 //component App
 function App() {
+  const browserWidth = useBrowserWidth();
+
   return (
     <div className="container">
-      <AttributeColor />
-      <SimpleGallery />
-      <ExampleForm />
-      <ExampleFormV2 />
-      <ExampleReactHookForm />
+      <h1>Browser width: {browserWidth}px</h1>
+      {/* <CounterWithReducer /> */}
     </div>
   );
 }
