@@ -1,13 +1,14 @@
-import { useBrowserWidth } from "./hooks/useBrowserWith";
+import ExampleAxiosPost from "./components/ExampleAxiosPost";
+import ExampleFetchAPIV1 from "./components/ExampleFetchAPIV1";
+import ExampleFetchAPIV2 from "./components/ExampleFetchAPIV2";
 
 //component App
 function App() {
-  const browserWidth = useBrowserWidth();
-
   return (
     <div className="container">
-      <h1>Browser width: {browserWidth}px</h1>
-      {/* <CounterWithReducer /> */}
+      {/* <ExampleFetchAPIV1 /> */}
+      <ExampleAxiosPost />
+      <ExampleFetchAPIV2 />
     </div>
   );
 }
