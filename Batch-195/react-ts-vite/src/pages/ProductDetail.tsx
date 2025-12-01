@@ -27,7 +27,10 @@ const ProductDetail = () => {
     <main className="container mx-auto">
       <div className="product-layout flex gap-x-20 mt-8">
         <div className="gallery w-1/3">
-          <img src={queryProduct.data?.image} alt={queryProduct.data?.title} />
+          <img
+            src={queryProduct.data?.images[0]}
+            alt={queryProduct.data?.title}
+          />
         </div>
         <div className="product-infos w-2/3">
           <h1 className="font-bold text-2xl">{queryProduct.data?.title}</h1>

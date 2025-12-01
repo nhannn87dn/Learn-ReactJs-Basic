@@ -1,6 +1,6 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import ExampleReactQuery from "./components/ExampleReactQuery";
-import { BrowserRouter, Routes, Route } from "react-router";
+import { BrowserRouter, Routes, Route, RouterProvider } from "react-router";
 import HomePage from "./pages/HomePage";
 import PostPage from "./pages/PostPage";
 import ProductPage from "./pages/ProductPage";
@@ -12,6 +12,7 @@ import CustomerProfile from "./pages/CustomerProfile";
 import CustomerLayout from "./layouts/CustomerLayout";
 import NotFoundPage from "./pages/NotFoundPage";
 import ProductDetail from "./pages/ProductDetail";
+import { router } from "./common/routes";
 
 // Create a client
 const queryClient = new QueryClient();
@@ -21,7 +22,12 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       {/* COMPONENTS NÀO SỬ DỤNG DỤNG REACT QUERY THÌ ĐẶT VÀO Ở GIỮA */}
-      <BrowserRouter>
+
+      {/* datA MODE */}
+      <RouterProvider router={router} />
+
+      {/* Declarative Mode */}
+      {/* <BrowserRouter>
         <Routes>
           <Route path="/" element={<DefaultLayout />}>
             <Route index element={<HomePage />} />
@@ -34,11 +40,10 @@ function App() {
               <Route path="order" element={<CustomerOrder />} />
               <Route path="profile" element={<CustomerProfile />} />
             </Route>
-            {/* 404 notfound */}
             <Route path="*" element={<NotFoundPage />} />
           </Route>
         </Routes>
-      </BrowserRouter>
+      </BrowserRouter> */}
     </QueryClientProvider>
   );
 }

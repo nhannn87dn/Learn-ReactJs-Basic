@@ -32,10 +32,11 @@ const ProductPage = () => {
       {queryProducts.isLoading ? (
         <div className="loading-skeleton grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-4 my-5">
           {[...Array(5)].map((_, index) => (
-            <div key={index}>
+            <div key={index} className="flex flex-col gap-y-[10px]">
               <Skeleton height={150} className="w-full" />
-              <Skeleton height={20} className="my-2" />
-              <Skeleton height={20} className="w-3/4" />
+              <Skeleton height={20} className="w-full" />
+              <Skeleton height={20} className="w-full" />
+              <Skeleton height={20} className="w-[40px]" />
             </div>
           ))}
         </div>
