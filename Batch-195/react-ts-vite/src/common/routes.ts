@@ -9,6 +9,7 @@ import CustomerOrder from "../pages/CustomerOrder";
 import ProductPage from "../pages/ProductPage";
 import ProductDetail from "../pages/ProductDetail";
 import ContactPage from "../pages/ContactPage";
+import CartPage from "../pages/CartPage";
 
 export const router = createBrowserRouter([
   {
@@ -28,6 +29,10 @@ export const router = createBrowserRouter([
           { path: "order", Component: CustomerOrder },
           { path: "profile", Component: CustomerProfile },
         ],
+      },
+      {
+        path: "cart",
+        Component: CartPage,
       },
     ],
   },

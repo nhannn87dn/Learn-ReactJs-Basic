@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beautiful Task Management UI with Filters</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        /* --- CSS Variables & Global Styles --- */
+        :root {
+            --primary-color: #4F46E5;
+            /* Indigo */
+            --primary-hover: #4338CA;
+            --bg-body: #F3F4F6;
+            --bg-card: #ffffff;
+            --text-main: #111827;
+            --text-muted: #6B7280;
+            --border-color: #E5E7EB;
+
+            /* Status Colors */
+            --status-pending-bg: #FEF3C7;
+            --status-pending-text: #92400E;
+            --status-progress-bg: #DBEAFE;
+            --status-progress-text: #1E40AF;
+            --status-completed-bg: #D1FAE5;
+            --status-completed-text: #065F46;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-body);
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+        }
+
+        /* --- Main Container --- */
+        .task-container {
+            background-color: var(--bg-card);
+            width: 100%;
+            max-width: 1100px;
+            /* Tăng độ rộng một chút để chứa filter */
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            overflow: hidden;
+        }
+
+        /* --- Header Section (Search, Filter & Add) --- */
+        .task-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+            background-color: #fafafa;
+            gap: 1rem;
+            /* Khoảng cách giữa nhóm filter và nút add khi màn hình nhỏ */
+            flex-wrap: wrap;
+        }
+
+        /* Nhóm các bộ lọc lại với nhau */
+        .header-filters {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+            flex-grow: 1;
+            /* Để nhóm này chiếm không gian còn thừa */
+        }
+
+        .search-box {
+            position: relative;
+            flex-grow: 1;
+            /* Ô tìm kiếm giãn ra */
+            max-width: 400px;
+        }
+
+        /* Style chung cho input và select để đồng bộ */
+        .form-control {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+            font-size: 0.95rem;
+            color: var(--text-main);
+            background-color: white;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+
+        .search-box input {
+            padding-left: 2.5rem;
+            /* Chừa chỗ cho icon */
+        }
+
+        /* Select box style specific */
+        .status-select {
+            width: auto;
+            /* Chiều rộng tự động theo nội dung */
+            min-width: 180px;
+            cursor: pointer;
+            /* Tùy chỉnh mũi tên dropdown (optional, để mặc định browser cũng được) */
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+            background-position: right 0.5rem center;
+            background-repeat: no-repeat;
+            background-size: 1.5em 1.5em;
+            padding-right: 2.5rem;
+        }
+
+
+        /* Search Icon giả lập bằng CSS */
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+            pointer-events: none;
+        }
+
+        .btn-add {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.2s;
+            white-space: nowrap;
+            /* Không xuống dòng text trong nút */
+        }
+
+        .btn-add:hover {
+            background-color: var(--primary-hover);
+        }
+
+        /* --- Table Styles (Không thay đổi nhiều so với trước) --- */
+        .table-responsive {
+            overflow-x: auto;
+        }
+
+        .task-table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        .task-table thead th {
+            background-color: #f9fafb;
+            color: var(--text-muted);
+            font-weight: 600;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .task-table tbody tr {
+            border-bottom: 1px solid var(--border-color);
+            transition: background-color 0.1s;
+        }
+
+        .task-table tbody tr:hover {
+            background-color: #f9fafb;
+        }
+
+        .task-table td {
+            padding: 1rem 1.5rem;
+            color: var(--text-main);
+            vertical-align: middle;
+        }
+
+        .col-id {
+            font-weight: 600;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .col-content {
+            font-weight: 500;
+        }
+
+        .col-date {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* --- Status Badges --- */
+        .status-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: capitalize;
+        }
+
+        .status-pending {
+            background-color: var(--status-pending-bg);
+            color: var(--status-pending-text);
+        }
+
+        .status-progress {
+            background-color: var(--status-progress-bg);
+            color: var(--status-progress-text);
+        }
+
+        .status-completed {
+            background-color: var(--status-completed-bg);
+            color: var(--status-completed-text);
+        }
+
+        /* --- Action Buttons --- */
+        .actions-cell {
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-icon {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 6px;
+            border-radius: 6px;
+            color: var(--text-muted);
+            transition: all 0.2s;
+        }
+
+        .btn-icon:hover {
+            background-color: #E5E7EB;
+        }
+
+        .btn-icon.delete:hover {
+            color: #EF4444;
+            background-color: #FEE2E2;
+        }
+
+        .icon-svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .task-header {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .header-filters {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .search-box,
+            .status-select,
+            .btn-add {
+                max-width: none;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="task-container">
+        <div class="task-header">
+
+            <div class="header-filters">
+                <div class="search-box">
+                    <svg class="search-icon icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                    <input type="text" id="searchInput" class="form-control" placeholder="Tìm kiếm task...">
+                </div>
+
+                <select id="statusFilter" class="form-control status-select">
+                    <option value="all">Tất cả trạng thái</option>
+                    <option value="pending">Pending</option>
+                    <option value="progress">In Progress</option>
+                    <option value="completed">Completed</option>
+                </select>
+            </div>
+
+
+            <button class="btn-add" id="addNewBtn">
+                <svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                </svg>
+                Thêm Task
+            </button>
+        </div>
+
+        <div class="table-responsive">
+            <table class="task-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Content</th>
+                        <th>Status</th>
+                        <th>Date</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="taskTableBody">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <script>
+        // 1. Dữ liệu mẫu (State)
+        let tasks = [
+            { id: 'T001', content: 'Hoàn thiện báo cáo tài chính Q3', status: 'progress', date: '2023-10-25' },
+            { id: 'T002', content: 'Họp team marketing đầu tuần', status: 'pending', date: '2023-10-26' },
+            { id: 'T003', content: 'Gửi email cho khách hàng VIP', status: 'completed', date: '2023-10-24' },
+            { id: 'T004', content: 'Đặt vé máy bay công tác', status: 'pending', date: '2023-10-30' },
+            { id: 'T005', content: 'Review code tính năng mới', status: 'progress', date: '2023-10-27' },
+            { id: 'T006', content: 'Viết tài liệu hướng dẫn sử dụng', status: 'completed', date: '2023-10-22' },
+        ];
+
+        // Lấy các elements
+        const tableBody = document.getElementById('taskTableBody');
+        const searchInput = document.getElementById('searchInput');
+        const statusFilter = document.getElementById('statusFilter'); // Element mới
+        const addNewBtn = document.getElementById('addNewBtn');
+
+        // --- Các hàm Helper (giữ nguyên) ---
+        function getStatusClass(status) {
+            switch (status) {
+                case 'pending': return 'status-pending';
+                case 'progress': return 'status-progress';
+                case 'completed': return 'status-completed';
+                default: return '';
+            }
+        }
+
+        function formatDate(dateString) {
+            const options = { year: 'numeric', month: '2-digit', day: '2-digit' };
+            return new Date(dateString).toLocaleDateString('vi-VN', options);
+        }
+
+        // --- Hàm Render ---
+        function renderTable(data) {
+            tableBody.innerHTML = '';
+
+            if (data.length === 0) {
+                tableBody.innerHTML = '<tr><td colspan="5" style="text-align:center; padding: 2rem; color: var(--text-muted);">Không tìm thấy task nào phù hợp.</td></tr>';
+                return;
+            }
+
+            data.forEach(task => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td class="col-id">#${task.id}</td>
+                    <td class="col-content">${task.content}</td>
+                    <td><span class="status-badge ${getStatusClass(task.status)}">${task.status}</span></td>
+                    <td class="col-date">${formatDate(task.date)}</td>
+                    <td>
+                        <div class="actions-cell">
+                            <button class="btn-icon edit" onclick="editTask('${task.id}')" title="Edit">
+                                <svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg>
+                            </button>
+                            <button class="btn-icon delete" onclick="deleteTask('${task.id}')" title="Delete">
+                                <svg class="icon-svg" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+                            </button>
+                        </div>
+                    </td>
+                `;
+                tableBody.appendChild(row);
+            });
+        }
+
+        // --- LOGIC LỌC MỚI (Quan trọng) ---
+        // Hàm này sẽ lọc dựa trên CẢ input tìm kiếm VÀ select status
+        function filterTasksCombined() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const statusValue = statusFilter.value; // Lấy giá trị 'all', 'pending', v.v.
+
+            const filteredData = tasks.filter(task => {
+                // Điều kiện 1: Content chứa từ khóa tìm kiếm
+                const matchesSearch = task.content.toLowerCase().includes(searchTerm);
+
+                // Điều kiện 2: Status trùng với giá trị select (hoặc select là 'all')
+                const matchesStatus = (statusValue === 'all') || (task.status === statusValue);
+
+                // Trả về true chỉ khi CẢ 2 điều kiện đều thỏa mãn
+                return matchesSearch && matchesStatus;
+            });
+
+            renderTable(filteredData);
+        }
+
+        // --- Các Event Listeners ---
+
+        // Sự kiện khi gõ phím tìm kiếm -> Gọi hàm lọc kết hợp
+        searchInput.addEventListener('keyup', filterTasksCombined);
+
+        // Sự kiện khi thay đổi dropdown status -> Gọi hàm lọc kết hợp
+        statusFilter.addEventListener('change', filterTasksCombined);
+
+
+        // Thêm mới (Demo)
+        addNewBtn.addEventListener('click', () => {
+            const newId = 'T00' + (tasks.length + 1);
+            const today = new Date().toISOString().split('T')[0];
+            // Random status cho vui
+            const statuses = ['pending', 'progress', 'completed'];
+            const randomStatus = statuses[Math.floor(Math.random() * statuses.length)];
+
+            tasks.unshift({
+                id: newId,
+                content: `Task mới (${randomStatus}) thêm lúc ${new Date().toLocaleTimeString()}`,
+                status: randomStatus,
+                date: today
+            });
+
+            // Reset bộ lọc để thấy task mới
+            searchInput.value = '';
+            statusFilter.value = 'all';
+
+            renderTable(tasks);
+            alert("Đã thêm một task demo mới! Bộ lọc đã được reset.");
+        });
+
+        // Xóa Task
+        window.deleteTask = (id) => {
+            if (confirm(`Bạn có chắc chắn muốn xóa task #${id}?`)) {
+                tasks = tasks.filter(task => task.id !== id);
+                // Gọi lại hàm lọc để cập nhật bảng dựa trên bộ lọc hiện tại
+                filterTasksCombined();
+            }
+        }
+
+        window.editTask = (id) => {
+            alert(`Tính năng đang phát triển: Sửa task #${id}`);
+        }
+
+        // Init: Render lần đầu
+        renderTable(tasks);
+
+    </script>
+</body>
+
+</html>

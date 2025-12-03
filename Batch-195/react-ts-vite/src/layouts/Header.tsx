@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import Cart from "../components/Cart";
 
 const Header = () => {
   console.log("header rendered");
@@ -21,6 +22,9 @@ const Header = () => {
               </li>
               <li>
                 <Link to="/contact">Contact</Link>
+              </li>
+              <li>
+                <Cart />
               </li>
             </ul>
           </nav>
