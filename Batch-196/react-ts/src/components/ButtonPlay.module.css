@@ -1,0 +1,24 @@
+.button {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+.bg_green {
+    background-color: #28a745;
+    color: white;
+}
+
+.bg_red {
+    background-color: #dc3545;
+    color: white;
+}
+
+.bg_blue {
+    background-color: #007bff;
+    color: white;
+}

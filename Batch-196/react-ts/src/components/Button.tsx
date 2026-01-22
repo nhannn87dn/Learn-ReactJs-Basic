@@ -1,8 +1,28 @@
 //Component với Arrow Function và TypeScript
 import styles from "./Button.module.css";
 
-const Button = () => {
+/**
+ *
+ * props = {
+ *  name: 'Login',
+ *  icon: '1',
+ * }
+ *
+ * @returns
+ */
+function Button(props) {
   console.log("<<=== 🚀 styles ===>>");
-  return <button className={styles.button}>Button</button>;
-};
+  console.log("<<=== 🚀 props ===>>", props);
+  let className = ""; //màu cam
+  if (props.type === "dark") {
+    className = `${styles.button} ${styles.button_dark}`;
+  } else {
+    className = `${styles.button}`;
+  }
+  return (
+    <button className={className}>
+      {props.icon} {props.name}
+    </button>
+  );
+}
 export default Button;

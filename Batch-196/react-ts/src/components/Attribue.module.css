@@ -1,0 +1,12 @@
+.attr_wrapper {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.attr {
+    font-size: 16px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    color: #333;
+}

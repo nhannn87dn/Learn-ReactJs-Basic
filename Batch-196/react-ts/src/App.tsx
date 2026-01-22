@@ -1,9 +1,8 @@
 import "./App.css";
-import Tag from "./components/Tag";
 import Button from "./components/Button";
-import Image from "./components/Image";
-import JsxExample from "./components/JsxExample";
-import ButtonAddToCart from "./components/ButtonAddToCart";
+import { ShoppingCart, Phone } from "lucide-react";
+import ButtonPlay from "./components/ButtonPlay";
+import Attribute from "./components/Attribute";
 
 /**
  * Tất cả UI đều phải
@@ -15,14 +14,21 @@ function App() {
   return (
     <>
       <h1 className="head">Hello, React!</h1>
-      <JsxExample />
-      <Tag />
-      <Tag />
-      <Tag />
+      <div>
+        <Attribute />
+      </div>
+      <div>
+        <ButtonPlay bgColor="green" label="VTV 1" />
+        <ButtonPlay bgColor="red" label="VTV 2" />
+        <ButtonPlay bgColor="blue" label="VTV 3" />
+      </div>
 
-      <Button />
-      <ButtonAddToCart />
-      <Image />
+      <Button
+        type="default"
+        name="Thêm vào giỏ hàng"
+        icon={<ShoppingCart size={16} />}
+      />
+      <Button type="dark" name="Gọi lại tư vấn" icon={<Phone size={16} />} />
     </>
   );
 }
