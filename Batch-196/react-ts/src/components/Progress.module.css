@@ -1,0 +1,24 @@
+.progress_item {
+    display: flex;
+    color: #fff;
+    margin: 5px 0;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.pg_label {
+    width: 150px;
+    font-weight: 500;
+    padding: 10px;
+    text-transform: uppercase;
+    text-align: right;
+}
+
+.pg_bar {
+    flex: 1;
+    display: flex;
+    background-color: #f3f3f3;
+}
+
+.percent {
+    padding: 10px;
+}

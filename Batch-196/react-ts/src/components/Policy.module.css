@@ -1,0 +1,16 @@
+.policies {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    padding-left: 0;
+}
+
+.policies li {
+    list-style: none;
+    display: flex;
+    gap: 10px;
+}
+
+.policies li span:last-child {
+    color: #555;
+}

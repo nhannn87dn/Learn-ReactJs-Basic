@@ -11,6 +11,9 @@ importers:
       lucide-react:
         specifier: ^0.562.0
         version: 0.562.0(react@19.2.3)
+      numeral:
+        specifier: ^2.0.6
+        version: 2.0.6
       react:
         specifier: ^19.2.0
         version: 19.2.3
@@ -24,6 +27,9 @@ importers:
       '@types/node':
         specifier: ^24.10.1
         version: 24.10.8
+      '@types/numeral':
+        specifier: ^2.0.5
+        version: 2.0.5
       '@types/react':
         specifier: ^19.2.5
         version: 19.2.8
@@ -562,6 +568,9 @@ packages:
   '@types/node@24.10.8':
     resolution: {integrity: sha512-r0bBaXu5Swb05doFYO2kTWHMovJnNVbCsII0fhesM8bNRlLhXIuckley4a2DaD+vOdmm5G+zGkQZAPZsF80+YQ==}
 
+  '@types/numeral@2.0.5':
+    resolution: {integrity: sha512-kH8I7OSSwQu9DS9JYdFWbuvhVzvFRoCPCkGxNwoGgaPeDfEPJlcxNvEOypZhQ3XXHsGbfIuYcxcJxKUfJHnRfw==}
+
   '@types/react-dom@19.2.3':
     resolution: {integrity: sha512-jp2L/eY6fn+KgVVQAOqYItbF0VY/YApe5Mz2F0aykSO8gx31bYCZyvSeYxCHKvzHG5eZjc+zyaS5BrBWya2+kQ==}
     peerDependencies:
@@ -944,6 +953,9 @@ packages:
 
   node-releases@2.0.27:
     resolution: {integrity: sha512-nmh3lCkYZ3grZvqcCH+fjmQ7X+H0OeZgP40OierEaAptX4XofMh5kwNbWh7lBduUzCcV/8kZ+NDLCwm2iorIlA==}
+
+  numeral@2.0.6:
+    resolution: {integrity: sha512-qaKRmtYPZ5qdw4jWJD6bxEf1FJEqllJrwxCLIm0sQU/A7v2/czigzOb+C2uSiFsa9lBUzeH7M1oK+Q+OLxL3kA==}
 
   optionator@0.9.4:
     resolution: {integrity: sha512-6IpQ7mKUxRcZNLIObR0hz7lxsapSSIYNZJwXPGeF0mTVqGKFIXj1DQcMoT22S3ROcLyY/rz0PWaWZ9ayWmad9g==}
@@ -1534,6 +1546,8 @@ snapshots:
     dependencies:
       undici-types: 7.16.0
 
+  '@types/numeral@2.0.5': {}
+
   '@types/react-dom@19.2.3(@types/react@19.2.8)':
     dependencies:
       '@types/react': 19.2.8
@@ -1950,6 +1964,8 @@ snapshots:
   natural-compare@1.4.0: {}
 
   node-releases@2.0.27: {}
+
+  numeral@2.0.6: {}
 
   optionator@0.9.4:
     dependencies:
