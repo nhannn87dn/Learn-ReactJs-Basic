@@ -1,8 +1,1 @@
-/**
-Phần css trong index.css + app.css
-phạm vi là global
---> tất cả các component đều dùng đc
-*/
-.head {
-    color: red
-}
+@import "tailwindcss";

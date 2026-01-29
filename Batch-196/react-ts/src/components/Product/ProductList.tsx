@@ -1,5 +1,6 @@
+import Discount from "./Discount";
+import PriceDisplay from "./PriceDisplay";
 import styles from "./ProductList.module.css";
-import numeral from "numeral";
 
 const ProductList = () => {
   const products = [
@@ -14,7 +15,7 @@ const ProductList = () => {
     {
       id: 2,
       name: "Robot Hút Bụi Lau Nhà Xiaomi Roborock S7",
-      price: 6550000,
+      price: 6660000,
       promoPrice: 0,
       thumb:
         "https://cdnv2.tgdd.vn/mwg-static/tgdd/Products/Images/44/358095/macbook-pro-14-inch-nano-m5-24gb-512gb-den-638962956337824725-600x600.jpg",
@@ -23,7 +24,7 @@ const ProductList = () => {
       id: 3,
       name: "Cáp chuyển đổi USB-C sang SD",
       price: 1290000,
-      promoPrice: 790000,
+      promoPrice: 780000,
       thumb:
         "https://cdn.tgdd.vn/Products/Images/54/329154/airpods-4-mxp63-thumb-new-600x600.jpg",
     },
@@ -36,9 +37,9 @@ const ProductList = () => {
         "https://cdnv2.tgdd.vn/mwg-static/tgdd/Products/Images/5693/328648/may-in-nhiet-di-dong-hprt-mt810-bluetooth-hong-021024-055735-528-600x600.jpg",
     },
   ];
+  console.log("ProductList rendered");
   return (
     <div className={styles.product_list}>
-      1
       {products.map((product) => {
         let discount = 0;
         if (product.promoPrice > 0) {
@@ -47,11 +48,7 @@ const ProductList = () => {
         }
         return (
           <div className={styles.product_item} key={product.id}>
-            {discount > 0 && (
-              <div className={styles.product_discount_badge}>
-                Giảm {Math.round(discount)}%
-              </div>
-            )}
+            <Discount discount={discount} />
             <div className="product_thumb">
               <img
                 width={160}
@@ -61,18 +58,10 @@ const ProductList = () => {
               />
             </div>
             <h3>{product.name}</h3>
-            {product.promoPrice > 0 ? (
-              <div className="product_price">
-                <strong>
-                  {numeral(product.promoPrice).format("0,0") + " ₫"}
-                </strong>
-                <del>{numeral(product.price).format("0,0") + " ₫"}</del>
-              </div>
-            ) : (
-              <div className="product_price">
-                <strong>{numeral(product.price).format("0,0") + " ₫"}</strong>
-              </div>
-            )}
+            <PriceDisplay
+              price={product.price}
+              promoPrice={product.promoPrice}
+            />
           </div>
         );
       })}

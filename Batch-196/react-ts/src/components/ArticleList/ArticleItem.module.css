@@ -1,0 +1,15 @@
+.article_item {
+    width: calc((100% - 60px) / 4);
+}
+
+.article_thumb {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.article_thumb img {
+    border-radius: 8px;
+}
