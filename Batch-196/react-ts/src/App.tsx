@@ -1,6 +1,8 @@
 import "./App.css";
 import ArticleList from "./components/ArticleList";
 import ConditionalRendering from "./components/ConditionalRendering";
+import ExampleEventHanding from "./components/ExampleEventHanding";
+import ExampleState from "./components/ExampleState";
 import Policy from "./components/Policy";
 import ProductList from "./components/Product/ProductList";
 import Progress from "./components/Progress";
@@ -18,6 +20,8 @@ function App() {
   //Đưa UI vào trong return
   return (
     <>
+      <ExampleState />
+      <ExampleEventHanding />
       <div className="container mx-auto">
         <Resume />
       </div>

@@ -1,1 +1,11 @@
 @import "tailwindcss";
+
+@layer base {
+    button {
+        @apply px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition-all cursor-pointer;
+    }
+
+    input {
+        @apply border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500;
+    }
+}
