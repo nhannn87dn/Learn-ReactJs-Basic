@@ -1,5 +1,6 @@
 import "./App.css";
 import Attribute from "./components/Attribute";
+import FormExample from "./components/FormExample";
 import GallerySimple from "./components/GallerySimple";
 
 /**
@@ -11,6 +12,7 @@ function App() {
   //Đưa UI vào trong return
   return (
     <>
+      <FormExample />
       <Attribute />
       <GallerySimple />
     </>
