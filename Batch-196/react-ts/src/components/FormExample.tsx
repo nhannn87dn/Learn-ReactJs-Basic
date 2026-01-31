@@ -1,29 +1,42 @@
 import { useState } from "react";
 
 const FormExample = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [agree, setAgree] = useState(false);
+  //   const [name, setName] = useState("");
+  //   const [email, setEmail] = useState("");
+  //   const [agree, setAgree] = useState(false);
+  //Tất cả các sate trên đùng chung trong 1 logic về xử lý form
+  //Thay vì đi tạo 3 state riêng lẻ, ta có thể gom chung vào 1 state object
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    agree: false,
+  });
+
+  const onHandleSubmit = (event) => {
+    event.preventDefault(); //chặn reload trang khi submit form
+
+    //Xử lý dữ liệu form ở đây
+    //+ Validate dữ liệu
+    if (formData.name.length < 5) {
+      alert("Name phải dài hơn 5 ký tự");
+      return; //dừng không gửi dữ liệu đi
+    }
+    //+ Gửi dữ liệu đi ...
+  };
+
+  const onPlayChannel = (channel: string) => {
+    alert("Playing channel: " + channel);
+  };
+
   return (
     <div>
       <h1>FormExample</h1>
       <h2>
-        Get Data from Form: Name: {name}, Email: {email}
+        Get Data from Form: Name: {formData.name}, Email: {formData.email}
       </h2>
-      <form
-        onSubmit={(event) => {
-          event.preventDefault(); //chặn reload trang khi submit form
-
-          //Xử lý dữ liệu form ở đây
-          //+ Validate dữ liệu
-          if (name.length < 5) {
-            alert("Name phải dài hơn 5 ký tự");
-            return; //dừng không gửi dữ liệu đi
-          }
-          //+ Gửi dữ liệu đi ...
-        }}
-        className="p-5"
-      >
+      <button onClick={() => onPlayChannel("VTV 1")}>VTV 1</button>
+      <button onClick={() => onPlayChannel("VTV 2")}>VTV 2</button>
+      <form onSubmit={onHandleSubmit} className="p-5">
         <div className="form-input my-3  flex items-center gap-3">
           <label className="w-15" htmlFor="name">
             Name:
@@ -31,9 +44,9 @@ const FormExample = () => {
           <input
             onChange={(event) => {
               //lấy giá trị từ ô input, gán cho state name
-              setName(event.target.value);
+              setFormData({ ...formData, name: event.target.value });
             }}
-            value={name}
+            value={formData.name}
             type="text"
             id="name"
             name="name"
@@ -46,9 +59,9 @@ const FormExample = () => {
           <input
             onChange={(event) => {
               //lấy giá trị từ ô input, gán cho state email
-              setEmail(event.target.value);
+              setFormData({ ...formData, email: event.target.value });
             }}
-            value={email}
+            value={formData.email}
             type="text"
             id="email"
             name="email"
@@ -63,7 +76,7 @@ const FormExample = () => {
                   "<<=== 🚀 event.target.checked ===>>",
                   event.target.checked,
                 );
-                setAgree(event.target.checked);
+                setFormData({ ...formData, agree: event.target.checked });
               }}
               type="checkbox"
               id="agree"
