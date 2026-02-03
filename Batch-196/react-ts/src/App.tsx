@@ -1,9 +1,6 @@
+import React from "react";
 import "./App.css";
-import Attribute from "./components/Attribute";
-import FormExample from "./components/FormExample";
-import GallerySimple from "./components/GallerySimple";
-import LoginForm from "./components/LoginForm";
-import ReactHookFormExample from "./components/ReactHookFormExample";
+import UseEffectExample from "./components/UseEffectExample";
 
 /**
  * Tất cả UI đều phải
@@ -11,16 +8,11 @@ import ReactHookFormExample from "./components/ReactHookFormExample";
  * để hiển thị ra trình duyệt
  */
 function App() {
-  //Đưa UI vào trong return
+  const [isShow, setIsShow] = React.useState(false);
   return (
     <>
-      <LoginForm />
-      <br />
-      <ReactHookFormExample />
-      <br />
-      <FormExample />
-      <Attribute />
-      <GallerySimple />
+      {isShow && <UseEffectExample name="Aptech Softech" />}
+      <button onClick={() => setIsShow(!isShow)}>Toggle</button>
     </>
   );
 }
