@@ -31,8 +31,29 @@ const UseEffectExample = ({ name }: { name: string }) => {
   //chạy 1 lần sau lần render đầu tiên
   //chạy lại mỗi khi person thay đổi
 
+  const [count, setCount] = useState(0);
+
+  //   useEffect(() => {
+  //     setInterval(() => {
+  //       setCount((count) => count + 1);
+  //       console.log("This will run every second!");
+  //     }, 1000);
+  //   }, []);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCount((count) => count + 1);
+    }, 1000);
+    return () => {
+      console.log("Đã gở UseEffectExample khỏi giao diện");
+      clearInterval(interval);
+    };
+  }, []);
+
   return (
     <div>
+      <h1>{count}</h1>
+
       <button onClick={() => setPerson("Alice")}>Alice</button>
       <button onClick={() => setPerson("Bob")}>Bob</button>
       <button onClick={() => setPerson("Charlie")}>Charlie</button>

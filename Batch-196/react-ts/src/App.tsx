@@ -1,6 +1,7 @@
-import React from "react";
 import "./App.css";
-import UseEffectExample from "./components/UseEffectExample";
+import Footer from "./components/Footer";
+import Header from "./components/Header";
+import { userContext } from "./context/userContext";
 
 /**
  * Tất cả UI đều phải
@@ -8,11 +9,16 @@ import UseEffectExample from "./components/UseEffectExample";
  * để hiển thị ra trình duyệt
  */
 function App() {
-  const [isShow, setIsShow] = React.useState(false);
+  const user = {
+    id: 1,
+    name: "Nguyen Van B",
+  };
   return (
     <>
-      {isShow && <UseEffectExample name="Aptech Softech" />}
-      <button onClick={() => setIsShow(!isShow)}>Toggle</button>
+      <userContext.Provider value={user}>
+        <Header />
+        <Footer />
+      </userContext.Provider>
     </>
   );
 }
