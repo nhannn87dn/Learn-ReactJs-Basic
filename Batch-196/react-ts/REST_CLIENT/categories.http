@@ -1,0 +1,11 @@
+### Get all categories
+GET https://api.escuelajs.co/api/v1/categories
+
+### Create a new category
+POST https://api.escuelajs.co/api/v1/categories
+Content-Type: application/json
+
+{
+  "name": "New Category 196 2",
+  "image": "https://placeimg.com/640/480/any"
+}

@@ -1,4 +1,5 @@
 import "./App.css";
+import CategoriesCRUD from "./components/CategoriesCRUD";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { userContext } from "./context/userContext";
@@ -17,6 +18,7 @@ function App() {
     <>
       <userContext.Provider value={user}>
         <Header />
+        <CategoriesCRUD />
         <Footer />
       </userContext.Provider>
     </>
