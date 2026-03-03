@@ -21,10 +21,13 @@ const schema = yup.object({
 });
 
 const CategoryPOST: React.FC = () => {
+  const [isSuccess, setIsSuccess] = React.useState(false);
+
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    reset,
+    formState: { errors, isSubmitting },
   } = useForm<FormValues>({
     resolver: yupResolver(schema),
   });
@@ -32,22 +35,30 @@ const CategoryPOST: React.FC = () => {
   const onSubmit = async (data: FormValues) => {
     console.log("Form Data:", data);
     // TODO: call API
-    const url = "https://api.escuelajs.co/api/v1/categories";
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data), //dữ liệu sẽ được gửi dưới dạng JSON
-    };
-    const response = await fetch(url, options);
-    const result = await response.json();
-    console.log("API Response:", result);
+    try {
+      const url = "https://api.escuelajs.co/api/v1/categories";
+      const options = {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data), //dữ liệu sẽ được gửi dưới dạng JSON
+      };
+      const response = await fetch(url, options);
+      const result = await response.json();
+      console.log("API Response:", result);
+    } catch (error) {
+      console.error("Error submitting form:", error);
+    } finally {
+      setIsSuccess(true);
+      reset(); //reset form sau khi submit thành công
+    }
   };
 
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>Tạo mới danh mục</h2>
+      {isSuccess && <p className={styles.success}>Tạo danh mục thành công!</p>}
 
       <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
         {/* Name */}
@@ -70,8 +81,8 @@ const CategoryPOST: React.FC = () => {
           )}
         </div>
 
-        <button type="submit" className={styles.button}>
-          Tạo danh mục
+        <button type="submit" className={styles.button} disabled={isSubmitting}>
+          {isSubmitting ? "Đang tạo..." : "Tạo danh mục"}
         </button>
       </form>
     </div>
