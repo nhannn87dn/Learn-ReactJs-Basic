@@ -1,11 +1,17 @@
 import "./App.css";
-import ProductCRUDAxios from "./components/ProductCRUDAxios";
+import ProductCRUDReactQuery from "./components/ProductCRUDReactQuery";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+// Create a client
+const queryClient = new QueryClient();
 
 function App() {
   return (
-    <div className="container mx-auto">
-      <ProductCRUDAxios />
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <div className="container mx-auto">
+        <ProductCRUDReactQuery />
+      </div>
+    </QueryClientProvider>
   );
 }
 
