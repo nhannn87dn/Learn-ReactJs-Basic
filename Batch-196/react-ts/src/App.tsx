@@ -1,27 +1,11 @@
 import "./App.css";
-import CategoriesCRUD from "./components/CategoriesCRUD";
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import { userContext } from "./context/userContext";
+import ProductCRUDAxios from "./components/ProductCRUDAxios";
 
-/**
- * Tất cả UI đều phải
- * đưa vào App component
- * để hiển thị ra trình duyệt
- */
 function App() {
-  const user = {
-    id: 1,
-    name: "Nguyen Van B",
-  };
   return (
-    <>
-      <userContext.Provider value={user}>
-        <Header />
-        <CategoriesCRUD />
-        <Footer />
-      </userContext.Provider>
-    </>
+    <div className="container mx-auto">
+      <ProductCRUDAxios />
+    </div>
   );
 }
 
