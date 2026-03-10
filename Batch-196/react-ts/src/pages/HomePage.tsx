@@ -1,14 +1,14 @@
-import {Link} from  'react-router'
+import Count from "../components/Count";
+import CountV2 from "../components/CountV2";
 
 const HomePage = () => {
   return (
-    <div>
+    <main className="container mx-auto my-5">
       <h1>HomePage</h1>
-      {/* <a href="/blog">Go to Blog</a> */}
-      <Link to="/blog">Go to Blog</Link>
-      <p>Để chuyển hướng đến 1 trang ngoài</p>
-      <a target="_blank" href="https://tinhte.vn">Tinhte.vn</a>
-    </div>
+      <Count />
+      <hr />
+      <CountV2 />
+    </main>
   );
 };
 
