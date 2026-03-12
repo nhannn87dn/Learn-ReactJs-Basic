@@ -3,21 +3,26 @@
 ## Phần chấm điểm kết thúc môn
 
 - Tạo một Layout như Demo 5.Demo-Projects/category.html
-- Tài liệu API: <https://fakestoreapi.in/docs>
+- Tài liệu API: <https://dummyjson.com/docs/products>
 
-Yêu cầu:
+## Yêu cầu
 
-- Làm 2 trang:
-  - Trang Category: Bên trái là cây danh mục sản phẩm. Bên phải là sản phẩm tương ứng với danh mục đang chọn. Nếu chưa chọn danh mục nào thì hiển thị sản phẩm không thuộc danh mục nào cả.
-  - Trang Product: Hiển thị thông tin chi tiết 1 sản phẩm
+Làm 2 trang:
 
-- Lấy danh sách sản phẩm hiển thị ra như Demo  CÓ PHÂN TRANG: Xem tại mục `Products->Pagination`
-- API Danh mục: Xem tại mục `Products->Get Categories`
-- API Lấy Sản phẩm của một Danh mục: Xem tại mục `Products->Get products of category`
-- API chi tiết 1 sản phẩm: `Products->Get single product`
+### Trang Category
 
-Gợi ý cách gọi API phân trang: ví dụ cần lấy `5` sản phẩm, danh mục `mobile`
+- Bên trái là cây danh mục sản phẩm.
+- Bên phải là sản phẩm tương ứng với danh mục đang chọn. Nếu chưa chọn danh mục nào thì hiển thị sản phẩm không thuộc danh mục nào cả.
+- Bên dưới là phân trang cho sản phẩm.
 
-```
-https://fakestoreapi.in/api/products/category?type=mobile&page=1&limit=5
-```
+API lấy danh mục: [https://dummyjson.com/docs/products#products-categories](https://dummyjson.com/docs/products#products-categories)
+
+API lấy sản phẩm theo danh mục: [https://dummyjson.com/docs/products#products-category](https://dummyjson.com/docs/products#products-category)
+
+Phân trang: <https://dummyjson.com/docs/products#products-limit_skip>
+
+### Trang Product Detail
+
+Hiển thị thông tin chi tiết 1 sản phẩm
+
+API lấy chi tiết sản phẩm: [https://dummyjson.com/docs/products#products-single](https://dummyjson.com/docs/products#products-single)
