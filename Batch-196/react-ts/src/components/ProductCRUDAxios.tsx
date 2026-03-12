@@ -65,14 +65,16 @@ export default function ProductCRUDAxios() {
     categoryId: 1,
   });
 
-  const handleChange = (e) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     setForm({
       ...form,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     console.log("<<=== 🚀 form ===>>", form);
@@ -136,7 +138,9 @@ export default function ProductCRUDAxios() {
     }
   };
 
-  const handleChangeEdit = (e) => {
+  const handleChangeEdit = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     setFormEdit({
       ...formEdit,
       [e.target.name]: e.target.value,

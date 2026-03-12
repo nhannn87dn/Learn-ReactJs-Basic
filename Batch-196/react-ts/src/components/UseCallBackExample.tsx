@@ -3,7 +3,7 @@ import Todos from "./Todos";
 
 const UseCallBackExample = () => {
   const [count, setCount] = useState(0);
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState<string[]>([]);
 
   const increment = () => {
     setCount((c) => c + 1);

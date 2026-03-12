@@ -10,7 +10,11 @@ import styles from "./Button.module.css";
  *
  * @returns
  */
-function Button(props) {
+function Button(props: {
+  name: string;
+  icon: string;
+  type?: "dark" | "light";
+}) {
   console.log("<<=== 🚀 styles ===>>");
   console.log("<<=== 🚀 props ===>>", props);
   let className = ""; //màu cam

@@ -113,6 +113,8 @@ const CategoriesCRUD = () => {
     }
   };
 
+  console.log("error", error);
+
   return (
     <div>
       <h2>CategoriesCRUD</h2>

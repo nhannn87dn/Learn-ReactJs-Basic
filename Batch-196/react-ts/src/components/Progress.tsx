@@ -1,10 +1,11 @@
-import styles from "./Progress.Module.css";
+import styles from "./Progress.module.css";
 
 type ProgressItemProps = {
   percent: number;
   label: string;
   bg_label: string;
   bg_percent: string;
+  progress_item?: string;
 };
 
 const ProgressItem = ({
@@ -14,7 +15,7 @@ const ProgressItem = ({
   bg_percent,
 }: ProgressItemProps) => {
   return (
-    <div className={`${styles.progress_item} ${styles.pg_red}`}>
+    <div className={`${styles.p_item}`}>
       <div style={{ backgroundColor: bg_label }} className={styles.pg_label}>
         {label}
       </div>

@@ -1,6 +1,12 @@
 import { memo } from "react";
 
-const Todos = ({ todos, addTodo }) => {
+const Todos = ({
+  todos,
+  addTodo,
+}: {
+  todos: string[];
+  addTodo: () => void;
+}) => {
   console.log("child render");
   return (
     <>

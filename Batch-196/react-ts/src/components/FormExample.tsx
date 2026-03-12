@@ -12,7 +12,7 @@ const FormExample = () => {
     agree: false,
   });
 
-  const onHandleSubmit = (event) => {
+  const onHandleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault(); //chặn reload trang khi submit form
 
     //Xử lý dữ liệu form ở đây

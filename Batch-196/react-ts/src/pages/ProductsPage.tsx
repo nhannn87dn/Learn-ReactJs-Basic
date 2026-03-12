@@ -23,11 +23,7 @@ const ProductsPage = () => {
   const page = parseInt(p);
   const limit = 10;
   //get products with react query
-  const {
-    data: products,
-    isLoading,
-    isError,
-  } = useQuery<IProduct[]>({
+  const { data: products, isLoading } = useQuery<IProduct[]>({
     queryKey: ["products", page, limit],
     queryFn: () => getPaginationProducts(page, limit),
   });

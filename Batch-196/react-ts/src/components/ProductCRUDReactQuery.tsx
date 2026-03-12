@@ -105,14 +105,16 @@ export default function ProductCRUDReactQuery() {
     },
   });
 
-  const handleChange = (e) => {
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     setForm({
       ...form,
       [e.target.name]: e.target.value,
     });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     console.log("<<=== 🚀 form ===>>", form);
@@ -177,7 +179,9 @@ export default function ProductCRUDReactQuery() {
     });
   };
 
-  const handleChangeEdit = (e) => {
+  const handleChangeEdit = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
     setFormEdit({
       ...formEdit,
       [e.target.name]: e.target.value,

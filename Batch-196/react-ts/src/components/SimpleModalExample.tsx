@@ -1,5 +1,15 @@
 // Reusable Modal Component (Không dùng framer-motion)
-export default function SimpleModalExample({ open, onClose, children, title }) {
+export default function SimpleModalExample({
+  open,
+  onClose,
+  children,
+  title,
+}: {
+  open: boolean;
+  onClose: () => void;
+  children: React.ReactNode;
+  title?: string;
+}) {
   if (!open) return null;
 
   return (
