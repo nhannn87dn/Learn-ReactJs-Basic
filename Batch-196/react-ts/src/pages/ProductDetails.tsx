@@ -21,11 +21,7 @@ const ProductDetails = () => {
   const params = useParams();
   const slug = params.slug || "";
 
-  const {
-    data: product,
-    isLoading,
-    isError,
-  } = useQuery<IProduct>({
+  const { data: product, isLoading } = useQuery<IProduct>({
     queryKey: ["product", slug],
     queryFn: () => getProductDetail(slug),
   });
