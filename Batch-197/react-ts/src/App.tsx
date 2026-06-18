@@ -1,9 +1,13 @@
 import "./App.css";
+import { User, Search } from "lucide-react";
+import Hotline from "./components/Hotline";
 
 function App() {
   return (
     <>
-      <h1>Hello React</h1>
+      <Hotline />
+      <User color={"red"} /> <Search size={64} />
+      <img src="icon-05.png" alt="" />
     </>
   );
 }
