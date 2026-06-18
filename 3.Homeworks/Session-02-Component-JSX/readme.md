@@ -1,6 +1,8 @@
-# Bài 1: Tạo Component Thông Tin Cá Nhân
+# Homework Session 02 - Component & JSX
 
-## Yêu cầu
+## Bài 1: Tạo Component Thông Tin Cá Nhân
+
+### Yêu cầu
 
 Tạo một component tên `Profile`.
 
@@ -10,7 +12,7 @@ Component hiển thị:
 - Nghề nghiệp: Frontend Developer
 - Thành phố: Đà Nẵng
 
-## Kết quả mong muốn
+### Kết quả mong muốn
 
 ```text
 Nguyễn Văn A
@@ -18,7 +20,7 @@ Frontend Developer
 Đà Nẵng
 ```
 
-## Điều kiện
+### Điều kiện
 
 - Sử dụng JSX.
 - Component phải trả về một phần tử gốc duy nhất.
@@ -26,9 +28,9 @@ Frontend Developer
 
 ---
 
-# Bài 2: Hiển Thị Dữ Liệu Bằng Curly Braces
+## Bài 2: Hiển Thị Dữ Liệu Bằng Curly Braces
 
-## Yêu cầu
+### Yêu cầu
 
 Cho dữ liệu:
 
@@ -40,7 +42,7 @@ const job = "Frontend Developer";
 
 Tạo component `UserInfo` để hiển thị các thông tin trên.
 
-## Kết quả mong muốn
+### Kết quả mong muốn
 
 ```text
 Nguyễn Văn A
@@ -48,16 +50,16 @@ Nguyễn Văn A
 Frontend Developer
 ```
 
-## Điều kiện
+### Điều kiện
 
 - Không hard-code dữ liệu trực tiếp trong JSX.
 - Phải sử dụng dấu `{}` để hiển thị dữ liệu.
 
 ---
 
-# Bài 3: Hiển Thị Danh Sách Sản Phẩm
+## Bài 3: Hiển Thị Danh Sách Sản Phẩm
 
-## Yêu cầu
+### Yêu cầu
 
 Cho dữ liệu:
 
@@ -79,7 +81,7 @@ Hiển thị danh sách sản phẩm bằng thẻ:
 </ul>
 ```
 
-## Kết quả mong muốn
+### Kết quả mong muốn
 
 ```text
 • Laptop
@@ -87,16 +89,16 @@ Hiển thị danh sách sản phẩm bằng thẻ:
 • Keyboard
 ```
 
-## Điều kiện
+### Điều kiện
 
 - Sử dụng JSX.
 - Sử dụng JavaScript bên trong `{}` để render dữ liệu.
 
 ---
 
-# Bài 4: Tính Toán Trong JSX
+## Bài 4: Tính Toán Trong JSX
 
-## Yêu cầu
+### Yêu cầu
 
 Cho dữ liệu:
 
@@ -113,7 +115,7 @@ Hiển thị:
 - Giá gốc
 - Giá sau khi giảm 10%
 
-## Kết quả mong muốn
+### Kết quả mong muốn
 
 ```text
 Laptop
@@ -121,20 +123,20 @@ Giá gốc: 20000000
 Giá giảm còn: 18000000
 ```
 
-## Điều kiện
+### Điều kiện
 
 - Không tạo thêm biến cho giá giảm.
 - Thực hiện phép tính trực tiếp bên trong JSX bằng `{}`.
 
 ---
 
-# Bài 5: Trang Giới Thiệu Công Ty
+## Bài 5: Trang Giới Thiệu Công Ty
 
-## Yêu cầu
+### Yêu cầu
 
 Tạo các component sau:
 
-### Header
+##### Header
 
 Hiển thị:
 
@@ -142,7 +144,7 @@ Hiển thị:
 ABC Company
 ```
 
-### About
+##### About
 
 Hiển thị:
 
@@ -150,7 +152,7 @@ Hiển thị:
 Chúng tôi chuyên phát triển phần mềm.
 ```
 
-### Contact
+##### Contact
 
 Hiển thị:
 
@@ -159,7 +161,7 @@ Email: contact@abc.com
 Phone: 0123456789
 ```
 
-### App
+##### App
 
 Render lần lượt:
 
@@ -167,7 +169,7 @@ Render lần lượt:
 - About
 - Contact
 
-## Kết quả mong muốn
+### Kết quả mong muốn
 
 ```text
 ABC Company
@@ -178,8 +180,27 @@ Email: contact@abc.com
 Phone: 0123456789
 ```
 
-## Điều kiện
+### Điều kiện
 
 - Mỗi phần phải là một component riêng.
 - Component `App` phải gọi các component con bằng JSX.
 - Tên component phải viết hoa chữ cái đầu.
+
+## Cấu trúc thư mục
+
+```
+src/
+│
+├── components/
+│   ├── Profile.jsx
+│   ├── UserInfo.jsx
+│   ├── ProductList.jsx
+│   ├── ProductCard.jsx
+│   ├── Header.jsx
+│   ├── About.jsx
+│   └── Contact.jsx
+│
+├── App.jsx
+└── main.jsx
+
+```
