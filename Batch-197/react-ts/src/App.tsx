@@ -1,13 +1,14 @@
+import { PhoneCall, ShoppingCart } from "lucide-react";
 import "./App.css";
-import { User, Search } from "lucide-react";
-import Hotline from "./components/Hotline";
+import Button from "./components/Button";
+import Policy from "./components/Policy";
 
 function App() {
   return (
     <>
-      <Hotline />
-      <User color={"red"} /> <Search size={64} />
-      <img src="icon-05.png" alt="" />
+      <Button type="red" icon={<ShoppingCart />} label="Thêm vào giỏ hàng" />
+      <Button type="orange" icon={<PhoneCall />} label="Gọi lại tư vấn" />
+      <Policy />
     </>
   );
 }
