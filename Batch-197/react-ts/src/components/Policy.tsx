@@ -1,18 +1,14 @@
 import { ShieldCheck, Truck, Undo2 } from "lucide-react";
-
-const sayHello = (name: string, age: number) => {
-  console.log("Hello " + name);
-};
-//sayHello('Tuan');
-//sayHello('Nam');
-
 //props là một object.
+type PolicyProps = {
+  icon: React.ReactNode;
+  text: string;
+};
 
-const PolicyItem = (props) => {
-  console.log(props, "props");
+const PolicyItem = ({ icon, text }: PolicyProps) => {
   return (
     <li>
-      {props.icon} {props.text}
+      {icon} {text}
     </li>
   );
 };

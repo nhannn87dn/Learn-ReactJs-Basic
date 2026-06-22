@@ -1,23 +1,35 @@
 import styles from "./Button.module.css";
 
 //các sẽ sử dụng cú phép function để tạo component
+/*
+props = {
+  type: "red", 
+  label: "Thêm vào giỏ hàng", 
+  icon: <ShoppingCart />
+}
+*/
 
-function Button(props) {
+function Button({
+  type = "green",
+  label,
+  icon,
+}: {
+  type?: string; //tuỳ chọn
+  label: string;
+  icon: React.ReactNode; //type của component
+}) {
   let buttonType = "";
-  if (props.type === "red") {
+  if (type === "red") {
     buttonType = styles.red;
-  }
-  if (props.type === "orange") {
+  } else if (type === "orange") {
     buttonType = styles.orange;
   }
   return (
-    <button
-      className={`${styles.button} ${buttonType}`}
-      onClick={props.onClick}
-    >
-      {props.icon} {props.label}
+    <button className={`${styles.button} ${buttonType}`}>
+      {icon} {label}
     </button>
   );
 }
+
 //Xuất ra để có thể sử dụng ở các file khác
 export default Button;
