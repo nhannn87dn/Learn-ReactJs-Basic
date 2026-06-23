@@ -1,0 +1,17 @@
+.attrs {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+}
+
+.item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  border: 2px solid #ddd;
+}
+.active {
+  border: 2px solid #111;
+  font-weight: bold;
+}

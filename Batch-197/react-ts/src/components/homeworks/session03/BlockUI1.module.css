@@ -1,0 +1,36 @@
+.process_bar_item {
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+}
+
+.process_bar_label {
+  width: 160px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  text-transform: uppercase;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 10px;
+}
+.process_bar {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  background-color: #f3f3f3;
+}
+.process_bar_percent {
+  display: flex;
+  align-items: center;
+  color: #fff;
+  padding: 10px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.bandwidth_label_bg {
+  background-color: #e54d4c;
+}
+.bandwidth_percent_bg {
+  background-color: #f75354;
+}

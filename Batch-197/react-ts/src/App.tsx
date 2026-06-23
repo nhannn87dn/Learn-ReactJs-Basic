@@ -1,14 +1,12 @@
-import { PhoneCall, ShoppingCart } from "lucide-react";
 import "./App.css";
-import Button from "./components/Button";
-import Policy from "./components/Policy";
+import Basic1 from "./components/homeworks/session03/Basic1";
+import BlockUI1 from "./components/homeworks/session03/BlockUI1";
 
 function App() {
   return (
     <>
-      <Button icon={<ShoppingCart />} label="Thêm vào giỏ hàng" />
-      <Button type="orange" icon={<PhoneCall />} label="Gọi lại tư vấn" />
-      <Policy />
+      <BlockUI1 />
+      <Basic1 />
     </>
   );
 }
