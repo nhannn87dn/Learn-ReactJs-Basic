@@ -13,7 +13,7 @@ const data = {
       thumbnail: "images/nokia.jpg",
     },
     {
-      id: 1,
+      id: 3,
       name: "top 3",
       price: 49,
       thumbnail: "images/nokia.jpg",
@@ -33,7 +33,7 @@ const data = {
       thumbnail: "images/nokia.jpg",
     },
     {
-      id: 1,
+      id: 3,
       name: "best 3",
       price: 49,
       thumbnail: "images/nokia.jpg",
@@ -53,7 +53,7 @@ const data = {
       thumbnail: "images/nokia.jpg",
     },
     {
-      id: 1,
+      id: 3,
       name: "lasted 3",
       price: 49,
       thumbnail: "images/nokia.jpg",
@@ -95,23 +95,25 @@ const Exercise7Homeworks4 = () => {
         <h2 className="font-bold uppercase mb-5">Top Products</h2>
         <div className="top-product-list flex flex-col gap-y-5">
           {data.top.map((product) => {
-            return <ProductItem product={product} />;
+            return <ProductItem key={`top-${product.id}`} product={product} />;
           })}
         </div>
       </div>
-      <div className="top-products  flex-1">
+      <div className="best-products  flex-1">
         <h2 className="font-bold uppercase  mb-5">Best Products</h2>
         <div className="best-product-list flex flex-col gap-y-5">
           {data.best.map((product) => {
-            return <ProductItem product={product} />;
+            return <ProductItem key={`best-${product.id}`} product={product} />;
           })}
         </div>
       </div>
-      <div className="top-products  flex-1">
+      <div className="lasted-products  flex-1">
         <h2 className="font-bold uppercase  mb-5">Lasted Products</h2>
-        <div className="best-product-list flex flex-col gap-y-5">
+        <div className="lasted-product-list flex flex-col gap-y-5">
           {data.lasted.map((product) => {
-            return <ProductItem product={product} />;
+            return (
+              <ProductItem key={`lasted-${product.id}`} product={product} />
+            );
           })}
         </div>
       </div>
