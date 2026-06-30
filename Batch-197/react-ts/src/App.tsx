@@ -1,14 +1,11 @@
 import "./App.css";
-import Attributes from "./components/Attributes";
-import RankStars from "./components/RankStars";
-import SimpleGallery from "./components/SimpleGallery";
+
+import FormExample from "./components/FormExample";
 
 function App() {
   return (
     <main className="container mx-auto">
-      <Attributes />
-      <RankStars />
-      <SimpleGallery />
+      <FormExample />
     </main>
   );
 }
