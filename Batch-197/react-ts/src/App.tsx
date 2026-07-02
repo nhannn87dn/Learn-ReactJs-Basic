@@ -1,11 +1,15 @@
 import "./App.css";
 
-import FormExample from "./components/FormExample";
+import ReactHookFormExample from "./components/ReactHookFormExample";
+import ReactHookFormExampleZod from "./components/ReactHookFormExampleZod";
 
 function App() {
   return (
     <main className="container mx-auto">
-      <FormExample />
+      <h2>HTML5 Validation + React Hook Form</h2>
+      <ReactHookFormExample />
+      <h2>Zod Validation + React Hook Form</h2>
+      <ReactHookFormExampleZod />
     </main>
   );
 }
