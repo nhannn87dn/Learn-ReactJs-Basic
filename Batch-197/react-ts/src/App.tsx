@@ -1,15 +1,14 @@
 import "./App.css";
-
-import ReactHookFormExample from "./components/ReactHookFormExample";
-import ReactHookFormExampleZod from "./components/ReactHookFormExampleZod";
+import { useBrowserWidth } from "./hooks/useBrowserWidth";
+// import UseMemoExample from "./components/UseMemoExample";
 
 function App() {
+  const browserWidth = useBrowserWidth();
+
   return (
     <main className="container mx-auto">
-      <h2>HTML5 Validation + React Hook Form</h2>
-      <ReactHookFormExample />
-      <h2>Zod Validation + React Hook Form</h2>
-      <ReactHookFormExampleZod />
+      <h1>Browser Width: {browserWidth}px</h1>
+      {/* <UseMemoExample /> */}
     </main>
   );
 }
