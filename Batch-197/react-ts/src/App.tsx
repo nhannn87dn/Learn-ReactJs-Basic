@@ -1,14 +1,10 @@
 import "./App.css";
-import { useBrowserWidth } from "./hooks/useBrowserWidth";
-// import UseMemoExample from "./components/UseMemoExample";
+import FetchCURDCategories from "./components/FetchCURDCategories";
 
 function App() {
-  const browserWidth = useBrowserWidth();
-
   return (
     <main className="container mx-auto">
-      <h1>Browser Width: {browserWidth}px</h1>
-      {/* <UseMemoExample /> */}
+      <FetchCURDCategories />
     </main>
   );
 }
