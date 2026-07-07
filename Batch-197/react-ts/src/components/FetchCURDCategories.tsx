@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useForm, type SubmitHandler } from "react-hook-form";
+import Modal from "./Modal";
 
 type TCategory = {
   id: number;
@@ -13,12 +14,48 @@ interface IAddCategory {
   image: string;
 }
 
+//Xoa
+const DeleteButton = ({ id }: { id: number }) => {
+  // const [isSuccess, setIsSuccess] = useState<boolean>(false);
+
+  const onHandleDelete = async (id: number) => {
+    try {
+      const response = await fetch(
+        `https://api.escuelajs.co/api/v1/categories/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json", //cấu hình header để gửi dữ liệu dạng JSON
+          },
+        },
+      );
+      const result = await response.json();
+      console.log("<<=== 🚀result  ===>>", result);
+      if (result) {
+        alert("Xoa thanh cong !");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return (
+    <button
+      onClick={() => onHandleDelete(id)}
+      className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors ml-2"
+    >
+      Delete
+    </button>
+  );
+};
+
 //Form them moi Category voi react hook form
 const AddCategoryForm = () => {
+  const [isSuccess, setIsSuccess] = useState<boolean>(false);
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<IAddCategory>();
   const onSubmit: SubmitHandler<IAddCategory> = async (data) => {
     console.log(data);
@@ -36,6 +73,9 @@ const AddCategoryForm = () => {
       );
       const result = await response.json();
       console.log(result);
+      if (response.status === 201) {
+        setIsSuccess(true);
+      }
     } catch (error) {
       console.log(error);
     }
@@ -43,6 +83,7 @@ const AddCategoryForm = () => {
 
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
+      {isSuccess && <p>Thêm danh mục thành công !</p>}
       <input
         placeholder="Name"
         {...register("name", { required: true, maxLength: 20 })}
@@ -55,7 +96,9 @@ const AddCategoryForm = () => {
         {...register("image", { required: true })}
       />
       {errors.image && <span>Image URL is required</span>}
-      <button type="submit">Add Category</button>
+      <button disabled={isSubmitting} type="submit">
+        {isSubmitting ? "Dang xy ly" : "Add Category"}
+      </button>
     </form>
   );
 };
@@ -64,6 +107,7 @@ const AddCategoryForm = () => {
 const FetchCURDCategories = () => {
   const [categories, setCategories] = useState<TCategory[]>([]);
   const [isAddCategory, setIsAddCategory] = useState(false);
+  const [editItem, setEditItem] = useState<TCategory | null>(null);
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -88,6 +132,61 @@ const FetchCURDCategories = () => {
   }, []); //tham số thứ 2 là dependencies, nếu để rỗng thì chỉ chạy 1 lần khi component được render lần đầu tiên
 
   console.log("<<=== 🚀 categories ===>>", categories);
+  console.log("<<=== 🚀 editItem ===>>", editItem);
+
+  //update
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors, isSubmitting },
+    setValue,
+  } = useForm<IAddCategory>({
+    defaultValues: {
+      name: editItem?.name,
+      image: editItem?.image,
+    },
+  });
+  const onSubmit: SubmitHandler<IAddCategory> = async (data) => {
+    console.log("update form", data);
+    // Gọi API để thêm mới category
+    try {
+      try {
+        const response = await fetch(
+          `https://api.escuelajs.co/api/v1/categories/${editItem?.id}`,
+          {
+            method: "PUT", //cấu hình method POST để thêm mới dữ liệu
+            headers: {
+              "Content-Type": "application/json", //cấu hình header để gửi dữ liệu dạng JSON
+            },
+            body: JSON.stringify({
+              name: data.name,
+              image: data.image,
+            }), //body là dữ liệu gửi đi dạng JSON
+          },
+        );
+        const result = await response.json();
+        console.log("<<=== 🚀 result ===>>", result);
+        if (response.status === 200) {
+          setEditItem(null); //đóng modal
+        }
+      } catch (error) {
+        //nễu gọi API bị lỗi thì sẽ vào catch
+        console.log(error);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  //sử dụng useEffect để set dữ liệu cho form
+  useEffect(() => {
+    //Khi editTiem có dữ liệu thì lấy đổ vào form
+    if (editItem) {
+      setValue("name", editItem.name);
+      setValue("image", editItem.image);
+    }
+  }, [editItem]);
 
   return (
     <div className="overflow-x-auto">
@@ -99,6 +198,29 @@ const FetchCURDCategories = () => {
       </div>
       {/* Khi nào click vào nút Add Category thì sẽ hiển thị form AddCategoryForm, còn không thì không hiển thị. Sử dụng state isAddCategory để quản lý việc hiển thị form. */}
       {isAddCategory && <AddCategoryForm />}
+      <Modal
+        isOpen={editItem !== null}
+        onClose={() => setEditItem(null)}
+        title={"Edit Category"}
+      >
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <input
+            placeholder="Name"
+            {...register("name", { required: true, maxLength: 20 })}
+          />
+          {errors.name && (
+            <span>Name is required and should be less than 20 characters</span>
+          )}
+          <input
+            placeholder="Image URL"
+            {...register("image", { required: true })}
+          />
+          {errors.image && <span>Image URL is required</span>}
+          <button disabled={isSubmitting} type="submit">
+            {isSubmitting ? "Dang xy ly" : "Update Category"}
+          </button>
+        </form>
+      </Modal>
 
       <table className="min-w-full border border-gray-300 bg-white shadow-md rounded-lg overflow-hidden">
         <thead className="bg-gray-100">
@@ -136,12 +258,15 @@ const FetchCURDCategories = () => {
 
                 <td className="border-b px-4 py-3">{category.slug}</td>
                 <td className="border-b px-4 py-3">
-                  <button className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors">
+                  <button
+                    onClick={() => {
+                      setEditItem(category);
+                    }}
+                    className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
+                  >
                     Edit
                   </button>
-                  <button className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600 transition-colors ml-2">
-                    Delete
-                  </button>
+                  <DeleteButton id={category.id} />
                 </td>
               </tr>
             ))}
