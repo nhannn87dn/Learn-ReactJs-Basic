@@ -1,3 +1,5 @@
+import { Button } from "@/components/ui/button";
+import { useShoppingCartStore } from "@/stores/useShoppingCart";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import { Helmet } from "react-helmet-async";
@@ -23,6 +25,7 @@ const getProducts = async (page: number = 1): Promise<TProduct[]> => {
 };
 
 const ProductsPage = () => {
+  const { addToCart } = useShoppingCartStore();
   const [params] = useSearchParams();
   const page = params.get("page") ? Number(params.get("page")) : 1;
   //const limit = params.get("limit") ? Number(params.get("limit")) : 10;
@@ -57,10 +60,13 @@ const ProductsPage = () => {
 
       <div className="grid grid-cols-4 gap-6">
         {queryProducts.data?.map((product) => (
-          <Link
-            to={`/products/${product.slug}`}
-            key={product.id}
+         <div
+                     key={product.id}
             className="overflow-hidden rounded-xl border bg-white shadow transition hover:-translate-y-1 hover:shadow-lg"
+
+         >
+           <Link
+            to={`/products/${product.slug}`}
           >
             <img
               src={product.images?.[0]}
@@ -82,6 +88,17 @@ const ProductsPage = () => {
               </button>
             </div>
           </Link>
+          <Button onClick={()=>{
+            console.log(product);
+            addToCart({
+              id: product.id,
+              title: product.title,
+              price: product.price,
+              quantity: 1,
+            });
+
+          }}>Add To Cart</Button>
+         </div>
         ))}
       </div>
       <div className="mt-10 flex justify-center">

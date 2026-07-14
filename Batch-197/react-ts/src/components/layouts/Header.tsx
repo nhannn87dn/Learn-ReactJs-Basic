@@ -1,4 +1,5 @@
 import { Link } from "react-router";
+import Cart from "../Cart";
 
 const Header = () => {
   return (
@@ -34,6 +35,12 @@ const Header = () => {
               className="text-white hover:text-blue-600 font-medium transition-colors duration-200"
             >
               Products
+            </Link>
+            <Link
+              to="/cart"
+              className="text-white hover:text-blue-600 font-medium transition-colors duration-200"
+            >
+              <Cart />
             </Link>
           </div>
 

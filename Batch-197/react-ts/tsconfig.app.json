@@ -21,7 +21,6 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
     /* aslía */
-    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
     }
