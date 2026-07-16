@@ -1,6 +1,11 @@
 import { memo } from "react";
 
-const Todos = ({ todos, addTodo }) => {
+type TodosProps = {
+  todos: string[];
+  addTodo: () => void;
+};
+
+const Todos = ({ todos, addTodo }: TodosProps) => {
   console.log("Todos render");
   return (
     <>

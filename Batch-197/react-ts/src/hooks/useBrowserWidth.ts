@@ -10,7 +10,7 @@ export const useBrowserWidth = () => {
   useEffect(() => {
     // Throttle the resize event to improve performance
     const handleResizeThrottled = () => {
-      let timeoutId;
+      let timeoutId: number | null = null;
       return () => {
         if (timeoutId) {
           clearTimeout(timeoutId);

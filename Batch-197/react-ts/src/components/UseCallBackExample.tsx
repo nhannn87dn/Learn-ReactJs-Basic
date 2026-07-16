@@ -1,9 +1,9 @@
-import React, { useCallback, useState } from "react";
+import { useCallback, useState } from "react";
 import Todos from "./Todos";
 
 const UseCallBackExample = () => {
   const [count, setCount] = useState(0);
-  const [todos, setTodos] = useState([]);
+  const [todos, setTodos] = useState<string[]>([]);
 
   const increment = () => {
     setCount((c) => c + 1);
@@ -15,7 +15,7 @@ const UseCallBackExample = () => {
 
   const addTodo = useCallback(() => {
     setTodos((t) => [...t, "New Todo"]);
-  }, [todos]);
+  }, []);
 
   return (
     <>
