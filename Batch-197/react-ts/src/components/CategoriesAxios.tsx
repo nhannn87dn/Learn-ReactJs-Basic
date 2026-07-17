@@ -8,6 +8,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { envConfig } from "@/lib/env";
 
 type TCategory = {
   id: number;
@@ -23,7 +24,7 @@ const CategoriesAxios = () => {
     const fetchCategories = async () => {
       try {
         const response = await axios.get(
-          "https://api.escuelajs.co/api/v1/categories",
+          `${envConfig.BACKEND_API_URL}/v1/categories`,
         );
         console.log("response", response);
         setCategories(response.data);
