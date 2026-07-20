@@ -1,3 +1,11 @@
 .primary_text {
   color: orange;
 }
+
+.font_large {
+  font-size: 40px;
+}
+
+.second_text {
+  color: blue;
+}

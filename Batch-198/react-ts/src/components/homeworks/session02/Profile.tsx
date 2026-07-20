@@ -3,9 +3,11 @@ import styles from "./Profile.module.css";
 const Profile = () => {
   return (
     <div>
-      <p className={styles.primary_text}>Họ tên: Nguyễn Văn A</p>
+      <p className={`${styles.primary_text} ${styles.font_large}`}>
+        Họ tên: Nguyễn Văn A
+      </p>
       <p>Nghề nghiệp: Frontend Developer</p>
-      <p>Thành phố: Đà Nẵng</p>
+      <p className={styles.second_text}>Thành phố: Đà Nẵng</p>
     </div>
   );
 };
