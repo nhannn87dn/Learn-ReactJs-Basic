@@ -507,26 +507,6 @@ const styleObject = {backgroundColor: 'white', color: 'red'}
 <div style={styleObject}>Hello</div>
 ```
 
-### 🔥 3. CSS Module ?
-
-Giúp bạn tránh bị xung đột css
-
-```js
-    //Cách thực hiện: Tạo một file css có tên
-    ComponentName.module.
-    // đặt nó cùng với file component sử dụng nó
-    /* Import  */
-    import styles from "./ComponentName.module.scss";
-
-    ...
-    return (
-        <div className={styles.container}>
-
-        </div>
-    );
-
-```
-
 ## 🌻 Embed icon Font React
 
 - React Icons <https://react-icons.github.io/react-icons>

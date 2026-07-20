@@ -192,15 +192,15 @@ Phone: 0123456789
 src/
 │
 ├── components/
-│   ├── Profile.jsx
-│   ├── UserInfo.jsx
-│   ├── ProductList.jsx
-│   ├── ProductCard.jsx
-│   ├── Header.jsx
-│   ├── About.jsx
-│   └── Contact.jsx
+│   ├── Profile.tsx
+│   ├── UserInfo.tsx
+│   ├── ProductList.tsx
+│   ├── ProductCard.tsx
+│   ├── Header.tsx
+│   ├── About.tsx
+│   └── Contact.tsx
 │
-├── App.jsx
-└── main.jsx
+├── App.tsx
+└── main.tsx
 
 ```
