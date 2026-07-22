@@ -1,0 +1,13 @@
+.policy {
+  display: flex;
+  flex-direction: column;
+}
+.policy_item {
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+}
+.icon svg {
+  margin-top: 5px;
+  font-size: 8px;
+}
