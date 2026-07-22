@@ -1,0 +1,22 @@
+.process_item {
+  display: flex;
+  margin: 10px 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.process_label {
+  text-transform: uppercase;
+  color: #fff;
+  display: flex;
+  justify-content: flex-end;
+  width: 160px;
+  padding: 10px;
+}
+.process_bar {
+  background-color: #f3f3f3;
+  width: calc(100% - 160px);
+}
+.process_percent {
+  padding: 10px;
+  color: #fff;
+}
