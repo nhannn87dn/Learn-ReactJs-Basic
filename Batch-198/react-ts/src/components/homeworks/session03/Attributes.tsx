@@ -13,15 +13,24 @@ const AttrItem = ({ label }: TAttrProps) => {
 };
 
 const Attributes = () => {
+  //render list
+  const colors = [
+    { id: 1, name: "Đen" },
+    { id: 2, name: "Hồng" },
+    { id: 3, name: "Xanh" },
+    { id: 5, name: "Nâu" },
+  ];
   return (
     <div className={styles.attrs}>
       <span className="label">Màu Sắc</span>
-      {/* <span className={`${styles.value} ${styles.active}`}>Đen</span>
-      <span className={styles.value}>Hồng</span>
-      <span className={styles.value}>Xanh</span> */}
-      <AttrItem label="Đen" />
+      {colors.map((item, index) => {
+        return <AttrItem key={index} label={item.name} />;
+      })}
+
+      {/* <AttrItem label="Đen" />
       <AttrItem label="Hồng" />
       <AttrItem label="Xanh" />
+      <AttrItem label="Trắng" /> */}
     </div>
   );
 };
