@@ -1,0 +1,21 @@
+.product_list {
+  display: flex;
+}
+
+.price strong {
+  color: red;
+}
+
+.product_item {
+  position: relative;
+}
+.discount {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 2;
+  background-color: #f80;
+  color: #fff;
+  border-radius: 3px;
+  padding: 3px 6px;
+}

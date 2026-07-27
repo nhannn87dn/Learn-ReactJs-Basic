@@ -1,0 +1,20 @@
+.article_list_wrapper {
+  margin: 20px 0;
+}
+.article_list_header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.article_list_content {
+  display: flex;
+  gap: 20px;
+}
+
+.article_list_content article {
+  width: calc((100% - 60px) / 4);
+}
+.thumbnail img {
+  width: 100%;
+  height: auto;
+}

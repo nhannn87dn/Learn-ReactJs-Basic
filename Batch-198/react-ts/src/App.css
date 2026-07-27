@@ -1,6 +1,9 @@
-.product_name {
-  color: blue;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
-.a_primary_text {
-  color: blue;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
 }
