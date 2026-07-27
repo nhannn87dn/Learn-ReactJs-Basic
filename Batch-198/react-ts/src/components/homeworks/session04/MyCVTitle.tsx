@@ -4,7 +4,7 @@ const MyCVTitle = ({
   color = "#111",
 }: {
   title: string;
-  color: string;
+  color?: string;
 }) => {
   return (
     <h2

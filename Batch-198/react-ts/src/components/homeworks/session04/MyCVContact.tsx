@@ -1,4 +1,5 @@
 import styles from "./MyCV.module.css";
+import MyCVTitle from "./MyCVTitle";
 
 const contacts = [
   {
@@ -18,9 +19,10 @@ const contacts = [
   },
 ];
 
-const MyCV_Contact = () => {
+const MyCVContact = () => {
   return (
     <div>
+      <MyCVTitle title="Contact" color="#fff" />
       <ul>
         {contacts.map((contact) => {
           return (
@@ -35,4 +37,4 @@ const MyCV_Contact = () => {
   );
 };
 
-export default MyCV_Contact;
+export default MyCVContact;
