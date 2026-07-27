@@ -1,0 +1,18 @@
+.cv_layout {
+  margin: 40px 0;
+  display: flex;
+}
+.cv_left {
+  width: 300px;
+  background-color: #3958a8;
+  padding: 40px 60px;
+}
+
+.cv_right {
+  flex: 1;
+  padding: 40px 60px;
+}
+.cv_title {
+  text-transform: uppercase;
+  font-size: 18px;
+}

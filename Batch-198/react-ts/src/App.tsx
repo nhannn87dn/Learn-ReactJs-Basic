@@ -1,6 +1,7 @@
 import "./App.css";
 import Accessories from "./components/homeworks/session04/Accessories";
 import ArticleList from "./components/homeworks/session04/ArticleList";
+import MyCV from "./components/homeworks/session04/MyCV";
 
 function App() {
   return (
@@ -8,6 +9,8 @@ function App() {
       <Accessories />
       <hr />
       <ArticleList />
+      <hr />
+      <MyCV />
     </main>
   );
 }
