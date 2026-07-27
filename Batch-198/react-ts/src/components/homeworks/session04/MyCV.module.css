@@ -16,3 +16,8 @@
   text-transform: uppercase;
   font-size: 18px;
 }
+
+.bg_yellow {
+  color: yellow;
+  /* background-color: yellow; */
+}
