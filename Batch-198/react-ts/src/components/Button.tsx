@@ -1,23 +1,14 @@
-const hello = (name: string) => {
-  return name;
-};
-
-hello("Tuan"); // Tuan
-hello("Nam"); // Nam
-
 type ButtonProps = {
   name: string;
-  bgColor: string;
+  bgColor?: string;
   icon: React.ReactNode; //type của một component
+  onHandleClick: ()=>void
 };
 const Button = (props: ButtonProps) => {
-  console.log("props", props);
-  return (
+    return (
     <button
-      style={{
-        backgroundColor: props.bgColor,
-        color: "#fff",
-      }}
+     className="btn"
+     onClick={props.onHandleClick}
     >
       {props.icon} {props.name}
     </button>

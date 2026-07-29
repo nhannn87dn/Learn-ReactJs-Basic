@@ -7,3 +7,17 @@
   max-width: 1200px;
   margin: 0 auto;
 }
+.btn{
+  padding: 8px 60px;
+  background-color: #F80;
+  color: #fff;
+  border: none;
+  appearance: none;
+  outline: none;
+  text-align: center;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.btn:hover {
+background-color: rgb(226, 121, 1);
+}
