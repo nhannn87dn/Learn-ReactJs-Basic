@@ -1,37 +1,76 @@
+import { useState } from "react";
 import "./App.css";
-import EventHanding from "./components/EventHanding";
+import ButtonLike from "./components/ButtonLike";
+import Gallery from "./components/Gallery";
+import Notifications from "./components/Notifications";
+import { CircleX, Heart } from "lucide-react";
+import Attributes from "./components/homeworks/session03/Attributes";
 
-const Button =({name, onClick}: {name: string, onClick: ()=>void})=>{
-  return <button onClick={onClick}>{name}</button>
-}
+const HeartButton = () => {
+  const [currentColor, setCurrentColor] = useState("black");
+
+  return (
+    <button
+      onClick={() => {
+        setCurrentColor("red");
+      }}
+      style={{ color: currentColor }}
+    >
+      <Heart />
+    </button>
+  );
+};
+const SuggestSearch = () => {
+  const [isShow, setIsShow] = useState(false);
+  return (
+    <>
+      <input onClick={()=>{
+        setIsShow(true)
+      }} type="text" placeholder="Tìm kiếm" />
+      {isShow && (
+        <div style={{
+          border: '2px solid red'
+        }}>
+          <button onClick={()=>{
+            setIsShow(false)
+          }}><CircleX /></button>
+          <p>Tìm kiếm gần đây</p>
+        </div>
+      )}
+    </>
+  );
+};
+
 function App() {
   return (
     <main className="container">
-      <EventHanding />
-      <Button onClick={()=>{
-        console.log('Da login ');
-      }} name="Login" />
-      <Button onClick={()=>{
-        console.log('Da logout ');
-      }}name="Logout" />
+      <HeartButton />
+      {/* <Gallery /> */}
+      <hr />
+      <Notifications />
+      <hr />
+      <ButtonLike />
+      <hr />
+      <SuggestSearch />
+      <hr/>
+      <Attributes />
     </main>
   );
 }
 
 export default App;
 
+/*
+TASK 1;
+Tạo một component HeartButton để mô phỏng lại
+Nút thả tim như Zalo.
+- Mặc định lúc đầu tim màu đen
+- Click vào thì nó thành màu đỏ
 
-/* 
-TASK 1
-Tạo một component EventHandingExample 
-- Với giao diện là một element button Thêm vào giỏ hàng và Gọi lại tư vấn
-- Mong muốn khi click vào button Thêm vào giỏ hàng --> log ra: đã thêm thành công
- Nếu click vào button Gọi lại tư vấn --> log ra:  NV sẽ gọi lại sớm
-
- TASK 2:
- - Tạo một component Button với props hợp lý
- - Dùng component Button đó, hiển thị ra thành 2 nút: Login, Logout
- - Bắt sự kiện onClick cho 2 button:
- + Khi Click vào Login --> thì log ra:  Đã Login
-+ Khi Click vào Logout --> thì log ra:  Đã Logout
+=======
+Task 2
+- Tạo một components SuggestSearch gồm 2 phần
++ Input text và một thẻ div với nội dung "Tìm kiếm gần đây"
+- Mặc định thẻ div chưa xuất hiện
+- Khi click vào input thì thẻ div xuất hiện.
 */
