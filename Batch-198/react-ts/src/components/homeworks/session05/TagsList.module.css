@@ -1,0 +1,19 @@
+.tag_item {
+    padding: 5px 10px;
+    background-color: #f3f3f3;
+    border-radius: 8px;
+    display: flex;
+}
+
+.tag_item::after {
+    content: "x";
+    font-family: Arial, Helvetica, sans-serif;
+    margin-left: 8px;
+    background-color: #444;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    height: 20px;
+    width: 20px;
+    border-radius: 20px;
+}
