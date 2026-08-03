@@ -1,19 +1,10 @@
 import "./App.css";
-import Exercise3 from "./components/homeworks/session05/Exercise3";
-import RankStar from "./components/homeworks/session05/RankStar";
-import SimpleGallery from "./components/homeworks/session05/SimpleGallery";
-import TagsList from "./components/homeworks/session05/TagsList";
+import FormExample from "./components/FormExample";
 
 function App() {
   return (
     <main className="container">
-     <TagsList />
-     <hr />
-     <Exercise3 />
-      <hr />
-     <SimpleGallery />
-     <hr />
-     <RankStar />
+     <FormExample />
     </main>
   );
 }
