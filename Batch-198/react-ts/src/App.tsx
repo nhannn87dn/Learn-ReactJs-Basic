@@ -1,6 +1,7 @@
 import "./App.css";
 import ReactHookFormBasic from "./components/ReactHookFormBasic";
 import ReactHookFormValidation from "./components/ReactHookFormValidation";
+import SubscriberForm from "./components/SubscriberForm";
 // import FormExample from "./components/FormExample";
 
 function App() {
@@ -10,6 +11,8 @@ function App() {
       <ReactHookFormBasic />
       <hr />
       <ReactHookFormValidation />
+      <hr />
+      <SubscriberForm />
     </main>
   );
 }
