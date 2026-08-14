@@ -10,10 +10,12 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.7.1",
     "lucide-react": "^1.25.0",
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
-    "react-hook-form": "^7.85.0"
+    "react-hook-form": "^7.85.0",
+    "yup": "^1.7.1"
   },
   "devDependencies": {
     "@types/node": "^24.13.2",
