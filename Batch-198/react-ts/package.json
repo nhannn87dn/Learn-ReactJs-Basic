@@ -12,7 +12,8 @@
   "dependencies": {
     "lucide-react": "^1.25.0",
     "react": "^19.2.7",
-    "react-dom": "^19.2.7"
+    "react-dom": "^19.2.7",
+    "react-hook-form": "^7.85.0"
   },
   "devDependencies": {
     "@types/node": "^24.13.2",

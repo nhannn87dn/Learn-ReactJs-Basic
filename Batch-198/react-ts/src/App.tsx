@@ -1,10 +1,12 @@
 import "./App.css";
-import FormExample from "./components/FormExample";
+import ReactHookFormBasic from "./components/ReactHookFormBasic";
+// import FormExample from "./components/FormExample";
 
 function App() {
   return (
     <main className="container">
-     <FormExample />
+     {/* <FormExample /> */}
+     <ReactHookFormBasic />
     </main>
   );
 }
