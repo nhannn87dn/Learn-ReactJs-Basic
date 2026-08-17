@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Electrician | Home</title>
+    <link rel="shortcut icon" href="images/favicon.ico" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+        integrity="sha512-SfTiTlX6kk+qitfevl/7LibUOeJWlt9rbyDn92a1DqWOw9vWG2MFoays0sgObmWazO5BQPiFucnnEAjpAB+/Sw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="css/global.css" />
+    <link rel="stylesheet" href="css/index.css" />
+    <link rel="stylesheet" href="css/responsive.css" />
+
+    <style>
+        body {
+            background: #f7f7f7;
+        }
+
+        .page_home main {
+            background: #f7f7f7;
+        }
+
+        .banner {
+            background: linear-gradient(135deg, #fff7f0 0%, #fff 45%, #f3f4f6 100%);
+            padding: 60px 0 40px;
+        }
+
+        .banner-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .banner-content,
+        .banner-media {
+            flex: 1;
+        }
+
+        .banner-content {
+            max-width: 560px;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(255, 103, 0, 0.12);
+            color: var(--main-color);
+            font-weight: 600;
+            padding: 8px 14px;
+            border-radius: 999px;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+        }
+
+        .banner h1 {
+            font-size: clamp(3.2rem, 4vw, 6rem);
+            line-height: 1.1;
+            color: var(--dark-color);
+            margin-bottom: 18px;
+            letter-spacing: -0.05em;
+        }
+
+        .banner p {
+            font-size: 1.7rem;
+            line-height: 1.8;
+            color: var(--text-color);
+            margin-bottom: 28px;
+        }
+
+        .banner-actions {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 48px;
+            padding: 0 22px;
+            border-radius: 999px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn.primary {
+            background: var(--main-color);
+            color: #fff;
+        }
+
+        .btn.secondary {
+            background: transparent;
+            border: 1px solid var(--border-gray-color);
+            color: var(--dark-color);
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 24px rgba(255, 103, 0, 0.15);
+        }
+
+        .banner-stats {
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .banner-stats .stat {
+            min-width: 120px;
+        }
+
+        .banner-stats strong {
+            display: block;
+            color: var(--dark-color);
+            font-size: 2.4rem;
+            line-height: 1.2;
+            margin-bottom: 5px;
+        }
+
+        .banner-media {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .banner-media .main-image {
+            width: 100%;
+            max-width: 560px;
+            border-radius: 28px;
+            box-shadow: 0 30px 60px rgba(21, 27, 45, 0.12);
+            overflow: hidden;
+        }
+
+        .banner-media .main-image img {
+            width: 100%;
+            display: block;
+            height: auto;
+        }
+
+        .floating-card {
+            position: absolute;
+            right: 15px;
+            bottom: 18px;
+            background: rgba(255, 255, 255, 0.96);
+            border: 1px solid rgba(18, 18, 18, 0.05);
+            border-radius: 18px;
+            padding: 18px 20px;
+            box-shadow: 0 18px 40px rgba(27, 32, 43, 0.12);
+            width: 200px;
+        }
+
+        .floating-card .card-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .floating-card .tag {
+            font-size: 1.2rem;
+            color: #fff;
+            background: var(--main-color);
+            padding: 4px 8px;
+            border-radius: 999px;
+        }
+
+        .floating-card strong {
+            display: block;
+            color: var(--dark-color);
+            font-size: 1.4rem;
+            margin-bottom: 6px;
+        }
+
+        .floating-card .price {
+            font-size: 2.2rem;
+            color: var(--main-color);
+            font-weight: 700;
+        }
+
+        .section {
+            padding: 60px 0;
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .section_title {
+            font-size: clamp(2.6rem, 2vw, 3.6rem);
+            margin-bottom: 10px;
+            color: var(--dark-color);
+            line-height: 1.2;
+        }
+
+        .section_desc {
+            max-width: 640px;
+            margin: 0;
+        }
+
+        .section-note {
+            color: var(--main-color);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-size: 1.2rem;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 24px;
+        }
+
+        .feature-item {
+            background: #fff;
+            border: 1px solid var(--border-gray-color);
+            border-radius: 20px;
+            padding: 28px 22px;
+            transition: all 0.3s ease;
+            box-shadow: 0 14px 28px rgba(12, 18, 32, 0.04);
+        }
+
+        .feature-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 18px 34px rgba(12, 18, 32, 0.08);
+        }
+
+        .feature-item .icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 16px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 103, 0, 0.1);
+            color: var(--main-color);
+            font-size: 2.6rem;
+            margin-bottom: 18px;
+        }
+
+        .feature-item h3 {
+            font-size: 1.9rem;
+            margin-bottom: 8px;
+            color: var(--dark-color);
+        }
+
+        .feature-item p {
+            margin: 0;
+            font-size: 1.4rem;
+            line-height: 1.8;
+        }
+
+        .promo-box {
+            background: #fff;
+            padding: 30px;
+            border-radius: 24px;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 24px;
+            align-items: center;
+            box-shadow: 0 16px 35px rgba(18, 18, 18, 0.04);
+        }
+
+        .promo-box img {
+            width: 100%;
+            border-radius: 18px;
+            display: block;
+        }
+
+        .promo-box h3 {
+            font-size: clamp(2.4rem, 2vw, 3.2rem);
+            line-height: 1.2;
+            margin-bottom: 12px;
+            color: var(--dark-color);
+        }
+
+        .promo-box .list {
+            margin-top: 18px;
+            display: grid;
+            gap: 10px;
+        }
+
+        .promo-box .list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-color);
+        }
+
+        .promo-box .list li i {
+            color: var(--main-color);
+        }
+
+        .section_two_wrapper {
+            background: #f0f0f0;
+        }
+
+        .product_wrapper {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 22px;
+            margin-top: 30px;
+        }
+
+        .product_wrapper .product_item {
+            width: calc((100% - 66px) / 4);
+            margin: 0;
+            background: #fff;
+            border: 1px solid var(--border-gray-color);
+            border-radius: 18px;
+            padding: 14px;
+            overflow: hidden;
+            box-shadow: 0 10px 24px rgba(18, 18, 18, 0.03);
+        }
+
+        .product_wrapper .product_item img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-radius: 12px;
+            display: block;
+        }
+
+        .product_wrapper .product_item h3 {
+            min-height: 72px;
+            margin: 14px 0 12px;
+            font-size: 1.7rem;
+            line-height: 1.5;
+            color: var(--dark-color);
+        }
+
+        .product_wrapper .product_item .price {
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .product_wrapper .product_item .discount {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: var(--main-color);
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 999px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            z-index: 1;
+        }
+
+        .subscribe_form {
+            padding: 30px;
+            border-radius: 20px;
+            background: linear-gradient(135deg, var(--main-color) 0%, #ff8c42 100%);
+            margin-top: 20px;
+            gap: 18px;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .subscribe_form input {
+            min-width: 220px;
+            flex: 1;
+            max-width: 260px;
+            border-color: rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.92);
+        }
+
+        .subscribe_form .button {
+            background: var(--dark-color);
+            border-color: transparent;
+            color: #fff;
+            border-radius: 12px;
+            min-height: 46px;
+            padding: 0 24px;
+        }
+
+        .site-footer {
+            background: #171b22;
+            color: #d4d8de;
+            padding-top: 50px;
+        }
+
+        .footer-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            justify-content: space-between;
+            padding-bottom: 28px;
+        }
+
+        .footer-col {
+            flex: 1;
+            min-width: 180px;
+        }
+
+        .footer-col h4 {
+            color: #fff;
+            margin-bottom: 18px;
+            font-size: 1.8rem;
+        }
+
+        .footer-brand a {
+            color: #fff;
+            font-size: 2.4rem;
+            font-weight: 700;
+            display: inline-block;
+            margin-bottom: 14px;
+        }
+
+        .footer-col p,
+        .footer-col li,
+        .footer-col a {
+            color: #c3c7d1;
+            line-height: 1.9;
+            font-size: 1.4rem;
+        }
+
+        .footer-col ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-col li {
+            margin-bottom: 8px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 18px 0 26px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+            font-size: 1.3rem;
+            color: #bbbec7;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        @media (max-width: 991px) {
+
+            .banner-wrap,
+            .promo-box {
+                grid-template-columns: 1fr;
+                display: grid;
+            }
+
+            .feature-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .product_wrapper .product_item {
+                width: calc((100% - 22px) / 2);
+            }
+        }
+
+        @media (max-width: 767px) {
+            .banner {
+                padding-top: 40px;
+            }
+
+            .feature-grid,
+            .product_wrapper {
+                grid-template-columns: 1fr;
+                display: grid;
+            }
+
+            .product_wrapper .product_item {
+                width: 100%;
+            }
+
+            .section-heading {
+                display: block;
+            }
+
+            .banner-actions,
+            .banner-stats,
+            .footer-bottom,
+            .footer-row {
+                display: block;
+            }
+
+            .banner-actions a,
+            .subscribe_form .button {
+                width: 100%;
+            }
+
+            .subscribe_form {
+                align-items: stretch;
+            }
+        }
+    </style>
+</head>
+
+<body id="page_home" class="page_home">
+    <header>
+        <div class="container">
+            <div class="header-main flex">
+                <div class="header-logo">
+                    <a href="index.html" class="logo">Electrician</a>
+                </div>
+                <nav class="header-nav inline-flex">
+                    <ul class="flex">
+                        <li class="actived"><a href="home.html">Home</a></li>
+                        <li class="has-child">
+                            <a href="blog.html">Blog</a>
+                            <div class="nav-child">
+                                <a href="">Tech</a>
+                                <a href="">Sport</a>
+                                <a href="">Fashion</a>
+                            </div>
+                        </li>
+                        <li><a href="category.html">Category</a></li>
+                        <li><a href="product.html">Product</a></li>
+                        <li><a href="login.html">Login</a></li>
+                        <li><a href="customer.html">Customer</a></li>
+                    </ul>
+                    <div class="header-cart">
+                        <i class="fa fa-shopping-cart"></i>
+                        <span>0</span>
+                    </div>
+                </nav>
+
+                <div id="toggle_nav">
+                    <i class="fa fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="section_two_wrapper">
+            <div class="sections section_two">
+                <h2 class="section_title text-center">What We Offer</h2>
+                <ul class="homeproduct clearfix" id="_loadList">
+                    <li>
+                        <img class="photo" alt="Lighting Upgrades" src="images/lighting-upgrades-thumb-G3.jpg" />
+                        <div class="content">
+                            <h3>
+                                <a href="lighting-upgrades" title="Lighting Upgrades">Lighting Upgrades</a>
+                            </h3>
+                            <p class="section_desc">
+                                Electrical panel maintenance, therefore, should be part of your regular routine.
+                            </p>
+                            <div class="section_btn">
+                                <a class="readmore" href="lighting-upgrades" title="Lighting Upgrades">Read more</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <img class="photo" alt="Electrical repairs" src="images/electrical-repairs-thumb-G1.jpg" />
+                        <div class="content">
+                            <h3>
+                                <a href="electrical-repairs" title="Electrical repairs">Electrical repairs</a>
+                            </h3>
+                            <p class="section_desc">
+                                Electrical repairs should always be handled by a professional electrician
+                            </p>
+                            <div class="section_btn">
+                                <a class="readmore" href="electrical-repairs" title="Electrical repairs">Read more</a>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <img class="photo ls-is-cached lazyloaded" alt="Surge Protection"
+                            src="images/surge-protection-thumb-G4.jpg" />
+                        <div class="content">
+                            <h3>
+                                <a href="surge-protection" title="Surge Protection">Surge Protection</a>
+                            </h3>
+                            <p class="section_desc">
+                                An electrical surge can happen for a number of reasons, including lightning strikes.
+                            </p>
+                            <div class="section_btn">
+                                <a class="readmore" href="surge-protection" title="Surge Protection">Read more</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="sections">
+            <h2 class="section_title text-center">Danh sách sản phẩm</h2>
+            <div class="product_wrapper flex">
+                <div class="product_item">
+                    <span class="discount">-6%</span>
+                    <img src="images/may-loc-khong-khi-xiaomi-mi-air-purifier-gen-4-pro-thumbjpg.jpg" alt="" />
+                    <h3>Máy Lọc Không Khí Xiaomi Mi Air Purifier Gen 4 Pro</h3>
+                    <div class="price">
+                        <strong>1.150.000đ</strong>
+                        <del>1.725.000đ</del>
+                    </div>
+                </div>
+                <div class="product_item">
+                    <span class="discount">-6%</span>
+                    <img src="images/robot-hut-bui-lau-nha-xiaomi-roborock-s7-thumb.jpg" alt="" />
+                    <h3>Robot Hút Bụi Lau Nhà Xiaomi Roborock S7</h3>
+                    <div class="price">
+                        <strong>6.550.000đ</strong>
+                    </div>
+                </div>
+                <div class="product_item">
+                    <span class="discount">-25%</span>
+                    <img src="images/cap-chuyen-doi-usb-c-sang-sd-thumb.png" alt="" />
+                    <h3>Cáp chuyển đổi USB-C sang SD</h3>
+                    <div class="price">
+                        <strong>790.000đ</strong>
+                        <del>1.290.000đ</del>
+                    </div>
+                </div>
+                <div class="product_item">
+                    <img src="images/adapter-sac-apple-type-c-20w-thumb.png" alt="" />
+                    <h3>Adapter sạc Apple Type C 20W</h3>
+                    <div class="price">
+                        <strong>520.000đ</strong>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-row flex md-flex-wrap">
+                <div class="footer-col">
+                    <h4 class="widget-title">About Us</h4>
+                    <a href="#"><span>Electrician</span></a>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis nec vestibulum magna, et dapibus
+                        lacus.
+                    </p>
+                </div>
+
+                <div class="footer-col">
+                    <h4 class="widget-title">Contact Info</h4>
+                    <ul class="contact-info">
+                        <li><span class="contact-info-label">Address:</span> 123 Street Name, City, England</li>
+                        <li><span class="contact-info-label">Phone:</span> <a href="tel:">(123) 456-7890</a></li>
+                        <li><span class="contact-info-label">Email:</span> <a
+                                href="mailto:mail@example.com">mail@example.com</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4 class="widget-title">Customer Service</h4>
+                    <ul class="links">
+                        <li><a href="#">Help &amp; FAQs</a></li>
+                        <li><a href="#">Order Tracking</a></li>
+                        <li><a href="#">Shipping &amp; Delivery</a></li>
+                        <li><a href="#">Privacy</a></li>
+                    </ul>
+                </div>
+
+                <div class="footer-col">
+                    <h4 class="widget-title">Popular Tags</h4>
+                    <div class="tagcloud">
+                        <a href="#">Bag</a>
+                        <a href="#">Tech</a>
+                        <a href="#">Smart</a>
+                        <a href="#">Home</a>
+                        <a href="#">Electronics</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom">
+                <div class="copyright">© Aptech eCommerce. 2026. All Rights Reserved</div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
