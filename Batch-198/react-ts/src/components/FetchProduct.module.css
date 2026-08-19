@@ -1,0 +1,37 @@
+.products_list {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.product_item {
+  width: calc((100% - 80px) / 5);
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  overflow: hidden;
+}
+.thumbnail {
+  width: 100%;
+  height: 200px;
+  overflow: hidden;
+}
+.thumbnail img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+.product_info {
+  padding: 10px;
+}
+.product_price {
+  color: red;
+  margin-top: 10px;
+}
+.product_name {
+  line-height: 24px;
+  height: 48px; /* 2 dòng × 24px */
+
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}

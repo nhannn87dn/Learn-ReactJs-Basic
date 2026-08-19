@@ -1,0 +1,4 @@
+# Gửi các request với phương thức HTTP
+
+### Get All Products
+GET https://dummyjson.com/products
