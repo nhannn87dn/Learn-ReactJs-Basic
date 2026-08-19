@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bảng Dữ Liệu Bài Viết</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f1f5f9;
+            padding: 40px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .table-card {
+            width: 100%;
+            max-width: 1100px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+        }
+
+        .table-header {
+            padding: 20px 24px;
+            background-color: #0f172a;
+            color: #ffffff;
+        }
+
+        .table-header h2 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.9rem;
+        }
+
+        th {
+            background-color: #f8fafc;
+            color: #475569;
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.05em;
+            padding: 14px 18px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        td {
+            padding: 18px;
+            border-bottom: 1px solid #e2e8f0;
+            vertical-align: top;
+            color: #334155;
+        }
+
+        tr:hover {
+            background-color: #f8fafc;
+        }
+
+        .col-id,
+        .col-user {
+            font-weight: 600;
+            color: #64748b;
+            text-align: center;
+            width: 60px;
+        }
+
+        .col-title {
+            font-weight: 600;
+            color: #0f172a;
+            min-width: 180px;
+            line-height: 1.4;
+        }
+
+        .col-body {
+            line-height: 1.6;
+            max-width: 320px;
+            color: #475569;
+        }
+
+        .tags-container {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+
+        .tag-badge {
+            background-color: #e0f2fe;
+            color: #0369a1;
+            padding: 4px 10px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: lowercase;
+        }
+
+        .reactions-container {
+            display: flex;
+            gap: 12px;
+            white-space: nowrap;
+        }
+
+        .reaction-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            padding: 4px 8px;
+            border-radius: 6px;
+        }
+
+        .reaction-like {
+            background-color: #f0fdf4;
+            color: #16a34a;
+        }
+
+        .reaction-dislike {
+            background-color: #fef2f2;
+            color: #dc2626;
+        }
+
+        .views-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            color: #64748b;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="table-card">
+        <div class="table-header">
+            <h2>Danh sách bài viết (Posts)</h2>
+        </div>
+        <div class="table-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="text-align: center;">ID</th>
+                        <th>Tiêu đề</th>
+
+                        <th>Thẻ (Tags)</th>
+                        <th>Cảm xúc</th>
+                        <th>Lượt xem</th>
+                        <th style="text-align: center;">User ID</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="col-id">1</td>
+                        <td class="col-title">He was an expert but not in a discipline</td>
+
+                        <td>
+                            <div class="tags-container">
+                                <span class="tag-badge">french</span>
+                                <span class="tag-badge">fiction</span>
+                                <span class="tag-badge">english</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="reactions-container">
+                                <span class="reaction-item reaction-like">👍 859</span>
+                                <span class="reaction-item reaction-dislike">👎 32</span>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="views-badge">👁️ 4,884</span>
+                        </td>
+                        <td class="col-user">91</td>
+                    </tr>
+                    <tr>
+                        <td class="col-id">2</td>
+                        <td class="col-title">He was an expert but not in a discipline</td>
+
+                        <td>
+                            <div class="tags-container">
+                                <span class="tag-badge">french</span>
+                                <span class="tag-badge">fiction</span>
+                                <span class="tag-badge">english</span>
+                            </div>
+                        </td>
+                        <td>
+                            <div class="reactions-container">
+                                <span class="reaction-item reaction-like">👍 859</span>
+                                <span class="reaction-item reaction-dislike">👎 32</span>
+                            </div>
+                        </td>
+                        <td>
+                            <span class="views-badge">👁️ 4,884</span>
+                        </td>
+                        <td class="col-user">91</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</body>
+
+</html>
