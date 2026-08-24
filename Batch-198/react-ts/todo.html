@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Giao Diện Quản Lý CRUD</title>
+    <style>
+        :root {
+            --primary: #4f46e5;
+            --primary-hover: #4338ca;
+            --bg: #f8fafc;
+            --surface: #ffffff;
+            --text: #0f172a;
+            --text-muted: #64748b;
+            --border: #e2e8f0;
+            --danger: #ef4444;
+            --danger-hover: #dc2626;
+            --success: #10b981;
+            --warning: #f59e0b;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text);
+            padding: 30px 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        /* Header & Controls */
+        .app-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+
+        .app-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        .toolbar {
+            display: flex;
+            gap: 12px;
+            width: 100%;
+            max-width: 500px;
+        }
+
+        .search-input {
+            flex: 1;
+            padding: 10px 14px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            outline: none;
+            font-size: 0.9rem;
+            transition: border-color 0.2s;
+        }
+
+        .search-input:focus {
+            border-color: var(--primary);
+        }
+
+        .btn {
+            padding: 10px 16px;
+            border-radius: 8px;
+            border: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            transition: background-color 0.2s;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+        }
+
+        /* Table Design */
+        .card-table {
+            background: var(--surface);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+            overflow: hidden;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f1f5f9;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            padding: 14px 18px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        td {
+            padding: 14px 18px;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.9rem;
+            vertical-align: middle;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover {
+            background-color: #f8fafc;
+        }
+
+        /* Badges & Actions */
+        .badge {
+            padding: 4px 10px;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-block;
+        }
+
+        .badge-pending {
+            background-color: #fef3c7;
+            color: #b45309;
+        }
+
+        .badge-completed {
+            background-color: #d1fae5;
+            color: #047857;
+        }
+
+        .action-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 6px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-right: 4px;
+        }
+
+        .btn-edit {
+            color: var(--primary);
+        }
+
+        .btn-edit:hover {
+            background-color: #e0e7ff;
+        }
+
+        .btn-delete {
+            color: var(--danger);
+        }
+
+        .btn-delete:hover {
+            background-color: #fee2e2;
+        }
+
+        /* Modal Styling */
+        .modal-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: rgba(15, 23, 42, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s ease;
+        }
+
+        .modal-backdrop.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal {
+            background: var(--surface);
+            width: 100%;
+            max-width: 450px;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+        }
+
+        .modal-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .form-group {
+            margin-bottom: 14px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 6px;
+            color: var(--text-muted);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            font-size: 0.9rem;
+            outline: none;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+        }
+
+        .modal-actions {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .btn-secondary {
+            background: #e2e8f0;
+            color: var(--text);
+        }
+
+        .btn-secondary:hover {
+            background: #cbd5e1;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 40px;
+            color: var(--text-muted);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- Top Header -->
+        <div class="app-header">
+            <h1 class="app-title">Quản Lý Công Việc</h1>
+            <div class="toolbar">
+                <input type="text" id="searchInput" class="search-input" placeholder="Tìm kiếm tiêu đề hoặc User ID..."
+                    onkeyup="filterData()">
+                <button class="btn btn-primary" onclick="openModal('create')">
+                    <span>+</span> Thêm Mới
+                </button>
+            </div>
+        </div>
+
+        <!-- Data Table -->
+        <div class="card-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th style="width: 60px;">ID</th>
+                        <th>Nhiệm vụ (Todo)</th>
+                        <th>User ID</th>
+                        <th>Trạng thái</th>
+                        <th style="width: 120px; text-align: right;">Thao tác</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <!-- Render dynamically via JS -->
+                </tbody>
+            </table>
+            <div id="emptyState" class="empty-state" style="display: none;">
+                Không tìm thấy dữ liệu phù hợp.
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Form (Create / Edit) -->
+    <div class="modal-backdrop" id="modalBackdrop">
+        <div class="modal">
+            <h3 class="modal-title" id="modalTitle">Thêm mới công việc</h3>
+            <form id="crudForm" onsubmit="handleFormSubmit(event)">
+                <input type="hidden" id="itemId">
+
+                <div class="form-group">
+                    <label for="todoText">Nội dung công việc</label>
+                    <input type="text" id="todoText" class="form-control" placeholder="Nhập tiêu đề..." required>
+                </div>
+
+                <div class="form-group">
+                    <label for="userId">User ID</label>
+                    <input type="number" id="userId" class="form-control" placeholder="Nhập ID người dùng..." required>
+                </div>
+
+                <div class="form-group">
+                    <label for="statusSelect">Trạng thái</label>
+                    <select id="statusSelect" class="form-control">
+                        <option value="false">Chưa hoàn thành</option>
+                        <option value="true">Đã hoàn thành</option>
+                    </select>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" class="btn btn-secondary" onclick="closeModal()">Hủy</button>
+                    <button type="submit" class="btn btn-primary">Lưu thông tin</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Mock Data State
+        let items = [
+            { id: 1, todo: "Do something nice for someone you care about", completed: false, userId: 152 },
+            { id: 2, todo: "Memorize the items on a shopping list", completed: true, userId: 91 },
+            { id: 3, todo: "Watch a classic movie or favorite film", completed: false, userId: 44 }
+        ];
+
+        // DOM Elements
+        const tableBody = document.getElementById('tableBody');
+        const modalBackdrop = document.getElementById('modalBackdrop');
+        const crudForm = document.getElementById('crudForm');
+        const emptyState = document.getElementById('emptyState');
+
+        // READ: Render Table Items
+        function renderTable(data = items) {
+            tableBody.innerHTML = '';
+
+            if (data.length === 0) {
+                emptyState.style.display = 'block';
+                return;
+            }
+            emptyState.style.display = 'none';
+
+            data.forEach(item => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+          <td><strong>#${item.id}</strong></td>
+          <td>${escapeHtml(item.todo)}</td>
+          <td>User #${item.userId}</td>
+          <td>
+            <span class="badge ${item.completed ? 'badge-completed' : 'badge-pending'}">
+              ${item.completed ? 'Đã hoàn thành' : 'Chưa hoàn thành'}
+            </span>
+          </td>
+          <td style="text-align: right;">
+            <button class="action-btn btn-edit" onclick="openModal('edit', ${item.id})">Sửa</button>
+            <button class="action-btn btn-delete" onclick="deleteItem(${item.id})">Xóa</button>
+          </td>
+        `;
+                tableBody.appendChild(tr);
+            });
+        }
+
+        // CREATE & UPDATE: Open Modal
+        function openModal(mode, id = null) {
+            modalBackdrop.classList.add('active');
+
+            if (mode === 'edit' && id !== null) {
+                const item = items.find(i => i.id === id);
+                if (item) {
+                    document.getElementById('modalTitle').textContent = 'Chỉnh sửa công việc';
+                    document.getElementById('itemId').value = item.id;
+                    document.getElementById('todoText').value = item.todo;
+                    document.getElementById('userId').value = item.userId;
+                    document.getElementById('statusSelect').value = item.completed.toString();
+                }
+            } else {
+                document.getElementById('modalTitle').textContent = 'Thêm mới công việc';
+                crudForm.reset();
+                document.getElementById('itemId').value = '';
+            }
+        }
+
+        function closeModal() {
+            modalBackdrop.classList.remove('active');
+        }
+
+        // CREATE & UPDATE: Form Submit Logic
+        function handleFormSubmit(e) {
+            e.preventDefault();
+
+            const id = document.getElementById('itemId').value;
+            const todo = document.getElementById('todoText').value;
+            const userId = parseInt(document.getElementById('userId').value);
+            const completed = document.getElementById('statusSelect').value === 'true';
+
+            if (id) {
+                // Update existing item
+                const index = items.findIndex(i => i.id == id);
+                if (index !== -1) {
+                    items[index] = { id: parseInt(id), todo, userId, completed };
+                }
+            } else {
+                // Create new item
+                const newId = items.length > 0 ? Math.max(...items.map(i => i.id)) + 1 : 1;
+                items.push({ id: newId, todo, userId, completed });
+            }
+
+            closeModal();
+            filterData(); // Refresh list with active filters
+        }
+
+        // DELETE: Delete Item
+        function deleteItem(id) {
+            if (confirm(`Bạn có chắc chắn muốn xóa mục #${id}?`)) {
+                items = items.filter(i => i.id !== id);
+                filterData();
+            }
+        }
+
+        // SEARCH & FILTER
+        function filterData() {
+            const query = document.getElementById('searchInput').value.toLowerCase();
+            const filtered = items.filter(item =>
+                item.todo.toLowerCase().includes(query) ||
+                item.userId.toString().includes(query)
+            );
+            renderTable(filtered);
+        }
+
+        // Helper: Escape HTML to prevent XSS
+        function escapeHtml(text) {
+            return text
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;");
+        }
+
+        // Initial Render
+        renderTable();
+    </script>
+</body>
+
+</html>

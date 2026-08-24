@@ -1,0 +1,92 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  background: rgba(0, 0, 0, 0.45);
+
+  z-index: 1000;
+}
+
+.modal {
+  max-width: 100%;
+  max-height: calc(100vh - 40px);
+
+  overflow: hidden;
+
+  background: #fff;
+  border-radius: 8px;
+
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+
+  animation: modalShow 0.2s ease-out;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 16px 20px;
+
+  border-bottom: 1px solid #eee;
+}
+
+.title {
+  margin: 0;
+
+  color: #222;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.closeButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 32px;
+  height: 32px;
+
+  padding: 0;
+
+  border: none;
+  border-radius: 4px;
+
+  color: #666;
+  background: transparent;
+
+  font-size: 26px;
+  line-height: 1;
+
+  cursor: pointer;
+}
+
+.closeButton:hover {
+  color: #222;
+  background: #f5f5f5;
+}
+
+.content {
+  padding: 20px;
+
+  overflow-y: auto;
+  max-height: calc(100vh - 140px);
+}
+
+@keyframes modalShow {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
