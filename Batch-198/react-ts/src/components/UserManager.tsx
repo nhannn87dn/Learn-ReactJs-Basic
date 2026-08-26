@@ -3,6 +3,7 @@ import styles from "./UserManager.module.css";
 import Modal from "./Modal";
 import UserForm from "./UserForm";
 import UpdateUserForm from "./UpdateUserForm";
+import axios from "axios";
 
 type User = {
   id: number;
@@ -27,11 +28,17 @@ export default function UserManager() {
     try {
       setIsLoading(true);
       const fetchUsers = async () => {
-        const response = await fetch("https://dummyjson.com/users");
-        const data = await response.json();
-        console.log("<<=== 🚀 data ===>>", data);
+        //call api with fetch
+        // const response = await fetch("https://dummyjson.com/users");
+        // const data = await response.json();
+
+        //call api with axios
+        const response = await axios.get("https://dummyjson.com/users");
+
+        console.log("<<=== 🚀 response ===>>", response);
         if (response.status === 200) {
-          setUsers(data.users);
+          //setUsers(data.users);
+          setUsers(response.data.users);
         }
       };
       fetchUsers();
@@ -61,12 +68,16 @@ export default function UserManager() {
     setUsers((prevUsers) => prevUsers.filter((user) => user.id !== id));
     //gọi api để xóa user có id ở trên server
     try {
-      const response = await fetch(`https://dummyjson.com/users/${id}`, {
-        method: "DELETE",
-      });
-      const data = await response.json();
-      console.log("<<=== 🚀 data ===>>", data);
-      if (data.isDeleted) {
+      //gọi api với method DELETE của fetch
+      // const response = await fetch(`https://dummyjson.com/users/${id}`, {
+      //   method: "DELETE",
+      // });
+      // const data = await response.json();
+
+      const response = await axios.delete(`https://dummyjson.com/users/${id}`);
+
+      console.log("<<=== 🚀 response ===>>", response);
+      if (response.data.isDeleted) {
         setIsSuccess(true);
       }
     } catch (error) {
@@ -103,21 +114,28 @@ export default function UserManager() {
                 console.log("<<=== 🚀 data ===>>", data);
                 try {
                   setIsLoading(true);
-                  const response = await fetch(
+
+                  // const response = await fetch(
+                  //   "https://dummyjson.com/users/add",
+                  //   {
+                  //     method: "POST",
+                  //     headers: {
+                  //       "Content-Type": "application/json",
+                  //     },
+                  //     body: JSON.stringify(data),
+                  //   },
+                  // );
+                  // const result = await response.json();
+
+                  const response = await axios.post(
                     "https://dummyjson.com/users/add",
-                    {
-                      method: "POST",
-                      headers: {
-                        "Content-Type": "application/json",
-                      },
-                      body: JSON.stringify(data),
-                    },
+                    data,
                   );
-                  const result = await response.json();
-                  console.log("<<=== 🚀 result ===>>", result);
+
+                  console.log("<<=== 🚀 response ===>>", response);
                   if (response.status === 201) {
                     //bổ sung user mới vào danh sách users
-                    setUsers((prevUsers) => [...prevUsers, result]);
+                    setUsers((prevUsers) => [...prevUsers, response.data]);
                     //tắt modal
                     setIsModalAddOpen(false);
                     //bật thông báo thành công
@@ -149,23 +167,28 @@ export default function UserManager() {
                 console.log("data update", data);
                 try {
                   setIsLoading(true);
-                  const response = await fetch(
+                  // const response = await fetch(
+                  //   `https://dummyjson.com/users/${selectedUser?.id}`,
+                  //   {
+                  //     method: "PUT",
+                  //     headers: {
+                  //       "Content-Type": "application/json",
+                  //     },
+                  //     body: JSON.stringify(data),
+                  //   },
+                  // );
+                  // const result = await response.json();
+
+                  const response = await axios.put(
                     `https://dummyjson.com/users/${selectedUser?.id}`,
-                    {
-                      method: "PUT",
-                      headers: {
-                        "Content-Type": "application/json",
-                      },
-                      body: JSON.stringify(data),
-                    },
+                    data,
                   );
-                  const result = await response.json();
-                  console.log("<<=== 🚀 result ===>>", result);
+                  console.log("<<=== 🚀 response ===>>", response);
                   if (response.status === 200) {
                     //cập nhật user trong danh sách users
                     setUsers((prevUsers) =>
                       prevUsers.map((u) =>
-                        u.id === selectedUser?.id ? result : u,
+                        u.id === selectedUser?.id ? response.data : u,
                       ),
                     );
                     //tắt modal
