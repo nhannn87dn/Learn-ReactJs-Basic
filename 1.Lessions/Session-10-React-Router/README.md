@@ -276,17 +276,36 @@ Làm thế nào để bạn có thể thay đổi thông tin title, metadata đ�
 Thư viện sau giúp chúng ta làm được điều đó
 
 ```bash
-yarn add react-helmet
-# Với TypeScript cần cài thêm
-yarn add -D @types/react-helmet
+pnpm add react-helmet-async
 ```
 
 Cách sử dụng
 
+Cấu hình Provider tại App
+
+```jsx
+export default function App() {
+  return (
+    <HelmetProvider>
+      <BrowserRouter>
+        <Routes>
+            <Route path="/" element={<Layout />} >
+              <Route index element={<DashboardPage />} >
+              <Route path="categories" element={<CategoryPage />} />
+              <Route path="products" element={<ProductPage />} />
+              <Route path="*" element={<NoPage />} />
+            </Route>
+        </Routes>
+      </BrowserRouter>
+     </HelmetProvider>
+  );
+}
+```
+
 DashboardPage
 
 ```tsx
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 const Dashboard = () => {
   return (

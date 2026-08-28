@@ -7,9 +7,9 @@
   max-width: 1200px;
   margin: 0 auto;
 }
-.btn{
+.btn {
   padding: 8px 60px;
-  background-color: #F80;
+  background-color: #f80;
   color: #fff;
   border: none;
   appearance: none;
@@ -19,5 +19,17 @@
   cursor: pointer;
 }
 .btn:hover {
-background-color: rgb(226, 121, 1);
+  background-color: rgb(226, 121, 1);
+}
+.pagination {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin: 20px 0;
+}
+.pagination a {
+  display: block;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 5px 10px;
 }
