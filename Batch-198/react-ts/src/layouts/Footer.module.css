@@ -1,0 +1,79 @@
+.footer {
+  background-color: #111827;
+  color: #9ca3af;
+  padding: 3rem 1.5rem 1rem 1.5rem;
+  font-family:
+    system-ui,
+    -apple-system,
+    sans-serif;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 2rem;
+}
+
+.column {
+  display: flex;
+  flex-direction: column;
+}
+
+.logo {
+  color: #818cf8; /* Màu Indigo sáng nổi bật trên nền tối */
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.heading {
+  color: #ffffff;
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.description {
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: #9ca3af;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.list li {
+  margin-bottom: 0.6rem;
+}
+
+.list a {
+  color: #9ca3af;
+  text-decoration: none;
+  font-size: 0.875rem;
+  transition: color 0.2s ease-in-out;
+}
+
+.list a:hover {
+  color: #818cf8; /* Hover đổi sang màu Indigo */
+}
+
+.contactItem {
+  font-size: 0.875rem;
+  margin-bottom: 0.6rem;
+  line-height: 1.4;
+}
+
+.bottomBar {
+  max-width: 1200px;
+  margin: 2.5rem auto 0 auto;
+  padding-top: 1.25rem;
+  border-top: 1px solid #1f2937;
+  text-align: center;
+  font-size: 0.8rem;
+  color: #6b7280;
+}
