@@ -23,9 +23,9 @@ Nói cách khác, `react-router` giúp ứng dụng SPA của bạn "giả vờ"
 ## 🔥 Thêm React Router vào dự án
 
 ```bash
-npm i -D react-router
-yarn add -D react-router
-pnpm add -D react-router
+npm i react-router
+yarn add react-router
+pnpm add react-router
 ```
 
 ## 🔥 Ý tưởng sitemap
@@ -45,10 +45,10 @@ Ví dụ bạn muốn khi URL:
 
 src/
 ├─ pages/
-│  ├─ DashboardPage.js
-│  ├─ CategoryPage.js
-│  ├─ ProductPage.js
-│  ├─ NoPage.js
+│  ├─ DashboardPage.tsx
+│  ├─ CategoryPage.tsx
+│  ├─ ProductPage.tsx
+│  ├─ NoPage.tsx
 
 ```
 
@@ -57,7 +57,7 @@ src/
 Tại component App
 
 ```js
-//App.js
+//App.tsx
 import { BrowserRouter, Routes, Route } from "react-router";
 
 import Dashboard from "./pages/Dashboard";
@@ -94,7 +94,7 @@ Khi đó React cho phép chúng ta dùng Layout để chứa phần thông tin C
 Tạo một folder src/layouts
 
 ```js
-//Tạo file Layout.js:
+//Tạo file Layouttsx:
 import { Outlet, Link } from "react-router";
 
 const Layout = () => {
