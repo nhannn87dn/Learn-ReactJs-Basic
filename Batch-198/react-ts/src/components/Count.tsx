@@ -3,7 +3,8 @@ import { useCount } from "../stores/count-store";
 
 const Count = () => {
   //const [count, setCount] = useState(0);
-  const { count, setCount } = useCount();
+  const count = useCount((state) => state.count);
+  const setCount = useCount((state) => state.setCount);
   return (
     <div>
       <h1>Count: {count}</h1>
