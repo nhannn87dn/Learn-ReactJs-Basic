@@ -1,3 +1,4 @@
+import Cart from "../components/Cart";
 import styles from "./Header.module.css";
 import { Link } from "react-router";
 
@@ -16,6 +17,9 @@ const Header = () => {
         </Link>
         <Link to="/contact" className={styles.link}>
           Contact
+        </Link>
+        <Link to="/cart" className={styles.link}>
+          <Cart />
         </Link>
       </nav>
     </header>

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import styles from "./FetchProduct.module.css";
 import { Link, useSearchParams } from "react-router";
+import { useCart } from "../stores/cart-store";
 //bước 1: Tạo một kiểu dữ liệu cho sản phẩm
 type TProduct = {
   id: number;
@@ -10,6 +11,9 @@ type TProduct = {
 };
 
 const FetchProduct = () => {
+  // truy cap kho chung
+  const { setTotalItems } = useCart();
+
   // Bước 2: Sử dụng useState để lưu trữ dữ liệu sản phẩm
   const [products, setProducts] = useState<TProduct[]>([]);
   const [isError, setIsError] = useState(false);
@@ -69,21 +73,31 @@ const FetchProduct = () => {
         {products.length > 0 &&
           products.map((product) => {
             return (
-              <Link
-                to={`/products/${product.id}`}
-                key={product.id}
-                className={styles.product_item}
-              >
-                <div className={styles.thumbnail}>
-                  <img src={product.thumbnail} alt={product.title} />
-                </div>
-                <div className={styles.product_info}>
-                  <h3 className={styles.product_name}>{product.title}</h3>
-                  <div className={styles.product_price}>
-                    <strong>${product.price}</strong>
+              <div className={styles.product_item} key={product.id}>
+                <Link to={`/products/${product.id}`}>
+                  <div className={styles.thumbnail}>
+                    <img src={product.thumbnail} alt={product.title} />
                   </div>
+                  <div className={styles.product_info}>
+                    <h3 className={styles.product_name}>{product.title}</h3>
+                    <div className={styles.product_price}>
+                      <strong>${product.price}</strong>
+                    </div>
+                  </div>
+                </Link>
+                <div className="product_action">
+                  <button
+                    onClick={() => {
+                      console.log(product.id);
+                      // mặc định click vào thì tăng 1
+                      setTotalItems(1);
+                    }}
+                    className="btn btn-primary"
+                  >
+                    Add to cart
+                  </button>
                 </div>
-              </Link>
+              </div>
             );
           })}
       </div>
