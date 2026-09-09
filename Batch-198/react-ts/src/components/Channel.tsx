@@ -1,4 +1,4 @@
-const Channel = (props) => {
+const Channel = (props: {n: string}) => {
   //Thì khi đó props nó s
   //nhận tất cả thuộc tính
   //được truyền vào

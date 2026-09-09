@@ -1,4 +1,3 @@
-import styles from "./MyCV.module.css";
 import MyCVTitle from "./MyCVTitle";
 
 const contacts = [

@@ -1,7 +1,7 @@
 import { useCount } from "../stores/count-store";
 
 const CountHangXom = () => {
-  const { count, setCount } = useCount();
+  const { setCount } = useCount();
   return (
     <div>
       CountHangXom
