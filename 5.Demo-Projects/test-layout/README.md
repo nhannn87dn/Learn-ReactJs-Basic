@@ -60,6 +60,16 @@ Cho biết:
 
 ## Yêu cầu cấu trúc project
 
+Các bạn cài đặt một Project mới hoàn toàn với **React Vite** và tổ chức cấu trúc thư mục cơ bản như dưới đây:
+
+Lệnh tạo dự án mới:
+
+```bash
+pnpm create vite
+```
+
+Cấu trúc dự án:
+
 ```
 public/
 src/
